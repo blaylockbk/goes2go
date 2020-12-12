@@ -87,12 +87,19 @@ def normalize(value, lower_limit, upper_limit, clip=True):
     return norm
 
 
-def TrueColor(C, trueGreen=True):
+def TrueColor(C, trueGreen=True, night_IR=True):
     """
-    True Color RGB: 
+    True Color RGB
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf
-    trueGreen - True: returns the calculated "True" green color
-                False: returns the "veggie" channel
+    
+    trueGreen : bool
+        True: returns the calculated "True" green color
+        False: returns the "veggie" channel
+    night_IR : bool
+        If True, use Clean IR (channel 13) as maximum RGB value so that
+        clouds show up at night (and even daytime clouds might appear
+        brighter than in real life).
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (2, 3, 1))
@@ -114,6 +121,21 @@ def TrueColor(C, trueGreen=True):
         G = np.maximum(G, 0)
         G = np.minimum(G, 1)
 
+    if night_IR:
+        # Load the Clean IR channel
+        IR = C['CMI_C13']
+        # Normalize between a range and clip
+        IR = normalize(IR, 90, 313, clip=True)
+        # Invert colors so cold clouds are white
+        IR = 1 - IR  
+        # Lessen the brightness of the coldest clouds so they don't
+        # appear so bright when we overlay it on the true color image
+        IR = IR/1.4
+        # RGB with IR as greyscale
+        return np.dstack([np.maximum(R, IR),
+                          np.maximum(G, IR),
+                          np.maximum(B, IR)])
+        
     return np.dstack([R, G, B])
 
 
