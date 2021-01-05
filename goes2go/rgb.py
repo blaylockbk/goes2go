@@ -36,8 +36,90 @@ with xarray:
     FILE = 'OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc'
     C = xarray.open_dataset(FILE)
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import xarray as xr
+
+from goes2go.tools import field_of_view
+
+def get_imshow_kwargs(ds):
+    """
+    Help with the imshow arguments.
+    
+    Usage
+    -----
+    ... code: python
+        r = TrueColor(G)
+        ax = common_features(r.crs)
+        ax.imshow(r.TrueColor, **get_imshow_kwargs(r))
+    """
+    return dict(
+        extent=[ds.x2.data.min(), ds.x2.data.max(),
+                ds.y2.data.min(), ds.y2.data.max()],
+        transform=ds.crs,
+        origin='upper',
+        interpolation='none',
+        )
+
+def rgb_as_dataset(G, RGB, description, latlon=False):
+    """
+    Assemble a dataset with the RGB array with other data from the file.
+    
+    Parameters
+    ----------
+    G : xarray.Dataset
+        GOES ABI data from multispectral channel
+    RGB : array
+        A 3D array of R, G, and B values at each pixel
+    description : str
+        A description of what the RGB data represents.
+    latlon : bool
+        Derive the latitude and longitude of each pixel.
+    """
+    # Assemble a new xarray.Dataset for the RGB data
+    ds = xr.Dataset({description.replace(' ', ''): (['y', 'x', 'rgb'], RGB)})
+    ds.attrs['description'] = description
+    
+    # Convert x, y points to latitude/longitude
+    _, crs = field_of_view(G)
+    sat_h = G.goes_imager_projection.perspective_point_height
+    x2 = G.x * sat_h
+    y2 = G.y * sat_h
+    ds.coords['x2'] = x2
+    ds.coords['y2'] = y2
+    
+    ds['x2'].attrs['long_name'] = 'x sweep in crs units (m); x * sat_height'
+    ds['y2'].attrs['long_name'] = 'y sweep in crs units (m); y * sat_height'
+    
+    ds.attrs['crs'] = crs
+    
+    if latlon:
+        X, Y = np.meshgrid(x2, y2)
+        a = ccrs.PlateCarree().transform_points(crs, X, Y)
+        lons, lats, _ = a[:,:,0], a[:,:,1], a[:,:,2]
+        ds.coords['longitude'] = (('y', 'x'), lons)
+        ds.coords['latitude'] = (('y', 'x'), lats)
+        
+    # Copy some coordinates and attributes of interest from the original data
+    for i in ['x', 'y', 't', 'geospatial_lat_lon_extent']:
+        ds.coords[i] = G[i]
+    for i in ['orbital_slot', 'platform_ID', 'scene_id', 'spatial_resolution', 'instrument_type', 'title']:
+        ds.attrs[i] = G.attrs[i]
+        
+    ## Provide some helpers to plot with imshow        
+    ds.attrs['imshow_kwargs'] = get_imshow_kwargs(ds)
+    
+    ## Provide some helpers to plot with imshow and pcolormesh
+    ## Not super useful, because pcolormesh doesn't allow nans in x, y dimension
+    #pcolormesh_kwargs = dict(
+    #    color = RGB.reshape(np.shape(RGB)[0] * np.shape(RGB)[1], np.shape(RGB)[2])
+    #    shading='nearest'
+    #    )
+    #ds.attrs['pcolormesh_kwargs'] = pcolormesh_kwargs
+    
+    return ds   
 
 def load_RGB_channels(C, channels):
     """
@@ -61,7 +143,6 @@ def load_RGB_channels(C, channels):
         else:
             RGB.append(C['CMI_C%02d' % c].data)
     return RGB
-
 
 def normalize(value, lower_limit, upper_limit, clip=True):
     """
@@ -87,7 +168,7 @@ def normalize(value, lower_limit, upper_limit, clip=True):
     return norm
 
 
-def TrueColor(C, trueGreen=True, night_IR=True):
+def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
     """
     True Color RGB
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf
@@ -99,6 +180,9 @@ def TrueColor(C, trueGreen=True, night_IR=True):
         If True, use Clean IR (channel 13) as maximum RGB value so that
         clouds show up at night (and even daytime clouds might appear
         brighter than in real life).
+    kwargs : dict
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -132,14 +216,16 @@ def TrueColor(C, trueGreen=True, night_IR=True):
         # appear so bright when we overlay it on the true color image
         IR = IR/1.4
         # RGB with IR as greyscale
-        return np.dstack([np.maximum(R, IR),
-                          np.maximum(G, IR),
-                          np.maximum(B, IR)])
-        
-    return np.dstack([R, G, B])
+        RGB = np.dstack([np.maximum(R, IR),
+                         np.maximum(G, IR),
+                         np.maximum(B, IR)])
+    else:
+        RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'True Color', **kwargs)
 
 
-def FireTemperature(C):
+def FireTemperature(C, **kwargs):
     """
     Fire Temperature RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf
@@ -158,10 +244,12 @@ def FireTemperature(C):
     R = np.power(R, 1/gamma)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Fire Temperature', **kwargs)
 
 
-def AirMass(C):
+def AirMass(C, **kwargs):
     """
     Air Mass RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf
@@ -180,10 +268,12 @@ def AirMass(C):
     B = 1-B
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Air Mass', **kwargs)
 
 
-def DayCloudPhase(C):
+def DayCloudPhase(C, **kwargs):
     """
     Day Cloud Phase Distinction RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf
@@ -200,10 +290,12 @@ def DayCloudPhase(C):
     R = 1-R
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Day Cloud Phase', **kwargs)
 
 
-def DayConvection(C):
+def DayConvection(C, **kwargs):
     """
     Day Convection RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf
@@ -220,10 +312,12 @@ def DayConvection(C):
     B = normalize(B, -0.75, 0.25)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Day Convection', **kwargs)
 
 
-def DayCloudConvection(C):
+def DayCloudConvection(C, **kwargs):
     """
     Day Convection RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf
@@ -246,10 +340,12 @@ def DayCloudConvection(C):
     G = np.power(G, 1/gamma)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Day Cloud Convection', **kwargs)
 
 
-def DayLandCloud(C):
+def DayLandCloud(C, **kwargs):
     """
     Day Land Cloud Fire RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf
@@ -263,10 +359,12 @@ def DayLandCloud(C):
     B = normalize(B, 0, 1)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Day Land Cloud', **kwargs)
 
 
-def DayLandCloudFire(C):
+def DayLandCloudFire(C, **kwargs):
     """
     Day Land Cloud Fire RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf
@@ -280,10 +378,12 @@ def DayLandCloudFire(C):
     B = normalize(B, 0, 1)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Day Land Cloud Fire', **kwargs)
 
 
-def WaterVapor(C):
+def WaterVapor(C, **kwargs):
     """
     Simple Water Vapor RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf
@@ -302,10 +402,12 @@ def WaterVapor(C):
     B = 1-B
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Water Vapor', **kwargs)
 
 
-def DifferentialWaterVapor(C):
+def DifferentialWaterVapor(C, **kwargs):
     """
     Differential Water Vapor RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf
@@ -331,10 +433,12 @@ def DifferentialWaterVapor(C):
     B = 1-B
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Differenctial Water Vapor', **kwargs)
 
 
-def DaySnowFog(C):
+def DaySnowFog(C, **kwargs):
     """
     Day Snow-Fog RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf
@@ -356,10 +460,12 @@ def DaySnowFog(C):
     B = np.power(B, 1/gamma)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Day Snow Fog', **kwargs)
 
 
-def NighttimeMicrophysics(C):
+def NighttimeMicrophysics(C, **kwargs):
     """
     Nighttime Microphysics RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf
@@ -375,10 +481,12 @@ def NighttimeMicrophysics(C):
     B = normalize(B, -29.6, 19.5)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Nighttime Microphysics', **kwargs)
 
 
-def Dust(C):
+def Dust(C, **kwargs):
     """
     SulfurDioxide RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf
@@ -398,9 +506,11 @@ def Dust(C):
     G = np.power(G, 1/gamma)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Dust', **kwargs)
 
-def SulfurDioxide(C):
+def SulfurDioxide(C, **kwargs):
     """
     SulfurDioxide RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf
@@ -416,10 +526,12 @@ def SulfurDioxide(C):
     B = normalize(B, -30.1, 29.8)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Sulfur Dioxide', **kwargs)
 
 
-def Ash(C):
+def Ash(C, **kwargs):
     """
     Ash RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf
@@ -435,10 +547,12 @@ def Ash(C):
     B = normalize(B, -29.55, 29.25)
 
     # The final RGB array :)
-    return np.dstack([R, G, B])
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'Ash', **kwargs)
 
 
-def SplitWindowDifference(C):
+def SplitWindowDifference(C, **kwargs):
     """
     Split Window Difference RGB (greyscale):
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf
@@ -450,10 +564,12 @@ def SplitWindowDifference(C):
     data = normalize(data, -10, 10)
 
     # The final RGB array :)
-    return np.dstack([data, data, data])
+    RGB = np.dstack([data, data, data])
+        
+    return rgb_as_dataset(C, RGB, 'Split Window Difference', **kwargs)
 
 
-def NightFogDifference(C):
+def NightFogDifference(C, **kwargs):
     """
     Night Fog Difference RGB (greyscale):
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf
@@ -468,4 +584,6 @@ def NightFogDifference(C):
     data = 1-data
 
     # The final RGB array :)
-    return np.dstack([data, data, data])
+    RGB = np.dstack([data, data, data])
+    
+    return rgb_as_dataset(C, RGB, 'Night Fog Difference', **kwargs)

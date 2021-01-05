@@ -13,7 +13,7 @@ import cartopy.crs as ccrs
 import metpy
 from shapely.geometry import Point, Polygon
 
-def field_of_view(G, resolution=60):
+def field_of_view(G, resolution=60, reduce_abi_fov=.06):
     """
     Create a field-of-view polygon for the GOES data.
     
@@ -23,7 +23,7 @@ def field_of_view(G, resolution=60):
     GLM lense field of view is 16 degree, or +/- 8 degrees (see page 225)
     ABI full-disk field of view if 17.4 degrees (see page 48)
     
-    To plot the field of view on the carotpy axes, do the following:
+    To plot the field of view on the cartopy axes, do the following:
     
     .. code:: python
         FOV, geo = field_of_view(G)
@@ -33,36 +33,62 @@ def field_of_view(G, resolution=60):
     Parameters
     ----------
     G - xarray.Dataset
-        The GOES NetCDF file opened with xarray.
+        The GOES NetCDF file opened with xarray. A file is required
+        because we get info from the file to define the projection.
     """
     if G.title.startswith('ABI'):
+        globe_kwargs = dict(
+            semimajor_axis=G.goes_imager_projection.semi_major_axis,
+            semiminor_axis=G.goes_imager_projection.semi_minor_axis,
+            inverse_flattening=G.goes_imager_projection.inverse_flattening           
+            )
+        sat_height = G.goes_imager_projection.perspective_point_height
         nadir_lon = G.geospatial_lat_lon_extent.geospatial_lon_nadir
         nadir_lat = G.geospatial_lat_lon_extent.geospatial_lat_nadir
-        sat_height = G.nominal_satellite_height.item() * 1000
         # Field of view in degrees
-        FOV = 17.4 - .06 # little less to account for imprecise ellipsoid
+        FOV = 17.4 
+        FOV -= reduce_abi_fov # little less to account for imprecise ellipsoid
     elif G.title.startswith('GLM'):
+        globe_kwargs = dict(
+            semimajor_axis=G.goes_lat_lon_projection.semi_major_axis,
+            semiminor_axis=G.goes_lat_lon_projection.semi_minor_axis,
+            inverse_flattening=G.goes_lat_lon_projection.inverse_flattening           
+            )
+        sat_height = G.nominal_satellite_height.item() * 1000
         nadir_lon = G.lon_field_of_view.item()
         nadir_lat = G.lat_field_of_view.item()
-        sat_height = G.nominal_satellite_height.item() * 1000
-        FOV = 16
+        FOV = 8*2 
+        FOV += .15 # Little offset to match boundary from Rudlosky et al. 2018
     
     # Create a cartopy coordinate reference system for the data
-    crs = ccrs.Geostationary(central_longitude=nadir_lon,
-                             satellite_height=sat_height)
+    
+    # These numbers are from the `goes_imager_projection` variable
+    globe = ccrs.Globe(ellipse=None, **globe_kwargs)
+    
+    crs = ccrs.Geostationary(
+        central_longitude=nadir_lon,
+        satellite_height=sat_height,
+        globe=globe,
+        sweep_axis='x',
+        )
     
     # Create polygon of the field of view. This polygon is in 
     # the geostationary crs projection units, and is in meters.
+    # The central point is at 0,0 (not the nadir position), because
+    # we are working in the geostationary projection coordinates
+    # and the center point is 0,0 meters.
     FOV_radius = np.radians(FOV/2) * sat_height
-    FOV_poly = Point(nadir_lon, nadir_lat).buffer(FOV_radius,
-                                                  resolution=resolution)
+    FOV_poly = Point(0,0).buffer(FOV_radius,
+                                 resolution=resolution)
     
     ## GLM is a bit funny. I haven't found this in the documentation
     ## anywhere, yet, but the GLM field-of-view is not exactly 
     ## the full circle, there is a square area cut out of it.
     ## The square FOV is ~ 15 degrees
     if G.title.startswith('GLM'):
-        FOV_radius = np.radians(15/2) * sat_height
+        FOV_square = 15/2
+        #FOV_square += .1 # offset to match Rudlosky et al. 2018
+        FOV_radius = np.radians(FOV_square) * sat_height
         # Create a square with many points clockwise, starting in bottom left corner
         side1x, side1y = np.ones(resolution)*-FOV_radius, np.linspace(-FOV_radius, FOV_radius, resolution), 
         side2x, side2y = np.linspace(-FOV_radius, FOV_radius, resolution), np.ones(resolution)*FOV_radius

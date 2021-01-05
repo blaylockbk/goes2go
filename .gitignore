@@ -1,4 +1,5 @@
-*.nc
+# Don't upload ANY NetCDF files (The GLM_FOV_edges.nc file isn't released)
+*.nc 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

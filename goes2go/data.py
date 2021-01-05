@@ -171,7 +171,7 @@ def _download_MP(src, download_dir, overwrite, i=1, n=1, verbose=True):
     if verbose: print(f'\r🏇🏻💨 Downloading ({i:,}/{n:,}) file from AWS to Local Disk. {src} > {dst}', end=' ')
         
     if dst.is_file() and not overwrite:
-        print('---- 👮🏻‍♂️ File already exists. Do not overwrite.', end='')
+        if verbose: print('---- 👮🏻‍♂️ File already exists. Do not overwrite.', end='')
     else:
         # Downloading file from AWS
         # NOTE: The destination is `str(dst)` and not just `dst` because
@@ -208,10 +208,11 @@ def _download(df, **params):
     verbose = params['verbose']
     
     n = len(df.file)
-    if n == 1:
+    if n == 0:
+        print('🛸 No data to download.')
+    elif n == 1:
         # If we only have one file, we don't need multiprocessing
         _download_MP(df.file[0], download_dir, overwrite, 1, 1, verbose)
-    
     else:
         # Use Multiprocessing to download multiple files.
         if max_cpus is None:
@@ -272,10 +273,11 @@ def _as_xarray(df, **params):
     verbose = params['verbose']
     
     n = len(df.file)
-    if n == 1:
+    if n == 0:
+        print('🛸 No data....🌌')
+    elif n == 1:
         # If we only have one file, we don't need multiprocessing
         ds = _as_xarray_MP(df.iloc[0].file, download_dir, 1, 1, verbose)
-    
     else:
         # Use Multiprocessing to read multiple files.
         if max_cpus is None:
@@ -343,6 +345,15 @@ def goes_timerange(start=None, end=None, recent=None, *,
         
     
     """
+    # If `start`, or `end` is a string, parse with Pandas
+    if isinstance(start, str):
+        start = pd.to_datetime(start)
+    if isinstance(end, str):
+        end = pd.to_datetime(end)
+    # If `recent` is a string (like recent='1H'), parse with Pandas
+    if isinstance(recent, str):
+        recent = pd.to_timedelta(recent)
+
     params = locals()
     satellite, product, domain = _check_param_inputs(**params)
     params['satellite'] = satellite
@@ -370,6 +381,7 @@ def goes_timerange(start=None, end=None, recent=None, *,
 
     if download:
         _download(df, **params)
+    
     if return_as == 'filelist':
         return df
     elif return_as == 'xarray':
@@ -405,6 +417,7 @@ def goes_latest(*,
     
     if download:
         _download(df, **params)
+
     if return_as == 'filelist':
         return df
     elif return_as == 'xarray':
@@ -420,6 +433,9 @@ def goes_nearesttime(attime, *,
     """
     Get the latest available GOES data.
     """
+    if isinstance(attime, str):
+        attime = pd.to_datetime(attime)
+
     params = locals()
     satellite, product, domain = _check_param_inputs(**params)
     params['satellite'] = satellite
@@ -438,8 +454,14 @@ def goes_nearesttime(attime, *,
     # Filter by files within the requested time range
     df = df.loc[df.start - attime == np.abs((df.start - attime)).min()].reset_index(drop=True)
     
+    n = len(df.file)
+    if n == 0:
+        print('🛸 No data....🌌')
+        return None
+
     if download:
         _download(df, **params)
+
     if return_as == 'filelist':
         return df
     elif return_as == 'xarray':
