@@ -2,11 +2,17 @@
 ## August 8, 2019
 
 """
-For a demo, look at the `make_RGB_Demo.ipynb` notebook in this directory.
-`make_RGB.py` takes a GOES-East or GOES-West Multichannel data file
-(with label ABI-L2-MCMIPC) and generates an RGB array for various GOES
-products. These RGB recipes are from the GOES Quick Guides found here:
-http://rammb.cira.colostate.edu/training/visit/quick_guides/
+================
+GOES RGB Recipes
+================
+
+For a demo, look at the `make_RGB_Demo notebook <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_.
+These functions take a GOES-East or GOES-West Multichannel data file
+(with label ABI-L2-MCMIPC) and generates an 3D array for various GOES
+RGB products. These RGB recipes are from the 
+`GOES Quick Guides <http://rammb.cira.colostate.edu/training/visit/quick_guides/>_ 
+and include the following:
+
     - TrueColor
     - FireTemperature
     - AirMass
@@ -24,17 +30,29 @@ http://rammb.cira.colostate.edu/training/visit/quick_guides/
     - Ash
     - SplitWindowDifference
     - NightFogDifference
+
 The returned RGB variable is a stacked np.array(). These can easily be viewed
 with plt.imshow(RGB). 
 The values must range between 0 and 1. Values are normalized between the
-specified range: 
-    NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)
+specified range:
+
+    .. code-block:: python 
+
+        NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)
+
 If a gamma correction is required, it follows the pattern:
-    R_corrected = R**(1/gamma)
+
+    .. code-block:: python 
+        
+        R_corrected = R**(1/gamma)
+
 The input for all is the variable C, which represents the file GOES file opened
 with xarray:
-    FILE = 'OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc'
-    C = xarray.open_dataset(FILE)
+
+    .. code-block:: python 
+        
+        FILE = 'OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc'
+        C = xarray.open_dataset(FILE)
 """
 
 import numpy as np

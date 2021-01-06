@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SynopticPy Functions &#8212; GOES-2-go Docs 0.1 documentation</title>
+    <title>GOES-2-go Functions &#8212; GOES-2-go Docs 0.1 documentation</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -63,7 +63,7 @@
         
         
         <li class="nav-item active">
-            <a class="nav-link" href="">SynopticPy Functions</a>
+            <a class="nav-link" href="">GOES-2-go Functions</a>
         </li>
         
         
@@ -132,6 +132,10 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
+            <a href="#goes-rgb-recipes" class="nav-link">GOES RGB Recipes</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
             <a href="#goes-tools" class="nav-link">GOES Tools</a>
         </li>
     
@@ -148,8 +152,8 @@
               
               <div>
                 
-  <div class="section" id="synopticpy-functions">
-<h1>SynopticPy Functions<a class="headerlink" href="#synopticpy-functions" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="goes-2-go-functions">
+<h1>GOES-2-go Functions<a class="headerlink" href="#goes-2-go-functions" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <span class="target" id="module-goes2go.data"></span><div class="section" id="get-goes-data">
@@ -223,11 +227,14 @@ M - Mesoscale (alias ‘MESOSCALE’)</p></li>
 </dd></dl>
 
 </div>
-<span class="target" id="module-goes2go.rgb"></span><p>For a demo, look at the <cite>make_RGB_Demo.ipynb</cite> notebook in this directory.
-<cite>make_RGB.py</cite> takes a GOES-East or GOES-West Multichannel data file
-(with label ABI-L2-MCMIPC) and generates an RGB array for various GOES
-products. These RGB recipes are from the GOES Quick Guides found here:
-<a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/">http://rammb.cira.colostate.edu/training/visit/quick_guides/</a></p>
+<span class="target" id="module-goes2go.rgb"></span><div class="section" id="goes-rgb-recipes">
+<h2>GOES RGB Recipes<a class="headerlink" href="#goes-rgb-recipes" title="Permalink to this headline">¶</a></h2>
+<p>For a demo, look at the <a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">make_RGB_Demo notebook</a>.
+These functions take a GOES-East or GOES-West Multichannel data file
+(with label ABI-L2-MCMIPC) and generates an 3D array for various GOES
+RGB products. These RGB recipes are from the
+<a href="#id1"><span class="problematic" id="id2">`</span></a>GOES Quick Guides &lt;<a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/">http://rammb.cira.colostate.edu/training/visit/quick_guides/</a>&gt;_
+and include the following:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>TrueColor</p></li>
@@ -254,17 +261,23 @@ with plt.imshow(RGB).
 The values must range between 0 and 1. Values are normalized between the
 specified range:</p>
 <blockquote>
-<div><p>NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)</p>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NormalizedValue</span> <span class="o">=</span> <span class="p">(</span><span class="n">OriginalValue</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">UpperLimit</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span>
+</pre></div>
+</div>
 </div></blockquote>
-<dl class="simple">
-<dt>If a gamma correction is required, it follows the pattern:</dt><dd><p>R_corrected = R**(1/gamma)</p>
-</dd>
-</dl>
+<p>If a gamma correction is required, it follows the pattern:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R_corrected</span> <span class="o">=</span> <span class="n">R</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
 <p>The input for all is the variable C, which represents the file GOES file opened
 with xarray:</p>
 <blockquote>
-<div><p>FILE = ‘OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc’
-C = xarray.open_dataset(FILE)</p>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FILE</span> <span class="o">=</span> <span class="s1">&#39;OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc&#39;</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">FILE</span><span class="p">)</span>
+</pre></div>
+</div>
 </div></blockquote>
 <p><strong>Functions:</strong></p>
 <table class="longtable table autosummary">
@@ -476,7 +489,7 @@ brighter than in real life).</p>
 <dl class="simple">
 <dt>… code: python</dt><dd><p>r = TrueColor(G)
 ax = common_features(r.crs)
-ax.imshow(r.TrueColor, <a href="#id1"><span class="problematic" id="id2">**</span></a>get_imshow_kwargs(r))</p>
+ax.imshow(r.TrueColor, <a href="#id3"><span class="problematic" id="id4">**</span></a>get_imshow_kwargs(r))</p>
 </dd>
 </dl>
 </dd></dl>
@@ -545,6 +558,7 @@ clip        - True: Clips values between 0 and 1 for RGB.</p>
 </dl>
 </dd></dl>
 
+</div>
 <span class="target" id="module-goes2go.tools"></span><div class="section" id="goes-tools">
 <h2>GOES Tools<a class="headerlink" href="#goes-tools" title="Permalink to this headline">¶</a></h2>
 <p>Tools for handeling NOAA GOES data files.</p>

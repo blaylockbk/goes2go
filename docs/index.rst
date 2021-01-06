@@ -18,3 +18,5 @@ Welcome to GOES-2-go documentation!
    /goes2go
 
 .. include:: ../README.md
+
+`notebook <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ 
