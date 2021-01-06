@@ -10,7 +10,7 @@ For a demo, look at the `make_RGB_Demo notebook <https://github.com/blaylockbk/g
 These functions take a GOES-East or GOES-West Multichannel data file
 (with label ABI-L2-MCMIPC) and generates an 3D array for various GOES
 RGB products. These RGB recipes are from the 
-`GOES Quick Guides <http://rammb.cira.colostate.edu/training/visit/quick_guides/>_ 
+`GOES Quick Guides <http://rammb.cira.colostate.edu/training/visit/quick_guides/>`_ 
 and include the following:
 
     - TrueColor
@@ -191,6 +191,8 @@ def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
     True Color RGB
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf
     
+    .. image:: TrueColor.png
+
     trueGreen : bool
         True: returns the calculated "True" green color
         False: returns the "veggie" channel
@@ -247,6 +249,9 @@ def FireTemperature(C, **kwargs):
     """
     Fire Temperature RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf
+    
+    .. image:: FireTemperature.png
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (7, 6, 5))
@@ -271,6 +276,9 @@ def AirMass(C, **kwargs):
     """
     Air Mass RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf
+
+    .. image:: AirMass.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C08'].data - C['CMI_C10'].data
@@ -295,6 +303,9 @@ def DayCloudPhase(C, **kwargs):
     """
     Day Cloud Phase Distinction RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf
+
+    .. image:: DayCloudPhase.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (13, 2, 5))
@@ -317,6 +328,9 @@ def DayConvection(C, **kwargs):
     """
     Day Convection RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf
+    
+    .. image:: DayConvection.png
+    
     """
     # Load the three channels into appropriate R, G, and B variables
     # NOTE: Each R, G, B is a channel difference.
@@ -339,6 +353,9 @@ def DayCloudConvection(C, **kwargs):
     """
     Day Convection RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf
+
+    .. image:: DayCloudConvection.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (2,2,13))
@@ -367,6 +384,9 @@ def DayLandCloud(C, **kwargs):
     """
     Day Land Cloud Fire RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf
+
+    .. image:: DayLandCloud.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (5, 3, 2))
@@ -386,6 +406,9 @@ def DayLandCloudFire(C, **kwargs):
     """
     Day Land Cloud Fire RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf
+
+    .. image:: DayLandCloudFire.png
+    
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (6, 3, 2))
@@ -405,6 +428,9 @@ def WaterVapor(C, **kwargs):
     """
     Simple Water Vapor RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf
+
+    .. image:: WaterVapor.png
+
     """
     # Load the three channels into appropriate R, G, and B variables.
     R, G, B = load_RGB_channels(C, (13, 8, 10))
@@ -429,6 +455,9 @@ def DifferentialWaterVapor(C, **kwargs):
     """
     Differential Water Vapor RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf
+
+    .. image:: DifferentialWaterVapor.png
+
     """
     # Load the three channels into appropriate R, G, and B variables.
     R = C['CMI_C10'].data - C['CMI_C08'].data
@@ -460,6 +489,9 @@ def DaySnowFog(C, **kwargs):
     """
     Day Snow-Fog RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf
+
+    .. image:: DaySnowFog.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C03'].data 
@@ -487,6 +519,9 @@ def NighttimeMicrophysics(C, **kwargs):
     """
     Nighttime Microphysics RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf
+
+    .. image:: NighttimeMicrophysics.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C15'].data - C['CMI_C13'].data
@@ -508,6 +543,9 @@ def Dust(C, **kwargs):
     """
     SulfurDioxide RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf
+
+    .. image:: Dust.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C15'].data - C['CMI_C13'].data
@@ -532,6 +570,9 @@ def SulfurDioxide(C, **kwargs):
     """
     SulfurDioxide RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf
+
+    .. image:: SulfurDioxide.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C09'].data - C['CMI_C10'].data
@@ -553,6 +594,9 @@ def Ash(C, **kwargs):
     """
     Ash RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf
+
+    .. image:: Ash.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C15'].data - C['CMI_C13'].data
@@ -574,6 +618,9 @@ def SplitWindowDifference(C, **kwargs):
     """
     Split Window Difference RGB (greyscale):
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf
+
+    .. image:: SplitWindowDifference.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     data = C['CMI_C15'].data - C['CMI_C13'].data
@@ -591,6 +638,9 @@ def NightFogDifference(C, **kwargs):
     """
     Night Fog Difference RGB (greyscale):
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf
+
+    .. image:: NightFogDifference.png
+    
     """
     # Load the three channels into appropriate R, G, and B variables
     data = C['CMI_C13'].data - C['CMI_C07'].data
