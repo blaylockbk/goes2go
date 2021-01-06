@@ -191,7 +191,7 @@ def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
     True Color RGB
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf
     
-    .. image:: TrueColor.png
+    .. image:: _static/TrueColor.png
 
     trueGreen : bool
         True: returns the calculated "True" green color
@@ -250,7 +250,7 @@ def FireTemperature(C, **kwargs):
     Fire Temperature RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf
     
-    .. image:: FireTemperature.png
+    .. image:: _static/FireTemperature.png
         
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -277,7 +277,7 @@ def AirMass(C, **kwargs):
     Air Mass RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf
 
-    .. image:: AirMass.png
+    .. image:: _static/AirMass.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -304,7 +304,7 @@ def DayCloudPhase(C, **kwargs):
     Day Cloud Phase Distinction RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf
 
-    .. image:: DayCloudPhase.png
+    .. image:: _static/DayCloudPhase.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -329,7 +329,7 @@ def DayConvection(C, **kwargs):
     Day Convection RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf
     
-    .. image:: DayConvection.png
+    .. image:: _static/DayConvection.png
     
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -354,7 +354,7 @@ def DayCloudConvection(C, **kwargs):
     Day Convection RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf
 
-    .. image:: DayCloudConvection.png
+    .. image:: _static/DayCloudConvection.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -385,7 +385,7 @@ def DayLandCloud(C, **kwargs):
     Day Land Cloud Fire RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf
 
-    .. image:: DayLandCloud.png
+    .. image:: _static/DayLandCloud.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -407,7 +407,7 @@ def DayLandCloudFire(C, **kwargs):
     Day Land Cloud Fire RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf
 
-    .. image:: DayLandCloudFire.png
+    .. image:: _static/DayLandCloudFire.png
     
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -429,7 +429,7 @@ def WaterVapor(C, **kwargs):
     Simple Water Vapor RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf
 
-    .. image:: WaterVapor.png
+    .. image:: _static/WaterVapor.png
 
     """
     # Load the three channels into appropriate R, G, and B variables.
@@ -456,7 +456,7 @@ def DifferentialWaterVapor(C, **kwargs):
     Differential Water Vapor RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf
 
-    .. image:: DifferentialWaterVapor.png
+    .. image:: _static/DifferentialWaterVapor.png
 
     """
     # Load the three channels into appropriate R, G, and B variables.
@@ -490,7 +490,7 @@ def DaySnowFog(C, **kwargs):
     Day Snow-Fog RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf
 
-    .. image:: DaySnowFog.png
+    .. image:: _static/DaySnowFog.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -520,7 +520,7 @@ def NighttimeMicrophysics(C, **kwargs):
     Nighttime Microphysics RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf
 
-    .. image:: NighttimeMicrophysics.png
+    .. image:: _static/NighttimeMicrophysics.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -544,7 +544,7 @@ def Dust(C, **kwargs):
     SulfurDioxide RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf
 
-    .. image:: Dust.png
+    .. image:: _static/Dust.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -571,7 +571,7 @@ def SulfurDioxide(C, **kwargs):
     SulfurDioxide RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf
 
-    .. image:: SulfurDioxide.png
+    .. image:: _static/SulfurDioxide.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -595,7 +595,7 @@ def Ash(C, **kwargs):
     Ash RGB:
     http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf
 
-    .. image:: Ash.png
+    .. image:: _static/Ash.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -619,7 +619,7 @@ def SplitWindowDifference(C, **kwargs):
     Split Window Difference RGB (greyscale):
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf
 
-    .. image:: SplitWindowDifference.png
+    .. image:: _static/SplitWindowDifference.png
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -639,8 +639,8 @@ def NightFogDifference(C, **kwargs):
     Night Fog Difference RGB (greyscale):
     http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf
 
-    .. image:: NightFogDifference.png
-    
+    .. image:: _static/NightFogDifference.png
+
     """
     # Load the three channels into appropriate R, G, and B variables
     data = C['CMI_C13'].data - C['CMI_C07'].data
