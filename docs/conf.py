@@ -110,7 +110,7 @@ html_context = {
 html_static_path = ['_static', '../images']
 
 html_css_files = [
-    'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',
+    # 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',
     'brian_style.css'
 ]
 
