@@ -8,7 +8,7 @@ GOES-2-go Functions
 
 .. toctree::
    :hidden:
-   :maxdepth: 2
+   :maxdepth: 4
 
 .. automodule:: goes2go.data
 .. automodule:: goes2go.rgb
