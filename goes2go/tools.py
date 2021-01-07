@@ -2,10 +2,10 @@
 ## September 22, 2020
 
 """
-==========
-GOES Tools
-==========
-Tools for handeling NOAA GOES data files.
+===========
+Other Tools
+===========
+Other tools for handeling NOAA GOES data files.
 """
 
 import numpy as np
