@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to GOES-2-go documentation! &#8212; GOES-2-go Docs 0.1 documentation</title>
+    <title>Download Data &#8212; GOES-2-go Docs 0.1 documentation</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -126,9 +126,32 @@
           
           <div class="d-none d-xl-block col-xl-2 bd-toc">
               
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="" class="nav-link"></a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#" class="nav-link">Download Data</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#rgb-recipes" class="nav-link">RGB Recipes</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#field-of-view" class="nav-link">Field of View</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#more-notebooks" class="nav-link">More notebooks</a>
+        </li>
     
     </ul>
 </nav>
@@ -150,51 +173,45 @@
               
               <div>
                 
-  <div class="section" id="welcome-to-goes-2-go-documentation">
-<h1>Welcome to GOES-2-go documentation!<a class="headerlink" href="#welcome-to-goes-2-go-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>This is a work in progress.</strong> I’m doing SynopticPy adn GOES-2-go
-with the PyData theme and HRRR-B with the ReadTheDocs theme.</p>
-</div>
+  <img alt="goes2go_logo.png" src="goes2go_logo.png" />
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">⚙ Code</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="goes2go.html">GOES-2-go Functions</a></li>
 </ul>
 </div>
-<p>📔 [Documentation](<a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/">https://blaylockbk.github.io/goes2go/_build/html/</a>)</p>
-<p><a href="#id9"><span class="problematic" id="id10">|![](https://blaylockbk.github.io/goes2go/_build/html/_static/goes2go_logo.png)|**Brian Blaylock**&lt;br&gt;🌐 [Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)&lt;br&gt;[🔩 PyPI](https://pypi.org/user/blaylockbk/)
-|:--|</span></a>:–|</p>
-<p># 🏃🏻‍♂️💨 🌎 🛰 GOES-2-go</p>
-<p>Download and read files from the NOAA GOES archive on AWS.</p>
-<p>Read doc strings for functions in <cite>goes2go/</cite> folder for full usage description.</p>
-<p>&gt;### Some Useful Links
-&gt;- [📔 GOES-R Series Data Book](<a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf">https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf</a>)
-&gt;- [🖥 Rammb Slider GOES Viewer](<a class="reference external" href="https://rammb-slider.cira.colostate.edu">https://rammb-slider.cira.colostate.edu</a>)
-&gt;- [💾 GOES on AWS](<a class="reference external" href="https://registry.opendata.aws/noaa-goes/">https://registry.opendata.aws/noaa-goes/</a>)
-&gt;- [🐍 Unidata Plot GOES Data](<a class="reference external" href="https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/">https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/</a>)
-&gt;- [🗺 Plotting tips form geonetcast blog](<a class="reference external" href="https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/">https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/</a>)
-&gt;- [🐍 <cite>glmtools</cite>](<a class="reference external" href="https://github.com/deeplycloudy/glmtools/">https://github.com/deeplycloudy/glmtools/</a>)</p>
-<p># Download Data
-Download GOES 16 ABI (this example downloads the multichannel fixed grid product for CONUS) and read it with xarray.</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
-from goes2go.data import goes_latest, goes_nearesttime</p>
-<p># Get latest data
-G1 = goes_latest(satellite=’G16’, product=’ABI’)</p>
-<p># Get data for a specific time
-G2 = goes_nearesttime(datetime(2020,10,1), satellite=’G16’, product=’GLM’)
-<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
-<p># RGB Recipies
-For a GOES ABI multichannel xarray.Dataset, return an RGB array for an RGB product. See [DEMO](./notebooks/DEMO_rgb_recipies.ipynb) for more examples of RGB products.</p>
-<p>![](./images/TrueColor.png)</p>
-<p># Field of View</p>
-<p>See notebooks for [GLM](./notebooks/GLM_field-of-view.ipynb) and [ABI](./notebooks/ABI_field-of-view.ipynb) field of view.</p>
-<p>GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a “central” position, outlined in the dashed black line. Below is the ABI field of view for the full disk:
-![field of view image](./images/ABI_field-of-view.png)</p>
-<p>The GLM field of view is slightly smaller and limited by a bounding box. Below is the GLM field of view:
-![field of view image](./images/GLM_field-of-view.png)</p>
-<p><a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">notebook</a></p>
+<p>These python functions can help you download GOES-R series NetCDF files from the <a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a> archive.</p>
+<div class="section" id="download-data">
+<h1>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h1>
+<p>The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span><span class="p">,</span> <span class="n">goes_nearesttime</span>
+
+<span class="c1"># Get latest data</span>
+<span class="n">G1</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G16&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get data for a specific time</span>
+<span class="n">G2</span> <span class="o">=</span> <span class="n">goes_nearesttime</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G16&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;GLM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rgb-recipes">
+<h1>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h1>
+<p>Generate RGB arrays for different RGB products. Check out this <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb">notebook</a> for a demonstration.</p>
+</div>
+<div class="section" id="field-of-view">
+<h1>Field of View<a class="headerlink" href="#field-of-view" title="Permalink to this headline">¶</a></h1>
+<p>See notebooks for <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb">GLM</a> and <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb">ABI</a> field of view.</p>
+<p>GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a “central” position, outlined in the dashed black line. Below is the ABI field of view for the full disk:</p>
+<p>The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.</p>
+</div>
+<div class="section" id="more-notebooks">
+<h1>More notebooks<a class="headerlink" href="#more-notebooks" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">GitHub notebooks</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This page is a work in progress.</strong> I’m doing SynopticPy and GOES-2-go
+with the PyData theme and HRRR-B with the ReadTheDocs theme.</p>
+</div>
 </div>
 
 
