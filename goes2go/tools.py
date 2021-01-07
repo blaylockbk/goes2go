@@ -123,10 +123,10 @@ def abi_crs(G, reference_variable='CMI_C01'):
     
     Returns
     -------
-    Three objects: 
-    1. cartopy coordinate reference system
-    2. data projection coordinates in x direction
-    3. data projection coordinates in y direction
+    Three objects are returned
+        1. cartopy coordinate reference system
+        2. data projection coordinates in x direction
+        3. data projection coordinates in y direction
 
     """
     # We'll use the `CMI_C01` variable as a 'hook' to get the CF metadata.
