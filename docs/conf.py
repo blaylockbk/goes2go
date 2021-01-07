@@ -69,8 +69,8 @@ html_theme_options = {
     "twitter_url": "https://twitter.com/blaylockbk",
     "navbar_align": "left",
     "external_links": [
-      {"SynopticPy": "SynopticPy", "url": "https://blaylockbk.github.io/SynopticPy/_build/html/"},
-      {"HRRR-B": "HRRR-B", "url": "https://blaylockbk.github.io/HRRR_archive_download/_build/html/"}
+      {"name": "SynopticPy", "url": "https://blaylockbk.github.io/SynopticPy/_build/html/"},
+      {"name": "HRRR-B", "url": "https://blaylockbk.github.io/HRRR_archive_download/_build/html/"}
   ]
 }
 
