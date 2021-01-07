@@ -89,8 +89,8 @@ html_theme_options = {
      ]
 }
 
-html_logo = Path("_static") / "goes2go_logo.png"
-html_favicon = Path("_static") / "wxicon.png"
+html_logo = "_static/goes2go_logo.png"
+html_favicon = "_static/wxicon.png"
 
 html_context = {
     'github_user': 'blaylockbk',
