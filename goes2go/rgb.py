@@ -217,11 +217,15 @@ def normalize(value, lower_limit, upper_limit, clip=True):
 
 def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
     """
-    True Color RGB
-    http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf
+    True Color RGB:
+    (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>` for reference)
     
     .. image:: _static/TrueColor.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
     trueGreen : bool
         True: returns the calculated "True" green color
         False: returns the "veggie" channel
@@ -229,7 +233,7 @@ def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
         If True, use Clean IR (channel 13) as maximum RGB value so that
         clouds show up at night (and even daytime clouds might appear
         brighter than in real life).
-    kwargs : dict
+    \*\*kwargs : 
         Keyword arguments for ``rgb_as_dataset`` function.
         - latlon : derive latitude and longitude of each pixel
 
@@ -277,10 +281,18 @@ def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
 def FireTemperature(C, **kwargs):
     """
     Fire Temperature RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf>` for reference)
     
     .. image:: _static/FireTemperature.png
-        
+    
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (7, 6, 5))
@@ -304,9 +316,17 @@ def FireTemperature(C, **kwargs):
 def AirMass(C, **kwargs):
     """
     Air Mass RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf>` for reference)
 
     .. image:: _static/AirMass.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
 
     """
     # Load the three channels into appropriate R, G, and B variables
@@ -331,10 +351,18 @@ def AirMass(C, **kwargs):
 def DayCloudPhase(C, **kwargs):
     """
     Day Cloud Phase Distinction RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf>` for reference)
 
     .. image:: _static/DayCloudPhase.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+         
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (13, 2, 5))
@@ -356,10 +384,18 @@ def DayCloudPhase(C, **kwargs):
 def DayConvection(C, **kwargs):
     """
     Day Convection RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf>` for reference)
     
     .. image:: _static/DayConvection.png
-    
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     # NOTE: Each R, G, B is a channel difference.
@@ -381,10 +417,18 @@ def DayConvection(C, **kwargs):
 def DayCloudConvection(C, **kwargs):
     """
     Day Convection RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf>` for reference)
 
     .. image:: _static/DayCloudConvection.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (2,2,13))
@@ -412,10 +456,18 @@ def DayCloudConvection(C, **kwargs):
 def DayLandCloud(C, **kwargs):
     """
     Day Land Cloud Fire RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf>` for reference)
 
     .. image:: _static/DayLandCloud.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (5, 3, 2))
@@ -434,10 +486,18 @@ def DayLandCloud(C, **kwargs):
 def DayLandCloudFire(C, **kwargs):
     """
     Day Land Cloud Fire RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf>` for reference)
 
     .. image:: _static/DayLandCloudFire.png
-    
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R, G, B = load_RGB_channels(C, (6, 3, 2))
@@ -456,10 +516,18 @@ def DayLandCloudFire(C, **kwargs):
 def WaterVapor(C, **kwargs):
     """
     Simple Water Vapor RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf>` for reference)
 
     .. image:: _static/WaterVapor.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables.
     R, G, B = load_RGB_channels(C, (13, 8, 10))
@@ -483,10 +551,18 @@ def WaterVapor(C, **kwargs):
 def DifferentialWaterVapor(C, **kwargs):
     """
     Differential Water Vapor RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf>` for reference)
 
     .. image:: _static/DifferentialWaterVapor.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables.
     R = C['CMI_C10'].data - C['CMI_C08'].data
@@ -517,10 +593,18 @@ def DifferentialWaterVapor(C, **kwargs):
 def DaySnowFog(C, **kwargs):
     """
     Day Snow-Fog RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf>` for reference)
 
     .. image:: _static/DaySnowFog.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C03'].data 
@@ -547,10 +631,18 @@ def DaySnowFog(C, **kwargs):
 def NighttimeMicrophysics(C, **kwargs):
     """
     Nighttime Microphysics RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf>` for reference)
 
     .. image:: _static/NighttimeMicrophysics.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C15'].data - C['CMI_C13'].data
@@ -571,10 +663,18 @@ def NighttimeMicrophysics(C, **kwargs):
 def Dust(C, **kwargs):
     """
     SulfurDioxide RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf>` for reference)
 
     .. image:: _static/Dust.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C15'].data - C['CMI_C13'].data
@@ -598,10 +698,18 @@ def Dust(C, **kwargs):
 def SulfurDioxide(C, **kwargs):
     """
     SulfurDioxide RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf>` for reference)
 
     .. image:: _static/SulfurDioxide.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C09'].data - C['CMI_C10'].data
@@ -622,10 +730,18 @@ def SulfurDioxide(C, **kwargs):
 def Ash(C, **kwargs):
     """
     Ash RGB:
-    http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf
+    (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf>` for reference)
 
     .. image:: _static/Ash.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     R = C['CMI_C15'].data - C['CMI_C13'].data
@@ -646,10 +762,18 @@ def Ash(C, **kwargs):
 def SplitWindowDifference(C, **kwargs):
     """
     Split Window Difference RGB (greyscale):
-    http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf
+    (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf>` for reference)
 
     .. image:: _static/SplitWindowDifference.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     data = C['CMI_C15'].data - C['CMI_C13'].data
@@ -666,10 +790,18 @@ def SplitWindowDifference(C, **kwargs):
 def NightFogDifference(C, **kwargs):
     """
     Night Fog Difference RGB (greyscale):
-    http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf
+    (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf>` for reference)
 
     .. image:: _static/NightFogDifference.png
 
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
     """
     # Load the three channels into appropriate R, G, and B variables
     data = C['CMI_C13'].data - C['CMI_C07'].data
