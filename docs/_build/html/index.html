@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Download Data &#8212; GOES-2-go Docs 0.1 documentation</title>
+    <title>API Reference &#8212; GOES-2-go Docs 0.1 documentation</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -40,7 +40,7 @@
     <link rel="shortcut icon" href="_static/wxicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="GOES-2-go Functions" href="goes2go.html" />
+    <link rel="next" title="Reference Guide" href="reference_guide.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
   </head>
@@ -63,7 +63,7 @@
         
         
         <li class="nav-item ">
-            <a class="nav-link" href="goes2go.html">GOES-2-go Functions</a>
+            <a class="nav-link" href="reference_guide.html">Reference Guide</a>
         </li>
         
         
@@ -134,11 +134,11 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="" class="nav-link"></a>
+            <a href="#" class="nav-link">API Reference</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#" class="nav-link">Download Data</a>
+            <a href="#download-data" class="nav-link">Download Data</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -146,7 +146,17 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#field-of-view" class="nav-link">Field of View</a>
+            <a href="#field-of-view" class="nav-link">Field of View</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#abi" class="nav-link">ABI</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#glm" class="nav-link">GLM</a>
+        </li>
+    
+            </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -178,13 +188,20 @@
               <div>
                 
   <img alt="_images/goes2go_logo.png" src="_images/goes2go_logo.png" />
+<p>These python functions can help you download GOES-R series NetCDF files from the <a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a> archive.</p>
+<div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">⚙ Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="goes2go.html">GOES-2-go Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference_guide.html">Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference_guide.html#get-goes-data">Get GOES Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_guide.html#goes-rgb-recipes">GOES RGB Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_guide.html#goes-tools">GOES Tools</a></li>
+</ul>
+</li>
 </ul>
 </div>
-<p>These python functions can help you download GOES-R series NetCDF files from the <a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a> archive.</p>
+</div>
 <div class="section" id="download-data">
 <h1>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h1>
 <p>The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.</p>
@@ -201,23 +218,29 @@
 <div class="section" id="rgb-recipes">
 <h1>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h1>
 <p>Generate RGB arrays for different RGB products. Check out this <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb">notebook</a> for a demonstration.</p>
-<div class="figure align-default" id="id1">
+<div class="figure align-default" id="id3">
 <img alt="_static/TrueColor.png" class="img-fluid" src="_static/TrueColor.png" />
-<p class="caption"><span class="caption-text">ABI TrueColor RGB image</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">ABI TrueColor RGB image</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="field-of-view">
 <h1>Field of View<a class="headerlink" href="#field-of-view" title="Permalink to this headline">¶</a></h1>
-<p>See notebooks for <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb">GLM</a> and <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb">ABI</a> field of view.</p>
+<div class="section" id="abi">
+<h2>ABI<a class="headerlink" href="#abi" title="Permalink to this headline">¶</a></h2>
+<p>See notebooks for <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb">ABI</a> field of view.</p>
 <p>GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a “central” position, outlined in the dashed black line. Below is the ABI field of view for the full disk:</p>
-<div class="figure align-default" id="id2">
+<div class="figure align-default" id="id4">
 <img alt="_static/ABI_field-of-view.png" class="img-fluid" src="_static/ABI_field-of-view.png" />
-<p class="caption"><span class="caption-text">ABI full disk field of view</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">ABI full disk field of view</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p>The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.</p>
-<div class="figure align-default" id="id3">
+</div>
+<div class="section" id="glm">
+<h2>GLM<a class="headerlink" href="#glm" title="Permalink to this headline">¶</a></h2>
+<p>See notebooks for <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb">GLM</a> field of view. The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.</p>
+<div class="figure align-default" id="id5">
 <img alt="_static/ABI_field-of-view.png" class="img-fluid" src="_static/ABI_field-of-view.png" />
-<p class="caption"><span class="caption-text">Approximate GLM field of view</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Approximate GLM field of view</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 <div class="section" id="more-notebooks">
@@ -247,7 +270,7 @@ with the PyData theme and HRRR-B with the ReadTheDocs theme.</p>
               
               <div class='prev-next-bottom'>
                 
-    <a class='right-next' id="next-link" href="goes2go.html" title="next page">GOES-2-go Functions</a>
+    <a class='right-next' id="next-link" href="reference_guide.html" title="next page">Reference Guide</a>
 
               </div>
               
