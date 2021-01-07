@@ -78,15 +78,20 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store',
 #
 #html_theme = "sphinx_rtd_theme"
 html_theme = "pydata_sphinx_theme"
+
 html_theme_options = {
     'github_url': 'https://github.com/blaylockbk/goes2go',
     'twitter_url': "https://twitter.com/blaylockbk",
     'search_bar_position': 'navbar',
-    "navbar_align": "left",
+    "use_edit_page_button": True,
+    "show_toc_level": 1,
     "external_links": [
       {"name": "SynopticPy", "url": "https://blaylockbk.github.io/SynopticPy/_build/html/"},
       {"name": "HRRR-B", "url": "https://blaylockbk.github.io/HRRR_archive_download/_build/html/"}
      ]
+}
+
+html_sidebars = {
 }
 
 html_logo = "_static/goes2go_logo.png"
@@ -96,6 +101,7 @@ html_context = {
     'github_user': 'blaylockbk',
     'github_repo': 'goes2go',
     'github_version': 'master',  # Make changes to the master branch
+    "doc_path": "docs",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -119,3 +125,11 @@ autodoc_default_options = {
 }
 
 autodoc_mock_imports = ["xesmf", "siphon", "imageio"]
+
+# -- Auto-convert markdown pages to demo --------------------------------------
+import recommonmark
+from recommonmark.transform import AutoStructify
+
+
+def setup(app):
+    app.add_transform(AutoStructify)
