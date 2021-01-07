@@ -6,10 +6,11 @@
 GOES RGB Recipes
 ================
 
-For a demo, look at the `make_RGB_Demo notebook <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_.
 These functions take a GOES-East or GOES-West Multichannel data file
 (with label ABI-L2-MCMIPC) and generates an 3D array for various GOES
-RGB products. These RGB recipes are from the 
+RGB products.
+
+RGB recipes are from the 
 `GOES Quick Guides <http://rammb.cira.colostate.edu/training/visit/quick_guides/>`_ 
 and include the following:
 
@@ -31,10 +32,13 @@ and include the following:
     - SplitWindowDifference
     - NightFogDifference
 
-The returned RGB variable is a stacked np.array(). These can easily be viewed
-with plt.imshow(RGB). 
-The values must range between 0 and 1. Values are normalized between the
-specified range:
+All products are demonstarted in the `make_RGB_Demo 
+<https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ notebook.
+
+The returned RGB can easily be viewed with ``plt.imshow(RGB)``. 
+
+For imshow to show an RGB image, the values must range between 0 and 1. 
+Values are normalized between the range specified in the Quick Guides:
 
     .. code-block:: python 
 
@@ -46,8 +50,8 @@ If a gamma correction is required, it follows the pattern:
         
         R_corrected = R**(1/gamma)
 
-The input for all is the variable C, which represents the file GOES file opened
-with xarray:
+The input for all these functions denoted by ``C`` represents the 
+GOES ABI file opened with xarray. For example:
 
     .. code-block:: python 
         
@@ -64,14 +68,22 @@ from goes2go.tools import field_of_view
 
 def get_imshow_kwargs(ds):
     """
-    Help with the imshow arguments.
+    Help determine the ``plt.imshow`` arguments.
     
+    Parameters
+    ----------
+    ds : xarray.Dataset
+
+    Returns
+    -------
+    kwargs for the ``plt.imshow`` with the correct image extent limits.
+
     Usage
     -----
-    ... code: python
-        r = TrueColor(G)
-        ax = common_features(r.crs)
-        ax.imshow(r.TrueColor, **get_imshow_kwargs(r))
+    >>> r = TrueColor(G)
+    >>> ax = common_features(r.crs)
+    >>> ax.imshow(r.TrueColor, *\*\get_imshow_kwargs(r))
+
     """
     return dict(
         extent=[ds.x2.data.min(), ds.x2.data.max(),
@@ -95,6 +107,7 @@ def rgb_as_dataset(G, RGB, description, latlon=False):
         A description of what the RGB data represents.
     latlon : bool
         Derive the latitude and longitude of each pixel.
+
     """
     # Assemble a new xarray.Dataset for the RGB data
     ds = xr.Dataset({description.replace(' ', ''): (['y', 'x', 'rgb'], RGB)})
@@ -143,13 +156,20 @@ def load_RGB_channels(C, channels):
     """
     Return the R, G, and B arrays for the three channels requested. This 
     function will convert the data any units in Kelvin to Celsius.
-    Input: 
-        C        - The GOES multi-channel file opened with xarray.
-        channels - A tuple of the channel number for each (R, G, B).
-                   For example channel=(2, 3, 1) is for the true color RGB
-    Return:
-        Returns a list with three items--R, G, and B.
-        Example: R, G, B = load_RGB_channels(C, (2,3,1))
+    
+    Parameters
+    ----------
+    C : xarray.Dataset
+        The GOES multi-channel file opened with xarray.
+    channels : tuple of size 3
+        A tuple of the channel number for each (R, G, B).
+        For example ``channel=(2, 3, 1)`` is for the true color RGB
+    
+    Returns
+    -------
+    A list with three items that are used for R, G, and B.
+    >>> R, G, B = load_RGB_channels(C, (2,3,1))
+
     """
     # Units of each channel requested
     units = [C['CMI_C%02d' % c].units for c in channels]
@@ -164,19 +184,28 @@ def load_RGB_channels(C, channels):
 
 def normalize(value, lower_limit, upper_limit, clip=True):
     """
-    RGB values need to be between 0 and 1. This function normalizes the input
-    value between a lower and upper limit. In other words, it converts your
-    number to a value in the range between 0 and 1. Follows normalization
-    formula explained here: 
-            https://stats.stackexchange.com/a/70807/220885
-    NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)
+    Normalize values between 0 and 1.
+    
+    Normalize between a lower and upper limit. In other words, it 
+    converts your number to a value in the range between 0 and 1. 
+    Follows `normalization formula 
+    <https://stats.stackexchange.com/a/70807/220885>`_
+    
+    .. code:: python
+    
+        NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)
             
-    Input:
-        value       - The original value. A single value, vector, or array.
-        upper_limit - The upper limit. 
-        lower_limit - The lower limit.
-        clip        - True: Clips values between 0 and 1 for RGB.
-                    - False: Retain the numbers that extends outside 0-1.
+    Parameters
+    ----------
+    value :
+        The original value. A single value, vector, or array.
+    upper_limit :
+        The upper limit. 
+    lower_limit :
+        The lower limit.
+    clip : bool
+        - True: Clips values between 0 and 1 for RGB.
+        - False: Retain the numbers that extends outside 0-1.
     Output:
         Values normalized between the upper and lower limit.
     """

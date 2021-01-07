@@ -330,20 +330,19 @@ def goes_timerange(start=None, end=None, recent=None, *,
         Specify the product name. 
         'ABI' is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery
         'GLM' is an alias for GLM-L2-LCFA Geostationary Lightning Mapper
-        For a full list of products, go here:
-            https://docs.opendata.aws/noaa-goes16/cics-readme.html
+        For more info, look at this `README 
+        <https://docs.opendata.aws/noaa-goes16/cics-readme.html>`_
     domain : {'C', 'F', 'M'}
         ABI scan region indicator. Only required for ABI products if the
         given product does not end with C, F, or M.
-        C - Contiguous United States (alias 'CONUS')
-        F - Full Disk (alias 'FULL')
-        M - Mesoscale (alias 'MESOSCALE')
+        - C: Contiguous United States (alias 'CONUS')
+        - F: Full Disk (alias 'FULL')
+        - M: Mesoscale (alias 'MESOSCALE')
         
     return_as : {'xarray', 'filelist'}
         Return the data as an xarray.Dataset or as a list of files
     copy_to_local : bool
         
-    
     """
     # If `start`, or `end` is a string, parse with Pandas
     if isinstance(start, str):

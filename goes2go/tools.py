@@ -17,8 +17,8 @@ def field_of_view(G, resolution=60, reduce_abi_fov=.06):
     """
     Create a field-of-view polygon for the GOES data.
     
-    Based on information from the GOES-R Series Data Book
-    https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf
+    Based on information from the `GOES-R Series Data Book
+    <https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf>`_.
     
     GLM lense field of view is 16 degree, or +/- 8 degrees (see page 225)
     ABI full-disk field of view if 17.4 degrees (see page 48)
@@ -26,15 +26,24 @@ def field_of_view(G, resolution=60, reduce_abi_fov=.06):
     To plot the field of view on the cartopy axes, do the following:
     
     .. code:: python
+
         FOV, geo = field_of_view(G)
         ax = plt.subplot(projection=geo)
         ax.add_geometries([FOV], crs=geo)
     
     Parameters
     ----------
-    G - xarray.Dataset
+    G : xarray.Dataset
         The GOES NetCDF file opened with xarray. A file is required
         because we get info from the file to define the projection.
+    resolution : int
+        Resolution of polygon shapes
+    reduce_abi_fov : float or int
+        Since the globe isn't a perfect ellipse, reduce the field of
+        view just slightly to get all the points to be on the projection
+        plane. If this number is less than the default, the polygon
+        will not be calculated correctly because edge points will lie
+        off the projection globe.
     """
     if G.title.startswith('ABI'):
         globe_kwargs = dict(
@@ -99,15 +108,11 @@ def field_of_view(G, resolution=60, reduce_abi_fov=.06):
         square_FOV = Polygon(zip(x,y))
         FOV_poly = FOV_poly.intersection(square_FOV)
     
-    return FOV_poly, crs
-    
-    
-    
-        
+    return FOV_poly, crs   
         
 def abi_crs(G, reference_variable='CMI_C01'):
     """
-    Get coordinate reference system for the Advanced Baseline Imager.
+    Get coordinate reference system for the Advanced Baseline Imager (ABI).
 
     Parameters
     ----------
@@ -115,12 +120,14 @@ def abi_crs(G, reference_variable='CMI_C01'):
         An xarray.Dataset to derive the coordinate reference system.
     reference_variable : str
         A variable in the xarray.Dataset to use to parse projection from.
+    
     Returns
     -------
     Three objects: 
     1. cartopy coordinate reference system
     2. data projection coordinates in x direction
     3. data projection coordinates in y direction
+
     """
     # We'll use the `CMI_C01` variable as a 'hook' to get the CF metadata.
     dat = G.metpy.parse_cf(reference_variable)
