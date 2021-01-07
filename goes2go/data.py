@@ -311,7 +311,6 @@ def goes_timerange(start=None, end=None, recent=None, *,
                    download=True, overwrite=False,
                    download_dir=_default_download_dir, 
                    max_cpus=None,
-                   keep_vars=[], drop_vars=[],
                    verbose=True):
     """
     Get GOES data for a time range.
@@ -325,24 +324,37 @@ def goes_timerange(start=None, end=None, recent=None, *,
             
     satellite : {'goes16', 'goes17'}
         Specify which GOES satellite.
-        An alias may be used: 16, 17, 'G16', 'G17', 'EAST', 'WEST'
+        The following alias may also be used: 
+
+        - ``'goes16'``: 16, 'G16', or 'EAST'
+        - ``'goes17'``: 17, 'G17', or 'WEST'
+
     product : {'ABI', 'GLM', other GOES product}
         Specify the product name. 
-        'ABI' is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery
-        'GLM' is an alias for GLM-L2-LCFA Geostationary Lightning Mapper
+
+        - 'ABI' is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery
+        - 'GLM' is an alias for GLM-L2-LCFA Geostationary Lightning Mapper
+
         For more info, look at this `README 
         <https://docs.opendata.aws/noaa-goes16/cics-readme.html>`_
     domain : {'C', 'F', 'M'}
         ABI scan region indicator. Only required for ABI products if the
         given product does not end with C, F, or M.
+
         - C: Contiguous United States (alias 'CONUS')
         - F: Full Disk (alias 'FULL')
         - M: Mesoscale (alias 'MESOSCALE')
         
     return_as : {'xarray', 'filelist'}
         Return the data as an xarray.Dataset or as a list of files
-    copy_to_local : bool
-        
+    download : bool
+        - True: Download the data to disk to the location set by :guilabel:`download_dir`
+        - False: Just load the data into memory.
+    download_dir : pathlib.Path or str
+        Path to save the data. Default is the users ``~/data/`` directory.
+    overwrite : bool
+        - True: Download the file even if it exists.
+        - False (default): Do not download the file if it already exists
     """
     # If `start`, or `end` is a string, parse with Pandas
     if isinstance(start, str):
@@ -391,10 +403,45 @@ def goes_latest(*,
                 return_as='xarray',
                 download=True, overwrite=False,
                 download_dir=_default_download_dir, 
-                keep_vars=[], drop_vars=[],
                 verbose=True):
     """
     Get the latest available GOES data.
+
+    Parameters
+    ----------            
+    satellite : {'goes16', 'goes17'}
+        Specify which GOES satellite.
+        The following alias may also be used: 
+
+        - ``'goes16'``: 16, 'G16', or 'EAST'
+        - ``'goes17'``: 17, 'G17', or 'WEST'
+
+    product : {'ABI', 'GLM', other GOES product}
+        Specify the product name. 
+
+        - 'ABI' is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery
+        - 'GLM' is an alias for GLM-L2-LCFA Geostationary Lightning Mapper
+
+        For more info, look at this `README 
+        <https://docs.opendata.aws/noaa-goes16/cics-readme.html>`_
+    domain : {'C', 'F', 'M'}
+        ABI scan region indicator. Only required for ABI products if the
+        given product does not end with C, F, or M.
+
+        - C: Contiguous United States (alias 'CONUS')
+        - F: Full Disk (alias 'FULL')
+        - M: Mesoscale (alias 'MESOSCALE')
+        
+    return_as : {'xarray', 'filelist'}
+        Return the data as an xarray.Dataset or as a list of files
+    download : bool
+        - True: Download the data to disk to the location set by :guilabel:`download_dir`
+        - False: Just load the data into memory.
+    download_dir : pathlib.Path or str
+        Path to save the data. Default is the users ``~/data/`` directory.
+    overwrite : bool
+        - True: Download the file even if it exists.
+        - False (default): Do not download the file if it already exists
     """
     params = locals()
     satellite, product, domain = _check_param_inputs(**params)
@@ -427,10 +474,45 @@ def goes_nearesttime(attime, *,
                      return_as='xarray',
                      download=True, overwrite=False,
                      download_dir=_default_download_dir, 
-                     keep_vars=[], drop_vars=[],
                      verbose=True):
     """
     Get the latest available GOES data.
+
+    Parameters
+    ----------
+    satellite : {'goes16', 'goes17'}
+        Specify which GOES satellite.
+        The following alias may also be used: 
+
+        - ``'goes16'``: 16, 'G16', or 'EAST'
+        - ``'goes17'``: 17, 'G17', or 'WEST'
+
+    product : {'ABI', 'GLM', other GOES product}
+        Specify the product name. 
+
+        - 'ABI' is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery
+        - 'GLM' is an alias for GLM-L2-LCFA Geostationary Lightning Mapper
+
+        For more info, look at this `README 
+        <https://docs.opendata.aws/noaa-goes16/cics-readme.html>`_
+    domain : {'C', 'F', 'M'}
+        ABI scan region indicator. Only required for ABI products if the
+        given product does not end with C, F, or M.
+
+        - C: Contiguous United States (alias 'CONUS')
+        - F: Full Disk (alias 'FULL')
+        - M: Mesoscale (alias 'MESOSCALE')
+        
+    return_as : {'xarray', 'filelist'}
+        Return the data as an xarray.Dataset or as a list of files
+    download : bool
+        - True: Download the data to disk to the location set by :guilabel:`download_dir`
+        - False: Just load the data into memory.
+    download_dir : pathlib.Path or str
+        Path to save the data. Default is the users ``~/data/`` directory.
+    overwrite : bool
+        - True: Download the file even if it exists.
+        - False (default): Do not download the file if it already exists
     """
     if isinstance(attime, str):
         attime = pd.to_datetime(attime)
