@@ -416,7 +416,7 @@ def DayConvection(C, **kwargs):
 
 def DayCloudConvection(C, **kwargs):
     """
-    Day Convection RGB:
+    Day Cloud Convection RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf>`_ for reference)
 
     .. image:: _static/DayCloudConvection.png
