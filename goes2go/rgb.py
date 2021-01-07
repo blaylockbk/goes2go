@@ -2,9 +2,9 @@
 ## August 8, 2019
 
 """
-================
-GOES RGB Recipes
-================
+===========
+RGB Recipes
+===========
 
 These functions take a GOES-East or GOES-West Multichannel data file
 (with label :guilabel:`ABI-L2-MCMIPC`) and generates an 3D array for various GOES
