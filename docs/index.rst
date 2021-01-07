@@ -58,6 +58,17 @@ More notebooks
 `GitHub notebooks <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ 
 
 
+Useful Links
+------------
+
+- `📔 GOES-R Series Data Book <https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf>`_
+- `🖥 Rammb Slider GOES Viewer <https://rammb-slider.cira.colostate.edu/>`_
+- `💾 GOES on AWS <https://registry.opendata.aws/noaa-goes/>`_
+- `🐍 Unidata Plot GOES Data <https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/>`_
+- `🗺 Plotting tips form geonetcast blog <https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/>`_
+- `🐍 glmtools <https://github.com/deeplycloudy/glmtools/>`_
+
+
 .. note::
    **This page is a work in progress.** I'm doing SynopticPy and GOES-2-go 
    with the PyData theme and HRRR-B with the ReadTheDocs theme.
