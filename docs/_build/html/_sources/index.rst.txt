@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. image:: _statis/goes2go_logo.png
+.. image:: _static/goes2go_logo.png
 
 .. toctree::
    :glob:
@@ -32,8 +32,9 @@ RGB Recipes
 -----------
 Generate RGB arrays for different RGB products. Check out this `notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb>`_ for a demonstration.
 
-.. image:: _static/TrueColor.png
-   
+.. figure:: _static/TrueColor.png
+   :class: img-fluid
+
    ABI TrueColor RGB image
 
 Field of View
@@ -42,13 +43,15 @@ See notebooks for `GLM <https://github.com/blaylockbk/goes2go/blob/master/notebo
 
 GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a "central" position, outlined in the dashed black line. Below is the ABI field of view for the full disk:
 
-.. image:: _static/ABI_field-of-view.png
+.. figure:: _static/ABI_field-of-view.png
+   :class: img-fluid
 
    ABI full disk field of view
 
 The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.
 
-.. image:: _static/ABI_field-of-view.png
+.. figure:: _static/ABI_field-of-view.png
+   :class: img-fluid
 
    Approximate GLM field of view
 
