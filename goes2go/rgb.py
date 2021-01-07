@@ -7,7 +7,7 @@ GOES RGB Recipes
 ================
 
 These functions take a GOES-East or GOES-West Multichannel data file
-(with label ABI-L2-MCMIPC) and generates an 3D array for various GOES
+(with label :guilabel:`ABI-L2-MCMIPC`) and generates an 3D array for various GOES
 RGB products.
 
 RGB recipes are from the 
