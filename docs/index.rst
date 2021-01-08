@@ -85,7 +85,7 @@ The GLM field of view is slightly smaller and limited by a bounding box. The fie
 - `📓 GLM field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb>`_
 - `📓 More details on actual edges <https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view_Edges.ipynb>`_
 
-.. figure:: _static/ABI_field-of-view.png
+.. figure:: _static/GLM_field-of-view.png
    :class: img-fluid
 
    Approximate GLM field of view
