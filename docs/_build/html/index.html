@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Reference &#8212; GOES-2-go Docs 0.1 documentation</title>
+    <title>GOES-2-Go Documentation &#8212; GOES-2-go Docs 0.1 documentation</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -40,7 +40,7 @@
     <link rel="shortcut icon" href="_static/wxicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Reference Guide" href="reference_guide.html" />
+    <link rel="next" title="User Guide" href="user_guide/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
   </head>
@@ -63,7 +63,11 @@
         
         
         <li class="nav-item ">
-            <a class="nav-link" href="reference_guide.html">Reference Guide</a>
+            <a class="nav-link" href="user_guide/index.html">User Guide</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="reference_guide/index.html">Reference Guide</a>
         </li>
         
         
@@ -117,6 +121,8 @@
         
         
         
+        
+        
       </ul>
   
   </nav>
@@ -132,10 +138,6 @@
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#" class="nav-link">API Reference</a>
-        </li>
     
         <li class="nav-item toc-entry toc-h2">
             <a href="#install" class="nav-link">Install</a>
@@ -194,25 +196,16 @@
               <div>
                 
   <img alt="_images/goes2go_logo.png" src="_images/goes2go_logo.png" />
-<p>These python functions can help you download GOES-R series NetCDF files from the <a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a> archive.</p>
-<div class="section" id="api-reference">
-<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="goes-2-go-documentation">
+<h1>GOES-2-Go Documentation<a class="headerlink" href="#goes-2-go-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="reference_guide.html">Reference Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference_guide.html#get-goes-data">Get GOES Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference_guide.html#rgb-recipes">RGB Recipes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference_guide.html#other-tools">Other Tools</a></li>
-</ul>
-</li>
-</ul>
 </div>
-</div>
+<p>These python functions can help you download GOES-R series NetCDF files from the <a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a> archive.</p>
 <div class="section" id="install">
-<h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>Install goes2go in a conda environment. You may use this minimum <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/environment.yml">environment.yml</a> file
 and create the environment with the following…</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the environment</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the environment</span>
 conda env create -f environment.yml
 
 <span class="c1"># Update the environment</span>
@@ -224,9 +217,9 @@ conda activate goes2go
 </div>
 </div>
 <div class="section" id="capabilities">
-<h1>Capabilities<a class="headerlink" href="#capabilities" title="Permalink to this headline">¶</a></h1>
+<h2>Capabilities<a class="headerlink" href="#capabilities" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="download-data">
-<h2>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h2>
+<h3>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h3>
 <p>The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span><span class="p">,</span> <span class="n">goes_nearesttime</span>
 
@@ -239,7 +232,7 @@ conda activate goes2go
 </div>
 </div>
 <div class="section" id="rgb-recipes-for-abi">
-<h2>RGB Recipes for ABI<a class="headerlink" href="#rgb-recipes-for-abi" title="Permalink to this headline">¶</a></h2>
+<h3>RGB Recipes for ABI<a class="headerlink" href="#rgb-recipes-for-abi" title="Permalink to this headline">¶</a></h3>
 <p>Generate RGB arrays for different RGB products. Check out the following notebook for a demonstration:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb">📓 Example Notebook</a></p></li>
@@ -250,9 +243,9 @@ conda activate goes2go
 <p>ABI TrueColor RGB image</p>
 </div>
 <div class="section" id="field-of-view">
-<h2>Field of View<a class="headerlink" href="#field-of-view" title="Permalink to this headline">¶</a></h2>
+<h3>Field of View<a class="headerlink" href="#field-of-view" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="advanced-baseline-imager-abi">
-<h3>Advanced Baseline Imager (ABI)<a class="headerlink" href="#advanced-baseline-imager-abi" title="Permalink to this headline">¶</a></h3>
+<h4>Advanced Baseline Imager (ABI)<a class="headerlink" href="#advanced-baseline-imager-abi" title="Permalink to this headline">¶</a></h4>
 <p>GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a “central” position, outlined in the dashed black line. Below is the ABI field of view for the full disk:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb">📓 ABI field of view notebook</a></p></li>
@@ -263,7 +256,7 @@ conda activate goes2go
 </div>
 </div>
 <div class="section" id="geostationary-lightning-mapper-glm">
-<h3>Geostationary Lightning Mapper (GLM)<a class="headerlink" href="#geostationary-lightning-mapper-glm" title="Permalink to this headline">¶</a></h3>
+<h4>Geostationary Lightning Mapper (GLM)<a class="headerlink" href="#geostationary-lightning-mapper-glm" title="Permalink to this headline">¶</a></h4>
 <p>The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb">📓 GLM field of view notebook</a></p></li>
@@ -277,7 +270,7 @@ conda activate goes2go
 </div>
 </div>
 <div class="section" id="useful-links">
-<h1>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h1>
+<h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">👨🏻‍💻 Brian’s GitHub notebooks</a></p></li>
 <li><p><a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi">🌐 Brian’s Interactive GOES Download Page</a></p></li>
@@ -294,6 +287,7 @@ conda activate goes2go
 with the PyData theme and HRRR-B with the ReadTheDocs theme.</p>
 </div>
 </div>
+</div>
 
 
               </div>
@@ -301,7 +295,7 @@ with the PyData theme and HRRR-B with the ReadTheDocs theme.</p>
               
               <div class='prev-next-bottom'>
                 
-    <a class='right-next' id="next-link" href="reference_guide.html" title="next page">Reference Guide</a>
+    <a class='right-next' id="next-link" href="user_guide/index.html" title="next page">User Guide</a>
 
               </div>
               

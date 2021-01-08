@@ -5,16 +5,18 @@
 
 .. image:: _static/goes2go_logo.png
 
-These python functions can help you download GOES-R series NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive.
+=======================
+GOES-2-Go Documentation
+=======================
 
-API Reference
--------------
 .. toctree::
-   :glob:
    :maxdepth: 2
+   :hidden:
 
-   /reference_guide
+   /user_guide/index
+   /reference_guide/index
 
+These python functions can help you download GOES-R series NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive.
 
 Install
 -------
@@ -23,7 +25,7 @@ Install goes2go in a conda environment. You may use this minimum `environment.ym
 <https://github.com/blaylockbk/goes2go/blob/master/environment.yml>`_ file 
 and create the environment with the following...
 
-.. code:: shell
+.. code:: bash
 
    # Create the environment
    conda env create -f environment.yml

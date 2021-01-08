@@ -12,7 +12,6 @@
 #
 import os
 import sys
-from pathlib import Path
 sys.path.insert(0, os.path.abspath('../..'))
 
 #import sphinx_rtd_theme
@@ -133,3 +132,5 @@ from recommonmark.transform import AutoStructify
 
 def setup(app):
     app.add_transform(AutoStructify)
+
+# ^^I actually don't know what the above did, if it did anything
