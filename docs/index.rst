@@ -53,8 +53,8 @@ The following example downloads GOES 16 ABI multichannel file on the fixed grid 
    # Get data for a specific time
    G2 = goes_nearesttime(datetime(2020,10,1), satellite='G16', product='GLM')
 
-RGB Recipes
-^^^^^^^^^^^
+RGB Recipes for ABI
+^^^^^^^^^^^^^^^^^^^
 Generate RGB arrays for different RGB products. Check out the following notebook for a demonstration:
 
 - `📓 Example Notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb>`_
