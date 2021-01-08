@@ -138,29 +138,35 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
+            <a href="#install" class="nav-link">Install</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#capabilities" class="nav-link">Capabilities</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
             <a href="#download-data" class="nav-link">Download Data</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h2">
+        <li class="nav-item toc-entry toc-h3">
             <a href="#rgb-recipes" class="nav-link">RGB Recipes</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h2">
+        <li class="nav-item toc-entry toc-h3">
             <a href="#field-of-view" class="nav-link">Field of View</a><ul class="nav section-nav flex-column">
                 
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#abi" class="nav-link">ABI</a>
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#advanced-baseline-imager-abi" class="nav-link">Advanced Baseline Imager (ABI)</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#glm" class="nav-link">GLM</a>
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#geostationary-lightning-mapper-glm" class="nav-link">Geostationary Lightning Mapper (GLM)</a>
         </li>
     
             </ul>
         </li>
     
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#more-notebooks" class="nav-link">More notebooks</a>
+            </ul>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -202,8 +208,25 @@
 </ul>
 </div>
 </div>
+<div class="section" id="install">
+<h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<p>Install goes2go in a conda environment. You may use this minimum <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/environment.yml">environment.yml</a> file
+and create the environment with the following…</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the environment</span>
+conda env create -f environment.yml
+
+<span class="c1"># Update the environment</span>
+conda env update -f environment.yml
+
+<span class="c1"># Activate the environment</span>
+conda activate goes2go
+</pre></div>
+</div>
+</div>
+<div class="section" id="capabilities">
+<h1>Capabilities<a class="headerlink" href="#capabilities" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="download-data">
-<h1>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h1>
+<h2>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h2>
 <p>The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span><span class="p">,</span> <span class="n">goes_nearesttime</span>
 
@@ -216,46 +239,54 @@
 </div>
 </div>
 <div class="section" id="rgb-recipes">
-<h1>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h1>
-<p>Generate RGB arrays for different RGB products. Check out this <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb">notebook</a> for a demonstration.</p>
-<div class="figure align-default" id="id3">
+<h2>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h2>
+<p>Generate RGB arrays for different RGB products. Check out the following notebook for a demonstration:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb">📓 Example Notebook</a></p></li>
+</ul>
+<div class="figure align-default">
 <img alt="_images/TrueColor.png" class="img-fluid" src="_images/TrueColor.png" />
-<p class="caption"><span class="caption-text">ABI TrueColor RGB image</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
+<p>ABI TrueColor RGB image</p>
 </div>
 <div class="section" id="field-of-view">
-<h1>Field of View<a class="headerlink" href="#field-of-view" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="abi">
-<h2>ABI<a class="headerlink" href="#abi" title="Permalink to this headline">¶</a></h2>
-<p>See notebooks for <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb">ABI</a> field of view.</p>
+<h2>Field of View<a class="headerlink" href="#field-of-view" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="advanced-baseline-imager-abi">
+<h3>Advanced Baseline Imager (ABI)<a class="headerlink" href="#advanced-baseline-imager-abi" title="Permalink to this headline">¶</a></h3>
 <p>GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a “central” position, outlined in the dashed black line. Below is the ABI field of view for the full disk:</p>
-<div class="figure align-default" id="id4">
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb">📓 ABI field of view notebook</a></p></li>
+</ul>
+<div class="figure align-default" id="id1">
 <img alt="_images/ABI_field-of-view.png" class="img-fluid" src="_images/ABI_field-of-view.png" />
-<p class="caption"><span class="caption-text">ABI full disk field of view</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">ABI full disk field of view</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<div class="section" id="glm">
-<h2>GLM<a class="headerlink" href="#glm" title="Permalink to this headline">¶</a></h2>
-<p>See notebooks for <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb">GLM</a> field of view. The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.</p>
-<div class="figure align-default" id="id5">
+<div class="section" id="geostationary-lightning-mapper-glm">
+<h3>Geostationary Lightning Mapper (GLM)<a class="headerlink" href="#geostationary-lightning-mapper-glm" title="Permalink to this headline">¶</a></h3>
+<p>The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb">📓 GLM field of view notebook</a></p></li>
+<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view_Edges.ipynb">📓 More details on actual edges</a></p></li>
+</ul>
+<div class="figure align-default" id="id2">
 <img alt="_images/ABI_field-of-view.png" class="img-fluid" src="_images/ABI_field-of-view.png" />
-<p class="caption"><span class="caption-text">Approximate GLM field of view</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Approximate GLM field of view</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
-<div class="section" id="more-notebooks">
-<h1>More notebooks<a class="headerlink" href="#more-notebooks" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">GitHub notebooks</a></p>
 </div>
 <div class="section" id="useful-links">
 <h1>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
+<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">👨🏻‍💻 Brian’s GitHub notebooks</a></p></li>
+<li><p><a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi">🌐 Brian’s Interactive GOES Download Page</a></p></li>
 <li><p><a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf">📔 GOES-R Series Data Book</a></p></li>
-<li><p><a class="reference external" href="https://rammb-slider.cira.colostate.edu/">🖥 Rammb Slider GOES Viewer</a></p></li>
+<li><p><a class="reference external" href="https://rammb-slider.cira.colostate.edu/">💻 Rammb Slider GOES Viewer</a></p></li>
 <li><p><a class="reference external" href="https://registry.opendata.aws/noaa-goes/">💾 GOES on AWS</a></p></li>
 <li><p><a class="reference external" href="https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/">🐍 Unidata Plot GOES Data</a></p></li>
 <li><p><a class="reference external" href="https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/">🗺 Plotting tips form geonetcast blog</a></p></li>
-<li><p><a class="reference external" href="https://github.com/deeplycloudy/glmtools/">🐍 glmtools</a></p></li>
+<li><p><a class="reference external" href="https://github.com/deeplycloudy/glmtools/">🐍 glmtools</a> For useful tools for GLM data.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

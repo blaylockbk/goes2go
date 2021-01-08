@@ -8,7 +8,7 @@
 These python functions can help you download GOES-R series NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive.
 
 API Reference
----------------
+-------------
 .. toctree::
    :glob:
    :maxdepth: 2
@@ -16,8 +16,31 @@ API Reference
    /reference_guide
 
 
+Install
+-------
+
+Install goes2go in a conda environment. You may use this minimum `environment.yml
+<https://github.com/blaylockbk/goes2go/blob/master/environment.yml>`_ file 
+and create the environment with the following...
+
+.. code:: shell
+
+   # Create the environment
+   conda env create -f environment.yml
+
+   # Update the environment
+   conda env update -f environment.yml
+
+   # Activate the environment
+   conda activate goes2go
+
+
+Capabilities
+------------
+
 Download Data
--------------
+^^^^^^^^^^^^^
+
 The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.
 
 .. code-block:: python
@@ -31,31 +54,36 @@ The following example downloads GOES 16 ABI multichannel file on the fixed grid 
    G2 = goes_nearesttime(datetime(2020,10,1), satellite='G16', product='GLM')
 
 RGB Recipes
------------
-Generate RGB arrays for different RGB products. Check out this `notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb>`_ for a demonstration.
+^^^^^^^^^^^
+Generate RGB arrays for different RGB products. Check out the following notebook for a demonstration:
+
+- `📓 Example Notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb>`_
 
 .. figure:: _static/TrueColor.png
    :class: img-fluid
 
-   ABI TrueColor RGB image
+ABI TrueColor RGB image
 
 Field of View
--------------
+^^^^^^^^^^^^^
 
-ABI
-^^^
-See notebooks for `ABI <https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb>`_ field of view.
-
+Advanced Baseline Imager (ABI)
+""""""""""""""""""""""""""""""
 GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a "central" position, outlined in the dashed black line. Below is the ABI field of view for the full disk:
+
+- `📓 ABI field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb>`_
 
 .. figure:: _static/ABI_field-of-view.png
    :class: img-fluid
 
    ABI full disk field of view
 
-GLM
-^^^
-See notebooks for `GLM <https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb>`_ field of view. The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.
+Geostationary Lightning Mapper (GLM)
+""""""""""""""""""""""""""""""""""""
+The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.
+
+- `📓 GLM field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb>`_
+- `📓 More details on actual edges <https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view_Edges.ipynb>`_
 
 .. figure:: _static/ABI_field-of-view.png
    :class: img-fluid
@@ -63,20 +91,16 @@ See notebooks for `GLM <https://github.com/blaylockbk/goes2go/blob/master/notebo
    Approximate GLM field of view
 
 
-More notebooks
---------------
-`GitHub notebooks <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ 
-
-
 Useful Links
 ------------
-
+- `👨🏻‍💻 Brian's GitHub notebooks <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ 
+- `🌐 Brian's Interactive GOES Download Page <http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi>`_
 - `📔 GOES-R Series Data Book <https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf>`_
-- `🖥 Rammb Slider GOES Viewer <https://rammb-slider.cira.colostate.edu/>`_
+- `💻 Rammb Slider GOES Viewer <https://rammb-slider.cira.colostate.edu/>`_
 - `💾 GOES on AWS <https://registry.opendata.aws/noaa-goes/>`_
 - `🐍 Unidata Plot GOES Data <https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/>`_
 - `🗺 Plotting tips form geonetcast blog <https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/>`_
-- `🐍 glmtools <https://github.com/deeplycloudy/glmtools/>`_
+- `🐍 glmtools <https://github.com/deeplycloudy/glmtools/>`_ For useful tools for GLM data.
 
 
 .. note::
