@@ -220,7 +220,7 @@ def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
     True Color RGB:
     (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
     
-    .. image:: _static/TrueColor.png
+    .. image:: TrueColor.png
 
     Parameters
     ----------
@@ -283,7 +283,7 @@ def FireTemperature(C, **kwargs):
     Fire Temperature RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf>`__ for reference)
     
-    .. image:: _static/FireTemperature.png
+    .. image:: FireTemperature.png
     
     Parameters
     ----------
@@ -318,7 +318,7 @@ def AirMass(C, **kwargs):
     Air Mass RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf>`__ for reference)
 
-    .. image:: _static/AirMass.png
+    .. image:: AirMass.png
 
     Parameters
     ----------
@@ -353,7 +353,7 @@ def DayCloudPhase(C, **kwargs):
     Day Cloud Phase Distinction RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf>`__ for reference)
 
-    .. image:: _static/DayCloudPhase.png
+    .. image:: DayCloudPhase.png
 
     Parameters
     ----------
@@ -386,7 +386,7 @@ def DayConvection(C, **kwargs):
     Day Convection RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf>`__ for reference)
     
-    .. image:: _static/DayConvection.png
+    .. image:: DayConvection.png
 
     Parameters
     ----------
@@ -419,7 +419,7 @@ def DayCloudConvection(C, **kwargs):
     Day Cloud Convection RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf>`__ for reference)
 
-    .. image:: _static/DayCloudConvection.png
+    .. image:: DayCloudConvection.png
 
     Parameters
     ----------
@@ -458,7 +458,7 @@ def DayLandCloud(C, **kwargs):
     Day Land Cloud Fire RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf>`__ for reference)
 
-    .. image:: _static/DayLandCloud.png
+    .. image:: DayLandCloud.png
 
     Parameters
     ----------
@@ -488,7 +488,7 @@ def DayLandCloudFire(C, **kwargs):
     Day Land Cloud Fire RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf>`__ for reference)
 
-    .. image:: _static/DayLandCloudFire.png
+    .. image:: DayLandCloudFire.png
 
     Parameters
     ----------
@@ -518,7 +518,7 @@ def WaterVapor(C, **kwargs):
     Simple Water Vapor RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf>`__ for reference)
 
-    .. image:: _static/WaterVapor.png
+    .. image:: WaterVapor.png
 
     Parameters
     ----------
@@ -553,7 +553,7 @@ def DifferentialWaterVapor(C, **kwargs):
     Differential Water Vapor RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf>`__ for reference)
 
-    .. image:: _static/DifferentialWaterVapor.png
+    .. image:: DifferentialWaterVapor.png
 
     Parameters
     ----------
@@ -595,7 +595,7 @@ def DaySnowFog(C, **kwargs):
     Day Snow-Fog RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf>`__ for reference)
 
-    .. image:: _static/DaySnowFog.png
+    .. image:: DaySnowFog.png
 
     Parameters
     ----------
@@ -633,7 +633,7 @@ def NighttimeMicrophysics(C, **kwargs):
     Nighttime Microphysics RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf>`__ for reference)
 
-    .. image:: _static/NighttimeMicrophysics.png
+    .. image:: NighttimeMicrophysics.png
 
     Parameters
     ----------
@@ -665,7 +665,7 @@ def Dust(C, **kwargs):
     SulfurDioxide RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf>`__ for reference)
 
-    .. image:: _static/Dust.png
+    .. image:: Dust.png
 
     Parameters
     ----------
@@ -700,7 +700,7 @@ def SulfurDioxide(C, **kwargs):
     SulfurDioxide RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf>`__ for reference)
 
-    .. image:: _static/SulfurDioxide.png
+    .. image:: SulfurDioxide.png
 
     Parameters
     ----------
@@ -732,7 +732,7 @@ def Ash(C, **kwargs):
     Ash RGB:
     (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf>`__ for reference)
 
-    .. image:: _static/Ash.png
+    .. image:: Ash.png
 
     Parameters
     ----------
@@ -764,7 +764,7 @@ def SplitWindowDifference(C, **kwargs):
     Split Window Difference RGB (greyscale):
     (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf>`__ for reference)
 
-    .. image:: _static/SplitWindowDifference.png
+    .. image:: SplitWindowDifference.png
 
     Parameters
     ----------
@@ -792,7 +792,7 @@ def NightFogDifference(C, **kwargs):
     Night Fog Difference RGB (greyscale):
     (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf>`__ for reference)
 
-    .. image:: _static/NightFogDifference.png
+    .. image:: NightFogDifference.png
 
     Parameters
     ----------
