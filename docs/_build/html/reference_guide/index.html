@@ -771,17 +771,18 @@ brighter than in real life).</p></li>
 <dd class="field-odd"><p><strong>ds</strong> (<em>xarray.Dataset</em>) – </p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>kwargs for the <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code> with the correct image extent limits.</p></li>
-<li><p><em>Usage</em></p></li>
-<li><p><em>—–</em></p></li>
-<li><p><em>&gt;&gt;&gt; r = TrueColor(G)</em></p></li>
-<li><p><em>&gt;&gt;&gt; ax = common_features(r.crs)</em></p></li>
-<li><p><em>&gt;&gt;&gt; ax.imshow(r.TrueColor, **get_imshow_kwargs(r))</em></p></li>
-</ul>
-</p>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>kwargs for the <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code> with the correct image extent limits.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">TrueColor</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">TrueColor</span><span class="p">,</span> <span class="o">*</span>\<span class="o">*</span>\<span class="n">get_imshow_kwargs</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">

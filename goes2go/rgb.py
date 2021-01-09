@@ -78,11 +78,14 @@ def get_imshow_kwargs(ds):
     -------
     kwargs for the ``plt.imshow`` with the correct image extent limits.
 
-    Usage
-    -----
-    >>> r = TrueColor(G)
-    >>> ax = common_features(r.crs)
-    >>> ax.imshow(r.TrueColor, *\*\get_imshow_kwargs(r))
+    Examples
+    --------
+    
+    .. code:: python
+
+        r = TrueColor(G)
+        ax = common_features(r.crs)
+        ax.imshow(r.TrueColor, *\*\get_imshow_kwargs(r))
 
     """
     return dict(
