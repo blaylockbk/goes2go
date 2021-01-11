@@ -96,6 +96,7 @@ The GLM field of view is slightly smaller and limited by a bounding box. The fie
 Useful Links
 ------------
 - `👨🏻‍💻 Brian's GitHub notebooks <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ 
+- _`🎠 Beginner's Guide <https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf>`_
 - `🌐 Brian's Interactive GOES Download Page <http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi>`_
 - `📔 GOES-R Series Data Book <https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf>`_
 - `💻 Rammb Slider GOES Viewer <https://rammb-slider.cira.colostate.edu/>`_
