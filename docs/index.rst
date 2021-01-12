@@ -107,6 +107,8 @@ Useful Links
 - `🗺 Plotting tips form geonetcast blog <https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/>`_
 - `🐍 glmtools <https://github.com/deeplycloudy/glmtools/>`_ For useful tools for GLM data.
 
+Data Quality
+- `⛑ GOES-17 ABI Data Quality (CIMSS) <http://cimss.ssec.wisc.edu/goes-r/abi-/band_statistics_imagery.html>`_
 
 .. note::
    **This page is a work in progress.** I'm doing SynopticPy and GOES-2-go 
