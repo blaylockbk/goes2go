@@ -108,11 +108,13 @@ Useful Links
 Access GOES data through NOAA's Big Data Project partners
 
 - `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_
+
    - `🌐 Brian's Interactive GOES Download Page <http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi>`_
    - `🗃 AWS GOES-16 S3 Explorer <https://noaa-goes16.s3.amazonaws.com/index.html>`_
    - `🗃 AWS GOES-17 S3 Explorer <https://noaa-goes17.s3.amazonaws.com/index.html>`_
+
 - `Microsoft Azure <https://azure.microsoft.com/en-us/services/open-datasets/catalog/goes-16/>`_ (Only GOES-16??)
-- Google Cloud Platform `GOES-16 <https://console.cloud.google.com/marketplace/product/noaa-public/goes-16>`_ `GOES-17 <https://console.cloud.google.com/marketplace/product/noaa-public/goes-17>`_
+- Google Cloud Platform (`GOES-16 <https://console.cloud.google.com/marketplace/product/noaa-public/goes-16>`_ | `GOES-17 <https://console.cloud.google.com/marketplace/product/noaa-public/goes-17>`_)
 
 
 Data Quality
