@@ -13,6 +13,7 @@ Read doc strings for functions in `goes2go/` folder for full usage description.
 
 >### Some Useful Links
 >- [📔 GOES-R Series Data Book](https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf)
+>- [🎠 Beginner's Guide](https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf)
 >- [🖥 Rammb Slider GOES Viewer](https://rammb-slider.cira.colostate.edu)
 >- [💾 GOES on AWS](https://registry.opendata.aws/noaa-goes/)
 >- [🐍 Unidata Plot GOES Data](https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/)

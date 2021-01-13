@@ -256,6 +256,9 @@ def TrueColor(C, gamma=2.2, trueGreen=True, night_IR=True, **kwargs):
     True Color RGB:
     (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
     
+    For more details on combing RGB and making the psedo green channel, refer to 
+    `Bah et al. 2018 <https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379>`_.
+    
     .. image:: /_static/TrueColor.png
 
     .. image:: /_static/gamma_demo_TrueColor.png
@@ -921,8 +924,11 @@ def NightFogDifference(C, **kwargs):
     RGB = np.dstack([data, data, data])
     
     return rgb_as_dataset(C, RGB, 'Night Fog Difference', **kwargs)
+<<<<<<< HEAD
 
 if __name__ == "__main__":
 
     # Create images of each for Docs
     print('nothing here for now')
+=======
+>>>>>>> 19ddce636ec8e303758c6b009584b6a02c415f18

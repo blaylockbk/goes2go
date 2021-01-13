@@ -96,14 +96,30 @@ The GLM field of view is slightly smaller and limited by a bounding box. The fie
 Useful Links
 ------------
 - `👨🏻‍💻 Brian's GitHub notebooks <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ 
-- `🌐 Brian's Interactive GOES Download Page <http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi>`_
+- `🎠 Beginner's Guide <https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf>`_
 - `📔 GOES-R Series Data Book <https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf>`_
 - `💻 Rammb Slider GOES Viewer <https://rammb-slider.cira.colostate.edu/>`_
-- `💾 GOES on AWS <https://registry.opendata.aws/noaa-goes/>`_
 - `🐍 Unidata Plot GOES Data <https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/>`_
 - `🗺 Plotting tips form geonetcast blog <https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/>`_
 - `🐍 glmtools <https://github.com/deeplycloudy/glmtools/>`_ For useful tools for GLM data.
 
+💾 Data Access
+^^^^^^^^^^^^
+Access GOES data through NOAA's Big Data Project partners
+
+- `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_
+
+   - `🌐 Brian's Interactive GOES Download Page <http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi>`_
+   - `🗃 AWS GOES-16 S3 Explorer <https://noaa-goes16.s3.amazonaws.com/index.html>`_
+   - `🗃 AWS GOES-17 S3 Explorer <https://noaa-goes17.s3.amazonaws.com/index.html>`_
+
+- `Microsoft Azure <https://azure.microsoft.com/en-us/services/open-datasets/catalog/goes-16/>`_ (Only GOES-16??)
+- Google Cloud Platform (`GOES-16 <https://console.cloud.google.com/marketplace/product/noaa-public/goes-16>`_ | `GOES-17 <https://console.cloud.google.com/marketplace/product/noaa-public/goes-17>`_)
+
+
+Data Quality
+^^^^^^^^^^^^^
+- `⛑ GOES-17 ABI Data Quality (CIMSS) <http://cimss.ssec.wisc.edu/goes-r/abi-/band_statistics_imagery.html>`_
 
 .. note::
    **This page is a work in progress.** I'm doing SynopticPy and GOES-2-go 
