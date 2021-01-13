@@ -9,13 +9,14 @@
 GOES-2-Go Documentation
 =======================
 
+These python functions can help you download GOES-R series NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive.
+
 .. toctree::
    :maxdepth: 1
 
    /user_guide/index
    /reference_guide/index
 
-These python functions can help you download GOES-R series NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive.
 
 Install
 -------
