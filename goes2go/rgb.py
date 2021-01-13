@@ -8,14 +8,15 @@ RGB Recipes
 
 .. image:: /_static/RGB_sample.png
 
-These functions take a GOES-East or GOES-West multichannel data file
-(with label :guilabel:`ABI-L2-MCMIPC`) and generates a 3D array for 
-various GOES RGB products.
+These functions take GOES-East or GOES-West multichannel data on a 
+fixed grid (files named ``ABI-L2-MCMIPC``) and generates a 3D 
+Red-Green-Blue (RGB) array for various GOES RGB products.
 
-RGB recipes are from the `GOES Quick Guides
+RGB recipes are based on the `GOES Quick Guides
 <http://rammb.cira.colostate.edu/training/visit/quick_guides/>`_ 
 and include the following:
 
+    - NaturalColor
     - TrueColor
     - FireTemperature
     - AirMass
@@ -34,31 +35,41 @@ and include the following:
     - SplitWindowDifference
     - NightFogDifference
 
-All products are demonstarted in the `make_RGB_Demo 
-<https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ notebook.
-
 The returned RGB can easily be viewed with ``plt.imshow(RGB)``. 
 
 For imshow to show an RGB image, the values must range between 0 and 1. 
-Values are normalized between the range specified in the Quick Guides:
+Values are normalized between the range specified in the Quick Guides. 
+This normalization is synonymous to `contrast or histogram stretching 
+<https://micro.magnet.fsu.edu/primer/java/digitalimaging/processing/histogramstretching/index.html>`_
+(`more info 
+<https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html>`_)
+and follows the formula:
 
     .. code-block:: python 
 
         NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)
 
-If a gamma correction is required, it follows the gamma decoding pattern:
+`Gamma correction <https://en.wikipedia.org/wiki/Gamma_correction>`_
+darkens or lightens an image (`more info 
+<https://www.cambridgeincolour.com/tutorials/gamma-correction.htm>`_). 
+and follows the decoding formula:
 
     .. code-block:: python 
         
         R_corrected = R**(1/gamma)
 
-The input for all these functions denoted by ``C`` represents the 
-GOES ABI file opened with xarray. For example:
+The input for all these functions are denoted by ``C`` for "channels" which
+represents the GOES ABI multichannel file opened with xarray. For example:
 
     .. code-block:: python 
         
         FILE = 'OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc'
         C = xarray.open_dataset(FILE)
+
+All RGB products are demonstarted in the `make_RGB_Demo 
+<https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ notebook.
+
+
 """
 
 import numpy as np
@@ -223,7 +234,7 @@ def normalize(value, lower_limit, upper_limit, clip=True):
     Follows `normalization formula 
     <https://stats.stackexchange.com/a/70807/220885>`_
     
-    This is the same concept as `Contrast Stretching 
+    This is the same concept as `contrast or histogram stretching 
     <https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html>`_
     
 
@@ -241,7 +252,7 @@ def normalize(value, lower_limit, upper_limit, clip=True):
         The lower limit.
     clip : bool
         - True: Clips values between 0 and 1 for RGB.
-        - False: Retain the numbers that extends outside 0-1.
+        - False: Retain the numbers that extends outside 0-1 range.
     Output:
         Values normalized between the upper and lower limit.
     """
@@ -250,6 +261,9 @@ def normalize(value, lower_limit, upper_limit, clip=True):
         norm = np.clip(norm, 0, 1)
     return norm
 
+
+# ======================================================================
+# ======================================================================
 
 def TrueColor(C, gamma=2.2, pseudoGreen=True, night_IR=True, **kwargs):
     """

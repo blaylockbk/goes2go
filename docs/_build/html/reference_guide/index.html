@@ -348,13 +348,14 @@ given product does not end with C, F, or M.</p>
 <span class="target" id="module-goes2go.rgb"></span><div class="section" id="rgb-recipes">
 <h2>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h2>
 <img alt="../_images/RGB_sample.png" src="../_images/RGB_sample.png" />
-<p>These functions take a GOES-East or GOES-West multichannel data file
-(with label <span class="guilabel">ABI-L2-MCMIPC</span>) and generates a 3D array for
-various GOES RGB products.</p>
-<p>RGB recipes are from the <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/">GOES Quick Guides</a>
+<p>These functions take GOES-East or GOES-West multichannel data on a
+fixed grid (files named <code class="docutils literal notranslate"><span class="pre">ABI-L2-MCMIPC</span></code>) and generates a 3D
+Red-Green-Blue (RGB) array for various GOES RGB products.</p>
+<p>RGB recipes are based on the <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/">GOES Quick Guides</a>
 and include the following:</p>
 <blockquote>
 <div><ul class="simple">
+<li><p>NaturalColor</p></li>
 <li><p>TrueColor</p></li>
 <li><p>FireTemperature</p></li>
 <li><p>AirMass</p></li>
@@ -374,29 +375,34 @@ and include the following:</p>
 <li><p>NightFogDifference</p></li>
 </ul>
 </div></blockquote>
-<p>All products are demonstarted in the <a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">make_RGB_Demo</a> notebook.</p>
 <p>The returned RGB can easily be viewed with <code class="docutils literal notranslate"><span class="pre">plt.imshow(RGB)</span></code>.</p>
 <p>For imshow to show an RGB image, the values must range between 0 and 1.
-Values are normalized between the range specified in the Quick Guides:</p>
+Values are normalized between the range specified in the Quick Guides.
+This normalization is synonymous to <a class="reference external" href="https://micro.magnet.fsu.edu/primer/java/digitalimaging/processing/histogramstretching/index.html">contrast or histogram stretching</a>
+(<a class="reference external" href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html">more info</a>)
+and follows the formula:</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NormalizedValue</span> <span class="o">=</span> <span class="p">(</span><span class="n">OriginalValue</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">UpperLimit</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>If a gamma correction is required, it follows the gamma decoding pattern:</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">Gamma correction</a>
+darkens or lightens an image (<a class="reference external" href="https://www.cambridgeincolour.com/tutorials/gamma-correction.htm">more info</a>).
+and follows the decoding formula:</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R_corrected</span> <span class="o">=</span> <span class="n">R</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>The input for all these functions denoted by <code class="docutils literal notranslate"><span class="pre">C</span></code> represents the
-GOES ABI file opened with xarray. For example:</p>
+<p>The input for all these functions are denoted by <code class="docutils literal notranslate"><span class="pre">C</span></code> for “channels” which
+represents the GOES ABI multichannel file opened with xarray. For example:</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FILE</span> <span class="o">=</span> <span class="s1">&#39;OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc&#39;</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">FILE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
+<p>All RGB products are demonstarted in the <a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">make_RGB_Demo</a> notebook.</p>
 <p><strong>Functions:</strong></p>
 <table class="longtable table autosummary">
 <colgroup>
@@ -459,7 +465,8 @@ GOES ABI file opened with xarray. For example:</p>
 <td><p>Simple Water Vapor RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.gamma_correction" title="goes2go.rgb.gamma_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_correction</span></code></a>(a, gamma[, verbose])</p></td>
-<td><p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.</p></td>
+<td><p><p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.</p>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.get_imshow_kwargs" title="goes2go.rgb.get_imshow_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_imshow_kwargs</span></code></a>(ds)</p></td>
 <td><p>Help determine the <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code> arguments.</p></td>
@@ -879,7 +886,7 @@ For example <code class="docutils literal notranslate"><span class="pre">channel
 <p>Normalize between a lower and upper limit. In other words, it
 converts your number to a value in the range between 0 and 1.
 Follows <a class="reference external" href="https://stats.stackexchange.com/a/70807/220885">normalization formula</a></p>
-<p>This is the same concept as <a class="reference external" href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html">Contrast Stretching</a></p>
+<p>This is the same concept as <a class="reference external" href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html">contrast or histogram stretching</a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NormalizedValue</span> <span class="o">=</span> <span class="p">(</span><span class="n">OriginalValue</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">UpperLimit</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -891,7 +898,7 @@ Follows <a class="reference external" href="https://stats.stackexchange.com/a/70
 <li><p><strong>lower_limit</strong> – The lower limit.</p></li>
 <li><p><strong>clip</strong> (<em>bool</em>) – <ul>
 <li><p>True: Clips values between 0 and 1 for RGB.</p></li>
-<li><p>False: Retain the numbers that extends outside 0-1.</p></li>
+<li><p>False: Retain the numbers that extends outside 0-1 range.</p></li>
 </ul>
 </p></li>
 <li><p><strong>Output</strong> – Values normalized between the upper and lower limit.</p></li>
