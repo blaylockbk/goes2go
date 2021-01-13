@@ -10,8 +10,7 @@ GOES-2-Go Documentation
 =======================
 
 .. toctree::
-   :maxdepth: 2
-   :hidden:
+   :maxdepth: 1
 
    /user_guide/index
    /reference_guide/index
@@ -116,6 +115,7 @@ Access GOES data through NOAA's Big Data Project partners
 - `Microsoft Azure <https://azure.microsoft.com/en-us/services/open-datasets/catalog/goes-16/>`_ (Only GOES-16??)
 - Google Cloud Platform (`GOES-16 <https://console.cloud.google.com/marketplace/product/noaa-public/goes-16>`_ | `GOES-17 <https://console.cloud.google.com/marketplace/product/noaa-public/goes-17>`_)
 
+- `Download GOES data with rclone <https://github.com/blaylockbk/pyBKB_v3/blob/master/rclone_howto.md>`_
 
 Data Quality
 ^^^^^^^^^^^^^
