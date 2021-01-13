@@ -104,7 +104,7 @@ Useful Links
 - `🐍 glmtools <https://github.com/deeplycloudy/glmtools/>`_ For useful tools for GLM data.
 
 💾 Data Access
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 Access GOES data through NOAA's Big Data Project partners
 
 - `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_
