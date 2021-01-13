@@ -6,7 +6,7 @@
 RGB Recipes
 ===========
 
-.. image:: /_static/Color-IR_demo.png
+.. image:: /_static/RGB_sample.png
 
 These functions take a GOES-East or GOES-West multichannel data file
 (with label :guilabel:`ABI-L2-MCMIPC`) and generates a 3D array for 
@@ -263,6 +263,8 @@ def TrueColor(C, gamma=2.2, pseudoGreen=True, night_IR=True, **kwargs):
 
     .. image:: /_static/gamma_demo_TrueColor.png
 
+    .. image:: /_static/Color-IR_demo.png
+
     Parameters
     ----------
     C : xarray.Dataset
@@ -339,6 +341,8 @@ def NaturalColor(C, gamma=.8, pseudoGreen=True, night_IR=False, **kwargs):
     .. image:: /_static/gamma_demo_NaturalColor-PsuedoGreen.png
 
     .. image:: /_static/gamma_demo_NaturalColor-VeggieGreen.png
+
+    .. image:: /_static/Color-IR_demo.png
 
     Parameters
     ----------

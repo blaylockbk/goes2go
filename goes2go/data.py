@@ -3,7 +3,7 @@
 
 """
 =============
-Get GOES Data
+Retrieve Data
 =============
 Download and read data from the R-series Geostationary Operational 
 Environmental Satellite data.
