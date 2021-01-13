@@ -6,6 +6,8 @@
 RGB Recipes
 ===========
 
+.. image:: /_static/True-vs-Natural_color.png
+
 These functions take a GOES-East or GOES-West multichannel data file
 (with label :guilabel:`ABI-L2-MCMIPC`) and generates a 3D array for 
 various GOES RGB products.
@@ -44,7 +46,7 @@ Values are normalized between the range specified in the Quick Guides:
 
         NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)
 
-If a gamma correction is required, it follows the pattern:
+If a gamma correction is required, it follows the gamma decoding pattern:
 
     .. code-block:: python 
         
@@ -185,6 +187,33 @@ def load_RGB_channels(C, channels):
             RGB.append(C['CMI_C%02d' % c].data)
     return RGB
 
+def gamma_correction(a, gamma, verbose=False):
+    """
+    Darken or lighten an image with `gamma correction 
+    <https://en.wikipedia.org/wiki/Gamma_correction>`_.
+
+    Parameters
+    ----------
+    a : array-like
+        An array of values, typically the RGB array of values in
+        an image.
+    gamma : float
+        Gamma value to decode the image by.
+        Values > 1 will lighten an image.
+        Values < 1 will darken an image.
+    """
+    if verbose:
+        if gamma > 1:
+            print('Gamma Correction: 🌔 Lighten image')
+        elif gamma < 1:
+            print('Gamma Correction: 🌒 Darken image')
+        else:
+            print('Gamma Correction: 🌓 Gamma=1. No correction made.')
+            return a 
+    
+    # Gamma decoding formula
+    return np.power(a, 1/gamma)
+
 def normalize(value, lower_limit, upper_limit, clip=True):
     """
     Normalize values between 0 and 1.
@@ -194,6 +223,10 @@ def normalize(value, lower_limit, upper_limit, clip=True):
     Follows `normalization formula 
     <https://stats.stackexchange.com/a/70807/220885>`_
     
+    This is the same concept as `Contrast Stretching 
+    <https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html>`_
+    
+
     .. code:: python
     
         NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)
@@ -218,17 +251,24 @@ def normalize(value, lower_limit, upper_limit, clip=True):
     return norm
 
 
-def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
+def TrueColor(C, gamma=2.2, trueGreen=True, night_IR=True, **kwargs):
     """
     True Color RGB:
     (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
     
     .. image:: /_static/TrueColor.png
 
+    .. image:: /_static/gamma_demo_TrueColor.png
+
     Parameters
     ----------
     C : xarray.Dataset
         A GOES ABI multichannel file opened with xarray.
+    gamma : float
+        Darken or lighten an image with `gamma correction 
+        <https://en.wikipedia.org/wiki/Gamma_correction>`_.
+        Values > 1 will lighten an image.
+        Values < 1 will darken an image.
     trueGreen : bool
         True: returns the calculated "True" green color
         False: returns the "veggie" channel
@@ -249,11 +289,10 @@ def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
     G = np.clip(G, 0, 1)
     B = np.clip(B, 0, 1)
 
-    # Apply a gamma correction to the image
-    gamma = 2.2
-    R = np.power(R, 1/gamma)
-    G = np.power(G, 1/gamma)
-    B = np.power(B, 1/gamma)
+    # Apply a gamma correction to each R, G, B channel
+    R = gamma_correction(R, gamma)
+    G = gamma_correction(G, gamma)
+    B = gamma_correction(B, gamma)
 
     if trueGreen:
         # Calculate the "True" Green
@@ -280,6 +319,69 @@ def TrueColor(C, trueGreen=True, night_IR=True, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'True Color', **kwargs)
 
+def NaturalColor(C, gamma=.8, **kwargs):
+    """
+    Natural Color Image based on CIMSS method from Rick Kohrs.
+
+    Check out Rick Kohrs `merged GOES images <https://www.ssec.wisc.edu/~rickk/local-noon.html>`_.
+
+    .. image:: /_static/NaturalColor.png
+
+    .. image:: /_static/gamma_demo_NaturalColor.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened ith xarray.
+    gamma : float
+        Darken or lighten an image with `gamma correction 
+        <https://en.wikipedia.org/wiki/Gamma_correction>`_.
+        Values > 1 will lighten an image.
+        Values < 1 will darken an image.
+    """
+    def breakpoint_stretch(C, breakpoint):
+        """
+        Constrast stretching by break point (Rick Kohrs)
+        """
+        lower = normalize(C, 0, 10)     # Low end
+        upper = normalize(C, 10, 255)   # High end
+        
+        # Combine the two datasets
+        # This works because if upper=1 and lower==.7, then 
+        # that means the upper value was out of range and the 
+        # value for the lower pass was used instead.
+        combined = np.minimum(lower, upper)
+        
+        return combined
+    
+    # Load the three channels into appropriate R, G, and B variables
+    R, G, B = load_RGB_channels(C, (2, 3, 1))
+
+    # Apply range limits for each channel. RGB values must be between 0 and 1
+    R = np.clip(R, 0, 1)
+    G = np.clip(G, 0, 1)
+    B = np.clip(B, 0, 1)
+
+    # Convert Albedo to Brightness, ranging from 0-255 K
+    R_b = np.sqrt(R*100) * 25.5
+    G_b = np.sqrt(G*100) * 25.5
+    B_b = np.sqrt(B*100) * 25.5
+
+    # Derive "true green" and replace Green value
+    G_b = .45 * R_b + .1 * G_b + .45 *B_b
+
+    # Apply contrast stretching based on breakpoints
+    R_s = breakpoint_stretch(R_b, 33)
+    GG_s = breakpoint_stretch(G_b, 40)
+    B_s = breakpoint_stretch(B_b, 50)
+    
+    # Combine each channel into a 3D array
+    RGB = np.dstack([R, G, B])
+
+    # Apply a gamma correction to the image
+    RGB = gamma_correction(RGB, gamma)
+
+    return rgb_as_dataset(C, RGB, 'Natural Color', **kwargs)
 
 def FireTemperature(C, **kwargs):
     """
@@ -308,7 +410,7 @@ def FireTemperature(C, **kwargs):
     # Apply the gamma correction to Red channel.
     #   corrected_value = value^(1/gamma)
     gamma = 0.4
-    R = np.power(R, 1/gamma)
+    R = gamma_correction(R, gamma)
 
     # The final RGB array :)
     RGB = np.dstack([R, G, B])
@@ -447,8 +549,8 @@ def DayCloudConvection(C, **kwargs):
     # Apply the gamma correction to Red channel.
     #   corrected_value = value^(1/gamma)
     gamma = 1.7
-    R = np.power(R, 1/gamma)
-    G = np.power(G, 1/gamma)
+    R = gamma_correction(R, gamma)
+    G = gamma_correction(G, gamma)
 
     # The final RGB array :)
     RGB = np.dstack([R, G, B])
@@ -578,9 +680,9 @@ def DifferentialWaterVapor(C, **kwargs):
     B = normalize(B, -64.65, -29.25)
 
     # Gamma correction
-    R = np.power(R, 1/0.2587)
-    G = np.power(G, 1/0.4)
-    B = np.power(B, 1/0.4)
+    R = gamma_correction(R, 0.2587)
+    G = gamma_correction(G, 0.4)
+    B = gamma_correction(B, 0.4)
 
     # Invert the colors
     R = 1-R
@@ -621,9 +723,9 @@ def DaySnowFog(C, **kwargs):
 
     # Apply a gamma correction to the image
     gamma = 1.7
-    R = np.power(R, 1/gamma)
-    G = np.power(G, 1/gamma)
-    B = np.power(B, 1/gamma)
+    R = gamma_correction(R, gamma)
+    G = gamma_correction(G, gamma)
+    B = gamma_correction(B, gamma)
 
     # The final RGB array :)
     RGB = np.dstack([R, G, B])
@@ -691,7 +793,7 @@ def Dust(C, **kwargs):
 
     # Apply a gamma correction to the image
     gamma = 2.5
-    G = np.power(G, 1/gamma)
+    G = gamma_correction(G, gamma)
 
     # The final RGB array :)
     RGB = np.dstack([R, G, B])
@@ -819,3 +921,8 @@ def NightFogDifference(C, **kwargs):
     RGB = np.dstack([data, data, data])
     
     return rgb_as_dataset(C, RGB, 'Night Fog Difference', **kwargs)
+
+if __name__ == "__main__":
+
+    # Create images of each for Docs
+    print('nothing here for now')

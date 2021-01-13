@@ -347,6 +347,7 @@ given product does not end with C, F, or M.</p>
 </div>
 <span class="target" id="module-goes2go.rgb"></span><div class="section" id="rgb-recipes">
 <h2>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/True-vs-Natural_color.png" src="../_images/True-vs-Natural_color.png" />
 <p>These functions take a GOES-East or GOES-West multichannel data file
 (with label <span class="guilabel">ABI-L2-MCMIPC</span>) and generates a 3D array for
 various GOES RGB products.</p>
@@ -382,7 +383,7 @@ Values are normalized between the range specified in the Quick Guides:</p>
 </pre></div>
 </div>
 </div></blockquote>
-<p>If a gamma correction is required, it follows the pattern:</p>
+<p>If a gamma correction is required, it follows the gamma decoding pattern:</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R_corrected</span> <span class="o">=</span> <span class="n">R</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
 </pre></div>
@@ -436,23 +437,29 @@ GOES ABI file opened with xarray. For example:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.FireTemperature" title="goes2go.rgb.FireTemperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FireTemperature</span></code></a>(C, **kwargs)</p></td>
 <td><p>Fire Temperature RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.NightFogDifference" title="goes2go.rgb.NightFogDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NightFogDifference</span></code></a>(C, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.NaturalColor" title="goes2go.rgb.NaturalColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaturalColor</span></code></a>(C[, gamma])</p></td>
+<td><p>Natural Color Image based on CIMSS method from Rick Kohrs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.NightFogDifference" title="goes2go.rgb.NightFogDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NightFogDifference</span></code></a>(C, **kwargs)</p></td>
 <td><p>Night Fog Difference RGB (greyscale): (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.NighttimeMicrophysics" title="goes2go.rgb.NighttimeMicrophysics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NighttimeMicrophysics</span></code></a>(C, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.NighttimeMicrophysics" title="goes2go.rgb.NighttimeMicrophysics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NighttimeMicrophysics</span></code></a>(C, **kwargs)</p></td>
 <td><p>Nighttime Microphysics RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.SplitWindowDifference" title="goes2go.rgb.SplitWindowDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SplitWindowDifference</span></code></a>(C, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.SplitWindowDifference" title="goes2go.rgb.SplitWindowDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SplitWindowDifference</span></code></a>(C, **kwargs)</p></td>
 <td><p>Split Window Difference RGB (greyscale): (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.SulfurDioxide" title="goes2go.rgb.SulfurDioxide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SulfurDioxide</span></code></a>(C, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.SulfurDioxide" title="goes2go.rgb.SulfurDioxide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SulfurDioxide</span></code></a>(C, **kwargs)</p></td>
 <td><p>SulfurDioxide RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.TrueColor" title="goes2go.rgb.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrueColor</span></code></a>(C[, trueGreen, night_IR])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.TrueColor" title="goes2go.rgb.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrueColor</span></code></a>(C[, gamma, trueGreen, night_IR])</p></td>
 <td><p>True Color RGB: (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.WaterVapor" title="goes2go.rgb.WaterVapor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WaterVapor</span></code></a>(C, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.WaterVapor" title="goes2go.rgb.WaterVapor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WaterVapor</span></code></a>(C, **kwargs)</p></td>
 <td><p>Simple Water Vapor RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.gamma_correction" title="goes2go.rgb.gamma_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_correction</span></code></a>(a, gamma[, verbose])</p></td>
+<td><p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.get_imshow_kwargs" title="goes2go.rgb.get_imshow_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_imshow_kwargs</span></code></a>(ds)</p></td>
 <td><p>Help determine the <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code> arguments.</p></td>
@@ -656,6 +663,26 @@ GOES ABI file opened with xarray. For example:</p>
 </dd></dl>
 
 <dl class="py function">
+<dt id="goes2go.rgb.NaturalColor">
+<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">NaturalColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">0.8</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.NaturalColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Natural Color Image based on CIMSS method from Rick Kohrs.</p>
+<p>Check out Rick Kohrs <a class="reference external" href="https://www.ssec.wisc.edu/~rickk/local-noon.html">merged GOES images</a>.</p>
+<img alt="../_images/NaturalColor.png" src="../_images/NaturalColor.png" />
+<img alt="../_images/gamma_demo_NaturalColor.png" src="../_images/gamma_demo_NaturalColor.png" />
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened ith xarray.</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – <p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.
+Values &gt; 1 will lighten an image.
+Values &lt; 1 will darken an image.</p>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="goes2go.rgb.NightFogDifference">
 <code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">NightFogDifference</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.NightFogDifference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Night Fog Difference RGB (greyscale):
@@ -725,14 +752,19 @@ GOES ABI file opened with xarray. For example:</p>
 
 <dl class="py function">
 <dt id="goes2go.rgb.TrueColor">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">TrueColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">trueGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">TrueColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">2.2</span></em>, <em class="sig-param"><span class="n">trueGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
 <dd><p>True Color RGB:
 (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/TrueColor.png" src="../_images/TrueColor.png" />
+<img alt="../_images/gamma_demo_TrueColor.png" src="../_images/gamma_demo_TrueColor.png" />
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – <p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.
+Values &gt; 1 will lighten an image.
+Values &lt; 1 will darken an image.</p>
+</p></li>
 <li><p><strong>trueGreen</strong> (<em>bool</em>) – True: returns the calculated “True” green color
 False: returns the “veggie” channel</p></li>
 <li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value so that
@@ -757,6 +789,23 @@ brighter than in real life).</p></li>
 <li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
 <li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
 - latlon : derive latitude and longitude of each pixel</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="goes2go.rgb.gamma_correction">
+<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">gamma_correction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">gamma</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.gamma_correction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>array-like</em>) – An array of values, typically the RGB array of values in
+an image.</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – Gamma value to decode the image by.
+Values &gt; 1 will lighten an image.
+Values &lt; 1 will darken an image.</p></li>
 </ul>
 </dd>
 </dl>
@@ -815,6 +864,7 @@ For example <code class="docutils literal notranslate"><span class="pre">channel
 <p>Normalize between a lower and upper limit. In other words, it
 converts your number to a value in the range between 0 and 1.
 Follows <a class="reference external" href="https://stats.stackexchange.com/a/70807/220885">normalization formula</a></p>
+<p>This is the same concept as <a class="reference external" href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html">Contrast Stretching</a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NormalizedValue</span> <span class="o">=</span> <span class="p">(</span><span class="n">OriginalValue</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">UpperLimit</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span>
 </pre></div>
 </div>
