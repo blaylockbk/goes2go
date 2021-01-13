@@ -172,7 +172,17 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#useful-links" class="nav-link">Useful Links</a>
+            <a href="#useful-links" class="nav-link">Useful Links</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#data-access" class="nav-link">💾 Data Access</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#data-quality" class="nav-link">Data Quality</a>
+        </li>
+    
+            </ul>
         </li>
     
     </ul>
@@ -250,9 +260,9 @@ conda activate goes2go
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb">📓 ABI field of view notebook</a></p></li>
 </ul>
-<div class="figure align-default" id="id1">
+<div class="figure align-default" id="id2">
 <img alt="_images/ABI_field-of-view.png" class="img-fluid" src="_images/ABI_field-of-view.png" />
-<p class="caption"><span class="caption-text">ABI full disk field of view</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">ABI full disk field of view</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="geostationary-lightning-mapper-glm">
@@ -262,9 +272,9 @@ conda activate goes2go
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb">📓 GLM field of view notebook</a></p></li>
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view_Edges.ipynb">📓 More details on actual edges</a></p></li>
 </ul>
-<div class="figure align-default" id="id2">
+<div class="figure align-default" id="id3">
 <img alt="_images/GLM_field-of-view.png" class="img-fluid" src="_images/GLM_field-of-view.png" />
-<p class="caption"><span class="caption-text">Approximate GLM field of view</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Approximate GLM field of view</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -273,18 +283,40 @@ conda activate goes2go
 <h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">👨🏻‍💻 Brian’s GitHub notebooks</a></p></li>
-<li><p><a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi">🌐 Brian’s Interactive GOES Download Page</a></p></li>
+<li><p><a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf">🎠 Beginner’s Guide</a></p></li>
 <li><p><a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf">📔 GOES-R Series Data Book</a></p></li>
 <li><p><a class="reference external" href="https://rammb-slider.cira.colostate.edu/">💻 Rammb Slider GOES Viewer</a></p></li>
-<li><p><a class="reference external" href="https://registry.opendata.aws/noaa-goes/">💾 GOES on AWS</a></p></li>
 <li><p><a class="reference external" href="https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/">🐍 Unidata Plot GOES Data</a></p></li>
 <li><p><a class="reference external" href="https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/">🗺 Plotting tips form geonetcast blog</a></p></li>
 <li><p><a class="reference external" href="https://github.com/deeplycloudy/glmtools/">🐍 glmtools</a> For useful tools for GLM data.</p></li>
+</ul>
+<div class="section" id="data-access">
+<h3>💾 Data Access<a class="headerlink" href="#data-access" title="Permalink to this headline">¶</a></h3>
+<p>Access GOES data through NOAA’s Big Data Project partners</p>
+<ul>
+<li><p><a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi">🌐 Brian’s Interactive GOES Download Page</a></p></li>
+<li><p><a class="reference external" href="https://noaa-goes16.s3.amazonaws.com/index.html">🗃 AWS GOES-16 S3 Explorer</a></p></li>
+<li><p><a class="reference external" href="https://noaa-goes17.s3.amazonaws.com/index.html">🗃 AWS GOES-17 S3 Explorer</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://azure.microsoft.com/en-us/services/open-datasets/catalog/goes-16/">Microsoft Azure</a> (Only GOES-16??)</p></li>
+<li><p>Google Cloud Platform (<a class="reference external" href="https://console.cloud.google.com/marketplace/product/noaa-public/goes-16">GOES-16</a> | <a class="reference external" href="https://console.cloud.google.com/marketplace/product/noaa-public/goes-17">GOES-17</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="data-quality">
+<h3>Data Quality<a class="headerlink" href="#data-quality" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="http://cimss.ssec.wisc.edu/goes-r/abi-/band_statistics_imagery.html">⛑ GOES-17 ABI Data Quality (CIMSS)</a></p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>This page is a work in progress.</strong> I’m doing SynopticPy and GOES-2-go
 with the PyData theme and HRRR-B with the ReadTheDocs theme.</p>
+</div>
 </div>
 </div>
 </div>
