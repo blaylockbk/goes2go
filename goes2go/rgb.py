@@ -51,7 +51,7 @@ and follows the formula:
 
 `Gamma correction <https://en.wikipedia.org/wiki/Gamma_correction>`_
 darkens or lightens an image (`more info 
-<https://www.cambridgeincolour.com/tutorials/gamma-correction.htm>`_). 
+<https://www.cambridgeincolour.com/tutorials/gamma-correction.htm>`_) 
 and follows the decoding formula:
 
     .. code-block:: python 
