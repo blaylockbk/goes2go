@@ -347,7 +347,7 @@ given product does not end with C, F, or M.</p>
 </div>
 <span class="target" id="module-goes2go.rgb"></span><div class="section" id="rgb-recipes">
 <h2>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h2>
-<img alt="../_images/True-vs-Natural_color.png" src="../_images/True-vs-Natural_color.png" />
+<img alt="../_images/Color-IR_demo.png" src="../_images/Color-IR_demo.png" />
 <p>These functions take a GOES-East or GOES-West multichannel data file
 (with label <span class="guilabel">ABI-L2-MCMIPC</span>) and generates a 3D array for
 various GOES RGB products.</p>
@@ -437,8 +437,8 @@ GOES ABI file opened with xarray. For example:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.FireTemperature" title="goes2go.rgb.FireTemperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FireTemperature</span></code></a>(C, **kwargs)</p></td>
 <td><p>Fire Temperature RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.NaturalColor" title="goes2go.rgb.NaturalColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaturalColor</span></code></a>(C[, gamma])</p></td>
-<td><p>Natural Color Image based on CIMSS method from Rick Kohrs.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.NaturalColor" title="goes2go.rgb.NaturalColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaturalColor</span></code></a>(C[, gamma, pseudoGreen, night_IR])</p></td>
+<td><p>Natural Color RGB based on CIMSS method.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.NightFogDifference" title="goes2go.rgb.NightFogDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NightFogDifference</span></code></a>(C, **kwargs)</p></td>
 <td><p>Night Fog Difference RGB (greyscale): (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf">Quick Guide</a> for reference)</p></td>
@@ -452,7 +452,7 @@ GOES ABI file opened with xarray. For example:</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.SulfurDioxide" title="goes2go.rgb.SulfurDioxide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SulfurDioxide</span></code></a>(C, **kwargs)</p></td>
 <td><p>SulfurDioxide RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.TrueColor" title="goes2go.rgb.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrueColor</span></code></a>(C[, gamma, trueGreen, night_IR])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.TrueColor" title="goes2go.rgb.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrueColor</span></code></a>(C[, gamma, pseudoGreen, night_IR])</p></td>
 <td><p>True Color RGB: (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.WaterVapor" title="goes2go.rgb.WaterVapor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WaterVapor</span></code></a>(C, **kwargs)</p></td>
@@ -664,11 +664,17 @@ GOES ABI file opened with xarray. For example:</p>
 
 <dl class="py function">
 <dt id="goes2go.rgb.NaturalColor">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">NaturalColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">0.8</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.NaturalColor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Natural Color Image based on CIMSS method from Rick Kohrs.</p>
+<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">NaturalColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">0.8</span></em>, <em class="sig-param"><span class="n">pseudoGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.NaturalColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Natural Color RGB based on CIMSS method. Thanks Rick Kohrs!
+(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
 <p>Check out Rick Kohrs <a class="reference external" href="https://www.ssec.wisc.edu/~rickk/local-noon.html">merged GOES images</a>.</p>
+<p>This NaturalColor RGB is <em>very</em> similar to the TrueColor RGB but
+uses slightly different contrast stretches and ranges.</p>
+<p>For more details on combing RGB and making the psedo green channel, refer to
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379">Bah et al. 2018</a>.</p>
 <img alt="../_images/NaturalColor.png" src="../_images/NaturalColor.png" />
-<img alt="../_images/gamma_demo_NaturalColor.png" src="../_images/gamma_demo_NaturalColor.png" />
+<img alt="../_images/gamma_demo_NaturalColor-PsuedoGreen.png" src="../_images/gamma_demo_NaturalColor-PsuedoGreen.png" />
+<img alt="../_images/gamma_demo_NaturalColor-VeggieGreen.png" src="../_images/gamma_demo_NaturalColor-VeggieGreen.png" />
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -677,6 +683,11 @@ GOES ABI file opened with xarray. For example:</p>
 Values &gt; 1 will lighten an image.
 Values &lt; 1 will darken an image.</p>
 </p></li>
+<li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value overlay
+so that cold clouds show up at night. (Be aware that some
+daytime clouds might appear brighter).</p></li>
+<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
+- latlon : derive latitude and longitude of each pixel</p></li>
 </ul>
 </dd>
 </dl>
@@ -752,7 +763,7 @@ Values &lt; 1 will darken an image.</p>
 
 <dl class="py function">
 <dt id="goes2go.rgb.TrueColor">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">TrueColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">2.2</span></em>, <em class="sig-param"><span class="n">trueGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">TrueColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">2.2</span></em>, <em class="sig-param"><span class="n">pseudoGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
 <dd><p>True Color RGB:
 (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
 <p>For more details on combing RGB and making the psedo green channel, refer to
@@ -767,11 +778,11 @@ Values &lt; 1 will darken an image.</p>
 Values &gt; 1 will lighten an image.
 Values &lt; 1 will darken an image.</p>
 </p></li>
-<li><p><strong>trueGreen</strong> (<em>bool</em>) – True: returns the calculated “True” green color
+<li><p><strong>pseudoGreen</strong> (<em>bool</em>) – True: returns the calculated “True” green color
 False: returns the “veggie” channel</p></li>
-<li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value so that
-clouds show up at night (and even daytime clouds might appear
-brighter than in real life).</p></li>
+<li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value overlay
+so that cold clouds show up at night. (Be aware that some
+daytime clouds might appear brighter).</p></li>
 <li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
 - latlon : derive latitude and longitude of each pixel</p></li>
 </ul>

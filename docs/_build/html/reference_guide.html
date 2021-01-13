@@ -442,7 +442,7 @@ GOES ABI file opened with xarray. For example:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.SulfurDioxide" title="goes2go.rgb.SulfurDioxide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SulfurDioxide</span></code></a>(C, **kwargs)</p></td>
 <td><p>SulfurDioxide RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.TrueColor" title="goes2go.rgb.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrueColor</span></code></a>(C[, trueGreen, night_IR])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.TrueColor" title="goes2go.rgb.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrueColor</span></code></a>(C[, pseudoGreen, night_IR])</p></td>
 <td><p>True Color RGB: (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.WaterVapor" title="goes2go.rgb.WaterVapor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WaterVapor</span></code></a>(C, **kwargs)</p></td>
@@ -719,7 +719,7 @@ GOES ABI file opened with xarray. For example:</p>
 
 <dl class="py function">
 <dt id="goes2go.rgb.TrueColor">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">TrueColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">trueGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">TrueColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">pseudoGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
 <dd><p>True Color RGB:
 (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
 <img alt="_images/TrueColor.png" src="_images/TrueColor.png" />
@@ -727,7 +727,7 @@ GOES ABI file opened with xarray. For example:</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>trueGreen</strong> (<em>bool</em>) – True: returns the calculated “True” green color
+<li><p><strong>pseudoGreen</strong> (<em>bool</em>) – True: returns the calculated “True” green color
 False: returns the “veggie” channel</p></li>
 <li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value so that
 clouds show up at night (and even daytime clouds might appear

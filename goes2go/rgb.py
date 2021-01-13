@@ -6,7 +6,7 @@
 RGB Recipes
 ===========
 
-.. image:: /_static/True-vs-Natural_color.png
+.. image:: /_static/Color-IR_demo.png
 
 These functions take a GOES-East or GOES-West multichannel data file
 (with label :guilabel:`ABI-L2-MCMIPC`) and generates a 3D array for 
@@ -251,7 +251,7 @@ def normalize(value, lower_limit, upper_limit, clip=True):
     return norm
 
 
-def TrueColor(C, gamma=2.2, trueGreen=True, night_IR=True, **kwargs):
+def TrueColor(C, gamma=2.2, pseudoGreen=True, night_IR=True, **kwargs):
     """
     True Color RGB:
     (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
@@ -272,13 +272,13 @@ def TrueColor(C, gamma=2.2, trueGreen=True, night_IR=True, **kwargs):
         <https://en.wikipedia.org/wiki/Gamma_correction>`_.
         Values > 1 will lighten an image.
         Values < 1 will darken an image.
-    trueGreen : bool
+    pseudoGreen : bool
         True: returns the calculated "True" green color
         False: returns the "veggie" channel
     night_IR : bool
-        If True, use Clean IR (channel 13) as maximum RGB value so that
-        clouds show up at night (and even daytime clouds might appear
-        brighter than in real life).
+        If True, use Clean IR (channel 13) as maximum RGB value overlay
+        so that cold clouds show up at night. (Be aware that some 
+        daytime clouds might appear brighter).
     \*\*kwargs : 
         Keyword arguments for ``rgb_as_dataset`` function.
         - latlon : derive latitude and longitude of each pixel
@@ -297,11 +297,10 @@ def TrueColor(C, gamma=2.2, trueGreen=True, night_IR=True, **kwargs):
     G = gamma_correction(G, gamma)
     B = gamma_correction(B, gamma)
 
-    if trueGreen:
+    if pseudoGreen:
         # Calculate the "True" Green
         G = 0.45 * R + 0.1 * G + 0.45 * B
-        G = np.maximum(G, 0)
-        G = np.minimum(G, 1)
+        G = np.clip(G, 0, 1)
 
     if night_IR:
         # Load the Clean IR channel
@@ -322,15 +321,24 @@ def TrueColor(C, gamma=2.2, trueGreen=True, night_IR=True, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'True Color', **kwargs)
 
-def NaturalColor(C, gamma=.8, **kwargs):
+def NaturalColor(C, gamma=.8, pseudoGreen=True, night_IR=False, **kwargs):
     """
-    Natural Color Image based on CIMSS method from Rick Kohrs.
+    Natural Color RGB based on CIMSS method. Thanks Rick Kohrs!
+    (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
 
     Check out Rick Kohrs `merged GOES images <https://www.ssec.wisc.edu/~rickk/local-noon.html>`_.
+  
+    This NaturalColor RGB is *very* similar to the TrueColor RGB but 
+    uses slightly different contrast stretches and ranges.
+
+    For more details on combing RGB and making the psedo green channel, refer to 
+    `Bah et al. 2018 <https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379>`_.
 
     .. image:: /_static/NaturalColor.png
 
-    .. image:: /_static/gamma_demo_NaturalColor.png
+    .. image:: /_static/gamma_demo_NaturalColor-PsuedoGreen.png
+
+    .. image:: /_static/gamma_demo_NaturalColor-VeggieGreen.png
 
     Parameters
     ----------
@@ -341,10 +349,17 @@ def NaturalColor(C, gamma=.8, **kwargs):
         <https://en.wikipedia.org/wiki/Gamma_correction>`_.
         Values > 1 will lighten an image.
         Values < 1 will darken an image.
+    night_IR : bool
+        If True, use Clean IR (channel 13) as maximum RGB value overlay
+        so that cold clouds show up at night. (Be aware that some 
+        daytime clouds might appear brighter).
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
     """
     def breakpoint_stretch(C, breakpoint):
         """
-        Constrast stretching by break point (Rick Kohrs)
+        Contrast stretching by break point (number provided by Rick Kohrs)
         """
         lower = normalize(C, 0, 10)     # Low end
         upper = normalize(C, 10, 255)   # High end
@@ -365,21 +380,39 @@ def NaturalColor(C, gamma=.8, **kwargs):
     G = np.clip(G, 0, 1)
     B = np.clip(B, 0, 1)
 
-    # Convert Albedo to Brightness, ranging from 0-255 K
-    R_b = np.sqrt(R*100) * 25.5
-    G_b = np.sqrt(G*100) * 25.5
-    B_b = np.sqrt(B*100) * 25.5
+    if pseudoGreen:
+        # Derive pseudo Green channel
+        G = .45 * R + .1 * G + .45 *B
+        G = np.clip(G, 0, 1)
 
-    # Derive "true green" and replace Green value
-    G_b = .45 * R_b + .1 * G_b + .45 *B_b
+    # Convert Albedo to Brightness, ranging from 0-255 K
+    # (numbers based on email from Rick Kohrs)
+    R = np.sqrt(R*100) * 25.5
+    G = np.sqrt(G*100) * 25.5
+    B = np.sqrt(B*100) * 25.5
 
     # Apply contrast stretching based on breakpoints
-    R_s = breakpoint_stretch(R_b, 33)
-    GG_s = breakpoint_stretch(G_b, 40)
-    B_s = breakpoint_stretch(B_b, 50)
+    # (numbers based on email form Rick Kohrs)
+    R = breakpoint_stretch(R, 33)
+    G = breakpoint_stretch(G, 40)
+    B = breakpoint_stretch(B, 50)
     
-    # Combine each channel into a 3D array
-    RGB = np.dstack([R, G, B])
+    if night_IR:
+        # Load the Clean IR channel
+        IR = C['CMI_C13']
+        # Normalize between a range and clip
+        IR = normalize(IR, 90, 313, clip=True)
+        # Invert colors so cold clouds are white
+        IR = 1 - IR  
+        # Lessen the brightness of the coldest clouds so they don't
+        # appear so bright when we overlay it on the true color image
+        IR = IR/1.4
+        # Overlay IR channel, as greyscale image (use IR in R, G, and B)
+        RGB = np.dstack([np.maximum(R, IR),
+                         np.maximum(G, IR),
+                         np.maximum(B, IR)])
+    else:
+        RGB = np.dstack([R, G, B])
 
     # Apply a gamma correction to the image
     RGB = gamma_correction(RGB, gamma)
