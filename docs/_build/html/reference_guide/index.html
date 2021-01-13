@@ -774,6 +774,10 @@ daytime clouds might appear brighter).</p></li>
 <code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">TrueColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">2.2</span></em>, <em class="sig-param"><span class="n">pseudoGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
 <dd><p>True Color RGB:
 (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
+<p>This is similar to the NaturalColor RGB, but uses a different gamma
+correction and does not apply contrast stretching. I think these
+images look a little “washed out” when compared to the NaturalColor
+RGB. So, I would recommend using the NaturalColor RGB.</p>
 <p>For more details on combing RGB and making the psedo green channel, refer to
 <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379">Bah et al. 2018</a>.</p>
 <img alt="../_images/TrueColor.png" src="../_images/TrueColor.png" />
