@@ -73,7 +73,7 @@ Advanced Baseline Imager (ABI)
 """"""""""""""""""""""""""""""
 GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a "central" position, outlined in the dashed black line. Below is the ABI field of view for the full disk:
 
-- `📓 ABI field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/ABI_field-of-view.ipynb>`_
+- `📓 ABI field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_ABI.ipynb>`_
 
 .. figure:: _static/ABI_field-of-view.png
    :class: img-fluid
@@ -84,8 +84,8 @@ Geostationary Lightning Mapper (GLM)
 """"""""""""""""""""""""""""""""""""
 The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.
 
-- `📓 GLM field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view.ipynb>`_
-- `📓 More details on actual edges <https://github.com/blaylockbk/goes2go/blob/master/notebooks/GLM_field-of-view_Edges.ipynb>`_
+- `📓 GLM field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_GLM.ipynb>`_
+- `📓 More details on actual edges <https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_GLM_Edges.ipynb>`_
 
 .. figure:: _static/GLM_field-of-view.png
    :class: img-fluid
