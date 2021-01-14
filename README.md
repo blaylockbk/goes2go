@@ -43,7 +43,7 @@ For a GOES ABI multichannel xarray.Dataset, return an RGB array for an RGB produ
 
 # Field of View
 
-See notebooks for [GLM](./notebooks/GLM_field-of-view.ipynb) and [ABI](./notebooks/ABI_field-of-view.ipynb) field of view.
+See notebooks for [GLM](./notebooks/field-of-view_GLM.ipynb) and [ABI](./notebooks/field-of-view_ABI.ipynb) field of view.
 
 GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a "central" position, outlined in the dashed black line. Below is the ABI field of view for the full disk:
 ![field of view image](./images/ABI_field-of-view.png)
