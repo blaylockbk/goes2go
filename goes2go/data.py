@@ -213,6 +213,8 @@ def _download(df, **params):
     elif n == 1:
         # If we only have one file, we don't need multiprocessing
         _download_MP(df.file[0], download_dir, overwrite, 1, 1, verbose)
+    elif max_cpus == 1:
+        [_download_MP(df.file[i], download_dir, overwrite, i, n, verbose) for i in range(n)]
     else:
         # Use Multiprocessing to download multiple files.
         if max_cpus is None:
@@ -307,10 +309,10 @@ def _as_xarray(df, **params):
 
 def goes_timerange(start=None, end=None, recent=None, *,
                    satellite='goes17', product='GLM', domain='C', 
-                   return_as='xarray',
+                   return_as='filelist',
                    download=True, overwrite=False,
                    download_dir=_default_download_dir, 
-                   max_cpus=None,
+                   max_cpus=1,
                    verbose=True):
     """
     Get GOES data for a time range.
@@ -320,8 +322,8 @@ def goes_timerange(start=None, end=None, recent=None, *,
     start, end : datetime
         Required if recent is None.
     recent : timedelta
-        Required if start and end are None.
-            
+        Required if start and end are None. If timedelta(hours=1), will
+        get the most recent files for the past hour.   
     satellite : {'goes16', 'goes17'}
         Specify which GOES satellite.
         The following alias may also be used: 
@@ -335,7 +337,8 @@ def goes_timerange(start=None, end=None, recent=None, *,
         - 'ABI' is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery
         - 'GLM' is an alias for GLM-L2-LCFA Geostationary Lightning Mapper
 
-        For more info, look at this `README 
+        Others may include ``'ABI-L1b-Rad'``, ``'ABI-L2-DMW'``, etc. 
+        For more available products, look at this `README 
         <https://docs.opendata.aws/noaa-goes16/cics-readme.html>`_
     domain : {'C', 'F', 'M'}
         ABI scan region indicator. Only required for ABI products if the
@@ -355,6 +358,9 @@ def goes_timerange(start=None, end=None, recent=None, *,
     overwrite : bool
         - True: Download the file even if it exists.
         - False (default): Do not download the file if it already exists
+    max_cpus : int
+
+    
     """
     # If `start`, or `end` is a string, parse with Pandas
     if isinstance(start, str):
@@ -394,6 +400,7 @@ def goes_timerange(start=None, end=None, recent=None, *,
         _download(df, **params)
     
     if return_as == 'filelist':
+        df.attrs['filePath'] = download_dir
         return df
     elif return_as == 'xarray':
         return _as_xarray(df, **params)
@@ -422,7 +429,8 @@ def goes_latest(*,
         - 'ABI' is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery
         - 'GLM' is an alias for GLM-L2-LCFA Geostationary Lightning Mapper
 
-        For more info, look at this `README 
+        Others may include ``'ABI-L1b-Rad'``, ``'ABI-L2-DMW'``, etc. 
+        For more available products, look at this `README 
         <https://docs.opendata.aws/noaa-goes16/cics-readme.html>`_
     domain : {'C', 'F', 'M'}
         ABI scan region indicator. Only required for ABI products if the
@@ -465,11 +473,12 @@ def goes_latest(*,
         _download(df, **params)
 
     if return_as == 'filelist':
+        df.attrs['filePath'] = download_dir
         return df
     elif return_as == 'xarray':
         return _as_xarray(df, **params)
 
-def goes_nearesttime(attime, *,
+def goes_nearesttime(attime, within=timedelta(hours=1), *,
                      satellite='goes17', product='GLM', domain='C',
                      return_as='xarray',
                      download=True, overwrite=False,
@@ -480,6 +489,15 @@ def goes_nearesttime(attime, *,
 
     Parameters
     ----------
+    attime : datetime
+        Time to find the nearest observation for.
+        May also use a pandas-interpretable datetime string.
+    within : timedelta
+        Timerange tht the nearest observation must be.
+        Default is 1 hour meaning the observation must be within
+        1 hour of the requested ``attime``. May also use pandas
+        timedelta string representation. "1H" for 1 hour, "30min" for
+        30 minutes, "1D" for 1 day, etc.
     satellite : {'goes16', 'goes17'}
         Specify which GOES satellite.
         The following alias may also be used: 
@@ -493,7 +511,8 @@ def goes_nearesttime(attime, *,
         - 'ABI' is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery
         - 'GLM' is an alias for GLM-L2-LCFA Geostationary Lightning Mapper
 
-        For more info, look at this `README 
+        Others may include ``'ABI-L1b-Rad'``, ``'ABI-L2-DMW'``, etc. 
+        For more available products, look at this `README 
         <https://docs.opendata.aws/noaa-goes16/cics-readme.html>`_
     domain : {'C', 'F', 'M'}
         ABI scan region indicator. Only required for ABI products if the
@@ -516,6 +535,8 @@ def goes_nearesttime(attime, *,
     """
     if isinstance(attime, str):
         attime = pd.to_datetime(attime)
+    if isinstance(within, str):
+        within = pd.to_timedelta(within)
 
     params = locals()
     satellite, product, domain = _check_param_inputs(**params)
@@ -527,13 +548,17 @@ def goes_nearesttime(attime, *,
     # ---------------
     # Create a range of directories to check. The GOES S3 bucket is 
     # organized by hour of day.
-    start = attime - timedelta(hours=1)
-    end = attime + timedelta(hours=1)
+    start = attime - within
+    end = attime + within
     
     df = _goes_file_df(satellite, product, start, end)
 
-    # Filter by files within the requested time range
-    df = df.loc[df.start - attime == np.abs((df.start - attime)).min()].reset_index(drop=True)
+    #return df, start, end, attime
+
+    # Get row that matches the nearest time
+    nearest_time_index = df.set_index(df.start).index.get_loc(attime, method='nearest')
+    df = df.loc[df.index == nearest_time_index]
+    df = df.reset_index(drop=True)
     
     n = len(df.file)
     if n == 0:
@@ -544,6 +569,7 @@ def goes_nearesttime(attime, *,
         _download(df, **params)
 
     if return_as == 'filelist':
+        df.attrs['filePath'] = download_dir
         return df
     elif return_as == 'xarray':
         return _as_xarray(df, **params)
