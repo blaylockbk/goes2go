@@ -981,6 +981,34 @@ def NightFogDifference(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Night Fog Difference', **kwargs)
 
+def NormalizedBurnRatio(C, **kwargs):
+    """
+    Normalized Burn Ratio
+
+    **THIS FUNCTION IS NOT FULLY DEVELOPED. Need more info.**
+
+    NBR= (0.86 µm – 2.2 µm)/(0.86 um + 2.2 um)
+
+
+    https://ntrs.nasa.gov/citations/20190030825
+
+    Parameters
+    ----------
+
+    """
+    # Load the three channels into appropriate R, G, and B variables
+    C3 = C['CMI_C03'].data
+    C6 = C['CMI_C06'].data
+    data = (C3-C6)/(C3+C6)
+
+    # Invert data
+    #data = 1-data
+
+    # The final RGB array :)
+    RGB = np.dstack([data, data, data])
+    
+    return rgb_as_dataset(C, RGB, 'Normalized Burn Ratio', **kwargs)
+
 if __name__ == "__main__":
 
     # Create images of each for Docs
