@@ -7,6 +7,11 @@
 
 # 🏃🏻‍♂️💨 🌎 🛰 GOES-2-go 
 
+[![](https://img.shields.io/pypi/v/goes2go)](https://pypi.python.org/pypi/goes2go/)
+![](https://img.shields.io/github/license/blaylockbk/goes2go)
+![](https://img.shields.io/pypi/dm/goes2go)
+
+
 Download and read files from the NOAA GOES archive on AWS.http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/hrrr_FAQ.html
 
 Read doc strings for functions in `goes2go/` folder for full usage description.
