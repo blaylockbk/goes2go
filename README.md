@@ -9,8 +9,7 @@
 
 [![](https://img.shields.io/pypi/v/goes2go)](https://pypi.python.org/pypi/goes2go/)
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
-![](https://img.shields.io/pypi/dm/goes2go)
-
+[![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878)
 
 Download and read files from the NOAA GOES archive on AWS.http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/hrrr_FAQ.html
 

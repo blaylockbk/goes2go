@@ -69,7 +69,9 @@ represents the GOES ABI multichannel file opened with xarray. For example:
 All RGB products are demonstarted in the `make_RGB_Demo 
 <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ notebook.
 
-
+Note: I don't have a `GeoColor <https://journals.ametsoc.org/view/journals/atot/37/3/JTECH-D-19-0134.1.xml>`_
+RGB, because it is much more involved than simply stacking RGB channels. If anyone does do
+something similar to a GeoColor image, let me know!
 """
 
 import numpy as np
