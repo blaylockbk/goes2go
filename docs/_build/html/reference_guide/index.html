@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reference Guide &#8212; GOES-2-go Docs 0.1 documentation</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
     
   <link rel="stylesheet"
@@ -29,14 +29,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/brian_style.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
     <link rel="shortcut icon" href="../_static/wxicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -145,14 +145,6 @@
             <a href="#retrieve-data" class="nav-link">Retrieve Data</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#rgb-recipes" class="nav-link">RGB Recipes</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#other-tools" class="nav-link">Other Tools</a>
-        </li>
-    
     </ul>
 </nav>
 
@@ -205,7 +197,7 @@ available in a local directory, it is loaded directly into memory.</p>
 </table>
 <dl class="py function">
 <dt id="goes2go.data.goes_latest">
-<code class="sig-prename descclassname">goes2go.data.</code><code class="sig-name descname">goes_latest</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">satellite</span><span class="o">=</span><span class="default_value">'goes17'</span></em>, <em class="sig-param"><span class="n">product</span><span class="o">=</span><span class="default_value">'GLM'</span></em>, <em class="sig-param"><span class="n">domain</span><span class="o">=</span><span class="default_value">'C'</span></em>, <em class="sig-param"><span class="n">return_as</span><span class="o">=</span><span class="default_value">'xarray'</span></em>, <em class="sig-param"><span class="n">download</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">download_dir</span><span class="o">=</span><span class="default_value">PosixPath('/p/home/blaylock/data')</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_latest" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">goes2go.data.</span></code><code class="sig-name descname"><span class="pre">goes_latest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'goes17'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GLM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/home/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_latest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the latest available GOES data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -252,7 +244,7 @@ given product does not end with C, F, or M.</p>
 
 <dl class="py function">
 <dt id="goes2go.data.goes_nearesttime">
-<code class="sig-prename descclassname">goes2go.data.</code><code class="sig-name descname">goes_nearesttime</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attime</span></em>, <em class="sig-param"><span class="n">within</span><span class="o">=</span><span class="default_value">datetime.timedelta(seconds=3600)</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">satellite</span><span class="o">=</span><span class="default_value">'goes17'</span></em>, <em class="sig-param"><span class="n">product</span><span class="o">=</span><span class="default_value">'GLM'</span></em>, <em class="sig-param"><span class="n">domain</span><span class="o">=</span><span class="default_value">'C'</span></em>, <em class="sig-param"><span class="n">return_as</span><span class="o">=</span><span class="default_value">'xarray'</span></em>, <em class="sig-param"><span class="n">download</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">download_dir</span><span class="o">=</span><span class="default_value">PosixPath('/p/home/blaylock/data')</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_nearesttime" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">goes2go.data.</span></code><code class="sig-name descname"><span class="pre">goes_nearesttime</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">within</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.timedelta(seconds=3600)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'goes17'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GLM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/home/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_nearesttime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the latest available GOES data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -306,7 +298,7 @@ given product does not end with C, F, or M.</p>
 
 <dl class="py function">
 <dt id="goes2go.data.goes_timerange">
-<code class="sig-prename descclassname">goes2go.data.</code><code class="sig-name descname">goes_timerange</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">recent</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">satellite</span><span class="o">=</span><span class="default_value">'goes17'</span></em>, <em class="sig-param"><span class="n">product</span><span class="o">=</span><span class="default_value">'GLM'</span></em>, <em class="sig-param"><span class="n">domain</span><span class="o">=</span><span class="default_value">'C'</span></em>, <em class="sig-param"><span class="n">return_as</span><span class="o">=</span><span class="default_value">'filelist'</span></em>, <em class="sig-param"><span class="n">download</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">download_dir</span><span class="o">=</span><span class="default_value">PosixPath('/p/home/blaylock/data')</span></em>, <em class="sig-param"><span class="n">max_cpus</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_timerange" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">goes2go.data.</span></code><code class="sig-name descname"><span class="pre">goes_timerange</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'goes17'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GLM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'filelist'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/home/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_timerange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get GOES data for a time range.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -357,662 +349,6 @@ given product does not end with C, F, or M.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-goes2go.rgb"></span><div class="section" id="rgb-recipes">
-<h2>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h2>
-<img alt="../_images/RGB_sample.png" src="../_images/RGB_sample.png" />
-<p>These functions take GOES-East or GOES-West multichannel data on a
-fixed grid (files named <code class="docutils literal notranslate"><span class="pre">ABI-L2-MCMIPC</span></code>) and generates a 3D
-Red-Green-Blue (RGB) array for various GOES RGB products.</p>
-<p>RGB recipes are based on the <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/">GOES Quick Guides</a>
-and include the following:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>NaturalColor</p></li>
-<li><p>TrueColor</p></li>
-<li><p>FireTemperature</p></li>
-<li><p>AirMass</p></li>
-<li><p>DayCloudPhase</p></li>
-<li><p>DayConvection</p></li>
-<li><p>DayCloudConvection</p></li>
-<li><p>DayLandCloud</p></li>
-<li><p>DayLandCloudFire</p></li>
-<li><p>WaterVapor</p></li>
-<li><p>DifferentialWaterVapor</p></li>
-<li><p>DaySnowFog</p></li>
-<li><p>NighttimeMicrophysics</p></li>
-<li><p>Dust</p></li>
-<li><p>SulfurDioxide</p></li>
-<li><p>Ash</p></li>
-<li><p>SplitWindowDifference</p></li>
-<li><p>NightFogDifference</p></li>
-</ul>
-</div></blockquote>
-<p>The returned RGB can easily be viewed with <code class="docutils literal notranslate"><span class="pre">plt.imshow(RGB)</span></code>.</p>
-<p>For imshow to show an RGB image, the values must range between 0 and 1.
-Values are normalized between the range specified in the Quick Guides.
-This normalization is synonymous to <a class="reference external" href="https://micro.magnet.fsu.edu/primer/java/digitalimaging/processing/histogramstretching/index.html">contrast or histogram stretching</a>
-(<a class="reference external" href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html">more info</a>)
-and follows the formula:</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NormalizedValue</span> <span class="o">=</span> <span class="p">(</span><span class="n">OriginalValue</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">UpperLimit</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">Gamma correction</a>
-darkens or lightens an image (<a class="reference external" href="https://www.cambridgeincolour.com/tutorials/gamma-correction.htm">more info</a>)
-and follows the decoding formula:</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R_corrected</span> <span class="o">=</span> <span class="n">R</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>The input for all these functions are denoted by <code class="docutils literal notranslate"><span class="pre">C</span></code> for “channels” which
-represents the GOES ABI multichannel file opened with xarray. For example:</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FILE</span> <span class="o">=</span> <span class="s1">&#39;OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc&#39;</span>
-<span class="n">C</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">FILE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>All RGB products are demonstarted in the <a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">make_RGB_Demo</a> notebook.</p>
-<p><strong>Functions:</strong></p>
-<table class="longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.AirMass" title="goes2go.rgb.AirMass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AirMass</span></code></a>(C, **kwargs)</p></td>
-<td><p>Air Mass RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.Ash" title="goes2go.rgb.Ash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ash</span></code></a>(C, **kwargs)</p></td>
-<td><p>Ash RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.DayCloudConvection" title="goes2go.rgb.DayCloudConvection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayCloudConvection</span></code></a>(C, **kwargs)</p></td>
-<td><p>Day Cloud Convection RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.DayCloudPhase" title="goes2go.rgb.DayCloudPhase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayCloudPhase</span></code></a>(C, **kwargs)</p></td>
-<td><p>Day Cloud Phase Distinction RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.DayConvection" title="goes2go.rgb.DayConvection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayConvection</span></code></a>(C, **kwargs)</p></td>
-<td><p>Day Convection RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.DayLandCloud" title="goes2go.rgb.DayLandCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayLandCloud</span></code></a>(C, **kwargs)</p></td>
-<td><p>Day Land Cloud Fire RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.DayLandCloudFire" title="goes2go.rgb.DayLandCloudFire"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayLandCloudFire</span></code></a>(C, **kwargs)</p></td>
-<td><p>Day Land Cloud Fire RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.DaySnowFog" title="goes2go.rgb.DaySnowFog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DaySnowFog</span></code></a>(C, **kwargs)</p></td>
-<td><p>Day Snow-Fog RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.DifferentialWaterVapor" title="goes2go.rgb.DifferentialWaterVapor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DifferentialWaterVapor</span></code></a>(C, **kwargs)</p></td>
-<td><p>Differential Water Vapor RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.Dust" title="goes2go.rgb.Dust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dust</span></code></a>(C, **kwargs)</p></td>
-<td><p>SulfurDioxide RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.FireTemperature" title="goes2go.rgb.FireTemperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FireTemperature</span></code></a>(C, **kwargs)</p></td>
-<td><p>Fire Temperature RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.NaturalColor" title="goes2go.rgb.NaturalColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaturalColor</span></code></a>(C[, gamma, pseudoGreen, night_IR])</p></td>
-<td><p>Natural Color RGB based on CIMSS method.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.NightFogDifference" title="goes2go.rgb.NightFogDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NightFogDifference</span></code></a>(C, **kwargs)</p></td>
-<td><p>Night Fog Difference RGB (greyscale): (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.NighttimeMicrophysics" title="goes2go.rgb.NighttimeMicrophysics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NighttimeMicrophysics</span></code></a>(C, **kwargs)</p></td>
-<td><p>Nighttime Microphysics RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.SplitWindowDifference" title="goes2go.rgb.SplitWindowDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SplitWindowDifference</span></code></a>(C, **kwargs)</p></td>
-<td><p>Split Window Difference RGB (greyscale): (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.SulfurDioxide" title="goes2go.rgb.SulfurDioxide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SulfurDioxide</span></code></a>(C, **kwargs)</p></td>
-<td><p>SulfurDioxide RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.TrueColor" title="goes2go.rgb.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrueColor</span></code></a>(C[, gamma, pseudoGreen, night_IR])</p></td>
-<td><p>True Color RGB: (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.WaterVapor" title="goes2go.rgb.WaterVapor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WaterVapor</span></code></a>(C, **kwargs)</p></td>
-<td><p>Simple Water Vapor RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf">Quick Guide</a> for reference)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.gamma_correction" title="goes2go.rgb.gamma_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_correction</span></code></a>(a, gamma[, verbose])</p></td>
-<td><p><p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.</p>
-</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.get_imshow_kwargs" title="goes2go.rgb.get_imshow_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_imshow_kwargs</span></code></a>(ds)</p></td>
-<td><p>Help determine the <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code> arguments.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.load_RGB_channels" title="goes2go.rgb.load_RGB_channels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_RGB_channels</span></code></a>(C, channels)</p></td>
-<td><p>Return the R, G, and B arrays for the three channels requested.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.rgb.normalize" title="goes2go.rgb.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize</span></code></a>(value, lower_limit, upper_limit[, …])</p></td>
-<td><p>Normalize values between 0 and 1.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.rgb.rgb_as_dataset" title="goes2go.rgb.rgb_as_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code></a>(G, RGB, description[, latlon])</p></td>
-<td><p>Assemble a dataset with the RGB array with other data from the file.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py function">
-<dt id="goes2go.rgb.AirMass">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">AirMass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.AirMass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Air Mass RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/AirMass.png" src="../_images/AirMass.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.Ash">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">Ash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.Ash" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ash RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/Ash.png" src="../_images/Ash.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.DayCloudConvection">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">DayCloudConvection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.DayCloudConvection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Day Cloud Convection RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/DayCloudConvection.png" src="../_images/DayCloudConvection.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.DayCloudPhase">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">DayCloudPhase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.DayCloudPhase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Day Cloud Phase Distinction RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/DayCloudPhase.png" src="../_images/DayCloudPhase.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.DayConvection">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">DayConvection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.DayConvection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Day Convection RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/DayConvection.png" src="../_images/DayConvection.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.DayLandCloud">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">DayLandCloud</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.DayLandCloud" title="Permalink to this definition">¶</a></dt>
-<dd><p>Day Land Cloud Fire RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/DayLandCloud.png" src="../_images/DayLandCloud.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.DayLandCloudFire">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">DayLandCloudFire</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.DayLandCloudFire" title="Permalink to this definition">¶</a></dt>
-<dd><p>Day Land Cloud Fire RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/DayLandCloudFire.png" src="../_images/DayLandCloudFire.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.DaySnowFog">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">DaySnowFog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.DaySnowFog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Day Snow-Fog RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/DaySnowFog.png" src="../_images/DaySnowFog.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.DifferentialWaterVapor">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">DifferentialWaterVapor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.DifferentialWaterVapor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Differential Water Vapor RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/DifferentialWaterVapor.png" src="../_images/DifferentialWaterVapor.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.Dust">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">Dust</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.Dust" title="Permalink to this definition">¶</a></dt>
-<dd><p>SulfurDioxide RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/Dust.png" src="../_images/Dust.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.FireTemperature">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">FireTemperature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.FireTemperature" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fire Temperature RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/FireTemperature.png" src="../_images/FireTemperature.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.NaturalColor">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">NaturalColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">0.8</span></em>, <em class="sig-param"><span class="n">pseudoGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.NaturalColor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Natural Color RGB based on CIMSS method. Thanks Rick Kohrs!
-(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
-<p>Check out Rick Kohrs <a class="reference external" href="https://www.ssec.wisc.edu/~rickk/local-noon.html">merged GOES images</a>.</p>
-<p>This NaturalColor RGB is <em>very</em> similar to the TrueColor RGB but
-uses slightly different contrast stretches and ranges.</p>
-<p>For more details on combing RGB and making the psedo green channel, refer to
-<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379">Bah et al. 2018</a>.</p>
-<img alt="../_images/NaturalColor.png" src="../_images/NaturalColor.png" />
-<img alt="../_images/gamma_demo_NaturalColor-PsuedoGreen.png" src="../_images/gamma_demo_NaturalColor-PsuedoGreen.png" />
-<img alt="../_images/gamma_demo_NaturalColor-VeggieGreen.png" src="../_images/gamma_demo_NaturalColor-VeggieGreen.png" />
-<img alt="../_images/Color-IR_demo.png" src="../_images/Color-IR_demo.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened ith xarray.</p></li>
-<li><p><strong>gamma</strong> (<em>float</em>) – <p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.
-Values &gt; 1 will lighten an image.
-Values &lt; 1 will darken an image.</p>
-</p></li>
-<li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value overlay
-so that cold clouds show up at night. (Be aware that some
-daytime clouds might appear brighter).</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.NightFogDifference">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">NightFogDifference</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.NightFogDifference" title="Permalink to this definition">¶</a></dt>
-<dd><p>Night Fog Difference RGB (greyscale):
-(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/NightFogDifference.png" src="../_images/NightFogDifference.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.NighttimeMicrophysics">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">NighttimeMicrophysics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.NighttimeMicrophysics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Nighttime Microphysics RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/NighttimeMicrophysics.png" src="../_images/NighttimeMicrophysics.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.SplitWindowDifference">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">SplitWindowDifference</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.SplitWindowDifference" title="Permalink to this definition">¶</a></dt>
-<dd><p>Split Window Difference RGB (greyscale):
-(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/SplitWindowDifference.png" src="../_images/SplitWindowDifference.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.SulfurDioxide">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">SulfurDioxide</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.SulfurDioxide" title="Permalink to this definition">¶</a></dt>
-<dd><p>SulfurDioxide RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/SulfurDioxide.png" src="../_images/SulfurDioxide.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.TrueColor">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">TrueColor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">gamma</span><span class="o">=</span><span class="default_value">2.2</span></em>, <em class="sig-param"><span class="n">pseudoGreen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">night_IR</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
-<dd><p>True Color RGB:
-(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
-<p>This is similar to the NaturalColor RGB, but uses a different gamma
-correction and does not apply contrast stretching. I think these
-images look a little “washed out” when compared to the NaturalColor
-RGB. So, I would recommend using the NaturalColor RGB.</p>
-<p>For more details on combing RGB and making the psedo green channel, refer to
-<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379">Bah et al. 2018</a>.</p>
-<img alt="../_images/TrueColor.png" src="../_images/TrueColor.png" />
-<img alt="../_images/gamma_demo_TrueColor.png" src="../_images/gamma_demo_TrueColor.png" />
-<img alt="../_images/Color-IR_demo.png" src="../_images/Color-IR_demo.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>gamma</strong> (<em>float</em>) – <p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.
-Values &gt; 1 will lighten an image.
-Values &lt; 1 will darken an image.</p>
-</p></li>
-<li><p><strong>pseudoGreen</strong> (<em>bool</em>) – True: returns the calculated “True” green color
-False: returns the “veggie” channel</p></li>
-<li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value overlay
-so that cold clouds show up at night. (Be aware that some
-daytime clouds might appear brighter).</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.WaterVapor">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">WaterVapor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.WaterVapor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Simple Water Vapor RGB:
-(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf">Quick Guide</a> for reference)</p>
-<img alt="../_images/WaterVapor.png" src="../_images/WaterVapor.png" />
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – A GOES ABI multichannel file opened with xarray.</p></li>
-<li><p><strong>**kwargs</strong> – Keyword arguments for <code class="docutils literal notranslate"><span class="pre">rgb_as_dataset</span></code> function.
-- latlon : derive latitude and longitude of each pixel</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.gamma_correction">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">gamma_correction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">gamma</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.gamma_correction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_correction">gamma correction</a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<em>array-like</em>) – An array of values, typically the RGB array of values in
-an image.</p></li>
-<li><p><strong>gamma</strong> (<em>float</em>) – Gamma value to decode the image by.
-Values &gt; 1 will lighten an image.
-Values &lt; 1 will darken an image.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.get_imshow_kwargs">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">get_imshow_kwargs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ds</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.get_imshow_kwargs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Help determine the <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code> arguments.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ds</strong> (<em>xarray.Dataset</em>) – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>kwargs for the <code class="docutils literal notranslate"><span class="pre">plt.imshow</span></code> with the correct image extent limits.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">TrueColor</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">TrueColor</span><span class="p">,</span> <span class="o">*</span>\<span class="o">*</span>\<span class="n">get_imshow_kwargs</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.load_RGB_channels">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">load_RGB_channels</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">C</span></em>, <em class="sig-param"><span class="n">channels</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.load_RGB_channels" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the R, G, and B arrays for the three channels requested. This
-function will convert the data any units in Kelvin to Celsius.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>C</strong> (<em>xarray.Dataset</em>) – The GOES multi-channel file opened with xarray.</p></li>
-<li><p><strong>channels</strong> (<em>tuple of size 3</em>) – A tuple of the channel number for each (R, G, B).
-For example <code class="docutils literal notranslate"><span class="pre">channel=(2,</span> <span class="pre">3,</span> <span class="pre">1)</span></code> is for the true color RGB</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>A list with three items that are used for R, G, and B.</em></p></li>
-<li><p><em>&gt;&gt;&gt; R, G, B = load_RGB_channels(C, (2,3,1))</em></p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.normalize">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">normalize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">lower_limit</span></em>, <em class="sig-param"><span class="n">upper_limit</span></em>, <em class="sig-param"><span class="n">clip</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.normalize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Normalize values between 0 and 1.</p>
-<p>Normalize between a lower and upper limit. In other words, it
-converts your number to a value in the range between 0 and 1.
-Follows <a class="reference external" href="https://stats.stackexchange.com/a/70807/220885">normalization formula</a></p>
-<p>This is the same concept as <a class="reference external" href="https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html">contrast or histogram stretching</a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NormalizedValue</span> <span class="o">=</span> <span class="p">(</span><span class="n">OriginalValue</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">UpperLimit</span><span class="o">-</span><span class="n">LowerLimit</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> – The original value. A single value, vector, or array.</p></li>
-<li><p><strong>upper_limit</strong> – The upper limit.</p></li>
-<li><p><strong>lower_limit</strong> – The lower limit.</p></li>
-<li><p><strong>clip</strong> (<em>bool</em>) – <ul>
-<li><p>True: Clips values between 0 and 1 for RGB.</p></li>
-<li><p>False: Retain the numbers that extends outside 0-1 range.</p></li>
-</ul>
-</p></li>
-<li><p><strong>Output</strong> – Values normalized between the upper and lower limit.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.rgb.rgb_as_dataset">
-<code class="sig-prename descclassname">goes2go.rgb.</code><code class="sig-name descname">rgb_as_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">G</span></em>, <em class="sig-param"><span class="n">RGB</span></em>, <em class="sig-param"><span class="n">description</span></em>, <em class="sig-param"><span class="n">latlon</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.rgb.rgb_as_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Assemble a dataset with the RGB array with other data from the file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>G</strong> (<em>xarray.Dataset</em>) – GOES ABI data from multispectral channel</p></li>
-<li><p><strong>RGB</strong> (<em>array</em>) – A 3D array of R, G, and B values at each pixel</p></li>
-<li><p><strong>description</strong> (<em>str</em>) – A description of what the RGB data represents.</p></li>
-<li><p><strong>latlon</strong> (<em>bool</em>) – Derive the latitude and longitude of each pixel.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-<span class="target" id="module-goes2go.tools"></span><div class="section" id="other-tools">
-<h2>Other Tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h2>
-<p>Other tools for handeling NOAA GOES data files.</p>
-<p><strong>Functions:</strong></p>
-<table class="longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.tools.abi_crs" title="goes2go.tools.abi_crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abi_crs</span></code></a>(G[, reference_variable])</p></td>
-<td><p>Get coordinate reference system for the Advanced Baseline Imager (ABI).</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.tools.field_of_view" title="goes2go.tools.field_of_view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_of_view</span></code></a>(G[, resolution, reduce_abi_fov])</p></td>
-<td><p>Create a field-of-view polygon for the GOES data.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py function">
-<dt id="goes2go.tools.abi_crs">
-<code class="sig-prename descclassname">goes2go.tools.</code><code class="sig-name descname">abi_crs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">G</span></em>, <em class="sig-param"><span class="n">reference_variable</span><span class="o">=</span><span class="default_value">'CMI_C01'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.tools.abi_crs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get coordinate reference system for the Advanced Baseline Imager (ABI).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>G</strong> (<em>xarray.Dataset</em>) – An xarray.Dataset to derive the coordinate reference system.</p></li>
-<li><p><strong>reference_variable</strong> (<em>str</em>) – A variable in the xarray.Dataset to use to parse projection from.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ol class="arabic simple">
-<li><p>cartopy coordinate reference system</p></li>
-<li><p>data projection coordinates in x direction</p></li>
-<li><p>data projection coordinates in y direction</p></li>
-</ol>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Three objects are returned</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="goes2go.tools.field_of_view">
-<code class="sig-prename descclassname">goes2go.tools.</code><code class="sig-name descname">field_of_view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">G</span></em>, <em class="sig-param"><span class="n">resolution</span><span class="o">=</span><span class="default_value">60</span></em>, <em class="sig-param"><span class="n">reduce_abi_fov</span><span class="o">=</span><span class="default_value">0.06</span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.tools.field_of_view" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a field-of-view polygon for the GOES data.</p>
-<p>Based on information from the <a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf">GOES-R Series Data Book</a>.</p>
-<p>GLM lense field of view is 16 degree, or +/- 8 degrees (see page 225)
-ABI full-disk field of view if 17.4 degrees (see page 48)</p>
-<p>To plot the field of view on the cartopy axes, do the following:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FOV</span><span class="p">,</span> <span class="n">geo</span> <span class="o">=</span> <span class="n">field_of_view</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">geo</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">FOV</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">geo</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>G</strong> (<em>xarray.Dataset</em>) – The GOES NetCDF file opened with xarray. A file is required
-because we get info from the file to define the projection.</p></li>
-<li><p><strong>resolution</strong> (<em>int</em>) – Resolution of polygon shapes</p></li>
-<li><p><strong>reduce_abi_fov</strong> (<em>float</em><em> or </em><em>int</em>) – Since the globe isn’t a perfect ellipse, reduce the field of
-view just slightly to get all the points to be on the projection
-plane. If this number is less than the default, the polygon
-will not be calculated correctly because edge points will lie
-off the projection globe.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
 </div>
 
 
@@ -1032,14 +368,14 @@ off the projection globe.</p></li>
     </div>
 
     
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
 
 
     <footer class="footer mt-5 mt-md-0">
   <div class="container">
     <p>
           &copy; Copyright 2021, Brian K. Blaylock.<br/>
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.2.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.2.<br/>
     </p>
   </div>
 </footer>
