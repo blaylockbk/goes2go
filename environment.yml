@@ -16,3 +16,4 @@ dependencies:
   - s3fs
   - pip:
     - git+https://github.com/blaylockbk/goes2go.git
+    - git+https://github.com/blaylockbk/Carpenter_Workshop.git  # "Can I borrow your hammer?"
