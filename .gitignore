@@ -1,5 +1,8 @@
-# Don't upload ANY NetCDF files (The GLM_FOV_edges.nc file isn't released)
+# Don't upload ANY NetCDF files
 *.nc 
+
+# The GLM_FOV_edges.nc file isn't released. I don't have permission to share.
+GLM_FOV_edges.nc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
