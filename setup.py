@@ -6,7 +6,7 @@ README = (HERE / 'README.md').read_text(encoding="utf8")
 
 setup(
     name = 'goes2go',
-    version = '0.0.2',
+    version = '0.0.3',
     author = 'Brian K. Blaylock',
     author_email = "blaylockbk@gmail.com",
     description = 'Retreive GOES-16/17 data from AWS. Also proves some RGB recipes.',
@@ -21,6 +21,7 @@ setup(
     package_data = {
         "": ['*.cfg'],
     },
+    #python_requires='>3.7',   # Will this requirement cause problems for people??
     install_requires = ['numpy', 'pandas', 'xarray', 's3fs', 'netcdf4'],
     keywords = ['xarray', 'meteorology', 'weather', 'GOES', 'forecast'],
     classifiers = [
