@@ -2,7 +2,7 @@ name: goes2go
 channels:
   - conda-forge
 dependencies:
-  - python=3.7
+  - python=3.8
   - pip
   - git
   - jupyter
@@ -15,5 +15,6 @@ dependencies:
   - cartopy
   - s3fs
   - pip:
-    - git+https://github.com/blaylockbk/goes2go.git
-    - git+https://github.com/blaylockbk/Carpenter_Workshop.git  # "Can I borrow your hammer?"
+    - goes2go  # Install from PyPI
+    #- git+https://github.com/blaylockbk/goes2go.git
+    #- git+https://github.com/blaylockbk/Carpenter_Workshop.git  # "Can I borrow your hammer?"
