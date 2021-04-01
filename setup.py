@@ -5,7 +5,7 @@ HERE = Path(__file__).parent
 README = (HERE / 'README.md').read_text(encoding="utf8")
 
 setup(
-    name = 'goes2go',   # Unfortunately, "herbie" is already used.
+    name = 'goes2go',
     version = '0.0.2',
     author = 'Brian K. Blaylock',
     author_email = "blaylockbk@gmail.com",
