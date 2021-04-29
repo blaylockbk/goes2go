@@ -21,7 +21,7 @@ import pydata_sphinx_theme
 # -- Project information -----------------------------------------------------
 
 project = 'GOES-2-go Docs'
-copyright = '2021, Brian K. Blaylock'
+copyright = f'{datetime.utcnow():%Y}, Brian K. Blaylock'
 author = 'Brian K. Blaylock'
 
 release = '0.1'
@@ -81,7 +81,6 @@ html_theme = "pydata_sphinx_theme"
 html_theme_options = {
     'github_url': 'https://github.com/blaylockbk/goes2go',
     'twitter_url': "https://twitter.com/blaylockbk",
-    "use_edit_page_button": True,
     "navbar_end": ["navbar-icon-links.html", "search-field.html"],
     "google_analytics_id": "G-NWK8MJNNGX",
     "use_edit_page_button": True,
