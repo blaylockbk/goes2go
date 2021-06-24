@@ -1,4 +1,4 @@
-![](https://blaylockbk.github.io/goes2go/_build/html/_static/goes2go_logo_100dpi.png)
+![](https://github.com/blaylockbk/goes2go/blob/master/docs/_static/goes2go_logo_100dpi.png?raw=true)
 
 
 # Download and plot GOES east/west data
