@@ -1,15 +1,29 @@
-# 📔 [Documentation Page](https://blaylockbk.github.io/goes2go/_build/html/)
+![](https://blaylockbk.github.io/goes2go/_build/html/_static/goes2go_logo_100dpi.png)
 
 
-|![](https://blaylockbk.github.io/goes2go/_build/html/_static/goes2go_logo.png)|**Brian Blaylock**<br>🌐 [Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)<br>[🔩 PyPI](https://pypi.org/user/blaylockbk/)
-|:--|:--|
+# Download and plot GOES east/west data
 
-
-# 🏃🏻‍♂️💨 🌎 🛰 GOES-2-go 
-
+<!-- Badges -->
 [![](https://img.shields.io/pypi/v/goes2go)](https://pypi.python.org/pypi/goes2go/)
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
 [![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878)
+<!--(Badges)-->
+
+**Brian Blaylock**  
+[🌐 Personal Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)  
+[🌐 University of Utah HRRR archive page](http://hrrr.chpc.utah.edu/)
+
+
+
+---
+
+<br>
+
+# 📔 [GOES-2-go Documentation](https://blaylockbk.github.io/goes2go/_build/html/)
+
+<br>
+
+---
 
 Download and read files from the NOAA GOES archive on AWS.http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/hrrr_FAQ.html
 
