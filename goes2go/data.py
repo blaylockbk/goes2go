@@ -25,11 +25,15 @@ import xarray as xr
 import pandas as pd 
 import numpy as np 
 
+# NOTE: These values are set in the config file at 
+# ~/.config/herbie/config.cfg and are read in from the __init__ file.
+from . import _default_save_dir
+
 # Connect to AWS public buckets
 fs = s3fs.S3FileSystem(anon=True)
 
 # Default Download Directory
-_default_download_dir = Path('~').expanduser() / 'data'
+_default_save_dir = Path('~').expanduser() / 'data'
 
 # Define parameter options and aliases
 # ------------------------------------
@@ -311,7 +315,7 @@ def goes_timerange(start=None, end=None, recent=None, *,
                    satellite='goes17', product='GLM', domain='C', 
                    return_as='filelist',
                    download=True, overwrite=False,
-                   download_dir=_default_download_dir, 
+                   download_dir=_default_save_dir, 
                    max_cpus=1,
                    verbose=True):
     """
@@ -409,7 +413,7 @@ def goes_latest(*,
                 satellite='goes17', product='GLM', domain='C',
                 return_as='xarray',
                 download=True, overwrite=False,
-                download_dir=_default_download_dir, 
+                download_dir=_default_save_dir, 
                 verbose=True):
     """
     Get the latest available GOES data.
@@ -482,7 +486,7 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
                      satellite='goes17', product='GLM', domain='C',
                      return_as='xarray',
                      download=True, overwrite=False,
-                     download_dir=_default_download_dir, 
+                     download_dir=_default_save_dir, 
                      verbose=True):
     """
     Get the latest available GOES data.
