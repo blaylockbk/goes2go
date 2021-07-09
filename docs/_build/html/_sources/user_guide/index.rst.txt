@@ -7,6 +7,5 @@ User Guide
 
    contribute
    examples
-   configure
+   defaults
    
-

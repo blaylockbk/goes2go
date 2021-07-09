@@ -33,8 +33,7 @@ if not _config_path.exists():
     with open(_config_path, 'w') as configfile:
         config.write(configfile)
     print(f'⚙ Created config file [{_config_path}]',
-          f'with default download directory set as [{user_home_default}]', 
-          f'and default source priority as ')
+          f'with default download directory set as [{user_home_default}]')
 
 config.read(_config_path)
 

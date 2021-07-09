@@ -45,7 +45,7 @@ _satellite = {
 _domain = {
     'C': ['CONUS'],
     'F': ['FULL', 'FULLDISK', 'FULL DISK'],
-    'M': ['MESOSCALE'],
+    'M': ['MESOSCALE', "M1", "M2"],
 }
 
 _product = {
@@ -80,7 +80,7 @@ def _check_param_inputs(**params):
                 satellite = key
     assert satellite in _satellite, f'satellite must be one of {list(_satellite.keys())} or an alias {list(_satellite.values())}'
     
-    ## Determine the Domain (only needed for non-ABI product)
+    ## Determine the Domain (only needed for ABI product)
     if product.upper().startswith('ABI'):
         if product[-1] in _domain:
             # If the product has the domain, this takes priority
@@ -255,7 +255,9 @@ def _as_xarray_MP(src, download_dir, i=None, n=None, verbose=True):
     for i in attr2coord:
         if i in ds.attrs:
             ds.coords[i] = ds.attrs.pop(i)
-        
+
+    ds['filename'] = src
+
     return ds
 
 def _as_xarray(df, **params):
@@ -543,10 +545,9 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
         within = pd.to_timedelta(within)
 
     params = locals()
-    satellite, product, domain = _check_param_inputs(**params)
+    satellite, product, _ = _check_param_inputs(**params)
     params['satellite'] = satellite
     params['product'] = product
-    params['domain'] = domain
         
     # Parameter Setup
     # ---------------
@@ -559,9 +560,15 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
 
     #return df, start, end, attime
 
+    # Filter for specific mesoscale domain
+    if domain.upper() in ['M1', 'M2']:
+        df = df[df['file'].str.contains(f"{domain.upper()}-M")]
+
     # Get row that matches the nearest time
-    nearest_time_index = df.set_index(df.start).index.get_loc(attime, method='nearest')
-    df = df.loc[df.index == nearest_time_index]
+    df = df.sort_values('start')
+    df = df.set_index(df.start)
+    nearest_time_index = df.index.get_loc(attime, method='nearest')
+    df = df.iloc[[nearest_time_index]]
     df = df.reset_index(drop=True)
     
     n = len(df.file)

@@ -34,6 +34,7 @@ and include the following:
     - Ash
     - SplitWindowDifference
     - NightFogDifference
+    - RocketPlume              ✨New - July 9, 2021
 
 The returned RGB can easily be viewed with ``plt.imshow(RGB)``. 
 
@@ -72,6 +73,35 @@ All RGB products are demonstarted in the `make_RGB_Demo
 Note: I don't have a `GeoColor <https://journals.ametsoc.org/view/journals/atot/37/3/JTECH-D-19-0134.1.xml>`_
 RGB, because it is much more involved than simply stacking RGB channels. If anyone does do
 something similar to a GeoColor image, let me know!
+
+ABI Band Reference
+------------------
+
+https://www.weather.gov/media/crp/GOES_16_Guides_FINALBIS.pdf
+http://cimss.ssec.wisc.edu/goes/GOESR_QuickGuides.html
+https://www.goes-r.gov/mission/ABI-bands-quick-info.html
+
+
+=============== ================== ================================================================
+ABI Band Number Central Wavelength                  Name
+=============== ================== ================================================================
+      1             0.47 μm        "Blue" Band    Visible
+      2             0.64 μm        "Red" Band    Visible
+      3             0.86 μm        "Veggie" Band    Near-IR
+      4             1.37 μm        "Cirrus" Band    Near-IR
+      5             1.6  μm        "Snow/Ice" Band    Near-IR
+      6             2.2  μm        "Cloud Particle Size" Band    Near-IR
+      7             3.9  μm        "Shortwave Window" Band    IR (with reflected daytime component)
+      8             6.2  μm        "Upper-Level Tropospheric Water Vapor" Band    IR
+      9             6.9  μm        "Mid-Level Tropospheric Water Vapor" Band    IR
+      10            7.3  μm        "Lower-level Water Vapor" Band    IR
+      11            8.4  μm        "Cloud-Top Phase" Band    IR
+      12            9.6  μm        "Ozone Band"    IR
+      13            10.3 μm        "Clean" IR Longwave Window Band    IR
+      14            11.2 μm        IR Longwave Window Band    IR
+      15            12.3 μm        "Dirty" Longwave Window Band    IR
+      16            13.3 μm        "CO2" longwave infrared    IR
+=============== ================== ================================================================
 """
 
 import numpy as np
@@ -983,6 +1013,53 @@ def NightFogDifference(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Night Fog Difference', **kwargs)
 
+
+def RocketPlume(C, night=False, **kwargs):
+    """
+    Rocket Plume RGB
+    
+    For identifying rocket launches.
+
+    (See `this blog <https://cimss.ssec.wisc.edu/satellite-blog/archives/41335>`__ and
+     the `Quick Guide <https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf>`__ for reference)
+
+    .. image:: /_static/RocketPlume.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    night : bool
+        If the area is in night, turn this on to use a different channel
+        than the daytime application.
+    \*\*kwargs : 
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+        
+    """
+    # Load the three channels into appropriate R, G, and B variables
+    R = C['CMI_C07'].data
+    G = C['CMI_C08'].data
+    if not night:
+        B = C['CMI_C02'].data
+    else:
+        B = C['CMI_C05'].data
+
+
+    # Normalize values    
+    R = normalize(R, 273, 338)
+    G = normalize(G, 233, 253)
+    B = normalize(B, 0, .80)
+
+    # The final RGB array :)
+    RGB = np.dstack([R, G, B])
+    
+    return rgb_as_dataset(C, RGB, 'RocketPlume', **kwargs)
+
+
+#######################
+# 🚧 Construction Zone
+#######################
 def NormalizedBurnRatio(C, **kwargs):
     """
     Normalized Burn Ratio
@@ -1010,6 +1087,7 @@ def NormalizedBurnRatio(C, **kwargs):
     RGB = np.dstack([data, data, data])
     
     return rgb_as_dataset(C, RGB, 'Normalized Burn Ratio', **kwargs)
+
 
 if __name__ == "__main__":
 
