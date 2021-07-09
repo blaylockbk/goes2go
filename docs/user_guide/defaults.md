@@ -1,6 +1,6 @@
-# ⚙ Configure
+# ⚙ Configure Defaults
 
-The first time to import goes2go, it creates a configure file
+The first time you import goes2go, it creates a configure file
 
 ```bash
 ~/.config/goes2go/config.confg
