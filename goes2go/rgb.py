@@ -81,11 +81,11 @@ https://www.weather.gov/media/crp/GOES_16_Guides_FINALBIS.pdf
 http://cimss.ssec.wisc.edu/goes/GOESR_QuickGuides.html
 https://www.goes-r.gov/mission/ABI-bands-quick-info.html
 
-"""
-#=============== ================== ================================================================
-#ABI Band Number Central Wavelength                  Name
-#=============== ================== ================================================================
-#      1             0.47 μm        "Blue" Band    Visible
+=============== ================== ================================================================
+ABI Band Number Central Wavelength                  Name
+=============== ================== ================================================================
+      1             0.47 μm        "Blue" Band    Visible
+=============== ================== ================================================================
 #      2             0.64 μm        "Red" Band    Visible
 #      3             0.86 μm        "Veggie" Band    Near-IR
 #      4             1.37 μm        "Cirrus" Band    Near-IR
@@ -1020,8 +1020,9 @@ def RocketPlume(C, night=False, **kwargs):
     
     For identifying rocket launches.
 
-    (See `this blog <https://cimss.ssec.wisc.edu/satellite-blog/archives/41335>`__ and
-     the `Quick Guide <https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf>`__ for reference)
+    See `this blog <https://cimss.ssec.wisc.edu/satellite-blog/archives/41335>`__ and
+    the `Quick Guide <https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf>`__
+    for reference
 
     .. image:: /_static/RocketPlume.png
 
