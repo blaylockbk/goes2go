@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Guide &#8212; GOES-2-go Docs 0.1 documentation</title>
+    <title>⚙ Configure &#8212; GOES-2-go Docs 0.1 documentation</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -37,8 +37,8 @@
     <link rel="shortcut icon" href="../_static/wxicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="👨🏻‍🏭 Contributing Guidelines" href="contribute.html" />
-    <link rel="prev" title="GOES-2-Go Documentation" href="../index.html" />
+    <link rel="next" title="Reference Guide" href="../reference_guide/index.html" />
+    <link rel="prev" title="🤹🏻‍♂️ Examples" href="examples.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -73,7 +73,7 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
- <a class="current reference internal nav-link" href="#">
+ <a class="reference internal nav-link" href="index.html">
   User Guide
  </a>
 </li>
@@ -140,7 +140,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <ul class="nav bd-sidenav">
+    <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="contribute.html">
    👨🏻‍🏭 Contributing Guidelines
@@ -151,8 +151,8 @@
    🤹🏻‍♂️ Examples
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="configure.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    ⚙ Configure
   </a>
  </li>
@@ -180,7 +180,7 @@
                 
 
 <div class="tocsection editthispage">
-    <a href="https://github.com/blaylockbk/goes2go/edit/master/docs/user_guide/index.rst">
+    <a href="https://github.com/blaylockbk/goes2go/edit/master/docs/user_guide/configure.md">
         <i class="fas fa-pencil-alt"></i> Edit this page
     </a>
 </div>
@@ -199,15 +199,19 @@
               
               <div>
                 
-  <div class="section" id="user-guide">
-<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">👨🏻‍🏭 Contributing Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">🤹🏻‍♂️ Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configure.html">⚙ Configure</a></li>
-</ul>
+  <div class="section" id="configure">
+<h1>⚙ Configure<a class="headerlink" href="#configure" title="Permalink to this headline">¶</a></h1>
+<p>The first time to import goes2go, it creates a configure file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/.config/goes2go/config.confg
+</pre></div>
 </div>
+<p>In this file, you may set the default directory files are downloaded to.
+The default is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">download</span><span class="p">]</span>
+<span class="n">default_save_dir</span> <span class="o">=</span> <span class="o">/</span><span class="n">User</span><span class="o">/</span><span class="n">Home</span><span class="o">/</span><span class="n">Dir</span><span class="o">/</span><span class="n">data</span>
+</pre></div>
+</div>
+<p>If desired, update that path to set the default save directory.</p>
 </div>
 
 
@@ -216,8 +220,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">GOES-2-Go Documentation</a>
-    <a class='right-next' id="next-link" href="contribute.html" title="next page">👨🏻‍🏭 Contributing Guidelines</a>
+    <a class='left-prev' id="prev-link" href="examples.html" title="previous page">🤹🏻‍♂️ Examples</a>
+    <a class='right-next' id="next-link" href="../reference_guide/index.html" title="next page">Reference Guide</a>
 
               </div>
               
