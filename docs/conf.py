@@ -87,7 +87,7 @@ html_theme_options = {
     "show_toc_level": 1,
     "external_links": [
       {"name": "SynopticPy", "url": "https://blaylockbk.github.io/SynopticPy/_build/html/"},
-      {"name": "HRRR-B", "url": "https://blaylockbk.github.io/HRRR_archive_download/_build/html/"}
+      {"name": "Herbie", "url": "https://blaylockbk.github.io/HRRR_archive_download/_build/html/"}
      ]
 }
 
