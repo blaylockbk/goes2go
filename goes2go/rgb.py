@@ -81,29 +81,29 @@ https://www.weather.gov/media/crp/GOES_16_Guides_FINALBIS.pdf
 http://cimss.ssec.wisc.edu/goes/GOESR_QuickGuides.html
 https://www.goes-r.gov/mission/ABI-bands-quick-info.html
 
-
-=============== ================== ================================================================
-ABI Band Number Central Wavelength                  Name
-=============== ================== ================================================================
-      1             0.47 μm        "Blue" Band    Visible
-      2             0.64 μm        "Red" Band    Visible
-      3             0.86 μm        "Veggie" Band    Near-IR
-      4             1.37 μm        "Cirrus" Band    Near-IR
-      5             1.6  μm        "Snow/Ice" Band    Near-IR
-      6             2.2  μm        "Cloud Particle Size" Band    Near-IR
-      7             3.9  μm        "Shortwave Window" Band    IR (with reflected daytime component)
-      8             6.2  μm        "Upper-Level Tropospheric Water Vapor" Band    IR
-      9             6.9  μm        "Mid-Level Tropospheric Water Vapor" Band    IR
-      10            7.3  μm        "Lower-level Water Vapor" Band    IR
-      11            8.4  μm        "Cloud-Top Phase" Band    IR
-      12            9.6  μm        "Ozone Band"    IR
-      13            10.3 μm        "Clean" IR Longwave Window Band    IR
-      14            11.2 μm        IR Longwave Window Band    IR
-      15            12.3 μm        "Dirty" Longwave Window Band    IR
-      16            13.3 μm        "CO2" longwave infrared    IR
-=============== ================== ================================================================
 """
-
+#=============== ================== ================================================================
+#ABI Band Number Central Wavelength                  Name
+#=============== ================== ================================================================
+#      1             0.47 μm        "Blue" Band    Visible
+#      2             0.64 μm        "Red" Band    Visible
+#      3             0.86 μm        "Veggie" Band    Near-IR
+#      4             1.37 μm        "Cirrus" Band    Near-IR
+#      5             1.6  μm        "Snow/Ice" Band    Near-IR
+#      6             2.2  μm        "Cloud Particle Size" Band    Near-IR
+#      7             3.9  μm        "Shortwave Window" Band    IR (with reflected daytime component)
+#      8             6.2  μm        "Upper-Level Tropospheric Water Vapor" Band    IR
+#      9             6.9  μm        "Mid-Level Tropospheric Water Vapor" Band    IR
+#      10            7.3  μm        "Lower-level Water Vapor" Band    IR
+#      11            8.4  μm        "Cloud-Top Phase" Band    IR
+#      12            9.6  μm        "Ozone Band"    IR
+#      13            10.3 μm        "Clean" IR Longwave Window Band    IR
+#      14            11.2 μm        IR Longwave Window Band    IR
+#      15            12.3 μm        "Dirty" Longwave Window Band    IR
+#      16            13.3 μm        "CO2" longwave infrared    IR
+#=============== ================== ================================================================
+#
+#
 import numpy as np
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
@@ -1044,7 +1044,6 @@ def RocketPlume(C, night=False, **kwargs):
         B = C['CMI_C02'].data
     else:
         B = C['CMI_C05'].data
-
 
     # Normalize values    
     R = normalize(R, 273, 338)
