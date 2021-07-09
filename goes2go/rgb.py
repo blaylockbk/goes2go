@@ -42,7 +42,7 @@ For imshow to show an RGB image, the values must range between 0 and 1.
 Values are normalized between the range specified in the Quick Guides. 
 This normalization is synonymous to `contrast or histogram stretching 
 <https://micro.magnet.fsu.edu/primer/java/digitalimaging/processing/histogramstretching/index.html>`_
-(`more info 
+(`more info here
 <https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html>`_)
 and follows the formula:
 
