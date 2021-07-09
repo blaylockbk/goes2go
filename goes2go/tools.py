@@ -10,7 +10,7 @@ Other tools for handeling NOAA GOES data files.
 
 import numpy as np
 import cartopy.crs as ccrs
-import metpy
+#import metpy
 from shapely.geometry import Point, Polygon
 
 def field_of_view(G, resolution=60, reduce_abi_fov=.06):
