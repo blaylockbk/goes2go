@@ -509,7 +509,6 @@ def FireTemperature(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Fire Temperature', **kwargs)
 
-
 def AirMass(C, **kwargs):
     """
     Air Mass RGB:
@@ -544,7 +543,6 @@ def AirMass(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Air Mass', **kwargs)
 
-
 def DayCloudPhase(C, **kwargs):
     """
     Day Cloud Phase Distinction RGB:
@@ -577,7 +575,6 @@ def DayCloudPhase(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Day Cloud Phase', **kwargs)
 
-
 def DayConvection(C, **kwargs):
     """
     Day Convection RGB:
@@ -609,7 +606,6 @@ def DayConvection(C, **kwargs):
     RGB = np.dstack([R, G, B])
     
     return rgb_as_dataset(C, RGB, 'Day Convection', **kwargs)
-
 
 def DayCloudConvection(C, **kwargs):
     """
@@ -649,7 +645,6 @@ def DayCloudConvection(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Day Cloud Convection', **kwargs)
 
-
 def DayLandCloud(C, **kwargs):
     """
     Day Land Cloud Fire RGB:
@@ -679,7 +674,6 @@ def DayLandCloud(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Day Land Cloud', **kwargs)
 
-
 def DayLandCloudFire(C, **kwargs):
     """
     Day Land Cloud Fire RGB:
@@ -708,7 +702,6 @@ def DayLandCloudFire(C, **kwargs):
     RGB = np.dstack([R, G, B])
     
     return rgb_as_dataset(C, RGB, 'Day Land Cloud Fire', **kwargs)
-
 
 def WaterVapor(C, **kwargs):
     """
@@ -743,7 +736,6 @@ def WaterVapor(C, **kwargs):
     RGB = np.dstack([R, G, B])
     
     return rgb_as_dataset(C, RGB, 'Water Vapor', **kwargs)
-
 
 def DifferentialWaterVapor(C, **kwargs):
     """
@@ -786,7 +778,6 @@ def DifferentialWaterVapor(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Differenctial Water Vapor', **kwargs)
 
-
 def DaySnowFog(C, **kwargs):
     """
     Day Snow-Fog RGB:
@@ -824,7 +815,6 @@ def DaySnowFog(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Day Snow Fog', **kwargs)
 
-
 def NighttimeMicrophysics(C, **kwargs):
     """
     Nighttime Microphysics RGB:
@@ -855,7 +845,6 @@ def NighttimeMicrophysics(C, **kwargs):
     RGB = np.dstack([R, G, B])
     
     return rgb_as_dataset(C, RGB, 'Nighttime Microphysics', **kwargs)
-
 
 def Dust(C, **kwargs):
     """
@@ -923,7 +912,6 @@ def SulfurDioxide(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Sulfur Dioxide', **kwargs)
 
-
 def Ash(C, **kwargs):
     """
     Ash RGB:
@@ -955,7 +943,6 @@ def Ash(C, **kwargs):
     
     return rgb_as_dataset(C, RGB, 'Ash', **kwargs)
 
-
 def SplitWindowDifference(C, **kwargs):
     """
     Split Window Difference RGB (greyscale):
@@ -982,7 +969,6 @@ def SplitWindowDifference(C, **kwargs):
     RGB = np.dstack([data, data, data])
         
     return rgb_as_dataset(C, RGB, 'Split Window Difference', **kwargs)
-
 
 def NightFogDifference(C, **kwargs):
     """
@@ -1013,7 +999,6 @@ def NightFogDifference(C, **kwargs):
     RGB = np.dstack([data, data, data])
     
     return rgb_as_dataset(C, RGB, 'Night Fog Difference', **kwargs)
-
 
 def RocketPlume(C, night=False, **kwargs):
     """
