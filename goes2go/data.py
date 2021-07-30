@@ -111,9 +111,19 @@ def _check_param_inputs(**params):
     
     return satellite, product, domain
 
-def _goes_file_df(satellite, product, start, end):
+def _goes_file_df(satellite, product, start, end, refresh=True):
     """
     Get list of requested GOES files as pandas.DataFrame.
+
+    Parameters
+    ----------
+    satellite : str
+    product : str
+    start : datetime
+    end : datetime
+    refresh : bool
+        Refresh the s3fs.S3FileSystem object when files are listed.
+        Default True will refresh and not use a cached list.
     """
     params = locals()
 
@@ -125,7 +135,7 @@ def _goes_file_df(satellite, product, start, end):
     # ----------------------------    
     files = []
     for DATE in DATES:
-        files += fs.ls(f"{satellite}/{product}/{DATE:%Y/%j/%H/}")
+        files += fs.ls(f"{satellite}/{product}/{DATE:%Y/%j/%H/}", refresh=refresh)
     
     # Build a table of the files
     # --------------------------
@@ -318,7 +328,7 @@ def goes_timerange(start=None, end=None, recent=None, *,
                    return_as='filelist',
                    download=True, overwrite=False,
                    download_dir=_default_save_dir, 
-                   max_cpus=1,
+                   max_cpus=1, fs_refresh=True,
                    verbose=True):
     """
     Get GOES data for a time range.
@@ -365,7 +375,9 @@ def goes_timerange(start=None, end=None, recent=None, *,
         - True: Download the file even if it exists.
         - False (default): Do not download the file if it already exists
     max_cpus : int
-
+    fs_refresh : bool
+        Refresh the s3fs.S3FileSystem object when files are listed.
+        Default True will refresh and not use a cached list.
     
     """
     # If `start`, or `end` is a string, parse with Pandas
@@ -400,7 +412,7 @@ def goes_timerange(start=None, end=None, recent=None, *,
         start = datetime.utcnow() - recent
         end = datetime.utcnow()
     
-    df = _goes_file_df(satellite, product, start, end)
+    df = _goes_file_df(satellite, product, start, end, refresh=fs_refresh)
 
     if download:
         _download(df, **params)
@@ -416,6 +428,7 @@ def goes_latest(*,
                 return_as='xarray',
                 download=True, overwrite=False,
                 download_dir=_default_save_dir, 
+                fs_refresh=True,
                 verbose=True):
     """
     Get the latest available GOES data.
@@ -456,6 +469,9 @@ def goes_latest(*,
     overwrite : bool
         - True: Download the file even if it exists.
         - False (default): Do not download the file if it already exists
+    fs_refresh : bool
+        Refresh the s3fs.S3FileSystem object when files are listed.
+        Default True will refresh and not use a cached list.
     """
     params = locals()
     satellite, product, domain = _check_param_inputs(**params)
@@ -470,7 +486,7 @@ def goes_latest(*,
     start = datetime.utcnow() - timedelta(hours=1)
     end = datetime.utcnow()
     
-    df = _goes_file_df(satellite, product, start, end)
+    df = _goes_file_df(satellite, product, start, end, refresh=fs_refresh)
     
     # Get the most recent file (latest start date)
     df = df.loc[df.start == df.start.max()].reset_index(drop=True)
@@ -489,6 +505,7 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
                      return_as='xarray',
                      download=True, overwrite=False,
                      download_dir=_default_save_dir, 
+                     fs_refresh=True,
                      verbose=True):
     """
     Get the latest available GOES data.
@@ -538,6 +555,9 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
     overwrite : bool
         - True: Download the file even if it exists.
         - False (default): Do not download the file if it already exists
+    fs_refresh : bool
+        Refresh the s3fs.S3FileSystem object when files are listed.
+        Default True will refresh and not use a cached list.
     """
     if isinstance(attime, str):
         attime = pd.to_datetime(attime)
@@ -556,7 +576,7 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
     start = attime - within
     end = attime + within
     
-    df = _goes_file_df(satellite, product, start, end)
+    df = _goes_file_df(satellite, product, start, end, refresh=fs_refresh)
 
     #return df, start, end, attime
 
