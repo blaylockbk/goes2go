@@ -1,6 +1,9 @@
 # Don't upload ANY NetCDF files
 *.nc 
 
+# Don't upload my sandbox notebooks
+sandbox*.ipynb
+
 # The GLM_FOV_edges.nc file isn't released. I don't have permission to share.
 GLM_FOV_edges.nc
 
