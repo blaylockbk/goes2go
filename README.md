@@ -1,13 +1,19 @@
+<div
+  align="center"
+>
+
 ![](https://github.com/blaylockbk/goes2go/blob/master/docs/_static/goes2go_logo_100dpi.png?raw=true)
 
 
-# Download and plot GOES east/west data
+# Download and plot GOES-East and GOES-West data
 
 <!-- Badges -->
 [![](https://img.shields.io/pypi/v/goes2go)](https://pypi.python.org/pypi/goes2go/)
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
 [![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878)
 <!--(Badges)-->
+
+</div>
 
 **Brian Blaylock**  
 [🌐 Personal Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)  
