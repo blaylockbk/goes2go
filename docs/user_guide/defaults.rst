@@ -11,6 +11,7 @@ The first time you import goes2go, it creates a configure file
 
 In this file, you may set the default arguments for the download functions.
 The default is
+
 .. code-block::
 
     [default]
