@@ -36,7 +36,7 @@ The default is
     within = "1H"
     return_as = "xarray"
 
-The ``[default]`` section are global settings used by each download method. These can be overwritten for each method. For instance, _s3\_refresh_ is set to false for ``[timerange]`` because it's unlikely you will need to refresh the file listing. Also, ``[latest]`` and ``[nearesttime]`` are by default returned as an xarray object instead of a list of files downloaded.
+The ``[default]`` section are global settings used by each download method. These can be overwritten for each method. For instance, *s3_refresh* is set to false for ``[timerange]`` because it's unlikely you will need to refresh the file listing. Also, ``[latest]`` and ``[nearesttime]`` are by default returned as an xarray object instead of a list of files downloaded.
 
 save_dir
     Path to save the downloaded data.
