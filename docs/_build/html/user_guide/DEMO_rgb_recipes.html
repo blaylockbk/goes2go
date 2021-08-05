@@ -92,7 +92,7 @@
     </li>
     
     <li class="nav-item">
-        <a class="nav-link nav-external" href="https://blaylockbk.github.io/HRRR_archive_download/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/Herbie/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
     </li>
     
 </ul>
@@ -190,26 +190,19 @@
 
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   GOES ABI RGB Recipe Demonstration
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Full-Disk-Image">
+   Full Disk Image
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#Full-Disk">
-     Full Disk
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#RGB-Sample">
-     RGB Sample
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#🚀-Rocket-Plume">
-   🚀 Rocket Plume
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#RGB-Sample">
+   RGB Sample
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#🚀-Rocket-Plume-RGB">
+   🚀 Rocket Plume RGB
   </a>
  </li>
 </ul>
@@ -502,10 +495,13 @@ div.rendered_html tbody tr:hover {
 <li><p>DaySnowFog</p></li>
 <li><p>etc.</p></li>
 </ul>
-<p>These recipies are in the <code class="docutils literal notranslate"><span class="pre">rgb.py</span></code> file.</p>
+<p>These recipies are in the <code class="docutils literal notranslate"><span class="pre">rgb</span></code> module.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.rgb</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
 <p>For more details on how to generate these plots, see the example on the <a class="reference external" href="http://unidata.github.io/python-gallery/examples/mapping_GOES16_TrueColor.html#sphx-glr-examples-mapping-goes16-truecolor-py">Unidata gallery</a>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -523,7 +519,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -542,18 +538,18 @@ div.rendered_html tbody tr:hover {
  | Satellite: noaa-goes16      |
  |   Product: ABI-L2-MCMIPC    |
  |    Domain: C                |
-📦 Finished downloading [1] files to [/p/home/blaylock/data/noaa-goes16/ABI-L2-MCMIPC].
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPC].
 📚 Finished reading [1] files into xarray.Dataset.
  _______________________________
  | Satellite: noaa-goes17      |
  |   Product: ABI-L2-MCMIPC    |
  |    Domain: C                |
-📦 Finished downloading [1] files to [/p/home/blaylock/data/noaa-goes17/ABI-L2-MCMIPC].
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes17/ABI-L2-MCMIPC].
 📚 Finished reading [1] files into xarray.Dataset.
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -564,7 +560,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -573,7 +569,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -950,13 +946,13 @@ Attributes:
     resolution:             y: 0.000056 rad x: 0.000056 rad
     grid_mapping:           goes_imager_projection
     cell_methods:           t: point area: sum (interval: 0.000028 rad)
-    ancillary_variables:    DQF_C01</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'CMI_C01'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 1500</li><li><span class='xr-has-index'>x</span>: 2500</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-b3bbf8b8-8517-44a3-bf4c-a1432a13b2b5' class='xr-array-in' type='checkbox' checked><label for='section-b3bbf8b8-8517-44a3-bf4c-a1432a13b2b5' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>...</span></div><div class='xr-array-data'><pre>[3750000 values with dtype=float32]</pre></div></div></li><li class='xr-section-item'><input id='section-f8c9ea31-f6e5-4f87-9a5c-85e893a02baf' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f8c9ea31-f6e5-4f87-9a5c-85e893a02baf' class='xr-section-summary' >Coordinates: <span>(9)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>t</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-c45cf80c-a354-44aa-ae7e-b891a404d077' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c45cf80c-a354-44aa-ae7e-b891a404d077' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ade7506d-2cc7-4ab1-8640-6a45bd64f214' class='xr-var-data-in' type='checkbox'><label for='data-ade7506d-2cc7-4ab1-8640-6a45bd64f214' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>J2000 epoch mid-point between the start and end image scan in seconds</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bounds</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-09-22T18:02:31.941746048&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.1282 0.1282 ... 0.04432 0.04427</div><input id='attrs-4f3115c4-a2b2-462f-aefa-da1c5ce66032' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4f3115c4-a2b2-462f-aefa-da1c5ce66032' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-76fb5f6a-24ad-4982-bd74-fdea04eb21f4' class='xr-var-data-in' type='checkbox'><label for='data-76fb5f6a-24ad-4982-bd74-fdea04eb21f4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>rad</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>long_name :</span></dt><dd>GOES fixed grid projection y-coordinate</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([0.128212, 0.128156, 0.1281  , ..., 0.04438 , 0.044324, 0.044268],
-      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.1013 -0.1013 ... 0.03856 0.03861</div><input id='attrs-9c07205b-fe9e-4358-9dfd-1a7957367504' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9c07205b-fe9e-4358-9dfd-1a7957367504' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c358b51c-1a92-488d-9ab0-34dc247fce23' class='xr-var-data-in' type='checkbox'><label for='data-c358b51c-1a92-488d-9ab0-34dc247fce23' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>rad</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>long_name :</span></dt><dd>GOES fixed grid projection x-coordinate</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([-0.101332, -0.101276, -0.10122 , ...,  0.0385  ,  0.038556,  0.038612],
-      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>y_image</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-ffb7a7e7-00b9-4dc7-bbf2-64927a56f4ca' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ffb7a7e7-00b9-4dc7-bbf2-64927a56f4ca' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a54ef0a5-d168-46f4-948e-bd6269049aaf' class='xr-var-data-in' type='checkbox'><label for='data-a54ef0a5-d168-46f4-948e-bd6269049aaf' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>GOES-R fixed grid projection y-coordinate center of image</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd><dt><span>units :</span></dt><dd>rad</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array(0.08624, dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>x_image</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-e1479e32-f489-4a90-bec0-e99eeecdbb57' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e1479e32-f489-4a90-bec0-e99eeecdbb57' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-155da994-c836-4a57-ad63-fd8fac3eb47d' class='xr-var-data-in' type='checkbox'><label for='data-155da994-c836-4a57-ad63-fd8fac3eb47d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>GOES-R fixed grid projection x-coordinate center of image</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd><dt><span>units :</span></dt><dd>rad</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array(-0.03136, dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>dataset_name</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U74</div><div class='xr-var-preview xr-preview'>&#x27;OR_ABI-L2-MCMIPC-M6_G16_s202026...</div><input id='attrs-2283c52c-b4f5-4f23-b9d0-156ba277bc98' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2283c52c-b4f5-4f23-b9d0-156ba277bc98' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-da7d6993-8953-48b1-a94e-c134f21bdd05' class='xr-var-data-in' type='checkbox'><label for='data-da7d6993-8953-48b1-a94e-c134f21bdd05' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;OR_ABI-L2-MCMIPC-M6_G16_s20202661801132_e20202661803505_c20202661804060.nc&#x27;,
-      dtype=&#x27;&lt;U74&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>date_created</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U22</div><div class='xr-var-preview xr-preview'>&#x27;2020-09-22T18:04:06.0Z&#x27;</div><input id='attrs-5e118939-6693-4613-a03d-b903759b415b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5e118939-6693-4613-a03d-b903759b415b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f90b7e82-d55f-4bf3-88f5-379b1dd0a032' class='xr-var-data-in' type='checkbox'><label for='data-f90b7e82-d55f-4bf3-88f5-379b1dd0a032' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-09-22T18:04:06.0Z&#x27;, dtype=&#x27;&lt;U22&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_coverage_start</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U22</div><div class='xr-var-preview xr-preview'>&#x27;2020-09-22T18:01:13.2Z&#x27;</div><input id='attrs-7816625d-7ead-42e5-b65b-020e801609cf' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7816625d-7ead-42e5-b65b-020e801609cf' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-600b2ede-a05e-4e58-9408-e060c6959245' class='xr-var-data-in' type='checkbox'><label for='data-600b2ede-a05e-4e58-9408-e060c6959245' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-09-22T18:01:13.2Z&#x27;, dtype=&#x27;&lt;U22&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_coverage_end</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U22</div><div class='xr-var-preview xr-preview'>&#x27;2020-09-22T18:03:50.5Z&#x27;</div><input id='attrs-0c3828b1-40c8-41b0-a475-392c036e1841' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0c3828b1-40c8-41b0-a475-392c036e1841' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a561eb67-fb0f-4281-92d4-3f345c854475' class='xr-var-data-in' type='checkbox'><label for='data-a561eb67-fb0f-4281-92d4-3f345c854475' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-09-22T18:03:50.5Z&#x27;, dtype=&#x27;&lt;U22&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a15fec27-ca01-48cd-b033-f64e42261f3c' class='xr-section-summary-in' type='checkbox'  ><label for='section-a15fec27-ca01-48cd-b033-f64e42261f3c' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>ABI Cloud and Moisture Imagery reflectance factor</dd><dt><span>standard_name :</span></dt><dd>toa_lambertian_equivalent_albedo_multiplied_by_cosine_solar_zenith_angle</dd><dt><span>sensor_band_bit_depth :</span></dt><dd>10</dd><dt><span>downsampling_method :</span></dt><dd>average</dd><dt><span>valid_range :</span></dt><dd>[   0 4095]</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>resolution :</span></dt><dd>y: 0.000056 rad x: 0.000056 rad</dd><dt><span>grid_mapping :</span></dt><dd>goes_imager_projection</dd><dt><span>cell_methods :</span></dt><dd>t: point area: sum (interval: 0.000028 rad)</dd><dt><span>ancillary_variables :</span></dt><dd>DQF_C01</dd></dl></div></li></ul></div></div></div>
+    ancillary_variables:    DQF_C01</pre><div class='xr-wrap' hidden><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'CMI_C01'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 1500</li><li><span class='xr-has-index'>x</span>: 2500</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-aaa179ef-0ccb-4cda-bf4b-47ec6768c015' class='xr-array-in' type='checkbox' checked><label for='section-aaa179ef-0ccb-4cda-bf4b-47ec6768c015' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>...</span></div><div class='xr-array-data'><pre>[3750000 values with dtype=float32]</pre></div></div></li><li class='xr-section-item'><input id='section-da2f9956-e34a-4f99-83e8-8e1f93723cce' class='xr-section-summary-in' type='checkbox'  checked><label for='section-da2f9956-e34a-4f99-83e8-8e1f93723cce' class='xr-section-summary' >Coordinates: <span>(9)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>t</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-e7158ca8-ce27-45dc-b98c-40fca6378d2a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e7158ca8-ce27-45dc-b98c-40fca6378d2a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3cadca78-ed41-4593-bc2f-bef1c64ecfdc' class='xr-var-data-in' type='checkbox'><label for='data-3cadca78-ed41-4593-bc2f-bef1c64ecfdc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>J2000 epoch mid-point between the start and end image scan in seconds</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bounds</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-09-22T18:02:31.941746048&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.1282 0.1282 ... 0.04432 0.04427</div><input id='attrs-f81c2006-add7-47d7-b85f-65eb1f9a4920' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f81c2006-add7-47d7-b85f-65eb1f9a4920' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c2f7be3a-c2e3-4ee6-80e5-7d524243551f' class='xr-var-data-in' type='checkbox'><label for='data-c2f7be3a-c2e3-4ee6-80e5-7d524243551f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>rad</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>long_name :</span></dt><dd>GOES fixed grid projection y-coordinate</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([0.128212, 0.128156, 0.1281  , ..., 0.04438 , 0.044324, 0.044268],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-0.1013 -0.1013 ... 0.03856 0.03861</div><input id='attrs-bc35778d-8586-4c33-bf89-6be7102d1991' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bc35778d-8586-4c33-bf89-6be7102d1991' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7314b25f-3636-466a-911b-e0345ce097a0' class='xr-var-data-in' type='checkbox'><label for='data-7314b25f-3636-466a-911b-e0345ce097a0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>rad</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>long_name :</span></dt><dd>GOES fixed grid projection x-coordinate</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd></dl></div><div class='xr-var-data'><pre>array([-0.101332, -0.101276, -0.10122 , ...,  0.0385  ,  0.038556,  0.038612],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>y_image</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-02120416-dfea-4608-a0c9-10f15ffab42e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-02120416-dfea-4608-a0c9-10f15ffab42e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8a717373-b30a-4dc7-b176-2d5c755acb18' class='xr-var-data-in' type='checkbox'><label for='data-8a717373-b30a-4dc7-b176-2d5c755acb18' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>GOES-R fixed grid projection y-coordinate center of image</dd><dt><span>standard_name :</span></dt><dd>projection_y_coordinate</dd><dt><span>units :</span></dt><dd>rad</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array(0.08624, dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>x_image</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0639e231-e4f5-4662-9ba0-f7fb34ea9759' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0639e231-e4f5-4662-9ba0-f7fb34ea9759' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a7b69808-8cb2-4203-8b0c-498ce34fbb10' class='xr-var-data-in' type='checkbox'><label for='data-a7b69808-8cb2-4203-8b0c-498ce34fbb10' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>GOES-R fixed grid projection x-coordinate center of image</dd><dt><span>standard_name :</span></dt><dd>projection_x_coordinate</dd><dt><span>units :</span></dt><dd>rad</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array(-0.03136, dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>dataset_name</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U74</div><div class='xr-var-preview xr-preview'>&#x27;OR_ABI-L2-MCMIPC-M6_G16_s202026...</div><input id='attrs-2c90cde7-a32d-4203-8ee4-36d06ce9ab37' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2c90cde7-a32d-4203-8ee4-36d06ce9ab37' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4f7b274e-8287-4c43-9d6e-ffb8c8185898' class='xr-var-data-in' type='checkbox'><label for='data-4f7b274e-8287-4c43-9d6e-ffb8c8185898' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;OR_ABI-L2-MCMIPC-M6_G16_s20202661801132_e20202661803505_c20202661804060.nc&#x27;,
+      dtype=&#x27;&lt;U74&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>date_created</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U22</div><div class='xr-var-preview xr-preview'>&#x27;2020-09-22T18:04:06.0Z&#x27;</div><input id='attrs-fe773fa9-17b6-4037-8eff-4d3b81095a20' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fe773fa9-17b6-4037-8eff-4d3b81095a20' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8a8242e2-90c4-4526-82c9-ec28ffe0627a' class='xr-var-data-in' type='checkbox'><label for='data-8a8242e2-90c4-4526-82c9-ec28ffe0627a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-09-22T18:04:06.0Z&#x27;, dtype=&#x27;&lt;U22&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_coverage_start</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U22</div><div class='xr-var-preview xr-preview'>&#x27;2020-09-22T18:01:13.2Z&#x27;</div><input id='attrs-836e9e3f-7b22-4d99-bea2-77bd03bf3d2e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-836e9e3f-7b22-4d99-bea2-77bd03bf3d2e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dd53ded3-d18f-491c-be7a-de5648ac5cd4' class='xr-var-data-in' type='checkbox'><label for='data-dd53ded3-d18f-491c-be7a-de5648ac5cd4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-09-22T18:01:13.2Z&#x27;, dtype=&#x27;&lt;U22&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_coverage_end</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U22</div><div class='xr-var-preview xr-preview'>&#x27;2020-09-22T18:03:50.5Z&#x27;</div><input id='attrs-887a8d3c-0be9-44b9-b07b-24201f781b2e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-887a8d3c-0be9-44b9-b07b-24201f781b2e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-02d479c2-f16f-4987-b26a-22efd4d7b4de' class='xr-var-data-in' type='checkbox'><label for='data-02d479c2-f16f-4987-b26a-22efd4d7b4de' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;2020-09-22T18:03:50.5Z&#x27;, dtype=&#x27;&lt;U22&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-08bea210-50cb-4c79-b681-9f25a579e5a3' class='xr-section-summary-in' type='checkbox'  ><label for='section-08bea210-50cb-4c79-b681-9f25a579e5a3' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>ABI Cloud and Moisture Imagery reflectance factor</dd><dt><span>standard_name :</span></dt><dd>toa_lambertian_equivalent_albedo_multiplied_by_cosine_solar_zenith_angle</dd><dt><span>sensor_band_bit_depth :</span></dt><dd>10</dd><dt><span>downsampling_method :</span></dt><dd>average</dd><dt><span>valid_range :</span></dt><dd>[   0 4095]</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>resolution :</span></dt><dd>y: 0.000056 rad x: 0.000056 rad</dd><dt><span>grid_mapping :</span></dt><dd>goes_imager_projection</dd><dt><span>cell_methods :</span></dt><dd>t: point area: sum (interval: 0.000028 rad)</dd><dt><span>ancillary_variables :</span></dt><dd>DQF_C01</dd></dl></div></li></ul></div></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -997,7 +993,7 @@ Attributes:
 
     <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
     <span class="c1">#plt.savefig(f&#39;../images/{func.__name__}&#39;, bbox_inches=&#39;tight&#39;)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../docs/_static/</span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../_static/</span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1127,19 +1123,10 @@ Attributes:
 <img alt="../_images/user_guide_DEMO_rgb_recipes_5_17.png" src="../_images/user_guide_DEMO_rgb_recipes_5_17.png" />
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="Full-Disk">
-<h2>Full Disk<a class="headerlink" href="#Full-Disk" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Full-Disk-Image">
+<h2>Full Disk Image<a class="headerlink" href="#Full-Disk-Image" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1156,12 +1143,12 @@ Attributes:
  | Satellite: noaa-goes16      |
  |   Product: ABI-L2-MCMIPF    |
  |    Domain: F                |
-📦 Finished downloading [1] files to [/p/home/blaylock/data/noaa-goes16/ABI-L2-MCMIPF].
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPF].
 📚 Finished reading [1] files into xarray.Dataset.
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1174,7 +1161,7 @@ Attributes:
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1205,11 +1192,11 @@ Attributes:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/user_guide_DEMO_rgb_recipes_10_0.png" src="../_images/user_guide_DEMO_rgb_recipes_10_0.png" />
+<img alt="../_images/user_guide_DEMO_rgb_recipes_9_0.png" src="../_images/user_guide_DEMO_rgb_recipes_9_0.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1223,7 +1210,7 @@ Attributes:
 <div class="section" id="RGB-Sample">
 <h2>RGB Sample<a class="headerlink" href="#RGB-Sample" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1242,12 +1229,12 @@ Attributes:
  | Satellite: noaa-goes16      |
  |   Product: ABI-L2-MCMIPF    |
  |    Domain: F                |
-📦 Finished downloading [1] files to [/p/home/blaylock/data/noaa-goes16/ABI-L2-MCMIPF].
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPF].
 📚 Finished reading [1] files into xarray.Dataset.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1262,7 +1249,7 @@ Attributes:
     <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=.</span><span class="mi">01</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../docs/_static/RGB_sample&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../_static/RGB_sample&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1270,17 +1257,16 @@ Attributes:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/user_guide_DEMO_rgb_recipes_14_0.png" src="../_images/user_guide_DEMO_rgb_recipes_14_0.png" />
+<img alt="../_images/user_guide_DEMO_rgb_recipes_13_0.png" src="../_images/user_guide_DEMO_rgb_recipes_13_0.png" />
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="🚀-Rocket-Plume">
-<h1>🚀 Rocket Plume<a class="headerlink" href="#🚀-Rocket-Plume" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="🚀-Rocket-Plume-RGB">
+<h2>🚀 Rocket Plume RGB<a class="headerlink" href="#🚀-Rocket-Plume-RGB" title="Permalink to this headline">¶</a></h2>
 <p>A new RGB recipie from <a class="reference external" href="https://cimss.ssec.wisc.edu/satellite-blog/archives/41335">CIMSS</a></p>
 <p>Obtain the Mesoscale scan to identify rocket plume, because the time resolution is every 30 seconds when both mesoscale scans are in the same location</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1295,7 +1281,7 @@ Attributes:
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1313,12 +1299,12 @@ Attributes:
  | Satellite: noaa-goes16      |
  |   Product: ABI-L2-MCMIPM    |
  |    Domain: M                |
-📦 Finished downloading [1] files to [/p/home/blaylock/data/noaa-goes16/ABI-L2-MCMIPM].
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPM].
 📚 Finished reading [1] files into xarray.Dataset.
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1327,7 +1313,7 @@ Attributes:
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1363,7 +1349,7 @@ Attributes:
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="c1">#plt.savefig(f&#39;../images/{func.__name__}&#39;, bbox_inches=&#39;tight&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../docs/_static/RocketPlume&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../_static/RocketPlume&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1380,7 +1366,7 @@ Attributes:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/user_guide_DEMO_rgb_recipes_19_1.png" src="../_images/user_guide_DEMO_rgb_recipes_19_1.png" />
+<img alt="../_images/user_guide_DEMO_rgb_recipes_18_1.png" src="../_images/user_guide_DEMO_rgb_recipes_18_1.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1390,6 +1376,7 @@ Attributes:
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1431,7 +1418,7 @@ Attributes:
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
 </p>
     </div>
     

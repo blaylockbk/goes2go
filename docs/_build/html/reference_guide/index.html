@@ -89,7 +89,7 @@
     </li>
     
     <li class="nav-item">
-        <a class="nav-link nav-external" href="https://blaylockbk.github.io/HRRR_archive_download/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/Herbie/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
     </li>
     
 </ul>
@@ -240,7 +240,7 @@ available in a local directory, it is loaded directly into memory.</p>
 </table>
 <dl class="py function">
 <dt class="sig sig-object py" id="goes2go.data.goes_latest">
-<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_latest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'goes17'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GLM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/home/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_latest" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_latest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_latest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the latest available GOES data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -270,16 +270,17 @@ given product does not end with C, F, or M.</p>
 </p></li>
 <li><p><strong>return_as</strong> (<em>{'xarray'</em><em>, </em><em>'filelist'}</em>) – Return the data as an xarray.Dataset or as a list of files</p></li>
 <li><p><strong>download</strong> (<em>bool</em>) – <ul>
-<li><p>True: Download the data to disk to the location set by <span class="guilabel">download_dir</span></p></li>
+<li><p>True: Download the data to disk to the location set by <span class="guilabel">save_dir</span></p></li>
 <li><p>False: Just load the data into memory.</p></li>
 </ul>
 </p></li>
-<li><p><strong>download_dir</strong> (<em>pathlib.Path</em><em> or </em><em>str</em>) – Path to save the data. Default is the users <code class="docutils literal notranslate"><span class="pre">~/data/</span></code> directory.</p></li>
+<li><p><strong>save_dir</strong> (<em>pathlib.Path</em><em> or </em><em>str</em>) – Path to save the data.</p></li>
 <li><p><strong>overwrite</strong> (<em>bool</em>) – <ul>
 <li><p>True: Download the file even if it exists.</p></li>
-<li><p>False (default): Do not download the file if it already exists</p></li>
+<li><p>False Do not download the file if it already exists</p></li>
 </ul>
 </p></li>
+<li><p><strong>s3_refresh</strong> (<em>bool</em>) – Refresh the s3fs.S3FileSystem object when files are listed.</p></li>
 </ul>
 </dd>
 </dl>
@@ -287,18 +288,14 @@ given product does not end with C, F, or M.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="goes2go.data.goes_nearesttime">
-<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_nearesttime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">within</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.timedelta(seconds=3600)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'goes17'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GLM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/home/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_nearesttime" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_nearesttime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">within</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pandas.to_timedelta</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_nearesttime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the latest available GOES data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>attime</strong> (<em>datetime</em>) – Time to find the nearest observation for.
 May also use a pandas-interpretable datetime string.</p></li>
-<li><p><strong>within</strong> (<em>timedelta</em>) – Timerange tht the nearest observation must be.
-Default is 1 hour meaning the observation must be within
-1 hour of the requested <code class="docutils literal notranslate"><span class="pre">attime</span></code>. May also use pandas
-timedelta string representation. “1H” for 1 hour, “30min” for
-30 minutes, “1D” for 1 day, etc.</p></li>
+<li><p><strong>within</strong> (<em>timedelta</em><em> or </em><em>pandas-parsable timedelta str</em>) – Timerange tht the nearest observation must be.</p></li>
 <li><p><strong>satellite</strong> (<em>{'goes16'</em><em>, </em><em>'goes17'}</em>) – <p>Specify which GOES satellite.
 The following alias may also be used:</p>
 <ul>
@@ -324,16 +321,17 @@ given product does not end with C, F, or M.</p>
 </p></li>
 <li><p><strong>return_as</strong> (<em>{'xarray'</em><em>, </em><em>'filelist'}</em>) – Return the data as an xarray.Dataset or as a list of files</p></li>
 <li><p><strong>download</strong> (<em>bool</em>) – <ul>
-<li><p>True: Download the data to disk to the location set by <span class="guilabel">download_dir</span></p></li>
+<li><p>True: Download the data to disk to the location set by <span class="guilabel">save_dir</span></p></li>
 <li><p>False: Just load the data into memory.</p></li>
 </ul>
 </p></li>
-<li><p><strong>download_dir</strong> (<em>pathlib.Path</em><em> or </em><em>str</em>) – Path to save the data. Default is the users <code class="docutils literal notranslate"><span class="pre">~/data/</span></code> directory.</p></li>
+<li><p><strong>save_dir</strong> (<em>pathlib.Path</em><em> or </em><em>str</em>) – Path to save the data.</p></li>
 <li><p><strong>overwrite</strong> (<em>bool</em>) – <ul>
 <li><p>True: Download the file even if it exists.</p></li>
-<li><p>False (default): Do not download the file if it already exists</p></li>
+<li><p>False: Do not download the file if it already exists</p></li>
 </ul>
 </p></li>
+<li><p><strong>s3_refresh</strong> (<em>bool</em>) – Refresh the s3fs.S3FileSystem object when files are listed.</p></li>
 </ul>
 </dd>
 </dl>
@@ -341,14 +339,14 @@ given product does not end with C, F, or M.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="goes2go.data.goes_timerange">
-<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_timerange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'goes17'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GLM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'filelist'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/home/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_timerange" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_timerange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'filelist'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_timerange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get GOES data for a time range.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>start</strong> (<em>datetime</em>) – Required if recent is None.</p></li>
 <li><p><strong>end</strong> (<em>datetime</em>) – Required if recent is None.</p></li>
-<li><p><strong>recent</strong> (<em>timedelta</em>) – Required if start and end are None. If timedelta(hours=1), will
+<li><p><strong>recent</strong> (<em>timedelta</em><em> or </em><em>pandas-parsable timedelta str</em>) – Required if start and end are None. If timedelta(hours=1), will
 get the most recent files for the past hour.</p></li>
 <li><p><strong>satellite</strong> (<em>{'goes16'</em><em>, </em><em>'goes17'}</em>) – <p>Specify which GOES satellite.
 The following alias may also be used:</p>
@@ -375,17 +373,18 @@ given product does not end with C, F, or M.</p>
 </p></li>
 <li><p><strong>return_as</strong> (<em>{'xarray'</em><em>, </em><em>'filelist'}</em>) – Return the data as an xarray.Dataset or as a list of files</p></li>
 <li><p><strong>download</strong> (<em>bool</em>) – <ul>
-<li><p>True: Download the data to disk to the location set by <span class="guilabel">download_dir</span></p></li>
+<li><p>True: Download the data to disk to the location set by <span class="guilabel">save_dir</span></p></li>
 <li><p>False: Just load the data into memory.</p></li>
 </ul>
 </p></li>
-<li><p><strong>download_dir</strong> (<em>pathlib.Path</em><em> or </em><em>str</em>) – Path to save the data. Default is the users <code class="docutils literal notranslate"><span class="pre">~/data/</span></code> directory.</p></li>
+<li><p><strong>save_dir</strong> (<em>pathlib.Path</em><em> or </em><em>str</em>) – Path to save the data.</p></li>
 <li><p><strong>overwrite</strong> (<em>bool</em>) – <ul>
 <li><p>True: Download the file even if it exists.</p></li>
-<li><p>False (default): Do not download the file if it already exists</p></li>
+<li><p>False Do not download the file if it already exists</p></li>
 </ul>
 </p></li>
 <li><p><strong>max_cpus</strong> (<em>int</em>) – </p></li>
+<li><p><strong>s3_refresh</strong> (<em>bool</em>) – Refresh the s3fs.S3FileSystem object when files are listed.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1230,7 +1229,7 @@ off the projection globe.</p></li>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
 </p>
     </div>
     

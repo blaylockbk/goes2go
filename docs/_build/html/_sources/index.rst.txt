@@ -123,7 +123,3 @@ Data Quality
 ^^^^^^^^^^^^^
 - `⛑ GOES-17 ABI Data Quality (CIMSS) <http://cimss.ssec.wisc.edu/goes-r/abi-/band_statistics_imagery.html>`_
 
-.. note::
-   **This page is a work in progress.** I'm doing SynopticPy and GOES-2-go 
-   with the PyData theme and HRRR-B with the ReadTheDocs theme.
-
