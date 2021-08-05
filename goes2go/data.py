@@ -15,7 +15,6 @@ available in a local directory, it is loaded directly into memory.
 https://registry.opendata.aws/noaa-goes/
 """
 
-import os
 from pathlib import Path 
 from datetime import datetime, timedelta
 import multiprocessing
@@ -25,15 +24,12 @@ import xarray as xr
 import pandas as pd 
 import numpy as np 
 
-# NOTE: These values are set in the config file at 
-# ~/.config/herbie/config.cfg and are read in from the __init__ file.
-from . import _default_save_dir
+# NOTE: These config dict values are retrieved from __init__ and read
+# from the file ${HOME}/.config/goes2go/config.toml
+from . import config
 
 # Connect to AWS public buckets
 fs = s3fs.S3FileSystem(anon=True)
-
-# Default Download Directory
-_default_save_dir = Path('~').expanduser() / 'data'
 
 # Define parameter options and aliases
 # ------------------------------------
@@ -157,15 +153,15 @@ def _goes_file_df(satellite, product, start, end, refresh=True):
 
     return df
 
-def _download_MP(src, download_dir, overwrite, i=1, n=1, verbose=True):
+def _download_MP(src, save_dir, overwrite, i=1, n=1, verbose=True):
     """
     Download a single file -- a multiprocessing helper
     
     Parameters
     ----------
     src : str
-        The source path of the file (path relative to S3 or ``download_dir``)
-    download_dir : str or pathlib.Path
+        The source path of the file (path relative to S3 or ``save_dir``)
+    save_dir : str or pathlib.Path
         Directory to save the file when it is downloaded.
     overwrite : bool
         True - overwrite files if the exist
@@ -176,7 +172,7 @@ def _download_MP(src, download_dir, overwrite, i=1, n=1, verbose=True):
     """
     
     # File destination
-    dst = Path(download_dir) / src
+    dst = Path(save_dir) / src
    
     if not dst.parent.is_dir():
         dst.parent.mkdir(parents=True, exist_ok=True)
@@ -194,7 +190,7 @@ def _download_MP(src, download_dir, overwrite, i=1, n=1, verbose=True):
         
 def _download(df, **params):
     """
-    Download each file in the pandas.DataFrame to ``download_dir``.
+    Download each file in the pandas.DataFrame to ``save_dir``.
 
     Use multiprocessing to improve download time.
 
@@ -203,7 +199,7 @@ def _download(df, **params):
     df : pandas.DataFrame
         A DataFrame created by ``_goes_file_df`` with a list of files 
         to download from the GOES s3 bucket.
-    download_dir : str or pathlib.Path
+    save_dir : str or pathlib.Path
         Directory the files will be downloaded to.
         The default location (set as a variable in this script)
         is ``~/data/``. 
@@ -216,7 +212,7 @@ def _download(df, **params):
     """
     params.setdefault('max_cpus', None)
     params.setdefault('verbose', True)
-    download_dir = params['download_dir']
+    save_dir = params['save_dir']
     overwrite = params['overwrite']
     max_cpus = params['max_cpus']
     verbose = params['verbose']
@@ -226,9 +222,9 @@ def _download(df, **params):
         print('🛸 No data to download.')
     elif n == 1:
         # If we only have one file, we don't need multiprocessing
-        _download_MP(df.file[0], download_dir, overwrite, 1, 1, verbose)
+        _download_MP(df.file[0], save_dir, overwrite, 1, 1, verbose)
     elif max_cpus == 1:
-        [_download_MP(df.file[i], download_dir, overwrite, i, n, verbose) for i in range(n)]
+        [_download_MP(df.file[i], save_dir, overwrite, i, n, verbose) for i in range(n)]
     else:
         # Use Multiprocessing to download multiple files.
         if max_cpus is None:
@@ -236,20 +232,20 @@ def _download(df, **params):
         cpus = np.minimum(multiprocessing.cpu_count(), max_cpus)
         cpus = np.minimum(cpus, n)   
 
-        inputs = [(src, download_dir, overwrite, i, n, verbose) \
+        inputs = [(src, save_dir, overwrite, i, n, verbose) \
                  for i, src in enumerate(df.file, start=1)]  
 
         with multiprocessing.Pool(cpus) as p:
             results = p.starmap(_download_MP, inputs)
             p.close()
             p.join()
-    if verbose: print(f"\r{'':1000}\r📦 Finished downloading [{n}] files to [{download_dir/Path(df.file[0]).parents[3]}].")
+    if verbose: print(f"\r{'':1000}\r📦 Finished downloading [{n}] files to [{save_dir/Path(df.file[0]).parents[3]}].")
 
-def _as_xarray_MP(src, download_dir, i=None, n=None, verbose=True):
+def _as_xarray_MP(src, save_dir, i=None, n=None, verbose=True):
     """Open a file as a xarray.Dataset -- a multiprocessing helper"""
     
     # File destination
-    local_copy = Path(download_dir) / src
+    local_copy = Path(save_dir) / src
     
     if local_copy.is_file():
         if verbose: print(f'\r📖💽 Reading ({i:,}/{n:,}) file from LOCAL COPY [{local_copy}].', end=' ')
@@ -286,7 +282,7 @@ def _as_xarray(df, **params):
     """
     params.setdefault('max_cpus', None)
     params.setdefault('verbose', True)
-    download_dir = params['download_dir']
+    save_dir = params['save_dir']
     max_cpus = params['max_cpus']
     verbose = params['verbose']
     
@@ -295,7 +291,7 @@ def _as_xarray(df, **params):
         print('🛸 No data....🌌')
     elif n == 1:
         # If we only have one file, we don't need multiprocessing
-        ds = _as_xarray_MP(df.iloc[0].file, download_dir, 1, 1, verbose)
+        ds = _as_xarray_MP(df.iloc[0].file, save_dir, 1, 1, verbose)
     else:
         # Use Multiprocessing to read multiple files.
         if max_cpus is None:
@@ -303,7 +299,7 @@ def _as_xarray(df, **params):
         cpus = np.minimum(multiprocessing.cpu_count(), max_cpus)
         cpus = np.minimum(cpus, n)   
 
-        inputs = [(src, download_dir, i, n) \
+        inputs = [(src, save_dir, i, n) \
                  for i, src in enumerate(df.file, start=1)]  
 
         with multiprocessing.Pool(cpus) as p:
@@ -323,13 +319,21 @@ def _as_xarray(df, **params):
 ###############################################################################
 ###############################################################################
 
-def goes_timerange(start=None, end=None, recent=None, *,
-                   satellite='goes17', product='GLM', domain='C', 
-                   return_as='filelist',
-                   download=True, overwrite=False,
-                   download_dir=_default_save_dir, 
-                   max_cpus=1, fs_refresh=True,
-                   verbose=True):
+def goes_timerange(
+    start=None,
+    end=None,
+    recent=None,
+    *,
+    satellite=config['timerange']['satellite'],
+    product=config['timerange']['product'],
+    domain=config['timerange']['domain'], 
+    return_as=config['timerange']['return_as'],
+    download=config['timerange']['download'],
+    overwrite=config['timerange']['overwrite'],
+    save_dir=config['timerange']['save_dir'], 
+    max_cpus=config['timerange']['max_cpus'],
+    s3_refresh=config['timerange']['s3_refresh'],
+    verbose=config['timerange']['s3_refresh']):
     """
     Get GOES data for a time range.
 
@@ -337,7 +341,7 @@ def goes_timerange(start=None, end=None, recent=None, *,
     ----------
     start, end : datetime
         Required if recent is None.
-    recent : timedelta
+    recent : timedelta or pandas-parsable timedelta str
         Required if start and end are None. If timedelta(hours=1), will
         get the most recent files for the past hour.   
     satellite : {'goes16', 'goes17'}
@@ -367,17 +371,16 @@ def goes_timerange(start=None, end=None, recent=None, *,
     return_as : {'xarray', 'filelist'}
         Return the data as an xarray.Dataset or as a list of files
     download : bool
-        - True: Download the data to disk to the location set by :guilabel:`download_dir`
+        - True: Download the data to disk to the location set by :guilabel:`save_dir`
         - False: Just load the data into memory.
-    download_dir : pathlib.Path or str
-        Path to save the data. Default is the users ``~/data/`` directory.
+    save_dir : pathlib.Path or str
+        Path to save the data.
     overwrite : bool
         - True: Download the file even if it exists.
-        - False (default): Do not download the file if it already exists
+        - False Do not download the file if it already exists
     max_cpus : int
-    fs_refresh : bool
+    s3_refresh : bool
         Refresh the s3fs.S3FileSystem object when files are listed.
-        Default True will refresh and not use a cached list.
     
     """
     # If `start`, or `end` is a string, parse with Pandas
@@ -412,24 +415,28 @@ def goes_timerange(start=None, end=None, recent=None, *,
         start = datetime.utcnow() - recent
         end = datetime.utcnow()
     
-    df = _goes_file_df(satellite, product, start, end, refresh=fs_refresh)
+    df = _goes_file_df(satellite, product, start, end, refresh=s3_refresh)
 
     if download:
         _download(df, **params)
     
     if return_as == 'filelist':
-        df.attrs['filePath'] = download_dir
+        df.attrs['filePath'] = save_dir
         return df
     elif return_as == 'xarray':
         return _as_xarray(df, **params)
         
-def goes_latest(*,
-                satellite='goes17', product='GLM', domain='C',
-                return_as='xarray',
-                download=True, overwrite=False,
-                download_dir=_default_save_dir, 
-                fs_refresh=True,
-                verbose=True):
+def goes_latest(
+    *,
+    satellite=config['latest']['satellite'],
+    product=config['latest']['product'],
+    domain=config['latest']['domain'],
+    return_as=config['latest']['return_as'],
+    download=config['latest']['download'],
+    overwrite=config['latest']['overwrite'],
+    save_dir=config['latest']['save_dir'], 
+    s3_refresh=config['latest']['s3_refresh'],
+    verbose=config['latest']['verbose']):
     """
     Get the latest available GOES data.
 
@@ -462,16 +469,15 @@ def goes_latest(*,
     return_as : {'xarray', 'filelist'}
         Return the data as an xarray.Dataset or as a list of files
     download : bool
-        - True: Download the data to disk to the location set by :guilabel:`download_dir`
+        - True: Download the data to disk to the location set by :guilabel:`save_dir`
         - False: Just load the data into memory.
-    download_dir : pathlib.Path or str
-        Path to save the data. Default is the users ``~/data/`` directory.
+    save_dir : pathlib.Path or str
+        Path to save the data.
     overwrite : bool
         - True: Download the file even if it exists.
-        - False (default): Do not download the file if it already exists
-    fs_refresh : bool
+        - False Do not download the file if it already exists
+    s3_refresh : bool
         Refresh the s3fs.S3FileSystem object when files are listed.
-        Default True will refresh and not use a cached list.
     """
     params = locals()
     satellite, product, domain = _check_param_inputs(**params)
@@ -486,7 +492,7 @@ def goes_latest(*,
     start = datetime.utcnow() - timedelta(hours=1)
     end = datetime.utcnow()
     
-    df = _goes_file_df(satellite, product, start, end, refresh=fs_refresh)
+    df = _goes_file_df(satellite, product, start, end, refresh=s3_refresh)
     
     # Get the most recent file (latest start date)
     df = df.loc[df.start == df.start.max()].reset_index(drop=True)
@@ -495,18 +501,24 @@ def goes_latest(*,
         _download(df, **params)
 
     if return_as == 'filelist':
-        df.attrs['filePath'] = download_dir
+        df.attrs['filePath'] = save_dir
         return df
     elif return_as == 'xarray':
         return _as_xarray(df, **params)
 
-def goes_nearesttime(attime, within=timedelta(hours=1), *,
-                     satellite='goes17', product='GLM', domain='C',
-                     return_as='xarray',
-                     download=True, overwrite=False,
-                     download_dir=_default_save_dir, 
-                     fs_refresh=True,
-                     verbose=True):
+def goes_nearesttime(
+    attime, 
+    within=pd.to_timedelta(config['nearesttime']['within']), 
+    *,
+    satellite=config['nearesttime']['satellite'],
+    product=config['nearesttime']['product'],
+    domain=config['nearesttime']['domain'],
+    return_as=config['nearesttime']['return_as'],
+    download=config['nearesttime']['download'], 
+    overwrite=config['nearesttime']['overwrite'],
+    save_dir=config['nearesttime']['save_dir'], 
+    s3_refresh=config['nearesttime']['s3_refresh'],
+    verbose=config['nearesttime']['verbose']):
     """
     Get the latest available GOES data.
 
@@ -515,12 +527,8 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
     attime : datetime
         Time to find the nearest observation for.
         May also use a pandas-interpretable datetime string.
-    within : timedelta
+    within : timedelta or pandas-parsable timedelta str
         Timerange tht the nearest observation must be.
-        Default is 1 hour meaning the observation must be within
-        1 hour of the requested ``attime``. May also use pandas
-        timedelta string representation. "1H" for 1 hour, "30min" for
-        30 minutes, "1D" for 1 day, etc.
     satellite : {'goes16', 'goes17'}
         Specify which GOES satellite.
         The following alias may also be used: 
@@ -548,16 +556,15 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
     return_as : {'xarray', 'filelist'}
         Return the data as an xarray.Dataset or as a list of files
     download : bool
-        - True: Download the data to disk to the location set by :guilabel:`download_dir`
+        - True: Download the data to disk to the location set by :guilabel:`save_dir`
         - False: Just load the data into memory.
-    download_dir : pathlib.Path or str
+    save_dir : pathlib.Path or str
         Path to save the data. Default is the users ``~/data/`` directory.
     overwrite : bool
         - True: Download the file even if it exists.
-        - False (default): Do not download the file if it already exists
-    fs_refresh : bool
+        - False: Do not download the file if it already exists
+    s3_refresh : bool
         Refresh the s3fs.S3FileSystem object when files are listed.
-        Default True will refresh and not use a cached list.
     """
     if isinstance(attime, str):
         attime = pd.to_datetime(attime)
@@ -576,7 +583,7 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
     start = attime - within
     end = attime + within
     
-    df = _goes_file_df(satellite, product, start, end, refresh=fs_refresh)
+    df = _goes_file_df(satellite, product, start, end, refresh=s3_refresh)
 
     #return df, start, end, attime
 
@@ -600,7 +607,7 @@ def goes_nearesttime(attime, within=timedelta(hours=1), *,
         _download(df, **params)
 
     if return_as == 'filelist':
-        df.attrs['filePath'] = download_dir
+        df.attrs['filePath'] = save_dir
         return df
     elif return_as == 'xarray':
         return _as_xarray(df, **params)

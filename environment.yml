@@ -5,9 +5,11 @@ dependencies:
   - python=3.8
   - pip
   - git
+  - toml
   - jupyter
   - jupyterlab
   - netcdf4
+  - h5netcdf
   - xarray
   - numpy
   - matplotlib
@@ -15,6 +17,10 @@ dependencies:
   - cartopy
   - s3fs
   - pip:
-    - goes2go  # Install from PyPI
-    #- git+https://github.com/blaylockbk/goes2go.git
-    #- git+https://github.com/blaylockbk/Carpenter_Workshop.git  # "Can I borrow your hammer?"
+    # Install from PyPi
+    #- goes2go
+    # *or* install most recent version on GitHub
+    - git+https://github.com/blaylockbk/goes2go.git
+    
+    # Borrow some tools from my garage
+    - git+https://github.com/blaylockbk/Carpenter_Workshop.git

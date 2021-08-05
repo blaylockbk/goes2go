@@ -1,0 +1,15 @@
+{
+    "workbench.colorCustomizations": {
+        // Colors based on GOES-R Logo: 
+        // https://www.goes-r.gov/multimedia/logos.html
+        //"activityBar.activeBackground": "#259DD7",
+        "activityBar.activeBorder": "#F8AF22",
+        "activityBar.foreground": "#F8AF22",
+        "activityBar.background": "#323334",
+        "activityBar.inactiveForeground": "#259DD7",
+        "activityBarBadge.background": "#F8AF22",
+        "statusBar.background": "#259DD7",
+        "statusBarItem.remoteBackground": "#F8AF22",
+        "titleBar.activeBackground": "#259DD7",
+    }
+}
