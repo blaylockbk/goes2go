@@ -39,8 +39,6 @@ _config_path = Path('~/.config/goes2go/config.toml').expand()
 ########################################################################
 # Default TOML Configuration
 default_toml = f"""
-# GOES-2-go Configuration
-
 ['default']
 save_dir = "{str(Path('~/data').expand())}"
 satellite = "noaa-goes16"
@@ -53,7 +51,6 @@ max_cpus = 1
 s3_refresh = true
 verbose = true
 
-# You may overwrite default settings for each download method
 ['timerange']
 s3_refresh = false
 

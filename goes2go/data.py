@@ -324,16 +324,16 @@ def goes_timerange(
     end=None,
     recent=None,
     *,
-    satellite=config['timerange']['satellite'],
-    product=config['timerange']['product'],
-    domain=config['timerange']['domain'], 
-    return_as=config['timerange']['return_as'],
-    download=config['timerange']['download'],
-    overwrite=config['timerange']['overwrite'],
-    save_dir=config['timerange']['save_dir'], 
-    max_cpus=config['timerange']['max_cpus'],
-    s3_refresh=config['timerange']['s3_refresh'],
-    verbose=config['timerange']['s3_refresh']):
+    satellite=config['timerange'].get('satellite'),
+    product=config['timerange'].get('product'),
+    domain=config['timerange'].get('domain'), 
+    return_as=config['timerange'].get('return_as'),
+    download=config['timerange'].get('download'),
+    overwrite=config['timerange'].get('overwrite'),
+    save_dir=config['timerange'].get('save_dir'), 
+    max_cpus=config['timerange'].get('max_cpus'),
+    s3_refresh=config['timerange'].get('s3_refresh'),
+    verbose=config['timerange'].get('verbose', True)):
     """
     Get GOES data for a time range.
 
@@ -428,15 +428,15 @@ def goes_timerange(
         
 def goes_latest(
     *,
-    satellite=config['latest']['satellite'],
-    product=config['latest']['product'],
-    domain=config['latest']['domain'],
-    return_as=config['latest']['return_as'],
-    download=config['latest']['download'],
-    overwrite=config['latest']['overwrite'],
-    save_dir=config['latest']['save_dir'], 
-    s3_refresh=config['latest']['s3_refresh'],
-    verbose=config['latest']['verbose']):
+    satellite=config['latest'].get('satellite'),
+    product=config['latest'].get('product'),
+    domain=config['latest'].get('domain'),
+    return_as=config['latest'].get('return_as'),
+    download=config['latest'].get('download'),
+    overwrite=config['latest'].get('overwrite'),
+    save_dir=config['latest'].get('save_dir'), 
+    s3_refresh=config['latest'].get('s3_refresh'),
+    verbose=config['latest'].get('verbose', True)):
     """
     Get the latest available GOES data.
 
@@ -508,17 +508,17 @@ def goes_latest(
 
 def goes_nearesttime(
     attime, 
-    within=pd.to_timedelta(config['nearesttime']['within']), 
+    within=pd.to_timedelta(config['nearesttime'].get('within', '1H')), 
     *,
-    satellite=config['nearesttime']['satellite'],
-    product=config['nearesttime']['product'],
-    domain=config['nearesttime']['domain'],
-    return_as=config['nearesttime']['return_as'],
-    download=config['nearesttime']['download'], 
-    overwrite=config['nearesttime']['overwrite'],
-    save_dir=config['nearesttime']['save_dir'], 
-    s3_refresh=config['nearesttime']['s3_refresh'],
-    verbose=config['nearesttime']['verbose']):
+    satellite=config['nearesttime'].get('satellite'),
+    product=config['nearesttime'].get('product'),
+    domain=config['nearesttime'].get('domain'),
+    return_as=config['nearesttime'].get('return_as'),
+    download=config['nearesttime'].get('download'), 
+    overwrite=config['nearesttime'].get('overwrite'),
+    save_dir=config['nearesttime'].get('save_dir'), 
+    s3_refresh=config['nearesttime'].get('s3_refresh'),
+    verbose=config['nearesttime'].get('verbose', True)):
     """
     Get the latest available GOES data.
 
