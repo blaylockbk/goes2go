@@ -559,7 +559,7 @@ def goes_nearesttime(
         - True: Download the data to disk to the location set by :guilabel:`save_dir`
         - False: Just load the data into memory.
     save_dir : pathlib.Path or str
-        Path to save the data. Default is the users ``~/data/`` directory.
+        Path to save the data.
     overwrite : bool
         - True: Download the file even if it exists.
         - False: Do not download the file if it already exists
