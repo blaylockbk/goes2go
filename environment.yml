@@ -16,6 +16,11 @@ dependencies:
   - pandas
   - cartopy
   - s3fs
+
+  # Formatter (I prefer Black at the moment)
+  - black
+  - autopep8
+
   - pip:
     # Install from PyPi
     #- goes2go
