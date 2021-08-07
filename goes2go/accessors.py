@@ -48,9 +48,9 @@ def _gamma_correction(a, gamma, verbose=False):
 
 def _normalize(value, lower_limit, upper_limit, clip=True):
     """
-    _normalize values between 0 and 1.
+    Normalize values between 0 and 1.
 
-    _normalize between a lower and upper limit. In other words, it
+    Normalize between a lower and upper limit. In other words, it
     converts your number to a value in the range between 0 and 1.
     Follows `normalization formula
     <https://stats.stackexchange.com/a/70807/220885>`_
@@ -87,8 +87,8 @@ def _normalize(value, lower_limit, upper_limit, clip=True):
 # RGB Accessor
 
 
-@xr.register_dataset_accessor("geo")
-class GeoAccessor:
+@xr.register_dataset_accessor("rgb")
+class rgbAccessor:
     def __init__(self, xarray_obj):
         self._obj = xarray_obj
         self._center = None
@@ -156,79 +156,6 @@ class GeoAccessor:
 
         self._obj.coords["longitude"] = (("y", "x"), lons)
         self._obj.coords["latitude"] = (("y", "x"), lats)
-
-
-@xr.register_dataset_accessor("rgb")
-class GeoAccessor:
-    def __init__(self, xarray_obj):
-        self._obj = xarray_obj
-        self._center = None
-
-        @property
-        def center(self):
-            """Return the geographic center point of this dataset."""
-            if self._center is None:
-                # we can use a cache on our accessor objects, because accessors
-                # themselves are cached on instances that access them.
-                lon = self._obj.x
-                lat = self._obj.y
-                self._center = (float(lon.mean()), float(lat.mean()))
-            return self._center
-
-        @property
-        def sat_h(self):
-            if self._sat_h is None:
-                ds = self._obj
-                self._sat_h = ds.goes_imager_projection.perspective_point_height
-            return self._sat_h
-
-        @property
-        def crs(self):
-            if self._crs is None:
-                ds = self._obj
-                # Convert x, y points to latitude/longitude
-                _, crs = field_of_view(ds)
-                self._crs = crs
-            return self._crs
-
-        @property
-        def get_x(self):
-            """x sweep in crs units (m); x * sat_height"""
-            if self._x is None:
-                self._x = self._obj.x * sat_h
-            return self._x
-
-        @property
-        def get_y(self):
-            """x sweep in crs units (m); x * sat_height"""
-            if self._y is None:
-                self._y = self._obj.y * sat_h
-            return self._y
-
-        @property
-        def get_imshow_kwargs(self):
-            if self._imshow_kwargs is None:
-                self._imshow_kwargs = dict(
-                    extent=[
-                        self._x2.data.min(),
-                        self._x2.data.max(),
-                        self._y2.data.min(),
-                        self._y2.data.max(),
-                    ],
-                    transform=self._crs,
-                    origin="upper",
-                    interpolation="none",
-                )
-            return self._imshow_kwargs
-
-        def get_latlon(self):
-            """Get lat/lon of all points"""
-            X, Y = np.meshgrid(self._x, self._y)
-            a = ccrs.PlateCarree().transform_points(self._crs, X, Y)
-            lons, lats, _ = a[:, :, 0], a[:, :, 1], a[:, :, 2]
-
-            self._obj.coords["longitude"] = (("y", "x"), lons)
-            self._obj.coords["latitude"] = (("y", "x"), lats)
 
     ####################################################################
     # Helpers

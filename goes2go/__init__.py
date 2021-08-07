@@ -36,12 +36,18 @@ Path.expand = _expand
 # goes2go configuration file
 # Configuration file is save in `~/config/goes2go/config.toml`
 _config_path = Path("~/.config/goes2go/config.toml").expand()
+_save_dir = str(Path('~/data').expand())
+
+# NOTE: The `\\` is an escape character in TOML. 
+# For Windows paths "C:\\user\\"" needs to be "C:\\\\user\\\\""
+_save_dir = str(Path('~/data').expand())
+_save_dir = _save_dir.replace('\\', '\\\\')
 
 ########################################################################
 # Default TOML Configuration
 default_toml = f"""
-['default']
-save_dir = "{str(Path('~/data').expand())}"
+["default"]
+save_dir = "{_save_dir}"
 satellite = "noaa-goes16"
 product = "ABI-L2-MCMIP"
 domain = "C"
@@ -52,13 +58,13 @@ max_cpus = 1
 s3_refresh = true
 verbose = true
 
-['timerange']
+["timerange"]
 s3_refresh = false
 
-['latest']
+["latest"]
 return_as = "xarray"
 
-['nearesttime']
+["nearesttime"]
 within = "1H"
 return_as = "xarray"
 """
@@ -66,6 +72,7 @@ return_as = "xarray"
 ########################################################################
 # If a config file isn't found, make one
 if not _config_path.exists():
+    _config_path.parent.mkdir(parents=True, exist_ok=True)
     with open(_config_path, "w") as f:
         toml_string = toml.dump(toml.loads(default_toml), f)
     print(f"⚙ Created config file [{_config_path}] with default values.")
