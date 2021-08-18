@@ -59,6 +59,7 @@ RGB Recipes for ABI
 ^^^^^^^^^^^^^^^^^^^
 Generate RGB arrays for different RGB products. Check out the following notebook for a demonstration:
 
+- `📖 RGB Recipes Docs <https://blaylockbk.github.io/goes2go/_build/html/reference_guide/index.html#rgb-recipes>`_
 - `📓 Example Notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb>`_
 
 .. figure:: _static/TrueColor.png
