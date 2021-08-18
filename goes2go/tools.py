@@ -10,11 +10,13 @@ Other tools for handeling NOAA GOES data files.
 
 import numpy as np
 import cartopy.crs as ccrs
+import warnings
 
 try:
     import metpy  # Need accessors to get projection info.
 except:
     # Not sure why sphinx can't import metpy??
+    warnings.warn('Metpy not imported.')
     pass
 from shapely.geometry import Point, Polygon
 
