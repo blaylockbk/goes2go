@@ -5,16 +5,17 @@
 =============
 Retrieve Data
 =============
-Download and read data from the R-series Geostationary Operational 
+Download and read data from the R-series Geostationary Operational
 Environmental Satellite data.
 
 Data is downloaded from Amazon Web Services and can be returned
-as a file list or read as an xarray.Dataset. If the data is not 
+as a file list or read as an xarray.Dataset. If the data is not
 available in a local directory, it is loaded directly into memory.
 
 https://registry.opendata.aws/noaa-goes/
 """
 
+from os import pardir
 from pathlib import Path
 from datetime import datetime, timedelta
 import multiprocessing
@@ -87,12 +88,15 @@ def _check_param_inputs(**params):
             domain = product[-1]
         elif isinstance(domain, str):
             domain = domain.upper()
-            for key, aliases in _domain.items():
-                if domain in aliases:
-                    domain = key
-            product = product + domain
-        assert (
-            domain in _domain
+            if domain in ["M1", "M2"]:
+                product = product + "M"
+            else:
+                for key, aliases in _domain.items():
+                    if domain in aliases:
+                        domain = key
+                product = product + domain
+        assert (domain in _domain) or (
+            domain in ["M1", "M2"]
         ), f"domain must be one of {list(_domain.keys())} or an alias {list(_domain.values())}"
     else:
         domain = None
@@ -350,6 +354,7 @@ def _as_xarray(df, **params):
 
     if verbose:
         print(f"\r{'':1000}\r📚 Finished reading [{n}] files into xarray.Dataset.")
+    ds.attrs["path"] = df.file.to_list()
     return ds
 
 
@@ -536,6 +541,10 @@ def goes_latest(
     end = datetime.utcnow()
 
     df = _goes_file_df(satellite, product, start, end, refresh=s3_refresh)
+
+    # Filter for specific mesoscale domain
+    if domain.upper() in ["M1", "M2"]:
+        df = df[df["file"].str.contains(f"{domain.upper()}-M")]
 
     # Get the most recent file (latest start date)
     df = df.loc[df.start == df.start.max()].reset_index(drop=True)

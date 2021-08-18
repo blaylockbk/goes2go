@@ -11,7 +11,7 @@ Other tools for handeling NOAA GOES data files.
 import numpy as np
 import cartopy.crs as ccrs
 
-# import metpy
+import metpy  # Need accessors to get projection info.
 from shapely.geometry import Point, Polygon
 
 
@@ -69,7 +69,7 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
         nadir_lon = G.lon_field_of_view.item()
         nadir_lat = G.lat_field_of_view.item()
         FOV = 8 * 2
-        FOV += 0.15  # Little offset to match boundary from Rudlosky et al. 2018
+        FOV += 0.15  # Little offset to better match boundary from Rudlosky et al. 2018
 
     # Create a cartopy coordinate reference system for the data
 
@@ -121,7 +121,20 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
         square_FOV = Polygon(zip(x, y))
         FOV_poly = FOV_poly.intersection(square_FOV)
 
-    return FOV_poly, crs
+        return FOV_poly, crs
+
+    if G.title.startswith("ABI"):
+        # We have the global field of view
+        # now we need the domain field of view
+        dom_border = np.array(
+            [(i, G.y.data[0]) for i in G.x.data]
+            + [(G.x.data[-1], i) for i in G.y.data]
+            + [(i, G.y.data[-1]) for i in G.x.data[::-1]]
+            + [(G.x.data[0], i) for i in G.y.data[::-1]]
+        )
+        FOV_dom = Polygon(dom_border * sat_height)
+        FOV_dom = FOV_dom.intersection(FOV_poly)
+        return FOV_poly, FOV_dom, crs
 
 
 def abi_crs(G, reference_variable="CMI_C01"):
@@ -152,3 +165,10 @@ def abi_crs(G, reference_variable="CMI_C01"):
     x, y = (dat.x, dat.y)
 
     return crs, x, y
+
+
+def glm_crs(G, reference_variable="flash_lat"):
+    """Not too useful, because it's just lat/lon coordinates"""
+    dat = G.metpy.parse_cf("flash_lat")
+    crs = dat.metpy.cartopy_crs
+    return crs

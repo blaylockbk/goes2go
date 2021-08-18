@@ -15,13 +15,21 @@
     
     "actionButtons": {
         "reloadButton": null,
-        "loadNpmCommands": false,
         "commands": [
             {
-                "name": "Remake Docs",
+                "name": "🌐Remake Docs",
                 "singleInstance": true,
-                "color": "#af565c",
                 "command": "conda activate basic38; cd docs;  ./remake_docs.sh",
+            },
+            {
+                "name": "🚀JupyterLab",
+                "color": "#f0ead2",
+                "command": "conda activate goes2go && jupyter lab --no-browser --port=7793",
+            },
+            {
+                "name": "🥇Update",
+                "color": "#f0ead2",
+                "command": "conda env update -f environment.yml --prune",
             },
         ]
     }

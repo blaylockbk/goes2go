@@ -16,16 +16,17 @@ dependencies:
   - pandas
   - cartopy
   - s3fs
+  - metpy
 
   # Formatter (I prefer Black at the moment)
   - black
   - autopep8
 
   - pip:
-    # Install from PyPi
-    #- goes2go
-    # *or* install most recent version on GitHub
-    - git+https://github.com/blaylockbk/goes2go.git
-    
-    # Borrow some tools from my garage
-    - git+https://github.com/blaylockbk/Carpenter_Workshop.git
+      # Install from PyPi
+      #- goes2go
+      # * or install most recent version on GitHub
+      - git+https://github.com/blaylockbk/goes2go.git
+
+      # Borrow some tools from my garage
+      - git+https://github.com/blaylockbk/Carpenter_Workshop.git

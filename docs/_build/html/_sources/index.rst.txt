@@ -22,7 +22,7 @@ Install
 -------
 
 Install goes2go in a conda environment. You may use this minimum `environment.yml
-<https://github.com/blaylockbk/goes2go/blob/master/environment.yml>`_ file 
+<https://github.com/blaylockbk/goes2go/blob/master/environment.yml>`_ file
 and create the environment with the following...
 
 .. code:: bash
@@ -78,6 +78,12 @@ GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOE
 .. figure:: _static/ABI_field-of-view.png
    :class: img-fluid
 
+.. figure:: _static/ABI_field-of-view_16dom.png
+   :class: img-fluid
+
+.. figure:: _static/ABI_field-of-view_17dom.png
+   :class: img-fluid
+
    ABI full disk field of view
 
 Geostationary Lightning Mapper (GLM)
@@ -95,7 +101,7 @@ The GLM field of view is slightly smaller and limited by a bounding box. The fie
 
 Useful Links
 ------------
-- `👨🏻‍💻 Brian's GitHub notebooks <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ 
+- `👨🏻‍💻 Brian's GitHub notebooks <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_
 - `🎠 Beginner's Guide <https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf>`_
 - `📔 GOES-R Series Data Book <https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf>`_
 - `💻 Rammb Slider GOES Viewer <https://rammb-slider.cira.colostate.edu/>`_
