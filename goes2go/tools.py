@@ -11,7 +11,7 @@ Other tools for handeling NOAA GOES data files.
 import numpy as np
 import cartopy.crs as ccrs
 
-import metpy  # Need accessors to get projection info.
+# import metpy  # Need accessors to get projection info.
 from shapely.geometry import Point, Polygon
 
 
