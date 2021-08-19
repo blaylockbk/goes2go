@@ -8,13 +8,16 @@ RGB Recipes
 
 RGB Recipes for the GOES Advanced Baseline Imager.
 
+More about xarray accessors:
+http://xarray.pydata.org/en/stable/internals/extending-xarray.html?highlight=extending#
 """
 
+import warnings
 import xarray as xr
 import numpy as np
 import cartopy.crs as ccrs
 
-from goes2go.tools import field_of_view
+from shapely.geometry import Point, Polygon
 
 ########################
 # Image Processing Tools
@@ -48,7 +51,7 @@ def _gamma_correction(a, gamma, verbose=False):
 
 def _normalize(value, lower_limit, upper_limit, clip=True):
     """
-    Normalize values between 0 and 1.
+    Normalize values between an upper and lower limit between 0 and 1.
 
     Normalize between a lower and upper limit. In other words, it
     converts your number to a value in the range between 0 and 1.
@@ -74,8 +77,6 @@ def _normalize(value, lower_limit, upper_limit, clip=True):
     clip : bool
         - True: Clips values between 0 and 1 for RGB.
         - False: Retain the numbers that extends outside 0-1 range.
-    Output:
-        Values _normalized between the upper and lower limit.
     """
     norm = (value - lower_limit) / (upper_limit - lower_limit)
     if clip:
@@ -83,64 +84,166 @@ def _normalize(value, lower_limit, upper_limit, clip=True):
     return norm
 
 
-##############
-# RGB Accessor
+@xr.register_dataset_accessor("FOV")
+class fieldOfViewAccessor:
+    """
+    Create a field-of-view polygon for the GOES data.
+
+    Based on information from the `GOES-R Series Data Book
+    <https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf>`_.
+
+    GLM lense field of view is 16 degree, or +/- 8 degrees (see page 225)
+    ABI full-disk field of view if 17.4 degrees (see page 48)
+    """
+
+    def __init__(self, xarray_obj):
+        self._obj = xarray_obj
+
+    @property
+    def crs(self):
+        ds = self._obj
+        if ds.title.startswith("ABI"):
+            globe_kwargs = dict(
+                semimajor_axis=ds.goes_imager_projection.semi_major_axis,
+                semiminor_axis=ds.goes_imager_projection.semi_minor_axis,
+                inverse_flattening=ds.goes_imager_projection.inverse_flattening,
+            )
+            sat_height = ds.goes_imager_projection.perspective_point_height
+            nadir_lon = ds.geospatial_lat_lon_extent.geospatial_lon_nadir
+            nadir_lat = ds.geospatial_lat_lon_extent.geospatial_lat_nadir
+        elif ds.title.startswith("GLM"):
+            globe_kwargs = dict(
+                semimajor_axis=ds.goes_lat_lon_projection.semi_major_axis,
+                semiminor_axis=ds.goes_lat_lon_projection.semi_minor_axis,
+                inverse_flattening=ds.goes_lat_lon_projection.inverse_flattening,
+            )
+            sat_height = ds.nominal_satellite_height.item() * 1000
+            nadir_lon = ds.lon_field_of_view.item()
+            nadir_lat = ds.lat_field_of_view.item()
+        # Create a cartopy coordinate reference system (crs)
+        globe = ccrs.Globe(ellipse=None, **globe_kwargs)
+
+        crs = ccrs.Geostationary(
+            central_longitude=nadir_lon,
+            satellite_height=sat_height,
+            globe=globe,
+            sweep_axis="x",
+        )
+
+        return crs
+
+    @property
+    def full_disk(self):
+        """Full Disk Field of View"""
+        ds = self._obj
+
+        # Create polygon of the field of view. This polygon is in
+        # the geostationary crs projection units, and is in meters.
+        # The central point is at 0,0 (not the nadir position), because
+        # we are working in the geostationary projection coordinates
+        # and the center point is 0,0 meters.
+        if ds.title.startswith("ABI"):
+            # Field of view (FOV) in degrees. Reduce just a little to
+            # get all polygon points in the projection plane so cartopy
+            # can plot it correctly.
+            # TODO: Is there a more "correct" way to handle this?
+            sat_height = ds.goes_imager_projection.perspective_point_height
+            FOV_degrees = 17.4
+            FOV_degrees -= 0.06
+            FOV_radius = np.radians(FOV_degrees / 2) * sat_height
+            FOV_polygon = Point(0, 0).buffer(FOV_radius, resolution=160)
+            return FOV_polygon
+        elif ds.title.startswith("GLM"):
+            # Field of view (FOV) of GLM is different than ABI.
+            # Do a little offset to better match boundary from
+            # Rudlosky et al. 2018
+            sat_height = ds.nominal_satellite_height.item() * 1000
+            FOV_degrees = 8 * 2
+            FOV_degrees += 0.15
+            FOV_radius = np.radians(FOV_degrees / 2) * sat_height
+            FOV_polygon = Point(0, 0).buffer(FOV_radius, resolution=160)
+
+            # I haven't found this explained in the documentation yet,
+            # but the GLM field-of-view is not exactly the full circle,
+            # there is a square area cut out of it.
+            # The square FOV width and height is about 15 degrees.
+            cutout_FOV_degrees = 15 / 2
+            cutout_FOV_length = np.radians(cutout_FOV_degrees) * sat_height
+            # Create a square with many points clockwise, starting in bottom left corner
+            side_points = np.linspace(-cutout_FOV_length, cutout_FOV_length, 300)
+            cutout_points = np.array(
+                [(-cutout_FOV_length, i) for i in side_points]
+                + [(i, cutout_FOV_length) for i in side_points]
+                + [(cutout_FOV_length, i) for i in side_points][::-1]
+                + [(i, -cutout_FOV_length) for i in side_points][::-1]
+            )
+            cutout = Polygon(cutout_points)
+            FOV_polygon = FOV_polygon.intersection(cutout)
+            return FOV_polygon
+
+    @property
+    def domain(self):
+        """Field of view for ABI domain"""
+        ds = self._obj
+        assert ds.title.startswith(
+            "ABI"
+        ), "Domain polygon only available for ABI CONUS and Mesoscale files."
+        sat_height = ds.goes_imager_projection.perspective_point_height
+        # Trim out domain FOV from the full disk (this is necessary for GOES-16).
+        dom_border = np.array(
+            [(i, ds.y.data[0]) for i in ds.x.data]
+            + [(ds.x.data[-1], i) for i in ds.y.data]
+            + [(i, ds.y.data[-1]) for i in ds.x.data[::-1]]
+            + [(ds.x.data[0], i) for i in ds.y.data[::-1]]
+        )
+        FOV_domain = Polygon(dom_border * sat_height)
+        FOV_domain = FOV_domain.intersection(self.full_disk)
+        return FOV_domain
 
 
 @xr.register_dataset_accessor("rgb")
 class rgbAccessor:
     def __init__(self, xarray_obj):
         self._obj = xarray_obj
-        self._center = None
-        self._sat_h = self._obj.goes_imager_projection.perspective_point_height
+        assert (
+            self._obj.title == "ABI L2 Cloud and Moisture Imagery"
+        ), "Dataset must be an ABI L2 Cloud and Moisture Imagery file."
+        self._crs = None
         self._x = None
         self._y = None
-        self._crs = None
+        self._sat_h = self._obj.goes_imager_projection.perspective_point_height
         self._imshow_kwargs = None
-
-    @property
-    def center(self):
-        """Return the geographic center point of this dataset."""
-        if self._center is None:
-            # we can use a cache on our accessor objects, because accessors
-            # themselves are cached on instances that access them.
-            lon = self._obj.x
-            lat = self._obj.y
-            self._center = (float(lon.mean()), float(lat.mean()))
-        return self._center
 
     @property
     def crs(self):
         if self._crs is None:
-            ds = self._obj
-            # Convert x, y points to latitude/longitude
-            _, crs = field_of_view(ds)
-            self._crs = crs
+            # Why am I doing this? To Cache the values.
+            self._crs = self._obj.FOV.crs
         return self._crs
 
     @property
-    def get_x(self):
+    def x(self):
         """x sweep in crs units (m); x * sat_height"""
         if self._x is None:
-            self._x = self._obj.x * sat_h
+            self._x = self._obj.x * self._sat_h
         return self._x
 
     @property
-    def get_y(self):
+    def y(self):
         """x sweep in crs units (m); x * sat_height"""
         if self._y is None:
-            self._y = self._obj.y * sat_h
+            self._y = self._obj.y * self._sat_h
         return self._y
 
     @property
-    def get_imshow_kwargs(self):
+    def imshow_kwargs(self):
         if self._imshow_kwargs is None:
             self._imshow_kwargs = dict(
                 extent=[
-                    self._x.data.min(),
-                    self._x.data.max(),
-                    self._y.data.min(),
-                    self._y.data.max(),
+                    self.x.data.min(),
+                    self.x.data.max(),
+                    self.y.data.min(),
+                    self.y.data.max(),
                 ],
                 transform=self._crs,
                 origin="upper",
@@ -150,12 +253,13 @@ class rgbAccessor:
 
     def get_latlon(self):
         """Get lat/lon of all points"""
-        X, Y = np.meshgrid(self._x, self._y)
+        X, Y = np.meshgrid(self.x, self.y)
         a = ccrs.PlateCarree().transform_points(self._crs, X, Y)
         lons, lats, _ = a[:, :, 0], a[:, :, 1], a[:, :, 2]
 
         self._obj.coords["longitude"] = (("y", "x"), lons)
         self._obj.coords["latitude"] = (("y", "x"), lats)
+        return self._obj
 
     ####################################################################
     # Helpers
@@ -191,7 +295,7 @@ class rgbAccessor:
 
     ####################################################################
     # RGB Recipes
-    def TrueColor(self, gamma=2.2, pseudoGreen=True, night_IR=True, **kwargs):
+    def TrueColor(self, gamma=2.2, pseudoGreen=True, night_IR=True):
         """
         True Color RGB:
         (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
@@ -224,9 +328,7 @@ class rgbAccessor:
             If True, use Clean IR (channel 13) as maximum RGB value overlay
             so that cold clouds show up at night. (Be aware that some
             daytime clouds might appear brighter).
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
+
 
         """
         ds = self._obj
@@ -271,7 +373,9 @@ class rgbAccessor:
         ] = "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf"
         ds["TrueColor"].attrs["long_name"] = "True Color"
 
-    def NaturalColor(self, gamma=0.8, pseudoGreen=True, night_IR=False, **kwargs):
+        return ds["TrueColor"]
+
+    def NaturalColor(self, gamma=0.8, pseudoGreen=True, night_IR=False):
         """
         Natural Color RGB based on CIMSS method. Thanks Rick Kohrs!
         (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
@@ -294,8 +398,6 @@ class rgbAccessor:
 
         Parameters
         ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened ith xarray.
         gamma : float
             Darken or lighten an image with `gamma correction
             <https://en.wikipedia.org/wiki/_gamma_correction>`_.
@@ -305,9 +407,7 @@ class rgbAccessor:
             If True, use Clean IR (channel 13) as maximum RGB value overlay
             so that cold clouds show up at night. (Be aware that some
             daytime clouds might appear brighter).
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
+
         """
         ds = self._obj
 
@@ -327,7 +427,7 @@ class rgbAccessor:
             return combined
 
         # Load the three channels into appropriate R, G, and B variables
-        R, G, B = _load_RGB_channels(C, (2, 3, 1))
+        R, G, B = self._load_RGB_channels((2, 3, 1))
 
         # Apply range limits for each channel. RGB values must be between 0 and 1
         R = np.clip(R, 0, 1)
@@ -353,7 +453,7 @@ class rgbAccessor:
 
         if night_IR:
             # Load the Clean IR channel
-            IR = C["CMI_C13"]
+            IR = ds["CMI_C13"]
             # _normalize between a range and clip
             IR = _normalize(IR, 90, 313, clip=True)
             # Invert colors so cold clouds are white
@@ -369,28 +469,28 @@ class rgbAccessor:
         # Apply a gamma correction to the image
         RGB = _gamma_correction(RGB, gamma)
 
-        return _rgb_as_dataset(C, RGB, "Natural Color", **kwargs)
+        ds["NaturalColor"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["NaturalColor"].attrs[
+            "Quick Guide"
+        ] = "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf"
+        ds["NaturalColor"].attrs["long_name"] = "Natural Color"
 
-    def FireTemperature(self, **kwargs):
+        return ds["NaturalColor"]
+
+    def FireTemperature(self):
         """
         Fire Temperature RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf>`__ for reference)
 
         .. image:: /_static/FireTemperature.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R, G, B = _load_RGB_channels(C, (7, 6, 5))
+        R, G, B = self._load_RGB_channels((7, 6, 5))
 
         # _normalize each channel by the appropriate range of values (clipping happens in function)
         R = _normalize(R, 273, 333)
@@ -405,30 +505,30 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Fire Temperature", **kwargs)
+        ds["FireTemperature"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["FireTemperature"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf"
+        ds["FireTemperature"].attrs["long_name"] = "Fire Temperature"
 
-    def AirMass(self, **kwargs):
+        return ds["FireTemperature"]
+
+    def AirMass(self):
         """
         Air Mass RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/AirMass.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R = C["CMI_C08"].data - C["CMI_C10"].data
-        G = C["CMI_C12"].data - C["CMI_C13"].data
-        B = C["CMI_C08"].data - 273.15  # remember to convert to Celsius
+        R = ds["CMI_C08"].data - ds["CMI_C10"].data
+        G = ds["CMI_C12"].data - ds["CMI_C13"].data
+        B = ds["CMI_C08"].data - 273.15  # remember to convert to Celsius
 
         # _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
         R = _normalize(R, -26.2, 0.6)
@@ -441,28 +541,28 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Air Mass", **kwargs)
+        ds["AirMass"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["AirMass"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf"
+        ds["AirMass"].attrs["long_name"] = "Air Mass"
 
-    def DayCloudPhase(self, **kwargs):
+        return ds["AirMass"]
+
+    def DayCloudPhase(self):
         """
         Day Cloud Phase Distinction RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf>`__ for reference)
 
         .. image:: /_static/DayCloudPhase.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R, G, B = _load_RGB_channels(C, (13, 2, 5))
+        R, G, B = self._load_RGB_channels((13, 2, 5))
 
         # _normalize each channel by the appropriate range of values. (Clipping happens inside function)
         R = _normalize(R, -53.5, 7.5)
@@ -475,31 +575,31 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Day Cloud Phase", **kwargs)
+        ds["DayCloudPhase"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DayCloudPhase"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf"
+        ds["DayCloudPhase"].attrs["long_name"] = "Day Cloud Phase"
 
-    def DayConvection(self, **kwargs):
+        return ds["DayCloudPhase"]
+
+    def DayConvection(self):
         """
         Day Convection RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DayConvection.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
         # NOTE: Each R, G, B is a channel difference.
-        R = C["CMI_C08"].data - C["CMI_C10"].data
-        G = C["CMI_C07"].data - C["CMI_C13"].data
-        B = C["CMI_C05"].data - C["CMI_C02"].data
+        R = ds["CMI_C08"].data - ds["CMI_C10"].data
+        G = ds["CMI_C07"].data - ds["CMI_C13"].data
+        B = ds["CMI_C05"].data - ds["CMI_C02"].data
 
         # _normalize each channel by the appropriate range of values.
         R = _normalize(R, -35, 5)
@@ -509,28 +609,27 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Day Convection", **kwargs)
+        ds["DayConvection"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DayConvection"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf"
+        ds["DayConvection"].attrs["long_name"] = "Day Convection"
 
-    def DayCloudConvection(self, **kwargs):
+        return ds["DayConvection"]
+
+    def DayCloudConvection(self):
         """
         Day Cloud Convection RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DayCloudConvection.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
-
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R, G, B = _load_RGB_channels(C, (2, 2, 13))
+        R, G, B = self._load_RGB_channels((2, 2, 13))
 
         # _normalize each channel by the appropriate range of values.
         R = _normalize(R, 0, 1)
@@ -549,28 +648,28 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Day Cloud Convection", **kwargs)
+        ds["DayCloudConvection"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DayCloudConvection"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf"
+        ds["DayCloudConvection"].attrs["long_name"] = "Day Cloud Convection"
 
-    def DayLandCloud(self, **kwargs):
+        return ds["DayCloudConvection"]
+
+    def DayLandCloud(self):
         """
         Day Land Cloud Fire RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DayLandCloud.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R, G, B = _load_RGB_channels(C, (5, 3, 2))
+        R, G, B = self._load_RGB_channels((5, 3, 2))
 
         # _normalize each channel by the appropriate range of values  e.g. R = (R-minimum)/(maximum-minimum)
         R = _normalize(R, 0, 0.975)
@@ -580,28 +679,28 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Day Land Cloud", **kwargs)
+        ds["DayLandCloud"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DayLandCloud"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf"
+        ds["DayLandCloud"].attrs["long_name"] = "Day Land Cloud"
 
-    def DayLandCloudFire(self, **kwargs):
+        return ds["DayLandCloud"]
+
+    def DayLandCloudFire(self):
         """
         Day Land Cloud Fire RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DayLandCloudFire.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R, G, B = _load_RGB_channels(C, (6, 3, 2))
+        R, G, B = self._load_RGB_channels((6, 3, 2))
 
         # _normalize each channel by the appropriate range of values  e.g. R = (R-minimum)/(maximum-minimum)
         R = _normalize(R, 0, 1)
@@ -611,28 +710,28 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Day Land Cloud Fire", **kwargs)
+        ds["DayLandCloudFire"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DayLandCloudFire"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf"
+        ds["DayLandCloudFire"].attrs["long_name"] = "Day Land Cloud Fire"
 
-    def WaterVapor(self, **kwargs):
+        return ds["DayLandCloud"]
+
+    def WaterVapor(self):
         """
         Simple Water Vapor RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf>`__ for reference)
 
         .. image:: /_static/WaterVapor.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables.
-        R, G, B = _load_RGB_channels(C, (13, 8, 10))
+        R, G, B = self._load_RGB_channels((13, 8, 10))
 
         # _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
         R = _normalize(R, -70.86, 5.81)
@@ -647,30 +746,30 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Water Vapor", **kwargs)
+        ds["WaterVapor"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["WaterVapor"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf"
+        ds["WaterVapor"].attrs["long_name"] = "Water Vapor"
 
-    def DifferentialWaterVapor(self, **kwargs):
+        return ds["WaterVapor"]
+
+    def DifferentialWaterVapor(self):
         """
         Differential Water Vapor RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DifferentialWaterVapor.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables.
-        R = C["CMI_C10"].data - C["CMI_C08"].data
-        G = C["CMI_C10"].data - 273.15
-        B = C["CMI_C08"].data - 273.15
+        R = ds["CMI_C10"].data - ds["CMI_C08"].data
+        G = ds["CMI_C10"].data - 273.15
+        B = ds["CMI_C08"].data - 273.15
 
         # _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
         R = _normalize(R, -3, 30)
@@ -690,30 +789,30 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Differenctial Water Vapor", **kwargs)
+        ds["DifferentialWaterVapor"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DifferentialWaterVapor"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf"
+        ds["DifferentialWaterVapor"].attrs["long_name"] = "Differential Water Vapor"
 
-    def DaySnowFog(self, **kwargs):
+        return ds["DifferentialWaterVapor"]
+
+    def DaySnowFog(self):
         """
         Day Snow-Fog RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf>`__ for reference)
 
         .. image:: /_static/DaySnowFog.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R = C["CMI_C03"].data
-        G = C["CMI_C05"].data
-        B = C["CMI_C07"].data - C["CMI_C13"].data
+        R = ds["CMI_C03"].data
+        G = ds["CMI_C05"].data
+        B = ds["CMI_C07"].data - ds["CMI_C13"].data
 
         # _normalize values
         R = _normalize(R, 0, 1)
@@ -729,30 +828,30 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Day Snow Fog", **kwargs)
+        ds["DaySnowFog"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DaySnowFog"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf"
+        ds["DaySnowFog"].attrs["long_name"] = "Day Snow Fog"
 
-    def NighttimeMicrophysics(self, **kwargs):
+        return ds["DaySnowFog"]
+
+    def NighttimeMicrophysics(self):
         """
         Nighttime Microphysics RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/NighttimeMicrophysics.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R = C["CMI_C15"].data - C["CMI_C13"].data
-        G = C["CMI_C13"].data - C["CMI_C07"].data
-        B = C["CMI_C13"].data - 273.15
+        R = ds["CMI_C15"].data - ds["CMI_C13"].data
+        G = ds["CMI_C13"].data - ds["CMI_C07"].data
+        B = ds["CMI_C13"].data - 273.15
 
         # _normalize values
         R = _normalize(R, -6.7, 2.6)
@@ -762,30 +861,30 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Nighttime Microphysics", **kwargs)
+        ds["NighttimeMicrophysics"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["NighttimeMicrophysics"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf"
+        ds["NighttimeMicrophysics"].attrs["long_name"] = "Nighttime Microphysics"
 
-    def Dust(self, **kwargs):
+        return ds["NighttimeMicrophysics"]
+
+    def Dust(self):
         """
         SulfurDioxide RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf>`__ for reference)
 
         .. image:: /_static/Dust.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R = C["CMI_C15"].data - C["CMI_C13"].data
-        G = C["CMI_C14"].data - C["CMI_C11"].data
-        B = C["CMI_C13"].data - 273.15
+        R = ds["CMI_C15"].data - ds["CMI_C13"].data
+        G = ds["CMI_C14"].data - ds["CMI_C11"].data
+        B = ds["CMI_C13"].data - 273.15
 
         # _normalize values
         R = _normalize(R, -6.7, 2.6)
@@ -799,30 +898,30 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Dust", **kwargs)
+        ds["Dust"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["Dust"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf"
+        ds["Dust"].attrs["long_name"] = "Dust"
 
-    def SulfurDioxide(self, **kwargs):
+        return ds["Dust"]
+
+    def SulfurDioxide(self):
         """
         SulfurDioxide RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf>`__ for reference)
 
         .. image:: /_static/SulfurDioxide.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R = C["CMI_C09"].data - C["CMI_C10"].data
-        G = C["CMI_C13"].data - C["CMI_C11"].data
-        B = C["CMI_C07"].data - 273.15
+        R = ds["CMI_C09"].data - ds["CMI_C10"].data
+        G = ds["CMI_C13"].data - ds["CMI_C11"].data
+        B = ds["CMI_C07"].data - 273.15
 
         # _normalize values
         R = _normalize(R, -4, 2)
@@ -832,30 +931,30 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Sulfur Dioxide", **kwargs)
+        ds["SulfurDioxide"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["SulfurDioxide"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf"
+        ds["SulfurDioxide"].attrs["long_name"] = "Sulfur Dioxide"
 
-    def Ash(self, **kwargs):
+        return ds["SulfurDioxide"]
+
+    def Ash(self):
         """
         Ash RGB:
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf>`__ for reference)
 
         .. image:: /_static/Ash.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R = C["CMI_C15"].data - C["CMI_C13"].data
-        G = C["CMI_C14"].data - C["CMI_C11"].data
-        B = C["CMI_C13"].data - 273.15
+        R = ds["CMI_C15"].data - ds["CMI_C13"].data
+        G = ds["CMI_C14"].data - ds["CMI_C11"].data
+        B = ds["CMI_C13"].data - 273.15
 
         # _normalize values
         R = _normalize(R, -6.7, 2.6)
@@ -865,28 +964,28 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "Ash", **kwargs)
+        ds["Ash"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["Ash"].attrs[
+            "Quick Guide"
+        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf"
+        ds["Ash"].attrs["long_name"] = "Ash"
 
-    def SplitWindowDifference(self, **kwargs):
+        return ds["Ash"]
+
+    def SplitWindowDifference(self):
         """
         Split Window Difference RGB (greyscale):
         (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf>`__ for reference)
 
         .. image:: /_static/SplitWindowDifference.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        data = C["CMI_C15"].data - C["CMI_C13"].data
+        data = ds["CMI_C15"].data - ds["CMI_C13"].data
 
         # _normalize values
         data = _normalize(data, -10, 10)
@@ -894,28 +993,28 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([data, data, data])
 
-        return _rgb_as_dataset(C, RGB, "Split Window Difference", **kwargs)
+        ds["SplitWindowDifference"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["SplitWindowDifference"].attrs[
+            "Quick Guide"
+        ] = "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf"
+        ds["SplitWindowDifference"].attrs["long_name"] = "Split Window Difference"
 
-    def NightFogDifference(self, **kwargs):
+        return ds["SplitWindowDifference"]
+
+    def NightFogDifference(self):
         """
         Night Fog Difference RGB (greyscale):
         (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf>`__ for reference)
 
         .. image:: /_static/NightFogDifference.png
 
-        Parameters
-        ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        data = C["CMI_C13"].data - C["CMI_C07"].data
+        data = ds["CMI_C13"].data - ds["CMI_C07"].data
 
         # _normalize values
         data = _normalize(data, -90, 15)
@@ -926,9 +1025,16 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([data, data, data])
 
-        return _rgb_as_dataset(C, RGB, "Night Fog Difference", **kwargs)
+        ds["NightFogDifference"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["NightFogDifference"].attrs[
+            "Quick Guide"
+        ] = "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf"
+        ds["NightFogDifference"].attrs["long_name"] = "NightFogDifference"
 
-    def RocketPlume(self, night=False, **kwargs):
+        return ds["NightFogDifference"]
+
+    def RocketPlume(self, night=False):
         """
         Rocket Plume RGB
 
@@ -942,25 +1048,21 @@ class rgbAccessor:
 
         Parameters
         ----------
-        C : xarray.Dataset
-            A GOES ABI multichannel file opened with xarray.
         night : bool
             If the area is in night, turn this on to use a different channel
             than the daytime application.
-        \*\*kwargs :
-            Keyword arguments for ``_rgb_as_dataset`` function.
-            - latlon : derive latitude and longitude of each pixel
+
 
         """
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        R = C["CMI_C07"].data
-        G = C["CMI_C08"].data
+        R = ds["CMI_C07"].data
+        G = ds["CMI_C08"].data
         if not night:
-            B = C["CMI_C02"].data
+            B = ds["CMI_C02"].data
         else:
-            B = C["CMI_C05"].data
+            B = ds["CMI_C05"].data
 
         # _normalize values
         R = _normalize(R, 273, 338)
@@ -970,14 +1072,18 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
 
-        return _rgb_as_dataset(C, RGB, "RocketPlume", **kwargs)
+        ds["RocketPlume"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["RocketPlume"].attrs[
+            "Quick Guide"
+        ] = "https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf"
+        ds["RocketPlume"].attrs["long_name"] = "Rocket Plume"
 
-    #######################
-    # 🚧 Construction Zone
-    #######################
-    def _normalizedBurnRatio(self, **kwargs):
+        return ds["RocketPlume"]
+
+    def NormalizedBurnRatio(self):
         """
-        _normalized Burn Ratio
+        Normalized Burn Ratio
 
         **THIS FUNCTION IS NOT FULLY DEVELOPED. Need more info.**
 
@@ -986,15 +1092,13 @@ class rgbAccessor:
 
         https://ntrs.nasa.gov/citations/20190030825
 
-        Parameters
-        ----------
-
         """
+        warnings.warn("THE `NormalizedBurnRatio` FUNCTION IS NOT FULLY DEVELOPED. NEED MORE INFO.")
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
-        C3 = C["CMI_C03"].data
-        C6 = C["CMI_C06"].data
+        C3 = ds["CMI_C03"].data
+        C6 = ds["CMI_C06"].data
         data = (C3 - C6) / (C3 + C6)
 
         # Invert data
@@ -1003,4 +1107,11 @@ class rgbAccessor:
         # The final RGB array :)
         RGB = np.dstack([data, data, data])
 
-        return _rgb_as_dataset(C, RGB, "_normalized Burn Ratio", **kwargs)
+        ds["NormalizedBurnRatio"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["NormalizedBurnRatio"].attrs[
+            "Quick Guide"
+        ] = "https://ntrs.nasa.gov/citations/20190030825"
+        ds["NormalizedBurnRatio"].attrs["long_name"] = "Normalized Burn Ratio"
+
+        return ds["NormalizedBurnRatio"]

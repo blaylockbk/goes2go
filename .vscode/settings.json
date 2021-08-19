@@ -1,6 +1,6 @@
 {
     "workbench.colorCustomizations": {
-        // Colors based on GOES-R Logo: 
+        // Colors based on GOES-R Logo:
         // https://www.goes-r.gov/multimedia/logos.html
         "activityBar.activeBorder": "#F8AF22",
         "activityBar.foreground": "#F8AF22",
@@ -9,10 +9,10 @@
         "activityBarBadge.background": "#F8AF22",
         "statusBar.background": "#259DD7",
         "statusBarItem.remoteBackground": "#F8AF22",
+        "statusBarItem.remoteForeground": "#323334",
         "titleBar.activeBackground": "#259DD7",
     },
     "python.formatting.provider": "black",
-    
     "actionButtons": {
         "reloadButton": null,
         "commands": [

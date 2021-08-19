@@ -17,7 +17,6 @@ try:
 except:
     # Not sure why sphinx can't import metpy??
     warnings.warn('Metpy not imported.')
-    pass
 from shapely.geometry import Point, Polygon
 
 
@@ -53,6 +52,7 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
         will not be calculated correctly because edge points will lie
         off the projection globe.
     """
+    warnings.warn('DEPRECIATION. Use the FOV accessor instead `G.FOV.full_disk` or `G.FOV.domain`')
     if G.title.startswith("ABI"):
         globe_kwargs = dict(
             semimajor_axis=G.goes_imager_projection.semi_major_axis,

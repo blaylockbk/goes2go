@@ -543,7 +543,7 @@ def goes_latest(
     df = _goes_file_df(satellite, product, start, end, refresh=s3_refresh)
 
     # Filter for specific mesoscale domain
-    if domain.upper() in ["M1", "M2"]:
+    if domain is not None and domain.upper() in ["M1", "M2"]:
         df = df[df["file"].str.contains(f"{domain.upper()}-M")]
 
     # Get the most recent file (latest start date)
