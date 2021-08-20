@@ -21,3 +21,8 @@ Reference Guide
 
    Dataset.rgb.TrueColor
 
+.. autosummary::
+   :template: autosummary/accessor_callable.rst
+
+   Dataset.rgb
+
