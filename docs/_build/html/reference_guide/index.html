@@ -164,28 +164,21 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#old-functions">
-   Old functions
+  <a class="reference internal nav-link" href="#rgb-recipes">
+   RGB Recipes
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rgb-recipes">
-     RGB Recipes
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#abi-band-reference">
-       ABI Band Reference
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-tools">
-     Other Tools
+    <a class="reference internal nav-link" href="#abi-band-reference">
+     ABI Band Reference
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-tools">
+   Other Tools
+  </a>
  </li>
 </ul>
 
@@ -398,11 +391,8 @@ given product does not end with C, F, or M.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="old-functions">
-<h2>Old functions<a class="headerlink" href="#old-functions" title="Permalink to this headline">¶</a></h2>
-<p>Preferably use the <cite>FOV</cite> and <cite>rgb</cite> accessors instead.</p>
 <span class="target" id="module-goes2go.rgb"></span><div class="section" id="rgb-recipes">
-<h3>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h3>
+<h2>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h2>
 <img alt="../_images/RGB_sample.png" src="../_images/RGB_sample.png" />
 <p>These functions take GOES-East or GOES-West multichannel data on a
 fixed grid (files named <code class="docutils literal notranslate"><span class="pre">ABI-L2-MCMIPC</span></code>) and generates a 3D
@@ -464,7 +454,7 @@ represents the GOES ABI multichannel file opened with xarray. For example:</p>
 RGB, because it is much more involved than simply stacking RGB channels. If anyone does do
 something similar to a GeoColor image, let me know!</p>
 <div class="section" id="abi-band-reference">
-<h4>ABI Band Reference<a class="headerlink" href="#abi-band-reference" title="Permalink to this headline">¶</a></h4>
+<h3>ABI Band Reference<a class="headerlink" href="#abi-band-reference" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://www.weather.gov/media/crp/GOES_16_Guides_FINALBIS.pdf">https://www.weather.gov/media/crp/GOES_16_Guides_FINALBIS.pdf</a>
 <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/GOESR_QuickGuides.html">http://cimss.ssec.wisc.edu/goes/GOESR_QuickGuides.html</a>
 <a class="reference external" href="https://www.goes-r.gov/mission/ABI-bands-quick-info.html">https://www.goes-r.gov/mission/ABI-bands-quick-info.html</a></p>
@@ -1129,7 +1119,7 @@ Follows <a class="reference external" href="https://stats.stackexchange.com/a/70
 </div>
 </div>
 <span class="target" id="module-goes2go.tools"></span><div class="section" id="other-tools">
-<h3>Other Tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h3>
+<h2>Other Tools<a class="headerlink" href="#other-tools" title="Permalink to this headline">¶</a></h2>
 <p>Other tools for handeling NOAA GOES data files.</p>
 <p><strong>Functions:</strong></p>
 <table class="longtable table autosummary">
@@ -1209,7 +1199,6 @@ off the projection globe.</p></li>
 <dd><p>Not too useful, because it’s just lat/lon coordinates</p>
 </dd></dl>
 
-</div>
 </div>
 </div>
 
