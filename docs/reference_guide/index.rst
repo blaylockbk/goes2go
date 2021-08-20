@@ -6,7 +6,6 @@ Reference Guide
    :maxdepth: 4
 
 .. automodule:: goes2go.data
-.. automodule:: goes2go.accessors
 
 
 Old functions
