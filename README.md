@@ -62,15 +62,37 @@ G1 = goes_latest(satellite='G16', product='ABI')
 G2 = goes_nearesttime(datetime(2020,10,1), satellite='G16', product='GLM')
 ```
 
-# RGB Recipies
-For a GOES ABI multichannel xarray.Dataset, return an RGB array for an RGB product. See [DEMO](./notebooks/DEMO_rgb_recipies.ipynb) for more examples of RGB products.
+# RGB Recipes
+For a GOES ABI multichannel xarray.Dataset, return an RGB array for an RGB product. See [DEMO](https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
+
+```python
+from goes2go.data import goes_latest
+import matplotlib.pyplot as plt
+
+G = goes_latest()
+
+plt.imshow(G.rgb.TrueColor())
+ax = plt.subplot(projection=G.rgb.crs)
+ax.imshow(G.rgb.TrueColor(), **G.rgb.imshow_kwargs)
+ax.coastlines()
+```
 
 ![](./images/TrueColor.png)
 
 
 # Field of View
 
-See notebooks for [GLM](./notebooks/field-of-view_GLM.ipynb) and [ABI](./notebooks/field-of-view_ABI.ipynb) field of view.
+Create shapely.Polygons for ABI and GLM field of view. See notebooks for [GLM](https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_GLM.html) and [ABI](https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_ABI.html) field of view.
+
+```python
+from goes2go.data import goes_latest
+import matplotlib.pyplot as plt
+
+G = goes_latest()
+
+G.FOV.full_disk
+G.FOV.domain
+```
 
 GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a "central" position, outlined in the dashed black line. Below is the ABI field of view for the full disk:
 ![field of view image](./images/ABI_field-of-view.png)
