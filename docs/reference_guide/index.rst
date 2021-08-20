@@ -12,15 +12,16 @@ Reference Guide
 .. currentmodule:: xarray
 
 .. autosummary::
-   :toctree: reference_guide/
+   :toctree: generated/
    :template: autosummary/accessor_attribute.rst
 
    Dataset.rgb.crs
 
 .. autosummary::
-   :toctree: reference_guide/
+   :toctree: generated/
    :template: autosummary/accessor_method.rst
 
+   Dataset.rgb.TrueColor
    Dataset.rgb.TrueColor
 
 
