@@ -9,6 +9,11 @@ Reference Guide
 .. automodule:: goes2go.rgb
 .. automodule:: goes2go.tools
 
+.. currentmodele:: xarray
 
+.. autosummary::
+   :toctree: generated/
+   :template: autosummary/accessor_attribute.rst
 
+   Dataset.rgb.crs
 
