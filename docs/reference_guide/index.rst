@@ -7,17 +7,19 @@ Reference Guide
 
 .. automodule:: goes2go.data
 
+.. currentmodule:: xarray
+
 .. autosummary::
    :toctree: generated/
    :template: autosummary/accessor_attribute.rst
 
-   goes2go.accessors.rgb.crs
+   Dataset.rgb.crs
 
 .. autosummary::
    :toctree: generated/
    :template: autosummary/accessor_method.rst
 
-   goes2go.accessors.rgb.TrueColor
+   Dataset.rgb.TrueColor
 
 
 
