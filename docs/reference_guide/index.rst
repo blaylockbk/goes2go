@@ -9,10 +9,6 @@ Reference Guide
 .. automodule:: goes2go.accessors
 
 
-Old
-----
-Use ``FOV`` and ``rgb`` accessors
-
 .. automodule:: goes2go.rgb
 .. automodule:: goes2go.tools
 
