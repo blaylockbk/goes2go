@@ -10,8 +10,8 @@ Reference Guide
 Custom Accessors
 ----------------
 
-Field of View Accessor
-^^^^^^^^^^^^^^^^^^^^^^
+Field of View
+^^^^^^^^^^^^^
 Create polygon objects of the GOES field of view for the ABI and GLM instrument.
 Access with the ``FOV`` accessor.
 
@@ -25,8 +25,8 @@ Access with the ``FOV`` accessor.
    :members:
    :inherited-members:
 
-RGB Recipes Accessor
-^^^^^^^^^^^^^^^^^^^^
+RGB Recipes
+^^^^^^^^^^^
 RGB recipes for ABI multichannel cloud moisture imagery files.
 Access with the ``rgb`` accessor. The RGB method will return a DataArray of the
 RGB values and also attaches the RGB DataArray to the existing GOES Dataset.
@@ -40,6 +40,15 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.
 
    # Also can get the Cartopy coordinate reference system
    G.rgb.crs
+
+To make a simple RGB plot:
+
+.. code-block:: python
+
+   from goes2go.data import goes_latest
+   import matplotlib.pyplot as plt
+   G = goes_latest()
+   plt.imshow(G.rgb.TrueColor())
 
 .. autoclass:: goes2go.accessors.rgbAccessor
    :members:

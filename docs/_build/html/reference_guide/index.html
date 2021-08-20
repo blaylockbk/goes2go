@@ -169,13 +169,13 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#field-of-view-accessor">
-     Field of View Accessor
+    <a class="reference internal nav-link" href="#field-of-view">
+     Field of View
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rgb-recipes-accessor">
-     RGB Recipes Accessor
+    <a class="reference internal nav-link" href="#rgb-recipes">
+     RGB Recipes
     </a>
    </li>
   </ul>
@@ -393,8 +393,8 @@ given product does not end with C, F, or M.</p>
 </div>
 <div class="section" id="custom-accessors">
 <h2>Custom Accessors<a class="headerlink" href="#custom-accessors" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="field-of-view-accessor">
-<h3>Field of View Accessor<a class="headerlink" href="#field-of-view-accessor" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="field-of-view">
+<h3>Field of View<a class="headerlink" href="#field-of-view" title="Permalink to this headline">¶</a></h3>
 <p>Create polygon objects of the GOES field of view for the ABI and GLM instrument.
 Access with the <code class="docutils literal notranslate"><span class="pre">FOV</span></code> accessor.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># G is an xarray.Dataset of GOES data.</span>
@@ -460,8 +460,8 @@ ABI full-disk field of view if 17.4 degrees (see page 48)</p>
 </dd></dl>
 
 </div>
-<div class="section" id="rgb-recipes-accessor">
-<h3>RGB Recipes Accessor<a class="headerlink" href="#rgb-recipes-accessor" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="rgb-recipes">
+<h3>RGB Recipes<a class="headerlink" href="#rgb-recipes" title="Permalink to this headline">¶</a></h3>
 <p>RGB recipes for ABI multichannel cloud moisture imagery files.
 Access with the <code class="docutils literal notranslate"><span class="pre">rgb</span></code> accessor. The RGB method will return a DataArray of the
 RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
@@ -472,6 +472,13 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <span class="c1"># Also can get the Cartopy coordinate reference system</span>
 <span class="n">G</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+<p>To make a simple RGB plot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">TrueColor</span><span class="p">())</span>
 </pre></div>
 </div>
 <dl class="py class">
