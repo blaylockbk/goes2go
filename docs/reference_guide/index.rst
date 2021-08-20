@@ -12,13 +12,11 @@ Reference Guide
 .. currentmodule:: xarray
 
 .. autosummary::
-   :toctree: generated/
    :template: autosummary/accessor_attribute.rst
 
    Dataset.rgb.crs
 
 .. autosummary::
-   :toctree: generated/
    :template: autosummary/accessor_method.rst
 
    Dataset.rgb.TrueColor
