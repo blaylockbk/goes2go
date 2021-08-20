@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download GOES Data: Timerange &#8212; GOES-2-go Docs 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/brian_style.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
+    <link rel="shortcut icon" href="../../_static/wxicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="🌎 ABI Geostationary field-of-view in Cartopy" href="field-of-view_ABI.html" />
+    <link rel="prev" title="Download GOES Data: Latest available file" href="DEMO_download_goes_nearesttime.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/goes2go_logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference_guide/index.html">
+  Reference Guide
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/SynopticPy/_build/html/">SynopticPy<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/Herbie/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/blaylockbk/goes2go" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/blaylockbk" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contribute.html">
+   👨🏻‍🏭 Contributing Guidelines
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../examples.html">
+   🤹🏻‍♂️ Examples
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_download_goes_latest.html">
+     Download GOES Data: Nearest Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_download_goes_nearesttime.html">
+     Download GOES Data: Latest available file
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Download GOES Data: Timerange
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="field-of-view_ABI.html">
+     🌎 ABI Geostationary
+     <strong>
+      field-of-view
+     </strong>
+     in Cartopy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="field-of-view_GLM.html">
+     ⚡ GLM Geostationary field-of-view in Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../defaults.html">
+   ⚙ Configure Defaults
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Example-1:">
+   Example 1:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Show-the-files-on-my-home-drive…">
+   Show the files on my home drive…
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/blaylockbk/goes2go/edit/master/docs/user_guide/notebooks/DEMO_download_goes_timerange.ipynb">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="line-block">
+<div class="line"><strong>Brian Blaylock</strong></div>
+<div class="line"><em>January 13, 2021</em></div>
+</div>
+<div class="section" id="Download-GOES-Data:-Timerange">
+<h1>Download GOES Data: Timerange<a class="headerlink" href="#Download-GOES-Data:-Timerange" title="Permalink to this headline">¶</a></h1>
+<p>For all options, refer to the GOES-2-go Reference Guide: <a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/reference_guide/index.html#goes2go.data.goes_timerange">goes2go.data.goes_timerange</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_timerange</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="Example-1:">
+<h2>Example 1:<a class="headerlink" href="#Example-1:" title="Permalink to this headline">¶</a></h2>
+<p>Download an ABI file from GOES-East for an hour period. Data is returned as a file list.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">## Dates may be specified as datetime, pandas datetimes, or string dates</span>
+<span class="c1">## that pandas can interpret.</span>
+
+<span class="c1">## Specify start/end time with datetime object</span>
+<span class="c1">#start = datetime(2021, 1, 1, 0, 30)</span>
+<span class="c1">#end = datetime(2021, 1, 1, 1, 30)</span>
+
+<span class="c1">## Specify start/end time as a panda-parsable string</span>
+<span class="n">start</span> <span class="o">=</span> <span class="s1">&#39;2021-01-01 00:30&#39;</span>
+<span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;2021-01-01 01:30&#39;</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">goes_timerange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span>
+                   <span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;goes16&#39;</span><span class="p">,</span>
+                   <span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI&#39;</span><span class="p">,</span>
+                   <span class="n">return_as</span><span class="o">=</span><span class="s1">&#39;filelist&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-MCMIPC    |
+ |    Domain: C                |
+📦 Finished downloading [12] files to [/p/home/blaylock/data/noaa-goes16/ABI-L2-MCMIPC].
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>file</th>
+      <th>start</th>
+      <th>end</th>
+      <th>creation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/00/OR_ABI-L...</td>
+      <td>2021-01-01 00:31:17.600</td>
+      <td>2021-01-01 00:33:56.100</td>
+      <td>2021-01-01 00:34:10.300</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/00/OR_ABI-L...</td>
+      <td>2021-01-01 00:36:17.600</td>
+      <td>2021-01-01 00:38:55.500</td>
+      <td>2021-01-01 00:39:09.900</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/00/OR_ABI-L...</td>
+      <td>2021-01-01 00:41:17.600</td>
+      <td>2021-01-01 00:43:56.100</td>
+      <td>2021-01-01 00:44:09.200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/00/OR_ABI-L...</td>
+      <td>2021-01-01 00:46:17.600</td>
+      <td>2021-01-01 00:48:56.100</td>
+      <td>2021-01-01 00:49:09.600</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/00/OR_ABI-L...</td>
+      <td>2021-01-01 00:51:17.600</td>
+      <td>2021-01-01 00:53:55.500</td>
+      <td>2021-01-01 00:54:10.500</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/00/OR_ABI-L...</td>
+      <td>2021-01-01 00:56:17.600</td>
+      <td>2021-01-01 00:58:55.500</td>
+      <td>2021-01-01 00:59:09.000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/01/OR_ABI-L...</td>
+      <td>2021-01-01 01:01:17.600</td>
+      <td>2021-01-01 01:03:54.900</td>
+      <td>2021-01-01 01:04:10.200</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/01/OR_ABI-L...</td>
+      <td>2021-01-01 01:06:17.600</td>
+      <td>2021-01-01 01:08:56.100</td>
+      <td>2021-01-01 01:09:09.400</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/01/OR_ABI-L...</td>
+      <td>2021-01-01 01:11:17.600</td>
+      <td>2021-01-01 01:13:55.500</td>
+      <td>2021-01-01 01:14:10.300</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/01/OR_ABI-L...</td>
+      <td>2021-01-01 01:16:17.600</td>
+      <td>2021-01-01 01:18:56.100</td>
+      <td>2021-01-01 01:19:09.600</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/01/OR_ABI-L...</td>
+      <td>2021-01-01 01:21:17.600</td>
+      <td>2021-01-01 01:23:54.900</td>
+      <td>2021-01-01 01:24:10.200</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>noaa-goes16/ABI-L2-MCMIPC/2021/001/01/OR_ABI-L...</td>
+      <td>2021-01-01 01:26:17.600</td>
+      <td>2021-01-01 01:28:55.500</td>
+      <td>2021-01-01 01:29:09.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">g</span><span class="o">.</span><span class="n">attrs</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;satellite&#39;: &#39;noaa-goes16&#39;,
+ &#39;product&#39;: &#39;ABI-L2-MCMIPC&#39;,
+ &#39;start&#39;: Timestamp(&#39;2021-01-01 00:30:00&#39;),
+ &#39;end&#39;: Timestamp(&#39;2021-01-01 01:30:00&#39;),
+ &#39;filePath&#39;: PosixPath(&#39;/p/home/blaylock/data&#39;)}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Show-the-files-on-my-home-drive…">
+<h2>Show the files on my home drive…<a class="headerlink" href="#Show-the-files-on-my-home-drive…" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-bash notranslate"><div class="highlight"><pre>
+<span></span>%%bash
+tree ~/data
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+/p/home/blaylock/data
+└── noaa-goes16
+    └── ABI-L2-MCMIPC
+        └── 2021
+            └── 001
+                ├── 00
+                │   ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010031176_e20210010033561_c20210010034103.nc
+                │   ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010036176_e20210010038555_c20210010039099.nc
+                │   ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010041176_e20210010043561_c20210010044092.nc
+                │   ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010046176_e20210010048561_c20210010049096.nc
+                │   ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010051176_e20210010053555_c20210010054105.nc
+                │   └── OR_ABI-L2-MCMIPC-M6_G16_s20210010056176_e20210010058555_c20210010059090.nc
+                └── 01
+                    ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010101176_e20210010103549_c20210010104102.nc
+                    ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010106176_e20210010108561_c20210010109094.nc
+                    ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010111176_e20210010113555_c20210010114103.nc
+                    ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010116176_e20210010118561_c20210010119096.nc
+                    ├── OR_ABI-L2-MCMIPC-M6_G16_s20210010121176_e20210010123549_c20210010124102.nc
+                    └── OR_ABI-L2-MCMIPC-M6_G16_s20210010126176_e20210010128555_c20210010129090.nc
+
+6 directories, 12 files
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="DEMO_download_goes_nearesttime.html" title="previous page">Download GOES Data: Latest available file</a>
+    <a class='right-next' id="next-link" href="field-of-view_ABI.html" title="next page">🌎 ABI Geostationary <strong>field-of-view</strong> in Cartopy</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Brian K. Blaylock.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

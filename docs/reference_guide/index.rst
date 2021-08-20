@@ -67,8 +67,6 @@ To make a simple RGB plot on a Cartopy axes, do the following:
    :inherited-members:
 
 
-
-
 ..
    =========================================================================
    I would like to get the sphinx-autosummary-accessors to work, but I don't

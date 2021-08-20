@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>⚠ A complete version of this notebook is features on the Unidata Example Gallery &#8212; GOES-2-go Docs 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/brian_style.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
+    <link rel="shortcut icon" href="../../_static/wxicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/goes2go_logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference_guide/index.html">
+  Reference Guide
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/SynopticPy/_build/html/">SynopticPy<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/Herbie/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/blaylockbk/goes2go" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/blaylockbk" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   ⚠ A complete version of this notebook is features on the Unidata Example Gallery
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#GOES-16:-True-Color-Recipe">
+   GOES-16: True Color Recipe
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/blaylockbk/goes2go/edit/master/docs/user_guide/notebooks/mapping_GOES16_TrueColor_Cartopy.ipynb">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="⚠-A-complete-version-of-this-notebook-is-features-on-the-Unidata-Example-Gallery">
+<h1>⚠ A complete version of this notebook is features on the Unidata <a class="reference external" href="https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/">Example Gallery</a><a class="headerlink" href="#⚠-A-complete-version-of-this-notebook-is-features-on-the-Unidata-Example-Gallery" title="Permalink to this headline">¶</a></h1>
+</div>
+<hr class="docutils" />
+<div class="section" id="GOES-16:-True-Color-Recipe">
+<h1>GOES-16: True Color Recipe<a class="headerlink" href="#GOES-16:-True-Color-Recipe" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><strong>Brian Blaylock</strong></div>
+<div class="line"><em>March 4, 2018</em></div>
+</div>
+<p><a class="reference external" href="mailto:brian&#46;blaylock&#37;&#52;&#48;utah&#46;edu">brian<span>&#46;</span>blaylock<span>&#64;</span>utah<span>&#46;</span>edu</a> (<a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html">website</a>)</p>
+<p>This Python 3 notebook shows how to make a true color image from the GOES-16 Advanced Baseline Imager (ABI) level 2 data. We will plot the image with matplotlib and Cartopy. The image can be displayed on any map projection after applying a transformation. The methods shown here are stitched together from the following useful information found online:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">True Color RGB Recipe</a></p></li>
+<li><p><a class="reference external" href="https://www.goes-r.gov/education/ABI-bands-quick-info.html">ABI Bands Quick Information Guides</a></p></li>
+<li><p><a class="reference external" href="http://edc.occ-data.org/goes16/python/">Open Commons Consortium</a></p></li>
+<li><p><a class="reference external" href="https://geonetcast.wordpress.com/2017/07/25/geonetclass-manipulating-goes-16-data-with-python-part-vi/">GeoNetCast Blog</a></p></li>
+<li><p><a class="reference external" href="https://proj4.org/operations/projections/geos.html?highlight=geostationary">Proj documentation</a></p></li>
+<li><p><a class="reference external" href="http://jswhit.github.io/pyproj/pyproj.Proj-class.html">Pyproj documentation</a></p></li>
+</ul>
+<p>True color images are an RGB composite of the following three channels:</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 18%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>–</p></th>
+<th class="head"><p>Wavelength</p></th>
+<th class="head"><p>Channel</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Red</strong></p></td>
+<td><p>0.64 µm</p></td>
+<td><p>2</p></td>
+<td><p>Red Visible</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Green</strong></p></td>
+<td><p>0.86 µm</p></td>
+<td><p>3</p></td>
+<td><p>Veggie Near-IR</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Blue</strong></p></td>
+<td><p>0.47 µm</p></td>
+<td><p>1</p></td>
+<td><p>Blue Visible</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p>For this demo, you will need GOES-16 ABI level 2 data. You can get GOES-16 files from NOAA’s GOES archive on <a class="reference external" href="https://aws.amazon.com/public-datasets/goes/">Amazon S3</a>. I created a <a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi?domain=C&amp;product=ABI-L2-MCMIP&amp;hour=0">web interface</a> to easily download files from the Amazon archive. For scripted or bulk downloads, you should use the <code class="docutils literal notranslate"><span class="pre">`goes2go</span></code> &lt;<a class="reference external" href="https://github.com/blaylockbk/goes2go">https://github.com/blaylockbk/goes2go</a>&gt;`__ python package, or may
+also use <code class="docutils literal notranslate"><span class="pre">rclone</span></code> or <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">CLI</span></code>. You may also download files from the <a class="reference external" href="http://edc.occ-data.org/goes16/getdata/">Environmental Data Commons</a> and <a class="reference external" href="https://www.avl.class.noaa.gov/saa/products/search?sub_id=0&amp;datatype_family=GRABIPRD&amp;submit.x=25&amp;submit.y=9">NOAA CLASS</a>.</p>
+<p>This example uses the <strong>level 2 multiband formatted file for the CONUS domain</strong> (<a class="reference external" href="http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi?domain=C&amp;product=ABI-L2-MCMIP&amp;hour=0">ABI-L2-MCMIPC</a>). The multiband file is easiest to work with becuase it contains all 16 channels on the same 2 km grid. However, some channels have higher resolution. Plotting the full resolution images will take some additional work, not described here. Specifically, you will have to download
+three separate files, one for each channel, and subsample the red channel 0.5 km grid to a 1 km grid.</p>
+<p>I previously downloaded the following file from Amazon Web Services</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>OR_ABI-L2-MCMIPC-M3_G16_s20181781922189_e20181781924562_c20181781925075.nc
+
+OR     - Indicates the system is operational
+ABI    - Instrument type
+L2     - Level 2 Data
+MCMIP  - Multichannel Cloud and Moisture Imagery products
+c      - CONUS file (created every 5 minutes).
+M3     - Scan mode
+G16    - GOES-16
+s##### - Scan start: 4 digit year, 3 digit day of year (Julian day), hour, minute, second, tenth second
+e##### - Scan end
+c##### - File Creation
+.nc    - NetCDF file extension
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">######################################################################</span>
+<span class="c1"># First, import the libraries we will use</span>
+<span class="c1"># ---------------------------------------</span>
+<span class="c1">#</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Proj</span>
+<span class="kn">import</span> <span class="nn">xarray</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">######################################################################</span>
+<span class="c1"># Open the GOES-16 NetCDF File</span>
+<span class="c1"># ----------------------------</span>
+<span class="c1"># Using xarray, I assign the opened file to the variable C for the CONUS domain.</span>
+<span class="c1">#</span>
+<span class="c1">#FILE = &#39;OR_ABI-L2-MCMIPC-M3_G16_s20190591537134_e20190591539507_c20190591540015.nc&#39;</span>
+<span class="c1">#FILE = &#39;OR_ABI-L2-MCMIPC-M3_G16_s20182362117333_e20182362120105_c20182362120222.nc&#39;</span>
+<span class="n">FILE</span> <span class="o">=</span> <span class="s1">&#39;OR_ABI-L2-MCMIPC-M3_G16_s20181742307263_e20181742310036_c20181742310150.nc&#39;</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">xarray</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">FILE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">######################################################################</span>
+<span class="c1"># Date and Time Information</span>
+<span class="c1"># ----------------------------</span>
+<span class="c1"># Each file represents the data collected during one scan sequence for the</span>
+<span class="c1"># domain. There are several different time stamps in this file, which are also</span>
+<span class="c1"># found in the file&#39;s name.</span>
+
+<span class="c1"># Scan&#39;s start time, converted to datetime object</span>
+<span class="n">scan_start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">time_coverage_start</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+<span class="c1"># Scan&#39;s end time, converted to datetime object</span>
+<span class="n">scan_end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">time_coverage_end</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+<span class="c1"># File creation time, convert to datetime object</span>
+<span class="n">file_created</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">date_created</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">Z&#39;</span><span class="p">)</span>
+
+<span class="c1"># The &#39;t&#39; variable is the scan&#39;s midpoint time</span>
+<span class="c1"># I&#39;m not a fan of numpy datetime, so I convert it to a regular datetime object</span>
+<span class="n">midpoint</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)[:</span><span class="o">-</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">scan_mid</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">midpoint</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan Start    : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">scan_start</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan midpoint : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">scan_mid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan End      : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">scan_end</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;File Created  : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">file_created</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scan Duration : </span><span class="si">%.2f</span><span class="s1"> minutes&#39;</span> <span class="o">%</span> <span class="p">((</span><span class="n">scan_end</span><span class="o">-</span><span class="n">scan_start</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span><span class="o">/</span><span class="mi">60</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Scan Start    : 2018-06-23 23:07:26.300000
+Scan midpoint : 2018-06-23 23:08:44.900000
+Scan End      : 2018-06-23 23:10:03.600000
+File Created  : 2018-06-23 23:10:15
+Scan Duration : 2.62 minutes
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">######################################################################</span>
+<span class="c1"># True Color Recipe</span>
+<span class="c1"># -----------------</span>
+<span class="c1">#</span>
+<span class="c1"># Color images are a Red-Green-Blue (RGB) composite of three different</span>
+<span class="c1"># channels. We will assign the following channels as our RGB values:</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># RGB values must be between 0 and 1, same as the range of values of the</span>
+<span class="c1"># reflectance channels. A gamma correction is applied to control the brightness</span>
+<span class="c1"># and make the image not look too dark where `corrected_value =</span>
+<span class="c1"># value^(1/gamma)`. Most displays have a decoding gamma of 2.2</span>
+<span class="c1"># ([source1](https://en.wikipedia.org/wiki/Gamma_correction),</span>
+<span class="c1"># [source2](https://www.cambridgeincolour.com/tutorials/gamma-correction.htm)).</span>
+<span class="c1">#</span>
+<span class="c1"># The GREEN &quot;veggie&quot; channel on GOES-16 does not measure visible green</span>
+<span class="c1"># light. Instead, it measures a near-infrared band sensitive to chlorophyll. We</span>
+<span class="c1"># could use that channel in place of green, but it would make the green in our</span>
+<span class="c1"># image appear too vibrant. Instead, we will tone-down the green channel by</span>
+<span class="c1"># interpolating the value to simulate a natural green color.</span>
+<span class="c1">#</span>
+<span class="c1"># \begin{equation}</span>
+<span class="c1"># pseudoGreen = (0.48358168*RED) + (0.06038137*GREEN) + (0.45706946*BLUE)</span>
+<span class="c1"># \end{equation}</span>
+<span class="c1">#</span>
+<span class="c1"># or, a simple alternative ([CIMSS Natural True</span>
+<span class="c1"># Color](http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf)):</span>
+<span class="c1">#</span>
+<span class="c1"># \begin{equation}</span>
+<span class="c1"># pseudoGreen = (0.45*RED) + (0.1*GREEN) + (0.45*BLUE)</span>
+<span class="c1"># \end{equation}</span>
+<span class="c1">#</span>
+<span class="c1"># The multiband formatted file we loaded is convenient becuase all the GOES</span>
+<span class="c1"># channels are in the same NetCDF file. Next, we will assign our variables R, G,</span>
+<span class="c1"># and B as the data for each channel.</span>
+
+
+<span class="c1"># Confirm that each band is the wavelength we are interested in</span>
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is </span><span class="si">%.2f</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="s1">&#39;band_wavelength_C</span><span class="si">%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">band</span><span class="p">]</span><span class="o">.</span><span class="n">long_name</span><span class="p">,</span>
+                             <span class="n">C</span><span class="p">[</span><span class="s1">&#39;band_wavelength_C</span><span class="si">%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">band</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                             <span class="n">C</span><span class="p">[</span><span class="s1">&#39;band_wavelength_C</span><span class="si">%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">band</span><span class="p">]</span><span class="o">.</span><span class="n">units</span><span class="p">))</span>
+
+<span class="c1">######################################################################</span>
+<span class="c1">#</span>
+
+<span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C02&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C03&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;CMI_C01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1">######################################################################</span>
+<span class="c1">#</span>
+
+<span class="c1"># Apply range limits for each channel. RGB values must be between 0 and 1</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">######################################################################</span>
+<span class="c1">#</span>
+
+<span class="c1"># Apply a gamma correction to the image</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">gamma</span><span class="p">)</span>
+
+<span class="c1">######################################################################</span>
+<span class="c1">#</span>
+
+<span class="c1"># Calculate the &quot;True&quot; Green</span>
+<span class="n">G_true</span> <span class="o">=</span> <span class="mf">0.45</span> <span class="o">*</span> <span class="n">R</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">G</span> <span class="o">+</span> <span class="mf">0.45</span> <span class="o">*</span> <span class="n">B</span>
+<span class="n">G_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">G_true</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">G_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">G_true</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ABI band 2 central wavelength is 0.64 um
+ABI band 3 central wavelength is 0.87 um
+ABI band 1 central wavelength is 0.47 um
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\ProgramData\Anaconda3\envs\pyBKB_v3\lib\site-packages\ipykernel_launcher.py:74: RuntimeWarning: invalid value encountered in maximum
+C:\ProgramData\Anaconda3\envs\pyBKB_v3\lib\site-packages\ipykernel_launcher.py:75: RuntimeWarning: invalid value encountered in minimum
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">######################################################################</span>
+<span class="c1"># Simple Image</span>
+<span class="c1"># -----------------</span>
+<span class="c1">#</span>
+<span class="c1"># Use `plt.imshow` to get a quick look at the channels and RGB composite we</span>
+<span class="c1"># created.</span>
+<span class="c1">#</span>
+<span class="c1"># First, we plot each channel individually. The deeper the color means the</span>
+<span class="c1"># satellite is observing more light in that channel. Clouds appear white becuase</span>
+<span class="c1"># they reflect lots of red, green, and blue light. You will also notice that the</span>
+<span class="c1"># land reflects a lot of &quot;green&quot; in the veggie channel becuase this channel is</span>
+<span class="c1"># sensitive to the chlorophyll.</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">([</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">])</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;semibold&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Veggie&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;semibold&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax3</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">G_true</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&quot;True&quot; Green&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;semibold&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">ax4</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;semibold&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=.</span><span class="mi">02</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_mapping_GOES16_TrueColor_Cartopy_5_0.png" src="../../_images/user_guide_notebooks_mapping_GOES16_TrueColor_Cartopy_5_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">######################################################################</span>
+<span class="c1"># The addition of the three channels results in a color image. We combine the</span>
+<span class="c1"># three channels in a stacked array and display the image with `imshow` again.</span>
+<span class="c1">#</span>
+
+<span class="c1"># The RGB array with the raw veggie band</span>
+<span class="n">RGB_veggie</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+<span class="c1"># The RGB array for the true color image</span>
+<span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G_true</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># The RGB using the raw veggie band</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">RGB_veggie</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;GOES-16 RGB Raw Veggie&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;semibold&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">);</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># The RGB for the true color image</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">RGB</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;GOES-16 RGB True Color&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;semibold&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">);</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(-0.5, 2499.5, 1499.5, -0.5)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_mapping_GOES16_TrueColor_Cartopy_6_1.png" src="../../_images/user_guide_notebooks_mapping_GOES16_TrueColor_Cartopy_6_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">######################################################################</span>
+<span class="c1"># Plot with `Cartopy`:  Geostationary Projection</span>
+<span class="c1"># ----------------------------------------------</span>
+<span class="c1">#</span>
+<span class="c1"># The image above is not georeferenced. You can see the land and oceans, but we</span>
+<span class="c1"># do have enough information to draw state and country boundaries. From the</span>
+<span class="c1"># GOES-16 file, we can extract all the metadata needed to understand the map</span>
+<span class="c1"># projection. We will use this data to plot the image on a `Basemap`. The image</span>
+<span class="c1"># is in a [geostationary</span>
+<span class="c1"># projection](https://proj4.org/operations/projections/geos.html?highlight=geostationary).</span>
+
+<span class="n">C</span><span class="p">[</span><span class="s1">&#39;goes_imager_projection&#39;</span><span class="p">]</span>
+
+<span class="c1">######################################################################</span>
+<span class="c1">#</span>
+
+<span class="c1"># Satellite height</span>
+<span class="n">sat_h</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;goes_imager_projection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">perspective_point_height</span>
+
+<span class="c1"># Satellite longitude</span>
+<span class="n">sat_lon</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;goes_imager_projection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">longitude_of_projection_origin</span>
+
+<span class="c1"># Satellite sweep</span>
+<span class="n">sat_sweep</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;goes_imager_projection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sweep_angle_axis</span>
+
+<span class="n">semi_major</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;goes_imager_projection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">semi_major_axis</span>
+<span class="n">semi_minor</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;goes_imager_projection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">semi_minor_axis</span>
+
+<span class="c1"># The projection x and y coordinates equals the scanning angle (in radians)</span>
+<span class="c1"># multiplied by the satellite height See details here:</span>
+<span class="c1"># https://proj4.org/operations/projections/geos.html?highlight=geostationary</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][:]</span> <span class="o">*</span> <span class="n">sat_h</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">][:]</span> <span class="o">*</span> <span class="n">sat_h</span>
+
+<span class="c1">######################################################################</span>
+<span class="c1"># The geostationary projection is the easiest way to plot the image on a</span>
+<span class="c1"># map. Essentially, we are stretching the image across a map with the same</span>
+<span class="c1"># projection and dimensions as the data.</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">globe</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Globe</span><span class="p">(</span><span class="n">semimajor_axis</span><span class="o">=</span><span class="n">semi_major</span><span class="p">,</span> <span class="n">semiminor_axis</span><span class="o">=</span><span class="n">semi_minor</span><span class="p">)</span>
+<span class="n">geos</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Geostationary</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="n">sat_lon</span><span class="p">,</span>
+                         <span class="n">satellite_height</span><span class="o">=</span><span class="n">sat_h</span><span class="p">,</span> <span class="n">globe</span><span class="o">=</span><span class="n">globe</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">geos</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">RGB</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+                   <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+                   <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">,</span>
+                   <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">162.</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">330.</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">STATES</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;semibold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_mapping_GOES16_TrueColor_Cartopy_7_0.png" src="../../_images/user_guide_notebooks_mapping_GOES16_TrueColor_Cartopy_7_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">######################################################################</span>
+<span class="c1"># Using other projections</span>
+<span class="c1"># ----------------------------------------------</span>
+<span class="c1">#</span>
+<span class="c1"># Changing the projections with cartopy is straightforward. Here we use</span>
+<span class="c1"># the Lambert Conformal projection to display the GOES-16 data.</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="n">lc</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mf">97.5</span><span class="p">,</span><span class="n">standard_parallels</span><span class="o">=</span><span class="p">(</span><span class="mf">38.5</span><span class="p">,</span><span class="mf">38.5</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">lc</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">135</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">RGB</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+                   <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+                   <span class="n">transform</span><span class="o">=</span><span class="n">geos</span><span class="p">,</span>
+                   <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">STATES</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-16 True Color&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;semibold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">scan_start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %B %Y %H:%M UTC &#39;</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_mapping_GOES16_TrueColor_Cartopy_8_0.png" src="../../_images/user_guide_notebooks_mapping_GOES16_TrueColor_Cartopy_8_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Brian K. Blaylock.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

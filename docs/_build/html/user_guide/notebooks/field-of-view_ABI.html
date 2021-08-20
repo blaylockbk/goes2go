@@ -1,0 +1,3378 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌎 ABI Geostationary field-of-view in Cartopy &#8212; GOES-2-go Docs 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/brian_style.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
+    <link rel="shortcut icon" href="../../_static/wxicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="⚡ GLM Geostationary field-of-view in Cartopy" href="field-of-view_GLM.html" />
+    <link rel="prev" title="Download GOES Data: Timerange" href="DEMO_download_goes_timerange.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/goes2go_logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference_guide/index.html">
+  Reference Guide
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/SynopticPy/_build/html/">SynopticPy<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/Herbie/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/blaylockbk/goes2go" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/blaylockbk" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contribute.html">
+   👨🏻‍🏭 Contributing Guidelines
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../examples.html">
+   🤹🏻‍♂️ Examples
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_download_goes_latest.html">
+     Download GOES Data: Nearest Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_download_goes_nearesttime.html">
+     Download GOES Data: Latest available file
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_download_goes_timerange.html">
+     Download GOES Data: Timerange
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     🌎 ABI Geostationary
+     <strong>
+      field-of-view
+     </strong>
+     in Cartopy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="field-of-view_GLM.html">
+     ⚡ GLM Geostationary field-of-view in Cartopy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../defaults.html">
+   ⚙ Configure Defaults
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Get-the-data’s-coordinate-reference-system-and-field-of-view-with-the-goes2go.tools.field_of_view-function">
+   Get the data’s coordinate reference system and field of view with the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     goes2go.tools.field_of_view
+    </span>
+   </code>
+   function
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/blaylockbk/goes2go/edit/master/docs/user_guide/notebooks/field-of-view_ABI.ipynb">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="line-block">
+<div class="line"><strong>Brian Blaylock</strong></div>
+<div class="line"><em>December 18, 2020</em></div>
+</div>
+<div class="section" id="🌎-ABI-Geostationary-field-of-view-in-Cartopy">
+<h1>🌎 ABI Geostationary <strong>field-of-view</strong> in Cartopy<a class="headerlink" href="#🌎-ABI-Geostationary-field-of-view-in-Cartopy" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf">GOES-R Series Data Book</a></p>
+<ul>
+<li><p>Full Disk Coverage: Defined as a 17.4 degree diameter circle (pg 48)</p></li>
+</ul>
+</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span><span class="p">,</span> <span class="n">goes_nearesttime</span>
+
+<span class="kn">from</span> <span class="nn">BB_maps.add_to_cartopy</span> <span class="kn">import</span> <span class="n">common_features</span><span class="p">,</span> <span class="n">pc</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING! No module named &#39;dask&#39;
+Without dask, you cannot use dask for multiprocessing.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/p/home/blaylock/BB_python/Carpenter_Workshop/toolbox/cartopy_tools.py:33: UserWarning: No module named &#39;geopandas&#39; Without geopandas, you cannot subset some NaturalEarthFeatures, like &#34;Major Highways&#34; from roads.
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Testing Phase</span>
+<span class="n">gcentral</span> <span class="o">=</span> <span class="n">goes_nearesttime</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G16&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI&#39;</span><span class="p">)</span>
+
+<span class="c1"># GOES East</span>
+<span class="n">g16</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G16&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI&#39;</span><span class="p">)</span>
+
+<span class="c1"># GOES West</span>
+<span class="n">g17</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G17&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-MCMIPC    |
+ |    Domain: C                |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPC].
+📚 Finished reading [1] files into xarray.Dataset.
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-MCMIPC    |
+ |    Domain: C                |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPC].
+📚 Finished reading [1] files into xarray.Dataset.
+ _______________________________
+ | Satellite: noaa-goes17      |
+ |   Product: ABI-L2-MCMIPC    |
+ |    Domain: C                |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes17/ABI-L2-MCMIPC].
+📚 Finished reading [1] files into xarray.Dataset.
+</pre></div></div>
+</div>
+<div class="section" id="Get-the-data’s-coordinate-reference-system-and-field-of-view-with-the-goes2go.tools.field_of_view-function">
+<h2>Get the data’s coordinate reference system and field of view with the <code class="docutils literal notranslate"><span class="pre">goes2go.tools.field_of_view</span></code> function<a class="headerlink" href="#Get-the-data’s-coordinate-reference-system-and-field-of-view-with-the-goes2go.tools.field_of_view-function" title="Permalink to this headline">¶</a></h2>
+<p>This returns both the field of view as a shapely polygon and the cartopy coordinate reference system.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="177.48pt" version="1.1" viewBox="0 0 177.48 177.48" width="177.48pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <metadata>
+  <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2021-08-19T16:51:19.862879</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.4.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linecap:butt;stroke-linejoin:round;}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 177.48
+L 177.48 177.48
+L 177.48 0
+L 0 0
+z
+" style="fill:none;"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 170.28 88.74
+L 169.840095 97.230886
+L 168.52455 105.630826
+L 166.345881 113.84967
+L 163.324997 121.798873
+L 159.491247 129.392316
+L 154.882453 136.547159
+L 149.544895 143.184702
+L 143.533216 149.231281
+L 136.910198 154.619159
+L 129.74639 159.287412
+L 122.119538 163.182778
+L 114.113821 166.260452
+L 105.818879 168.484788
+L 97.328641 169.829879
+L 88.74 170.28
+L 80.151359 169.829879
+L 71.661121 168.484788
+L 63.366179 166.260452
+L 55.360462 163.182778
+L 47.73361 159.287412
+L 40.569802 154.619159
+L 33.946784 149.231281
+L 27.935105 143.184702
+L 22.597547 136.547159
+L 17.988753 129.392316
+L 14.155003 121.798873
+L 11.134119 113.84967
+L 8.95545 105.630826
+L 7.639905 97.230886
+L 7.2 88.74
+L 7.639905 80.249114
+L 8.95545 71.849174
+L 11.134119 63.63033
+L 14.155003 55.681127
+L 17.988753 48.087684
+L 22.597547 40.932841
+L 27.935105 34.295298
+L 33.946784 28.248719
+L 40.569802 22.860841
+L 47.73361 18.192588
+L 55.360462 14.297222
+L 63.366179 11.219548
+L 71.661121 8.995212
+L 80.151359 7.650121
+L 88.74 7.2
+L 97.328641 7.650121
+L 105.818879 8.995212
+L 114.113821 11.219548
+L 122.119538 14.297222
+L 129.74639 18.192588
+L 136.910198 22.860841
+L 143.533216 28.248719
+L 149.544895 34.295298
+L 154.882453 40.932841
+L 159.491247 48.087684
+L 163.324997 55.681127
+L 166.345881 63.63033
+L 168.52455 71.849174
+L 169.840095 80.249114
+L 170.28 88.74
+L 170.28 88.74
+" style="fill:#ffffff;"/>
+   </g>
+   <g id="PathCollection_1">
+    <path clip-path="url(#pdb2de22c10)" d="M 134.515507 21.60353
+L 135.360437 22.195486
+L 136.168422 22.854005
+L 136.336175 23.169188
+L 135.749183 22.899007
+L 134.848115 22.11616
+L 133.567419 21.246546
+L 133.070559 20.76568
+L 132.738227 20.479115
+L 132.900114 20.529407
+L 133.860782 21.114098
+L 134.515507 21.60353
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 102.323928 58.905393
+L 103.118725 59.046598
+L 103.415703 59.352321
+L 103.045884 59.734425
+L 101.882498 59.715622
+L 100.98049 59.762668
+L 100.854863 59.107453
+L 101.061636 58.886214
+L 102.323928 58.905393
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 84.713304 58.889797
+L 85.765352 59.024471
+L 86.594758 59.390586
+L 86.851556 59.810166
+L 85.745224 59.840381
+L 85.263531 60.098089
+L 84.387266 59.853555
+L 83.501977 59.297621
+L 83.697896 58.947605
+L 84.357834 58.839291
+L 84.713304 58.889797
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 77.803186 51.922659
+L 79.087921 52.015768
+L 80.264953 52.023666
+L 81.655343 52.511825
+L 82.235786 53.044731
+L 83.656813 52.87278
+L 84.184704 53.215652
+L 85.45551 54.125177
+L 86.399261 54.792231
+L 86.905024 54.771036
+L 87.819537 55.073655
+L 87.705178 55.493796
+L 88.841973 55.554979
+L 90.011944 56.168582
+L 89.830337 56.520509
+L 88.799595 56.711227
+L 87.754804 56.786382
+L 86.686762 56.668273
+L 84.464581 56.819742
+L 85.517568 55.97854
+L 84.896032 55.591232
+L 83.905827 55.494356
+L 83.386558 55.065696
+L 83.049132 54.221518
+L 82.184797 54.283046
+L 80.781356 53.894186
+L 80.340407 53.587678
+L 78.382654 53.373653
+L 77.874689 53.091546
+L 78.460672 52.720995
+L 76.99506 52.658812
+L 75.864725 53.430566
+L 75.242716 53.457335
+L 75.0004 53.818581
+L 74.246597 53.987677
+L 73.618734 53.855112
+L 74.444295 53.391903
+L 74.810446 52.859582
+L 75.509628 52.527526
+L 76.291957 52.235629
+L 77.430846 52.085632
+L 77.803186 51.922659
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 107.135629 19.816489
+L 106.924862 20.31095
+L 106.676914 21.018355
+L 107.145867 20.758672
+L 107.862302 20.967424
+L 107.686371 21.249902
+L 108.638826 21.523403
+L 108.958821 21.333771
+L 110.027655 21.644105
+L 110.084145 22.271352
+L 110.660312 22.152948
+L 111.035959 22.630331
+L 111.631172 23.206752
+L 111.646055 23.998216
+L 111.221406 24.011414
+L 110.490363 23.804891
+L 110.329428 23.062986
+L 110.002951 22.935026
+L 109.250964 23.678108
+L 108.643867 23.62047
+L 109.142624 23.218329
+L 108.098697 22.956385
+L 107.061973 22.967445
+L 105.112615 22.867829
+L 104.855664 22.594948
+L 105.349988 22.301712
+L 104.823592 22.045398
+L 105.424103 21.547832
+L 105.783402 20.237207
+L 106.118654 19.79501
+L 106.7539 19.551287
+L 107.188176 19.605458
+L 107.135629 19.816489
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 83.149542 10.956331
+L 83.765585 11.090927
+L 84.440574 11.215728
+L 84.418727 11.430642
+L 84.913394 11.387365
+L 85.338547 11.534228
+L 84.70177 11.690836
+L 83.705293 11.594776
+L 83.425723 11.393286
+L 82.660069 11.654985
+L 81.584868 11.926852
+L 81.514306 11.652437
+L 80.599542 11.723892
+L 81.309883 11.4754
+L 81.614663 11.118539
+L 82.079628 10.721475
+L 82.495046 10.743546
+L 82.496707 10.926305
+L 82.850306 10.852775
+L 83.149542 10.956331
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 87.056468 8.511341
+L 87.507237 8.417271
+L 88.467591 8.528707
+L 89.096286 8.644109
+L 89.166185 8.755096
+L 90.028132 8.70113
+L 90.576373 8.872656
+L 91.801572 8.997315
+L 92.301471 9.120948
+L 92.965641 9.417415
+L 92.078461 9.551156
+L 93.480544 9.797909
+L 94.40735 9.896624
+L 95.468393 10.25907
+L 96.386751 10.313282
+L 96.436872 10.584408
+L 95.726629 11.039153
+L 94.854281 10.835683
+L 93.685209 10.420337
+L 92.939666 10.45506
+L 92.964097 10.686356
+L 93.723767 10.943879
+L 94.678507 11.163439
+L 95.004368 11.288519
+L 95.677462 11.759017
+L 95.629291 12.10379
+L 94.708674 11.949904
+L 92.877177 11.535532
+L 93.977417 11.964618
+L 94.817405 12.280789
+L 95.007642 12.462287
+L 93.033379 12.222664
+L 91.474044 11.915276
+L 90.607699 11.673423
+L 90.82103 11.542079
+L 89.80318 11.299468
+L 88.846531 11.080575
+L 88.858109 11.209376
+L 86.966305 11.287221
+L 86.444366 11.137712
+L 86.923339 10.815297
+L 88.101692 10.801959
+L 89.388667 10.74823
+L 89.173922 10.599944
+L 89.374919 10.399696
+L 90.094629 10.030529
+L 89.912707 9.868981
+L 89.67997 9.747203
+L 88.825302 9.579651
+L 87.73899 9.469795
+L 88.089884 9.386943
+L 87.56644 9.196508
+L 87.119391 9.182524
+L 86.751283 9.085411
+L 86.448921 9.175595
+L 85.507276 9.227293
+L 83.716033 9.198653
+L 82.754169 9.141763
+L 82.018321 9.124369
+L 81.748754 9.038616
+L 82.397214 8.895153
+L 81.746475 8.918468
+L 81.991303 8.664581
+L 82.651374 8.44536
+L 83.214835 8.342939
+L 84.336141 8.255747
+L 83.850737 8.398243
+L 84.007868 8.52768
+L 84.611872 8.33931
+L 85.743323 8.232309
+L 86.294491 8.437925
+L 86.133185 8.591213
+L 87.056468 8.511341
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 46.74075 20.392558
+L 47.220124 20.241282
+L 45.902664 21.16543
+L 45.446788 21.736469
+L 45.273038 21.772527
+L 45.487331 21.456175
+L 45.813664 21.120024
+L 45.935068 20.919224
+L 46.32722 20.58975
+L 46.690825 20.335363
+L 46.74075 20.392558
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 46.117034 23.085361
+L 45.947701 23.455207
+L 46.140932 23.72973
+L 45.880893 24.18684
+L 45.454273 24.357849
+L 44.925063 24.099154
+L 45.090959 23.810502
+L 44.935441 23.584142
+L 45.112613 23.351167
+L 44.74997 23.290275
+L 45.087181 22.856595
+L 45.358204 22.650812
+L 45.679466 22.739557
+L 45.854143 22.813039
+L 46.257696 22.818101
+L 46.117034 23.085361
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 117.609239 12.792956
+L 118.318156 13.09259
+L 119.427121 13.521186
+L 119.976741 13.822743
+L 119.905457 13.972274
+L 119.833505 14.006379
+L 119.226259 13.828235
+L 117.890006 13.457364
+L 117.759598 13.297615
+L 116.44741 12.898405
+L 116.866789 12.92351
+L 116.528914 12.775704
+L 115.538569 12.52175
+L 115.07248 12.259215
+L 115.420788 12.29022
+L 116.685786 12.716952
+L 116.544026 12.560498
+L 117.244438 12.783404
+L 117.084984 12.642052
+L 117.609239 12.792956
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 84.864645 74.442364
+L 85.714656 74.493278
+L 86.954335 73.356542
+L 87.631518 73.183369
+L 87.649055 72.646642
+L 87.953988 71.279232
+L 88.892046 70.530701
+L 89.920969 70.500361
+L 90.049688 70.164893
+L 91.326737 70.300104
+L 93.230747 69.132566
+L 94.005231 68.363109
+L 94.580399 68.462323
+L 95.012495 68.884185
+L 94.706811 69.423001
+L 94.666706 69.802189
+L 93.714899 69.987768
+L 94.25583 70.719179
+L 94.24732 71.562964
+L 93.537279 72.501583
+L 94.171902 73.790515
+L 94.877708 73.686116
+L 95.229357 72.513831
+L 94.714571 71.943052
+L 94.614626 70.720705
+L 96.627246 70.07161
+L 96.387043 69.314331
+L 96.942994 68.810829
+L 97.549572 69.939332
+L 98.684584 69.96941
+L 99.758734 70.870385
+L 99.836501 71.404358
+L 101.287717 71.424507
+L 103.00198 71.266944
+L 103.946405 71.993969
+L 105.178834 72.200071
+L 106.054444 71.701225
+L 106.055864 71.295671
+L 109.901623 71.202982
+L 108.588805 71.668293
+L 109.163495 72.432953
+L 110.428329 72.563077
+L 111.655708 73.36575
+L 111.965979 74.664447
+L 112.779678 74.633484
+L 114.457375 75.623968
+L 115.463888 76.689129
+L 115.542925 77.527469
+L 116.127163 77.569777
+L 117.614426 78.941274
+L 119.456216 79.279067
+L 119.607602 78.986327
+L 120.823804 78.876925
+L 122.96396 79.507865
+L 124.068591 79.900412
+L 125.674091 81.284056
+L 125.938914 81.952315
+L 126.46037 82.014256
+L 126.818387 82.78089
+L 127.694257 85.635644
+L 128.465004 85.906953
+L 128.517228 87.032965
+L 127.44494 88.375785
+L 127.892993 88.868079
+L 130.403602 89.123596
+L 130.443214 90.755973
+L 131.51242 89.686359
+L 133.23995 90.268359
+L 135.464059 91.253737
+L 136.092154 92.199889
+L 135.853292 93.096028
+L 137.388924 92.590653
+L 139.846167 93.429419
+L 141.695679 93.355037
+L 143.420836 94.666635
+L 144.819738 96.437605
+L 145.671362 96.884904
+L 146.627018 96.935445
+L 146.994303 97.429374
+L 147.30185 100.384328
+L 146.593197 102.988708
+L 145.912605 104.023844
+L 144.054686 106.23634
+L 143.077086 108.012759
+L 142.019582 109.379225
+L 141.72578 109.418325
+L 141.216227 110.562173
+L 140.783005 113.423047
+L 139.659202 116.755883
+L 139.166564 117.359425
+L 138.504808 119.348957
+L 136.870211 121.313166
+L 136.287577 122.819896
+L 135.187555 123.486784
+L 134.684895 124.358508
+L 133.4141 124.412236
+L 131.391775 125.041971
+L 130.374548 125.711161
+L 128.897243 126.181454
+L 127.153637 127.363526
+L 125.742732 128.791905
+L 125.28966 129.832638
+L 125.289512 130.582639
+L 124.675364 131.964554
+L 124.209539 132.632346
+L 123.143593 133.402537
+L 121.110009 135.770233
+L 119.735423 136.835911
+L 118.730507 137.465632
+L 117.816811 138.68793
+L 116.801853 139.431546
+L 116.045327 140.226784
+L 114.481014 140.956011
+L 113.656363 140.744137
+L 112.959433 140.897269
+L 111.962723 140.409194
+L 111.110404 140.474541
+L 110.513476 139.814757
+L 110.273757 140.461395
+L 111.581447 141.457275
+L 111.191414 142.290501
+L 111.801472 142.783376
+L 111.574499 143.36058
+L 110.002582 144.882489
+L 108.079911 145.546942
+L 105.636284 145.848924
+L 104.345616 145.768541
+L 104.446128 146.430675
+L 104.01178 147.263171
+L 104.097524 147.806979
+L 103.308591 148.203732
+L 102.081552 148.379396
+L 101.034118 148.011638
+L 100.525434 148.302274
+L 100.482573 149.353409
+L 101.193736 149.651835
+L 101.894104 149.308479
+L 102.110527 149.842227
+L 100.9922 150.18606
+L 99.949195 150.83938
+L 99.574178 151.848236
+L 99.202767 152.378029
+L 98.165799 152.400187
+L 97.21651 152.909635
+L 96.780381 153.626735
+L 97.699071 154.290186
+L 98.664249 154.456706
+L 98.121238 155.274738
+L 96.802735 155.795919
+L 95.945146 156.816445
+L 94.977666 157.161473
+L 94.508066 157.554982
+L 94.673622 158.390195
+L 95.214743 158.836146
+L 93.988613 158.808376
+L 92.620837 159.291412
+L 92.381318 159.994022
+L 91.993919 160.01451
+L 90.985774 159.780587
+L 89.954923 159.259061
+L 88.790589 158.81865
+L 88.790589 158.81865
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 83.975793 76.807043
+L 84.638952 77.679754
+L 84.892613 79.069402
+L 84.534911 79.501801
+L 84.902504 81.009607
+L 84.585187 81.968158
+L 85.196943 82.361142
+L 84.557316 83.229046
+L 83.853216 84.269515
+L 83.027375 84.38092
+L 82.635374 84.980986
+L 82.70681 85.811007
+L 82.085829 85.935584
+L 82.310368 86.450086
+L 81.166024 87.110178
+L 80.255666 87.466002
+L 80.370668 88.14255
+L 79.742666 89.210337
+L 79.438761 90.242937
+L 78.858989 90.492666
+L 79.143448 91.996407
+L 78.809659 92.462961
+L 79.804978 93.189093
+L 80.434974 92.420741
+L 80.796899 93.144059
+L 79.921759 94.379711
+L 78.612332 95.421628
+L 78.11082 96.576323
+L 78.927402 98.1483
+L 78.404813 98.880799
+L 79.585449 99.547785
+L 80.877676 100.620161
+L 81.410636 101.825742
+L 82.092069 102.570783
+L 83.680087 105.80669
+L 85.318502 108.776978
+L 86.706663 110.870343
+L 86.444917 111.327044
+L 87.119798 112.632778
+L 88.359375 113.602259
+L 91.212395 115.308717
+L 94.323626 116.856488
+L 94.444925 117.487474
+L 95.99006 118.361239
+L 96.23912 120.498307
+L 96.256164 122.946252
+L 95.64587 126.22465
+L 95.040348 129.19429
+L 94.656649 131.888486
+L 93.745941 133.555788
+L 93.843428 135.205354
+L 93.378235 136.293315
+L 93.606157 138.226763
+L 92.945088 140.106425
+L 91.947122 142.070115
+L 91.086708 143.991481
+L 90.546653 144.031036
+L 90.61909 145.331853
+L 90.946187 146.43311
+L 90.359227 147.193153
+L 89.904354 149.191655
+L 89.511793 150.675535
+L 90.236257 150.817341
+L 90.639005 149.528981
+L 91.41668 149.803393
+L 90.725624 151.906527
+L 89.476656 151.560507
+L 89.078578 153.180484
+L 88.044005 154.012552
+L 89.67761 154.282368
+L 88.546982 154.98834
+L 88.111263 155.843683
+L 88.262824 157.299784
+L 88.762878 157.846917
+L 88.489007 158.318826
+L 88.790589 158.81865
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 89.056056 159.262598
+L 89.822305 159.421227
+L 91.088168 159.916723
+L 92.266509 160.171981
+L 92.78135 159.829255
+L 93.155221 159.31038
+L 94.067376 158.982863
+L 94.71651 159.064833
+L 95.000578 159.414077
+L 95.331395 159.967897
+L 96.379797 160.384588
+L 97.555873 160.537568
+L 97.047734 160.901017
+L 96.215083 160.953633
+L 95.84173 160.713256
+L 95.476306 161.00345
+L 94.680255 161.231894
+L 94.261497 161.216531
+L 93.761154 161.167838
+L 93.1682 160.966391
+L 92.264297 160.874517
+L 91.192475 160.485336
+L 90.299724 160.099208
+L 89.056056 159.262598
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 83.975793 76.807043
+L 83.429649 76.33538
+L 83.085183 75.453469
+L 83.496128 75.016849
+L 83.080549 74.905698
+L 82.779891 74.367703
+L 81.96838 73.916804
+L 81.249964 74.021947
+L 80.909286 74.588969
+L 80.241014 74.999878
+L 79.882667 75.057643
+L 79.716479 75.397515
+L 80.485641 76.282584
+L 80.034234 76.492527
+L 79.793393 76.735541
+L 79.028404 76.820766
+L 78.760882 75.84459
+L 78.542899 76.122923
+L 78.004987 76.028414
+L 77.688009 75.372483
+L 77.021321 75.266179
+L 76.602892 75.07687
+L 75.904859 75.081691
+L 75.846284 75.43566
+L 75.665534 75.189767
+L 74.794383 74.83165
+L 74.475018 74.491411
+L 74.669175 74.208397
+L 74.620666 73.849727
+L 74.184654 73.463167
+L 73.014516 72.942642
+L 72.925627 72.469985
+L 72.515944 72.183539
+L 72.601718 72.652839
+L 72.268109 73.041159
+L 71.918697 72.594202
+L 71.411587 72.437419
+L 71.206612 72.113267
+L 71.235897 71.622232
+L 71.467898 71.11372
+L 71.02889 70.889885
+L 71.406502 70.577144
+L 70.173762 69.434653
+L 69.854976 68.898804
+L 68.480099 67.691643
+L 68.668023 67.444708
+L 68.9111 67.681333
+L 69.035978 67.568122
+L 68.796676 67.074477
+L 68.332948 66.941147
+L 68.136863 67.31568
+L 67.239885 67.300511
+L 66.693531 67.154275
+L 66.078147 66.846418
+L 65.232418 66.757478
+L 64.824943 66.423511
+L 64.064978 66.1578
+L 63.121702 66.140899
+L 62.458315 65.837821
+L 61.709218 65.201634
+L 60.196268 63.54832
+L 59.494213 63.057346
+L 58.351759 62.674809
+L 57.531193 62.801496
+L 56.306724 63.404104
+L 55.567551 63.570166
+L 54.616424 63.182592
+L 53.601049 62.911076
+L 52.399713 62.234876
+L 51.40096 62.044241
+L 49.975799 61.372738
+L 48.978632 60.676623
+L 48.714202 60.281861
+L 47.994921 60.21273
+L 46.754413 59.775521
+L 46.351104 59.107859
+L 45.163885 58.306244
+L 44.739502 57.393398
+L 44.604911 56.685832
+L 45.047342 56.526994
+L 45.015375 56.113203
+L 45.384849 55.722797
+L 45.507962 55.217781
+L 45.251076 54.581181
+L 45.282324 54.009807
+L 45.060956 53.299906
+L 44.391663 51.926877
+L 43.538146 50.878992
+L 43.244901 50.034331
+L 42.459357 49.516969
+L 42.363803 49.189997
+L 42.809696 48.330426
+L 42.357906 48.042313
+L 41.94731 47.417447
+L 42.017219 46.490959
+L 41.489508 46.416469
+L 40.918401 45.13644
+L 41.037478 44.727126
+L 40.899443 43.776666
+L 40.97023 42.810226
+L 41.200239 42.316078
+L 40.725621 41.862469
+L 40.381083 41.942405
+L 40.001847 41.635096
+L 39.612829 42.162758
+L 39.490642 42.763994
+L 39.155707 43.725701
+L 39.255899 44.237368
+L 39.760182 45.472095
+L 39.712361 45.919128
+L 39.898713 45.888496
+L 39.771058 46.737144
+L 39.953758 47.059113
+L 39.997593 47.523341
+L 40.406723 48.174264
+L 40.321187 49.429413
+L 40.531556 50.652488
+L 40.360662 51.387515
+L 40.876841 51.405721
+L 41.353212 52.63531
+L 41.253024 52.891355
+L 40.630336 53.438455
+L 40.43339 53.44141
+L 40.388841 52.591087
+L 39.910045 51.823351
+L 38.910698 50.863941
+L 39.282055 49.845805
+L 39.377742 49.108608
+L 38.546637 48.151146
+L 38.348629 48.334972
+L 38.224487 47.997736
+L 37.731867 47.711814
+L 37.455473 46.971109
+L 37.566322 46.864915
+L 37.939535 46.91228
+L 38.501316 46.386939
+L 38.777182 45.78403
+L 38.415603 44.897022
+L 38.009977 44.576772
+L 38.112402 41.990224
+L 38.475766 40.267224
+L 38.28212 39.60975
+L 37.962012 39.500819
+L 38.058364 39.159187
+L 37.621921 39.14411
+L 37.507583 38.845203
+L 36.820428 38.803685
+L 36.727657 38.630319
+L 37.012349 37.982561
+L 36.97684 36.876646
+L 37.383433 35.338387
+L 37.584075 35.070597
+L 37.516529 34.73474
+L 37.620025 33.862957
+L 38.170411 32.97337
+L 38.249597 32.42598
+L 39.7588 30.607765
+L 40.195532 29.83937
+L 42.108026 27.919334
+L 44.052856 25.752934
+L 45.136645 24.400093
+L 45.692402 24.577815
+L 45.182839 25.401138
+L 45.571646 25.13333
+L 46.728731 23.688479
+L 46.650058 23.698151
+L 46.444645 22.70187
+L 45.884818 22.514313
+L 46.474893 21.823017
+L 47.155782 21.305951
+L 46.969397 21.078353
+L 47.710285 20.453071
+L 47.921857 19.998461
+L 48.616311 19.373118
+L 48.594736 19.214966
+L 49.421269 18.601397
+L 49.817184 18.139403
+L 50.670617 17.531968
+L 49.890108 17.605895
+L 50.493408 16.977764
+L 50.087985 17.157409
+L 50.526169 16.88559
+L 50.526169 16.88559
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 62.703471 11.693279
+L 62.448423 11.788204
+L 65.753582 10.829742
+L 65.466026 10.945687
+L 66.531279 10.628827
+L 66.603402 10.628524
+L 66.108134 10.865183
+L 67.476241 10.555354
+L 67.907934 10.583887
+L 69.268876 10.641783
+L 68.242925 10.9059
+L 68.800978 10.899053
+L 70.591184 10.613426
+L 70.586359 10.799163
+L 71.485331 10.552821
+L 71.360978 10.437112
+L 72.492714 10.215097
+L 73.115319 10.199948
+L 73.193382 10.359649
+L 73.78145 10.286734
+L 74.345005 10.389693
+L 75.94478 10.2351
+L 76.247335 10.012851
+L 76.787026 9.923633
+L 77.380538 9.997143
+L 76.881527 10.346281
+L 77.626416 10.032279
+L 78.028753 10.019551
+L 78.746767 9.66035
+L 78.529237 9.488257
+L 78.189443 9.393419
+L 78.815572 9.068283
+L 79.703765 8.845439
+L 80.433454 8.951669
+L 80.573695 9.243426
+L 79.935316 9.413015
+L 80.767896 9.436575
+L 80.364499 9.774316
+L 81.347688 9.486528
+L 81.743777 9.676753
+L 81.337091 9.940456
+L 81.653561 10.170202
+L 83.082508 9.580406
+L 83.40545 9.231787
+L 84.819715 9.265335
+L 85.42663 9.408144
+L 85.379281 9.569476
+L 84.884578 9.757683
+L 85.187394 9.940847
+L 85.036272 10.121179
+L 83.76081 10.411875
+L 82.901692 10.492227
+L 82.372032 10.389056
+L 82.057683 10.594337
+L 79.965896 11.48949
+L 79.03409 11.553205
+L 78.370308 11.771528
+L 78.073321 12.088351
+L 77.261152 12.182369
+L 76.102442 12.631821
+L 74.852054 13.271759
+L 74.209501 13.729585
+L 73.617764 14.417131
+L 74.623143 14.466689
+L 74.599032 15.507049
+L 75.779487 15.333246
+L 77.79535 15.787665
+L 78.243032 16.088594
+L 79.218528 16.247637
+L 80.015202 16.517261
+L 82.355156 16.57701
+L 82.057625 17.198401
+L 82.163909 17.937605
+L 82.658401 18.787569
+L 83.956806 19.525624
+L 84.736185 19.256021
+L 85.345793 18.442906
+L 85.010479 17.260928
+L 84.435711 16.887275
+L 85.896625 16.541668
+L 86.929516 16.04993
+L 87.434417 15.578604
+L 87.391762 15.141222
+L 86.876283 14.60533
+L 85.959823 14.151589
+L 86.952868 13.529556
+L 86.682488 13.024308
+L 86.556735 12.203746
+L 87.059609 12.084532
+L 88.97446 12.265639
+L 89.55203 12.13405
+L 91.14129 12.614844
+L 91.39552 12.823359
+L 92.70764 12.878716
+L 92.798771 13.341939
+L 93.228069 14.079237
+L 93.96755 14.183785
+L 94.642502 14.553251
+L 95.674302 14.236056
+L 96.153516 13.602455
+L 96.529639 13.350588
+L 99.983544 15.474092
+L 99.859305 15.880528
+L 102.101683 16.726408
+L 103.536642 16.961959
+L 104.205004 17.213258
+L 104.895897 17.848011
+L 105.618693 17.976737
+L 106.129824 18.276752
+L 106.693799 19.149415
+L 105.711065 19.673027
+L 104.337482 19.901586
+L 103.448411 20.538606
+L 101.878878 20.622846
+L 99.747349 20.389237
+L 97.281779 20.386102
+L 96.586188 20.9777
+L 95.372136 21.339056
+L 94.056193 22.490727
+L 92.927828 23.322717
+L 93.820817 23.179233
+L 95.342616 22.010946
+L 97.34427 21.315638
+L 98.826475 21.260047
+L 99.831655 21.706868
+L 99.028532 22.279442
+L 100.119379 23.976265
+L 101.627401 24.482992
+L 103.342718 24.392382
+L 104.040477 23.370439
+L 104.344203 24.04871
+L 105.135114 24.413094
+L 104.037667 25.000843
+L 101.813817 25.51639
+L 100.82262 25.890534
+L 99.733596 26.586087
+L 98.863386 26.495734
+L 98.658824 25.649861
+L 100.38909 24.880508
+L 97.458622 24.972968
+L 97.706057 25.295538
+L 96.596783 25.754279
+L 94.324616 26.366426
+L 93.601315 27.192425
+L 93.636673 27.741146
+L 94.072991 28.300053
+L 94.565201 28.330957
+L 94.404332 27.94617
+L 94.779918 28.182739
+L 94.715924 28.48331
+L 93.93196 28.64806
+L 93.359643 28.622785
+L 91.975458 28.852964
+L 91.2827 28.902455
+L 90.292691 29.209862
+L 92.048321 29.014377
+L 92.415142 29.219949
+L 90.742183 29.536446
+L 89.97176 29.536625
+L 90.004989 29.403802
+L 89.641768 29.703892
+L 89.9997 29.754436
+L 89.749635 30.542789
+L 88.856928 31.40123
+L 88.764284 31.112896
+L 88.492314 31.054695
+L 88.088834 30.776162
+L 88.341908 31.378309
+L 88.650377 31.578815
+L 88.668794 32.007362
+L 87.422357 33.330833
+L 87.827046 32.542354
+L 87.190615 32.105867
+L 87.065903 31.166965
+L 86.813588 31.654366
+L 87.063201 32.375944
+L 86.236424 32.199119
+L 87.093893 32.565676
+L 87.124684 33.670754
+L 87.491548 33.751159
+L 87.619022 34.158679
+L 87.786661 35.353143
+L 86.934863 36.255811
+L 85.552813 36.623738
+L 84.647292 37.352648
+L 83.975295 37.43605
+L 83.271139 37.898811
+L 83.053877 38.321462
+L 81.513582 39.154873
+L 80.700227 39.770372
+L 79.993148 40.541238
+L 79.703511 41.469555
+L 79.874999 42.38261
+L 80.257452 43.519705
+L 80.822148 44.470025
+L 80.792542 45.058236
+L 81.380064 46.650291
+L 81.190347 48.137342
+L 80.777497 49.002844
+L 80.327029 49.185137
+L 79.612911 49.018528
+L 79.4208 48.399761
+L 78.887545 48.08058
+L 77.625957 45.834256
+L 77.458824 45.300001
+L 77.830423 44.39309
+L 77.504372 43.655367
+L 76.530133 42.551774
+L 76.012475 42.355758
+L 74.547348 42.978777
+L 74.308349 42.916032
+L 73.721386 42.307931
+L 72.910569 41.996242
+L 71.350634 42.19025
+L 70.175736 42.068741
+L 69.135705 42.181517
+L 68.545269 42.399569
+L 68.72447 42.745685
+L 68.608541 43.285302
+L 68.850821 43.542884
+L 68.562524 43.724484
+L 68.094466 43.53812
+L 67.542654 43.803573
+L 66.573423 43.784864
+L 65.713146 43.104753
+L 64.524944 43.301011
+L 63.634897 43.020238
+L 62.802296 43.136755
+L 61.638048 43.480026
+L 60.227348 44.508252
+L 58.805566 45.130862
+L 57.946631 45.801564
+L 57.503084 46.425355
+L 57.18046 48.037158
+L 57.32345 48.502843
+L 56.544468 49.750732
+L 56.096854 50.777705
+L 55.342366 53.412917
+L 55.425111 54.201075
+L 55.714849 54.904123
+L 55.787371 56.040952
+L 56.520786 57.125172
+L 56.712766 57.971466
+L 57.150975 58.699928
+L 58.598733 59.068881
+L 59.104983 59.69137
+L 60.422614 59.242973
+L 61.546466 59.06946
+L 63.622057 58.502395
+L 64.626941 57.870574
+L 65.078389 56.987639
+L 65.348384 55.730857
+L 65.653274 55.292334
+L 66.687653 54.887681
+L 68.275327 54.519915
+L 69.573167 54.551876
+L 70.482695 54.414079
+L 70.80746 54.722862
+L 70.688242 55.438543
+L 69.801904 56.336374
+L 69.359295 57.255064
+L 69.611016 57.513855
+L 68.841561 59.360436
+L 68.494841 58.97421
+L 68.17763 59.003689
+L 68.162459 59.226913
+L 68.447131 59.230203
+L 68.384493 59.645351
+L 68.081041 60.310112
+L 68.192581 60.545647
+L 67.986286 61.097481
+L 68.06949 61.243554
+L 67.827886 62.025618
+L 67.495 62.439929
+L 67.216138 62.492523
+L 66.869984 63.033719
+L 67.344001 63.30917
+L 67.494164 63.075856
+L 68.081019 63.328362
+L 68.438035 63.051064
+L 68.878464 63.023961
+L 69.011417 63.149256
+L 69.255558 63.069445
+L 69.960751 63.202495
+L 70.677315 63.154738
+L 71.379596 62.80185
+L 72.641404 62.940083
+L 72.958676 62.802376
+L 74.364678 63.332611
+L 74.799479 63.679456
+L 75.358864 63.91508
+L 75.753023 64.343426
+L 75.6104 64.494925
+L 75.513892 64.846216
+L 75.649348 65.421343
+L 75.260858 65.961265
+L 75.062859 66.59898
+L 74.981614 67.2984
+L 75.061456 68.424974
+L 74.811488 68.583167
+L 74.635418 69.267773
+L 74.729265 69.690184
+L 74.386453 70.102154
+L 74.444958 70.535891
+L 74.778092 71.045796
+L 75.058906 71.672316
+L 76.401899 73.007506
+L 76.401899 73.007506
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 76.401899 73.007506
+L 76.969425 73.587205
+L 76.927824 73.931464
+L 77.575076 74.002334
+L 77.731724 73.869629
+L 78.170811 74.267756
+L 78.97583 74.147825
+L 79.678243 73.735249
+L 80.676253 73.405032
+L 81.242094 72.918696
+L 82.143392 73.011887
+L 82.08014 73.171645
+L 82.992461 73.225267
+L 83.71881 73.504637
+L 84.249938 73.99316
+L 84.864645 74.442364
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 93.845181 57.03502
+L 94.032303 56.778655
+L 94.35229 56.749584
+L 95.240017 56.790401
+L 96.169286 57.182911
+L 96.575372 57.147053
+L 96.877015 57.68498
+L 97.722563 57.659495
+L 97.691895 58.111138
+L 98.383555 58.170072
+L 99.170877 58.733135
+L 98.622589 59.350972
+L 97.868302 59.014227
+L 97.156033 59.074387
+L 96.640624 58.999105
+L 96.36901 59.276517
+L 95.772161 59.368119
+L 95.522901 58.996193
+L 95.012574 59.213519
+L 94.412291 60.261747
+L 94.001828 60.015932
+L 93.912272 59.574562
+L 92.865175 59.311288
+L 92.126447 59.41578
+L 91.167145 59.303389
+L 90.434648 59.588829
+L 89.590581 59.111118
+L 89.726645 58.619003
+L 91.169854 58.832365
+L 92.353638 58.957122
+L 92.911041 58.618782
+L 92.186189 57.95802
+L 92.188394 57.37916
+L 91.204193 57.141492
+L 91.54842 56.725547
+L 92.495456 56.794202
+L 93.845181 57.03502
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 159.133789 60.244418
+L 158.831934 59.53125
+L 158.651153 58.833331
+L 158.269472 58.146418
+L 157.745368 57.503469
+L 157.556743 56.915432
+L 157.345162 56.273141
+L 157.425657 55.922995
+L 157.333975 55.22703
+L 157.112948 54.756343
+L 156.913369 53.816612
+L 156.854726 52.996177
+L 156.94149 52.805049
+L 156.736046 52.040704
+L 156.42649 51.3293
+L 156.231297 50.536959
+L 156.336515 50.111415
+L 155.983799 48.827372
+L 155.964128 48.3561
+L 156.309088 48.295838
+L 156.181719 47.487419
+L 156.204056 47.192558
+L 155.944881 46.21044
+L 154.942205 44.629223
+L 154.442113 43.603022
+L 154.089658 42.971763
+L 153.798519 42.21538
+L 153.782785 41.765555
+L 153.691811 41.346063
+L 153.050679 40.190712
+L 152.630817 39.506443
+L 152.843262 39.587601
+L 153.361472 40.14341
+L 153.544024 40.160327
+L 153.968467 40.52405
+L 154.071218 40.581109
+L 153.805109 40.045214
+L 153.85129 39.956376
+L 153.600455 39.547839
+L 153.477252 39.300545
+L 153.521011 39.274912
+L 153.566229 39.321736
+L 153.566229 39.321736
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 147.76521 32.555042
+L 148.260132 33.076744
+L 148.828512 33.68734
+L 149.359234 34.286394
+L 149.387635 34.372887
+L 149.692207 34.722
+L 150.116029 35.25178
+L 150.803988 36.095347
+L 151.388834 36.764969
+L 151.693792 37.198089
+L 152.234394 37.901988
+L 152.269512 38.046963
+L 152.797078 38.845381
+L 152.527409 38.730618
+L 152.276465 38.609891
+L 152.414509 38.950041
+L 152.630734 39.346636
+L 152.421624 39.200312
+L 152.026367 38.772413
+L 151.448634 38.083931
+L 151.025043 37.810756
+L 151.117675 38.065519
+L 150.820573 37.850484
+L 150.7364 37.923242
+L 150.115008 37.049036
+L 149.544444 36.347872
+L 149.306443 36.1983
+L 148.886255 35.751351
+L 148.330173 35.036704
+L 148.141983 34.680994
+L 147.798453 34.248995
+L 147.316333 33.623019
+L 146.915408 33.168399
+L 146.512345 32.766709
+L 146.180428 32.407059
+L 145.521217 31.669736
+L 144.9679 31.17922
+L 144.728134 30.592816
+L 145.270834 30.90581
+L 145.634159 31.042607
+L 146.070951 31.3303
+L 146.214421 31.365948
+L 146.589495 31.573485
+L 146.09278 31.021626
+L 144.104763 29.074325
+L 142.819562 27.958911
+L 142.138892 27.403909
+L 141.395267 26.883181
+L 140.598269 26.202034
+L 140.653836 26.141029
+L 141.260682 26.553488
+L 139.978938 25.498199
+L 140.613715 25.98211
+L 140.114753 25.531913
+L 140.049704 25.47952
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 169.862111 80.674046
+L 169.858346 80.639437
+L 169.728962 79.675373
+L 169.685576 79.675103
+L 169.613903 79.653134
+L 169.547336 79.80223
+L 169.480588 80.092962
+L 169.322955 80.911346
+L 169.267223 81.401478
+L 169.122029 81.809607
+L 168.886068 81.375714
+L 168.776921 81.381905
+L 168.571315 81.080206
+L 168.39597 81.084426
+L 168.062986 81.319361
+L 167.872846 81.734439
+L 167.570428 82.262699
+L 167.497101 82.220308
+L 167.401027 82.229046
+L 166.94519 81.499359
+L 166.467808 80.343609
+L 166.013246 79.506077
+L 165.599 78.523905
+L 165.459326 78.405894
+L 165.038933 77.783273
+L 164.676526 76.965913
+L 164.51408 76.413642
+L 164.292978 75.304486
+L 163.928447 74.406074
+L 163.627156 73.808189
+L 163.456854 73.605552
+L 163.27045 73.299832
+L 163.093328 72.637105
+L 162.953406 72.303451
+L 162.746197 72.047979
+L 162.325457 71.404168
+L 162.061352 71.288219
+L 161.844702 70.859154
+L 161.803724 70.6332
+L 161.558657 70.304659
+L 161.455957 69.984214
+L 161.11726 68.841131
+L 161.049444 68.192182
+L 160.533862 67.025359
+L 160.100023 66.476677
+L 160.303305 66.221091
+L 160.335451 65.221239
+L 160.27813 64.487516
+L 160.012168 63.701456
+L 159.973338 63.005855
+L 159.642418 61.661048
+L 159.133789 60.244418
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 70.508637 167.968651
+L 73.125146 168.450452
+L 73.108233 168.421284
+L 74.536294 168.591924
+L 76.190072 168.871722
+L 79.57533 169.235123
+L 79.483286 169.169844
+L 76.710388 168.57944
+L 77.094608 168.636906
+L 82.457366 169.065999
+L 82.531673 168.908972
+L 83.566024 169.078611
+L 84.506469 169.165931
+L 89.214461 169.256926
+L 92.332105 168.767766
+L 92.053676 168.243598
+L 92.16941 168.121357
+L 92.926319 167.722079
+L 92.906596 167.430493
+L 93.65494 167.135716
+L 96.402588 166.267192
+L 97.022388 166.221767
+L 98.035382 165.960768
+L 99.158977 165.748484
+L 100.200393 165.504758
+L 100.464945 165.61091
+L 100.085126 165.779943
+L 98.565464 166.001924
+L 97.500852 166.188275
+L 96.567816 166.455562
+L 96.28066 166.780094
+L 96.452421 166.906899
+L 94.114418 167.496692
+L 93.938216 167.632283
+L 94.030896 167.770735
+L 94.604899 167.935493
+L 94.999823 168.142535
+L 95.008918 168.363824
+L 95.135936 168.549626
+L 94.516451 169.158095
+L 92.992528 169.425704
+L 92.037079 169.55844
+L 87.990068 169.737968
+L 88.964624 169.830111
+L 89.148778 169.861891
+L 88.807371 169.888607
+L 87.885547 169.897402
+L 90.164574 169.998467
+L 90.164574 169.998467
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 98.857504 169.38754
+L 99.287026 169.331834
+L 99.585425 169.291731
+L 100.125626 169.218392
+L 100.726951 169.132928
+L 101.286816 169.04838
+L 101.852947 168.958991
+L 102.456712 168.857933
+L 102.94623 168.775138
+L 103.388258 168.697781
+L 103.620881 168.655821
+L 103.880791 168.608084
+L 103.880791 168.608084
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 101.820044 158.28914
+L 103.132783 157.770558
+L 103.830095 157.9444
+L 104.532282 157.599665
+L 105.091931 157.935224
+L 104.681827 158.225797
+L 103.346869 158.509351
+L 103.06192 158.247445
+L 102.131229 158.628958
+L 101.820044 158.28914
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 110.212866 71.134135
+L 111.100226 70.932673
+L 111.430651 70.991572
+L 111.433181 72.188853
+L 110.133641 72.356277
+L 109.843583 72.209125
+L 110.27711 71.769525
+L 110.212866 71.134135
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 84.011686 48.979026
+L 84.45525 49.034485
+L 84.943886 50.217416
+L 84.931635 51.052834
+L 84.561551 51.125932
+L 84.204214 50.297272
+L 83.659156 49.88468
+L 84.011686 48.979026
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 82.937262 46.765624
+L 83.625362 46.650989
+L 84.584458 46.688473
+L 84.617119 47.050113
+L 83.017409 47.280627
+L 82.937262 46.765624
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 84.68029 46.410691
+L 85.815381 47.032261
+L 85.540351 48.028508
+L 85.274225 47.849121
+L 85.316483 47.117389
+L 84.678311 46.569896
+L 84.68029 46.410691
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 100.411071 23.244451
+L 100.899221 23.704092
+L 101.697641 23.848801
+L 102.663482 23.849469
+L 102.260677 24.221408
+L 101.88561 24.272921
+L 100.432625 23.839356
+L 100.089026 23.520699
+L 100.411071 23.244451
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 99.209413 20.725002
+L 99.528547 20.662008
+L 100.883794 20.907754
+L 102.008884 21.294237
+L 102.09272 21.453777
+L 101.616246 21.455365
+L 100.245986 21.150164
+L 99.209413 20.725002
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 84.977813 12.339042
+L 85.287386 12.183227
+L 85.570855 12.190896
+L 85.726637 12.292891
+L 85.389112 12.567701
+L 85.082967 12.527047
+L 84.935525 12.374912
+L 84.977813 12.339042
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 82.478154 12.19839
+L 83.086638 11.958239
+L 84.020015 11.945179
+L 83.971848 12.0409
+L 83.057241 12.333568
+L 82.569652 12.332132
+L 82.478154 12.19839
+" style="fill:none;stroke:#000000;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 106.389167 9.381411
+L 107.166071 9.555972
+L 106.76933 9.471279
+L 107.494385 9.636929
+L 107.827689 9.721073
+L 107.675293 9.696959
+L 107.339624 9.630776
+L 108.409762 9.891433
+L 108.91531 10.030248
+L 107.942611 9.803278
+L 108.099561 9.858986
+L 108.735037 10.004481
+L 109.764804 10.271607
+L 110.775216 10.570456
+L 110.493174 10.540214
+L 109.847649 10.363174
+L 108.867711 10.1055
+L 109.701071 10.35133
+L 109.914022 10.47341
+L 110.754493 10.632884
+L 111.211371 10.730398
+L 111.36898 10.905009
+L 111.304434 11.058084
+L 110.598392 11.032066
+L 110.184633 10.973597
+L 110.152262 11.072435
+L 110.572785 11.43782
+L 110.261748 11.627424
+L 109.982037 11.608801
+L 109.571083 11.648307
+L 109.073123 11.679493
+L 109.147558 11.919863
+L 109.701568 12.252618
+L 109.954505 12.550106
+L 109.670757 12.874232
+L 110.491201 13.310255
+L 110.848472 13.742985
+L 111.257536 14.277348
+L 110.416955 14.238017
+L 108.921349 13.692639
+L 107.646583 13.594621
+L 106.682243 13.247303
+L 105.666412 12.698931
+L 103.875482 12.007265
+L 103.205144 11.679738
+L 102.624438 11.268214
+L 101.341397 10.827751
+L 101.146965 10.541207
+L 100.602455 10.383398
+L 100.491235 9.981691
+L 101.026848 9.897645
+L 100.972407 9.767495
+L 100.606973 9.519883
+L 100.283035 9.598514
+L 100.109116 9.630794
+L 99.75612 9.651693
+L 98.99515 9.512615
+L 98.619652 9.300746
+L 98.52683 9.154568
+L 98.935219 9.174309
+L 99.994776 9.308398
+L 98.877772 9.078428
+L 98.305983 8.96227
+L 97.944585 8.975951
+L 97.458238 8.890577
+L 97.469458 8.681991
+L 97.036078 8.581436
+L 96.387774 8.413567
+L 95.446261 8.184411
+L 94.817864 8.09541
+L 94.648532 8.027238
+L 93.501635 7.902741
+L 92.756206 7.868289
+L 91.850369 7.848821
+L 91.018042 7.841573
+L 90.569014 7.793353
+L 89.916402 7.711651
+L 90.722099 7.688905
+L 91.347773 7.695581
+L 89.970267 7.648417
+L 89.252052 7.606931
+L 89.275125 7.576577
+L 90.304172 7.554452
+L 91.201214 7.54655
+L 91.213346 7.531857
+L 90.464155 7.503542
+L 90.59879 7.496754
+L 91.169315 7.505023
+L 91.169316 7.505023
+" style="fill:none;stroke:#000000;"/>
+   </g>
+   <g id="LineCollection_1">
+    <path clip-path="url(#pdb2de22c10)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 72.724906 168.362159
+L 71.20566 167.96572
+L 69.690287 167.511417
+L 68.17994 166.999094
+L 66.675789 166.428641
+L 65.179018 165.799994
+L 63.690824 165.113141
+L 62.212418 164.368116
+L 60.745021 163.565008
+L 59.289865 162.703959
+L 57.848192 161.785164
+L 56.42125 160.808874
+L 55.010294 159.775401
+L 53.616586 158.685112
+L 52.241389 157.538436
+L 50.885969 156.335864
+L 49.551593 155.077946
+L 48.239525 153.7653
+L 46.951026 152.398605
+L 45.687353 150.978606
+L 44.449754 149.506114
+L 43.239468 147.982007
+L 42.057725 146.407227
+L 40.905738 144.782785
+L 39.784706 143.10976
+L 38.695811 141.389295
+L 37.640213 139.622602
+L 36.619051 137.810959
+L 35.633437 135.955708
+L 34.684458 134.058257
+L 33.773171 132.120079
+L 32.900601 130.142707
+L 32.067737 128.127739
+L 31.275536 126.076829
+L 30.524911 123.99169
+L 29.816738 121.874093
+L 29.151848 119.725859
+L 28.531028 117.548865
+L 27.955018 115.345032
+L 27.424508 113.11633
+L 26.940137 110.864771
+L 26.502493 108.592407
+L 26.11211 106.301327
+L 25.769464 103.993652
+L 25.474977 101.671535
+L 25.229011 99.337152
+L 25.031872 96.992703
+L 24.883803 94.640406
+L 24.784988 92.282493
+L 24.735549 89.921206
+L 24.735549 87.558794
+L 24.784988 85.197507
+L 24.883803 82.839594
+L 25.031872 80.487297
+L 25.229011 78.142848
+L 25.474977 75.808465
+L 25.769464 73.486348
+L 26.11211 71.178673
+L 26.502493 68.887593
+L 26.940137 66.615229
+L 27.424508 64.36367
+L 27.955018 62.134968
+L 28.531028 59.931135
+L 29.151848 57.754141
+L 29.816738 55.605907
+L 30.524911 53.48831
+L 31.275536 51.403171
+L 32.067737 49.352261
+L 32.900601 47.337293
+L 33.773171 45.359921
+L 34.684458 43.421743
+L 35.633437 41.524292
+L 36.619051 39.669041
+L 37.640213 37.857398
+L 38.695811 36.090705
+L 39.784706 34.37024
+L 40.905738 32.697215
+L 42.057725 31.072773
+L 43.239468 29.497993
+L 44.449754 27.973886
+L 45.687353 26.501394
+L 46.951026 25.081395
+L 48.239525 23.7147
+L 49.551593 22.402054
+L 50.885969 21.144136
+L 52.241389 19.941564
+L 53.616586 18.794888
+L 55.010294 17.704599
+L 56.42125 16.671126
+L 57.848192 15.694836
+L 59.289865 14.776041
+L 60.745021 13.914992
+L 62.212418 13.111884
+L 63.690824 12.366859
+L 65.179018 11.680006
+L 66.675789 11.051359
+L 68.17994 10.480906
+L 69.690287 9.968583
+L 71.20566 9.51428
+L 72.724906 9.117841
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 94.667441 169.237901
+L 95.236808 168.920847
+L 95.805996 168.544318
+L 96.374575 168.107913
+L 96.942102 167.611276
+L 97.508127 167.054097
+L 98.07219 166.43612
+L 98.633822 165.757142
+L 99.192544 165.017012
+L 99.74787 164.215642
+L 100.299307 163.353
+L 100.846353 162.42912
+L 101.388498 161.444098
+L 101.925227 160.3981
+L 102.456019 159.29136
+L 102.980348 158.124186
+L 103.497682 156.896956
+L 104.007487 155.610128
+L 104.509225 154.264235
+L 105.002356 152.859889
+L 105.486338 151.397786
+L 105.96063 149.8787
+L 106.424691 148.303493
+L 106.877984 146.673109
+L 107.319971 144.988577
+L 107.750122 143.251013
+L 108.167911 141.461619
+L 108.572817 139.621685
+L 108.964329 137.732584
+L 109.341946 135.795777
+L 109.705175 133.812809
+L 110.053536 131.785311
+L 110.386564 129.714993
+L 110.703805 127.603649
+L 111.004825 125.45315
+L 111.289205 123.265443
+L 111.556545 121.042552
+L 111.806465 118.786568
+L 112.038607 116.499652
+L 112.252634 114.184028
+L 112.448234 111.84198
+L 112.625119 109.475849
+L 112.783026 107.088027
+L 112.921721 104.680952
+L 113.040994 102.257105
+L 113.140666 99.819002
+L 113.220587 97.369192
+L 113.280634 94.910249
+L 113.320717 92.444769
+L 113.340773 89.97536
+L 113.340773 87.50464
+L 113.320717 85.035231
+L 113.280634 82.569751
+L 113.220587 80.110808
+L 113.140666 77.660998
+L 113.040994 75.222895
+L 112.921721 72.799048
+L 112.783026 70.391973
+L 112.625119 68.004151
+L 112.448234 65.63802
+L 112.252634 63.295972
+L 112.038607 60.980348
+L 111.806465 58.693432
+L 111.556545 56.437448
+L 111.289205 54.214557
+L 111.004825 52.02685
+L 110.703805 49.876351
+L 110.386564 47.765007
+L 110.053536 45.694689
+L 109.705175 43.667191
+L 109.341946 41.684223
+L 108.964329 39.747416
+L 108.572817 37.858315
+L 108.167911 36.018381
+L 107.750122 34.228987
+L 107.319971 32.491423
+L 106.877984 30.806891
+L 106.424691 29.176507
+L 105.96063 27.6013
+L 105.486338 26.082214
+L 105.002356 24.620111
+L 104.509225 23.215765
+L 104.007487 21.869872
+L 103.497682 20.583044
+L 102.980348 19.355814
+L 102.456019 18.18864
+L 101.925227 17.0819
+L 101.388498 16.035902
+L 100.846353 15.05088
+L 100.299307 14.127
+L 99.74787 13.264358
+L 99.192544 12.462988
+L 98.633822 11.722858
+L 98.07219 11.04388
+L 97.508127 10.425903
+L 96.942102 9.868724
+L 96.374575 9.372087
+L 95.805996 8.935682
+L 95.236808 8.559153
+L 94.667441 8.242099
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 135.190358 155.618808
+L 136.498235 154.698881
+L 138.19186 153.446178
+L 139.853664 152.145882
+L 141.482347 150.798796
+L 143.076625 149.405767
+L 144.635239 147.967682
+L 146.15695 146.485472
+L 147.640541 144.960109
+L 149.084822 143.392603
+L 150.48863 141.78401
+L 151.850828 140.135421
+L 153.170308 138.447969
+L 154.445992 136.722825
+L 155.676835 134.961201
+L 156.861824 133.164342
+L 157.999979 131.333532
+L 159.090356 129.470091
+L 160.132049 127.575373
+L 161.124187 125.650764
+L 162.065939 123.697684
+L 162.956514 121.717584
+L 163.795161 119.711944
+L 164.581171 117.682273
+L 165.313878 115.630106
+L 165.992661 113.557004
+L 166.61694 111.464551
+L 167.186183 109.354355
+L 167.699904 107.228042
+L 168.157663 105.087257
+L 168.559067 102.933664
+L 168.903771 100.76894
+L 169.19148 98.594774
+L 169.421945 96.412868
+L 169.594968 94.224933
+L 169.710399 92.032686
+L 169.76814 89.83785
+L 169.76814 87.64215
+L 169.710399 85.447314
+L 169.594968 83.255067
+L 169.421945 81.067132
+L 169.19148 78.885226
+L 168.903771 76.71106
+L 168.559067 74.546336
+L 168.157663 72.392743
+L 167.699904 70.251958
+L 167.186183 68.125645
+L 166.61694 66.015449
+L 165.992661 63.922996
+L 165.313878 61.849894
+L 164.581171 59.797727
+L 163.795161 57.768056
+L 162.956514 55.762416
+L 162.065939 53.782316
+L 161.124187 51.829236
+L 160.132049 49.904627
+L 159.090356 48.009909
+L 157.999979 46.146468
+L 156.861824 44.315658
+L 155.676835 42.518799
+L 154.445992 40.757175
+L 153.170308 39.032031
+L 151.850828 37.344579
+L 150.48863 35.69599
+L 149.084822 34.087397
+L 147.640541 32.519891
+L 146.15695 30.994528
+L 144.635239 29.512318
+L 143.076625 28.074233
+L 141.482347 26.681204
+L 139.853664 25.334118
+L 138.19186 24.033822
+L 136.498235 22.781119
+L 135.190358 21.861192
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+   </g>
+   <g id="LineCollection_2">
+    <path clip-path="url(#pdb2de22c10)" d="M 49.433119 160.008785
+L 49.460433 160.023593
+L 50.157536 160.352077
+L 51.021013 160.675416
+L 52.0494 160.992111
+L 53.240382 161.300656
+L 54.590768 161.599551
+L 56.096466 161.887308
+L 57.752465 162.162462
+L 59.552831 162.423585
+L 61.490706 162.669295
+L 63.558317 162.898267
+L 65.747004 163.109247
+L 68.047249 163.301062
+L 70.448722 163.472628
+L 72.940337 163.622967
+L 75.510319 163.75121
+L 78.146284 163.856609
+L 80.835325 163.938545
+L 83.56411 163.996535
+L 86.318984 164.030234
+L 89.086078 164.03944
+L 91.851425 164.0241
+L 94.60107 163.984304
+L 97.321188 163.92029
+L 99.998196 163.832437
+L 102.618856 163.721263
+L 105.170385 163.587422
+L 107.640542 163.43169
+L 110.017719 163.254966
+L 112.291012 163.058255
+L 114.45029 162.842663
+L 116.486245 162.609386
+L 118.390435 162.359696
+L 120.155317 162.094934
+L 121.774261 161.816493
+L 123.241564 161.525814
+L 124.552448 161.224366
+L 125.703045 160.913642
+L 126.690388 160.595145
+L 127.512376 160.27038
+L 128.046881 160.008785
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 26.803408 141.717689
+L 27.125761 142.00847
+L 27.785219 142.39691
+L 28.708514 142.783063
+L 29.897441 143.165118
+L 31.352489 143.541213
+L 33.072724 143.909443
+L 35.055684 144.267873
+L 37.297276 144.614556
+L 39.791686 144.947541
+L 42.531312 145.264899
+L 45.5067 145.564734
+L 48.706522 145.845207
+L 52.117562 146.104554
+L 55.724747 146.341105
+L 59.511198 146.553303
+L 63.458321 146.739729
+L 67.545932 146.899112
+L 71.752414 147.030351
+L 76.054905 147.13253
+L 80.429515 147.204928
+L 84.851574 147.247031
+L 89.295888 147.258537
+L 93.737018 147.239365
+L 98.149561 147.189653
+L 102.508428 147.109753
+L 106.789119 147.000233
+L 110.967982 146.861864
+L 115.022445 146.695611
+L 118.931232 146.502617
+L 122.674545 146.284191
+L 126.234206 146.041791
+L 129.593783 145.777002
+L 132.738662 145.49152
+L 135.656099 145.187129
+L 138.335233 144.865685
+L 140.767081 144.529093
+L 142.944491 144.179291
+L 144.862088 143.818228
+L 146.516196 143.447852
+L 147.904744 143.07009
+L 149.027164 142.686837
+L 149.884283 142.299945
+L 150.478205 141.911209
+L 150.676592 141.717689
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 12.388607 117.150748
+L 12.645339 117.309129
+L 13.32502 117.567776
+L 14.333406 117.825805
+L 15.675159 118.08199
+L 17.353355 118.335051
+L 19.369296 118.583664
+L 21.722314 118.826467
+L 24.409586 119.062072
+L 27.425952 119.289076
+L 30.763761 119.506075
+L 34.412731 119.711675
+L 38.359847 119.904515
+L 42.589298 120.083275
+L 47.082463 120.246696
+L 51.817948 120.393598
+L 56.771679 120.522897
+L 61.917069 120.633618
+L 67.225232 120.724911
+L 72.665271 120.796066
+L 78.204614 120.846523
+L 83.809404 120.875881
+L 89.444921 120.883907
+L 95.076041 120.870535
+L 100.667698 120.835874
+L 106.185346 120.780198
+L 111.595411 120.70395
+L 116.865704 120.607728
+L 121.965802 120.492278
+L 126.867369 120.358482
+L 131.544428 120.207344
+L 135.973563 120.039975
+L 140.134067 119.857575
+L 144.008019 119.661419
+L 147.58031 119.45284
+L 150.838618 119.233209
+L 153.773328 119.003923
+L 156.377425 118.766387
+L 158.646352 118.522002
+L 160.577839 118.272151
+L 162.17173 118.018186
+L 163.429787 117.761422
+L 164.355503 117.503125
+L 164.953903 117.24451
+L 165.091393 117.150748
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 7.2 88.74
+L 7.238685 88.74
+L 7.568694 88.74
+L 8.242735 88.74
+L 9.268159 88.74
+L 10.650875 88.74
+L 12.395129 88.74
+L 14.503282 88.74
+L 16.97558 88.74
+L 19.809929 88.74
+L 23.001675 88.74
+L 26.543406 88.74
+L 30.424776 88.74
+L 34.632366 88.74
+L 39.149589 88.74
+L 43.95665 88.74
+L 49.030571 88.74
+L 54.345283 88.74
+L 59.871796 88.74
+L 65.578445 88.74
+L 71.431207 88.74
+L 77.394096 88.74
+L 83.42961 88.74
+L 89.499238 88.74
+L 95.563983 88.74
+L 101.584921 88.74
+L 107.523743 88.74
+L 113.343281 88.74
+L 119.008 88.74
+L 124.484432 88.74
+L 129.741554 88.74
+L 134.751085 88.74
+L 139.487717 88.74
+L 143.929262 88.74
+L 148.056727 88.74
+L 151.854324 88.74
+L 155.309411 88.74
+L 158.412392 88.74
+L 161.15656 88.74
+L 163.537923 88.74
+L 165.554992 88.74
+L 167.208563 88.74
+L 168.501489 88.74
+L 169.438454 88.74
+L 170.025745 88.74
+L 170.271044 88.74
+L 170.28 88.74
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 12.388607 60.329252
+L 12.645339 60.170871
+L 13.32502 59.912224
+L 14.333406 59.654195
+L 15.675159 59.39801
+L 17.353355 59.144949
+L 19.369296 58.896336
+L 21.722314 58.653533
+L 24.409586 58.417928
+L 27.425952 58.190924
+L 30.763761 57.973925
+L 34.412731 57.768325
+L 38.359847 57.575485
+L 42.589298 57.396725
+L 47.082463 57.233304
+L 51.817948 57.086402
+L 56.771679 56.957103
+L 61.917069 56.846382
+L 67.225232 56.755089
+L 72.665271 56.683934
+L 78.204614 56.633477
+L 83.809404 56.604119
+L 89.444921 56.596093
+L 95.076041 56.609465
+L 100.667698 56.644126
+L 106.185346 56.699802
+L 111.595411 56.77605
+L 116.865704 56.872272
+L 121.965802 56.987722
+L 126.867369 57.121518
+L 131.544428 57.272656
+L 135.973563 57.440025
+L 140.134067 57.622425
+L 144.008019 57.818581
+L 147.58031 58.02716
+L 150.838618 58.246791
+L 153.773328 58.476077
+L 156.377425 58.713613
+L 158.646352 58.957998
+L 160.577839 59.207849
+L 162.17173 59.461814
+L 163.429787 59.718578
+L 164.355503 59.976875
+L 164.953903 60.23549
+L 165.091393 60.329252
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 26.803408 35.762311
+L 27.125761 35.47153
+L 27.785219 35.08309
+L 28.708514 34.696937
+L 29.897441 34.314882
+L 31.352489 33.938787
+L 33.072724 33.570557
+L 35.055684 33.212127
+L 37.297276 32.865444
+L 39.791686 32.532459
+L 42.531312 32.215101
+L 45.5067 31.915266
+L 48.706522 31.634793
+L 52.117562 31.375446
+L 55.724747 31.138895
+L 59.511198 30.926697
+L 63.458321 30.740271
+L 67.545932 30.580888
+L 71.752414 30.449649
+L 76.054905 30.34747
+L 80.429515 30.275072
+L 84.851574 30.232969
+L 89.295888 30.221463
+L 93.737018 30.240635
+L 98.149561 30.290347
+L 102.508428 30.370247
+L 106.789119 30.479767
+L 110.967982 30.618136
+L 115.022445 30.784389
+L 118.931232 30.977383
+L 122.674545 31.195809
+L 126.234206 31.438209
+L 129.593783 31.702998
+L 132.738662 31.98848
+L 135.656099 32.292871
+L 138.335233 32.614315
+L 140.767081 32.950907
+L 142.944491 33.300709
+L 144.862088 33.661772
+L 146.516196 34.032148
+L 147.904744 34.40991
+L 149.027164 34.793163
+L 149.884283 35.180055
+L 150.478205 35.568791
+L 150.676592 35.762311
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+    <path clip-path="url(#pdb2de22c10)" d="M 49.433119 17.471215
+L 49.460433 17.456407
+L 50.157536 17.127923
+L 51.021013 16.804584
+L 52.0494 16.487889
+L 53.240382 16.179344
+L 54.590768 15.880449
+L 56.096466 15.592692
+L 57.752465 15.317538
+L 59.552831 15.056415
+L 61.490706 14.810705
+L 63.558317 14.581733
+L 65.747004 14.370753
+L 68.047249 14.178938
+L 70.448722 14.007372
+L 72.940337 13.857033
+L 75.510319 13.72879
+L 78.146284 13.623391
+L 80.835325 13.541455
+L 83.56411 13.483465
+L 86.318984 13.449766
+L 89.086078 13.44056
+L 91.851425 13.4559
+L 94.60107 13.495696
+L 97.321188 13.55971
+L 99.998196 13.647563
+L 102.618856 13.758737
+L 105.170385 13.892578
+L 107.640542 14.04831
+L 110.017719 14.225034
+L 112.291012 14.421745
+L 114.45029 14.637337
+L 116.486245 14.870614
+L 118.390435 15.120304
+L 120.155317 15.385066
+L 121.774261 15.663507
+L 123.241564 15.954186
+L 124.552448 16.255634
+L 125.703045 16.566358
+L 126.690388 16.884855
+L 127.512376 17.20962
+L 128.046881 17.471215
+" style="fill:none;stroke:#b0b0b0;stroke-width:0.8;"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 170.28 88.74
+L 169.840095 97.230886
+L 168.52455 105.630826
+L 166.345881 113.84967
+L 163.324997 121.798873
+L 159.491247 129.392316
+L 154.882453 136.547159
+L 149.544895 143.184702
+L 143.533216 149.231281
+L 136.910198 154.619159
+L 129.74639 159.287412
+L 122.119538 163.182778
+L 114.113821 166.260452
+L 105.818879 168.484788
+L 97.328641 169.829879
+L 88.74 170.28
+L 80.151359 169.829879
+L 71.661121 168.484788
+L 63.366179 166.260452
+L 55.360462 163.182778
+L 47.73361 159.287412
+L 40.569802 154.619159
+L 33.946784 149.231281
+L 27.935105 143.184702
+L 22.597547 136.547159
+L 17.988753 129.392316
+L 14.155003 121.798873
+L 11.134119 113.84967
+L 8.95545 105.630826
+L 7.639905 97.230886
+L 7.2 88.74
+L 7.639905 80.249114
+L 8.95545 71.849174
+L 11.134119 63.63033
+L 14.155003 55.681127
+L 17.988753 48.087684
+L 22.597547 40.932841
+L 27.935105 34.295298
+L 33.946784 28.248719
+L 40.569802 22.860841
+L 47.73361 18.192588
+L 55.360462 14.297222
+L 63.366179 11.219548
+L 71.661121 8.995212
+L 80.151359 7.650121
+L 88.74 7.2
+L 97.328641 7.650121
+L 105.818879 8.995212
+L 114.113821 11.219548
+L 122.119538 14.297222
+L 129.74639 18.192588
+L 136.910198 22.860841
+L 143.533216 28.248719
+L 149.544895 34.295298
+L 154.882453 40.932841
+L 159.491247 48.087684
+L 163.324997 55.681127
+L 166.345881 63.63033
+L 168.52455 71.849174
+L 169.840095 80.249114
+L 170.28 88.74
+L 170.28 88.74
+" style="fill:none;stroke:#000000;stroke-linejoin:miter;stroke-width:0.8;"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pdb2de22c10">
+   <path d="M 170.28 88.74
+L 169.840095 97.230886
+L 168.52455 105.630826
+L 166.345881 113.84967
+L 163.324997 121.798873
+L 159.491247 129.392316
+L 154.882453 136.547159
+L 149.544895 143.184702
+L 143.533216 149.231281
+L 136.910198 154.619159
+L 129.74639 159.287412
+L 122.119538 163.182778
+L 114.113821 166.260452
+L 105.818879 168.484788
+L 97.328641 169.829879
+L 88.74 170.28
+L 80.151359 169.829879
+L 71.661121 168.484788
+L 63.366179 166.260452
+L 55.360462 163.182778
+L 47.73361 159.287412
+L 40.569802 154.619159
+L 33.946784 149.231281
+L 27.935105 143.184702
+L 22.597547 136.547159
+L 17.988753 129.392316
+L 14.155003 121.798873
+L 11.134119 113.84967
+L 8.95545 105.630826
+L 7.639905 97.230886
+L 7.2 88.74
+L 7.639905 80.249114
+L 8.95545 71.849174
+L 11.134119 63.63033
+L 14.155003 55.681127
+L 17.988753 48.087684
+L 22.597547 40.932841
+L 27.935105 34.295298
+L 33.946784 28.248719
+L 40.569802 22.860841
+L 47.73361 18.192588
+L 55.360462 14.297222
+L 63.366179 11.219548
+L 71.661121 8.995212
+L 80.151359 7.650121
+L 88.74 7.2
+L 97.328641 7.650121
+L 105.818879 8.995212
+L 114.113821 11.219548
+L 122.119538 14.297222
+L 129.74639 18.192588
+L 136.910198 22.860841
+L 143.533216 28.248719
+L 149.544895 34.295298
+L 154.882453 40.932841
+L 159.491247 48.087684
+L 163.324997 55.681127
+L 166.345881 63.63033
+L 168.52455 71.849174
+L 169.840095 80.249114
+L 170.28 88.74
+L 170.28 88.74
+"/>
+  </clipPath>
+ </defs>
+</svg>
+<pre>&lt;cartopy.crs.Geostationary object at 0x2b5eb637b400&gt;</pre></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span>   <span class="c1"># See, the FOV is just a shapely polygon</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_5_0.svg" src="../../_images/user_guide_notebooks_field-of-view_ABI_5_0.svg" /></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span>  <span class="c1"># See the FOV for the ABI product domain (CONUS)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_6_0.svg" src="../../_images/user_guide_notebooks_field-of-view_ABI_6_0.svg" /></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">OCEAN</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">LAND</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">100</span><span class="p">),</span>
+                     <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="c1"># Draw boundary of GOES17</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                   <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;tab:purple&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                   <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;tab:purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Draw boundary of GOES16</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                   <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                   <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Draw boundary of GOES-Central (test phase)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">gcentral</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">gcentral</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                   <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">g17</span><span class="o">.</span><span class="n">geospatial_lat_lon_extent</span><span class="o">.</span><span class="n">geospatial_lon_nadir</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span>
+        <span class="n">g17</span><span class="o">.</span><span class="n">geospatial_lat_lon_extent</span><span class="o">.</span><span class="n">geospatial_lat_nadir</span><span class="p">,</span>
+        <span class="s1">&#39;GOES-West&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">pc</span><span class="p">,</span>
+       <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:purple&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">g16</span><span class="o">.</span><span class="n">geospatial_lat_lon_extent</span><span class="o">.</span><span class="n">geospatial_lon_nadir</span><span class="o">+</span><span class="mi">80</span><span class="p">,</span>
+        <span class="n">g16</span><span class="o">.</span><span class="n">geospatial_lat_lon_extent</span><span class="o">.</span><span class="n">geospatial_lat_nadir</span><span class="p">,</span>
+        <span class="s1">&#39;GOES-East&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">pc</span><span class="p">,</span>
+       <span class="n">rotation</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES ABI Field of View&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../images/ABI_field-of-view.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../docs/_static/ABI_field-of-view.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_7_0.png" src="../../_images/user_guide_notebooks_field-of-view_ABI_7_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">OCEAN</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">LAND</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">100</span><span class="p">),</span>
+                     <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:purple&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:purple&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-East ABI Field of View and CONUS Domain&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../docs/_static/ABI_field-of-view_16dom.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_8_0.png" src="../../_images/user_guide_notebooks_field-of-view_ABI_8_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">OCEAN</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">LAND</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">100</span><span class="p">),</span>
+                     <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:purple&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:purple&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-West ABI Field of View and CONUS Domain&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../docs/_static/ABI_field-of-view_17dom.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_9_0.png" src="../../_images/user_guide_notebooks_field-of-view_ABI_9_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">crs_16</span><span class="o">.</span><span class="n">proj4_params</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;a&#39;: 6378137.0,
+ &#39;b&#39;: 6356752.31414,
+ &#39;rf&#39;: 298.2572221,
+ &#39;proj&#39;: &#39;geos&#39;,
+ &#39;lon_0&#39;: -75.0,
+ &#39;lat_0&#39;: 0.0,
+ &#39;h&#39;: 35786023.0,
+ &#39;x_0&#39;: 0,
+ &#39;y_0&#39;: 0,
+ &#39;units&#39;: &#39;m&#39;,
+ &#39;sweep&#39;: &#39;x&#39;}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">crs_central</span><span class="o">.</span><span class="n">proj4_params</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;a&#39;: 6378137.0,
+ &#39;b&#39;: 6356752.31414,
+ &#39;rf&#39;: 298.2572221,
+ &#39;proj&#39;: &#39;geos&#39;,
+ &#39;lon_0&#39;: -89.5,
+ &#39;lat_0&#39;: 0.0,
+ &#39;h&#39;: 35786023.0,
+ &#39;x_0&#39;: 0,
+ &#39;y_0&#39;: 0,
+ &#39;units&#39;: &#39;m&#39;,
+ &#39;sweep&#39;: &#39;x&#39;}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">crs_17</span><span class="o">.</span><span class="n">proj4_params</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;a&#39;: 6378137.0,
+ &#39;b&#39;: 6356752.31414,
+ &#39;rf&#39;: 298.2572221,
+ &#39;proj&#39;: &#39;geos&#39;,
+ &#39;lon_0&#39;: -137.0,
+ &#39;lat_0&#39;: 0.0,
+ &#39;h&#39;: 35786023.0,
+ &#39;x_0&#39;: 0,
+ &#39;y_0&#39;: 0,
+ &#39;units&#39;: &#39;m&#39;,
+ &#39;sweep&#39;: &#39;x&#39;}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">M1</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="s2">&quot;M1&quot;</span><span class="p">)</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="s2">&quot;M2&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">OCEAN</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">LAND</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">100</span><span class="p">),</span>
+                     <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">M1</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">M1</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:purple&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:purple&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">M1</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">M1</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">M2</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">M2</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-West ABI Field of View and Mesoscale Domains&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../docs/_static/ABI_field-of-view_16M1M2.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-MCMIPM    |
+ |    Domain: M1               |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPM].
+📚 Finished reading [1] files into xarray.Dataset.
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-MCMIPM    |
+ |    Domain: M2               |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPM].
+📚 Finished reading [1] files into xarray.Dataset.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/p/home/blaylock/anaconda3/envs/goes2go/lib/python3.8/site-packages/cartopy/mpl/feature_artist.py:154: UserWarning: Unable to determine extent. Defaulting to global.
+  warnings.warn(&#39;Unable to determine extent. Defaulting to global.&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_13_2.png" src="../../_images/user_guide_notebooks_field-of-view_ABI_13_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">M1</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="s2">&quot;M1&quot;</span><span class="p">)</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="s2">&quot;M2&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">OCEAN</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">LAND</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">crs</span><span class="o">=</span><span class="n">M1</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                     <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">M1</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">M1</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">M2</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">M2</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-West ABI Field of View</span><span class="se">\n</span><span class="s1">Mesoscale Domains&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../docs/_static/ABI_field-of-view_16M1M2_geo.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-MCMIPM    |
+ |    Domain: M1               |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPM].
+📚 Finished reading [1] files into xarray.Dataset.
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-MCMIPM    |
+ |    Domain: M2               |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-MCMIPM].
+📚 Finished reading [1] files into xarray.Dataset.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_14_1.png" src="../../_images/user_guide_notebooks_field-of-view_ABI_14_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">OCEAN</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">LAND</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">crs</span><span class="o">=</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                     <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g16</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-West ABI Field of View</span><span class="se">\n</span><span class="s1">Mesoscale Domains&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../docs/_static/ABI_field-of-view_16_geo.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_15_0.png" src="../../_images/user_guide_notebooks_field-of-view_ABI_15_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="n">OCEAN</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">LAND</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">crs</span><span class="o">=</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                     <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">g17</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;tab:green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GOES-West ABI Field of View</span><span class="se">\n</span><span class="s1">Mesoscale Domains&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../docs/_static/ABI_field-of-view_17_geo.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_field-of-view_ABI_16_0.png" src="../../_images/user_guide_notebooks_field-of-view_ABI_16_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="DEMO_download_goes_timerange.html" title="previous page">Download GOES Data: Timerange</a>
+    <a class='right-next' id="next-link" href="field-of-view_GLM.html" title="next page">⚡ GLM Geostationary field-of-view in Cartopy</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Brian K. Blaylock.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
