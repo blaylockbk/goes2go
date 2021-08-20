@@ -134,7 +134,17 @@ class fieldOfViewAccessor:
 
     @property
     def full_disk(self):
-        """Full Disk Field of View"""
+        """
+        Full-disk field of view for the ABI or GLM instruments.
+
+        .. image:: /_static/ABI_field-of-view.png
+
+        .. image:: /_static/GLM_field-of-view.png
+
+        Returns
+        -------
+        shapely.Polygon
+        """
         ds = self._obj
 
         # Create polygon of the field of view. This polygon is in
@@ -183,7 +193,19 @@ class fieldOfViewAccessor:
 
     @property
     def domain(self):
-        """Field of view for ABI domain"""
+        """
+        Field of view for the ABI domain (CONUS or MesoScale).
+
+        .. image:: /_static/ABI_field-of-view_16dom.png
+
+        .. image:: /_static/ABI_field-of-view_16M1M2.png
+
+        .. image:: /_static/ABI_field-of-view_17dom.png
+
+        Returns
+        -------
+        shapely.Polygon
+        """
         ds = self._obj
         assert ds.title.startswith(
             "ABI"
