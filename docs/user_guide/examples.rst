@@ -2,7 +2,7 @@
 🤹🏻‍♂️ Examples
 ==============
 
-Please refer to some `notebooks on GitHub <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ for examples.
+All notebook are on `GitHub <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_.
 
 
 Download GOES Data
