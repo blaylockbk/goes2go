@@ -22,7 +22,4 @@ Reference Guide
    :template: autosummary/accessor_method.rst
 
    Dataset.rgb.TrueColor
-   Dataset.rgb.NaturalColor
-   Dataset.rgb.Ash
-
 
