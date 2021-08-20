@@ -287,7 +287,7 @@ class rgbAccessor:
 
         self._obj.coords["longitude"] = (("y", "x"), lons)
         self._obj.coords["latitude"] = (("y", "x"), lats)
-        return self._obj
+        return self._obj["latitude"], self._obj["longitude"]
 
     ####################################################################
     # Helpers
