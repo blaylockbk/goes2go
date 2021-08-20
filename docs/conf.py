@@ -38,9 +38,10 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.napoleon',
     #'sphinx.ext.jsmath',    # Can't seem to get the math function to work
-    'recommonmark', 
+    'recommonmark',
     'autodocsumm',
-    'sphinx_markdown_tables'
+    'sphinx_markdown_tables',
+    'sphinx_autosummary_accessors'
 ]
 
 # Set up mapping for other projects' docs
@@ -61,12 +62,12 @@ source_suffix = {
 }
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['_templates', sphinx_autosummary_accessors.templates_path]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store',
                     '.ipynb_checkpoints', '.vscode']
 
 
@@ -121,7 +122,7 @@ html_js_files = [
 # Set autodoc defaults
 autodoc_default_options = {
     'autosummary': True,        # Include a members "table of contents"
-    'members': True,            # Document all functions/members  
+    'members': True,            # Document all functions/members
 }
 
 autodoc_mock_imports = ["xesmf", "numpy", "matplotlib",
@@ -147,5 +148,5 @@ IMPORTANT NOTES ABOUT PUBLISHING TO GITHUB PAGES
    Something like this in that file (yes, only one line)...
         <meta http-equiv="Refresh" content="0;url=_build/html/"/>
 
-3. 
+3.
 """
