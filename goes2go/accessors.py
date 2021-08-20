@@ -101,6 +101,7 @@ class fieldOfViewAccessor:
 
     @property
     def crs(self):
+        """Cartopy coordinate reference system for the Satellite."""
         ds = self._obj
         if ds.title.startswith("ABI"):
             globe_kwargs = dict(
@@ -1115,7 +1116,9 @@ class rgbAccessor:
         https://ntrs.nasa.gov/citations/20190030825
 
         """
-        warnings.warn("THE `NormalizedBurnRatio` FUNCTION IS NOT FULLY DEVELOPED. NEED MORE INFO.")
+        warnings.warn(
+            "THE `NormalizedBurnRatio` FUNCTION IS NOT FULLY DEVELOPED. NEED MORE INFO."
+        )
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
