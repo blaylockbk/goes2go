@@ -16,7 +16,6 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 #import sphinx_rtd_theme
 import pydata_sphinx_theme
-import sphinx_autosummary_accessors
 from datetime import datetime
 
 # -- Project information -----------------------------------------------------
@@ -41,8 +40,7 @@ extensions = [
     #'sphinx.ext.jsmath',    # Can't seem to get the math function to work
     'recommonmark',
     'autodocsumm',
-    'sphinx_markdown_tables',
-    'sphinx_autosummary_accessors'
+    'sphinx_markdown_tables'
 ]
 
 # Set up mapping for other projects' docs
@@ -63,7 +61,7 @@ source_suffix = {
 }
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates', sphinx_autosummary_accessors.templates_path]
+templates_path = ['_templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
