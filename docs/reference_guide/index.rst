@@ -7,7 +7,7 @@ Reference Guide
 
 .. automodule:: goes2go.data
 
-.. currentmodule:: xarray
+.. currentmodule:: data
 
 .. autosummary::
    :toctree: generated/
