@@ -13,13 +13,13 @@ Reference Guide
    :toctree: generated/
    :template: autosummary/accessor_attribute.rst
 
-   Dataset.rgb.crs
+   goes_latest.rgb.crs
 
 .. autosummary::
    :toctree: generated/
    :template: autosummary/accessor_method.rst
 
-   Dataset.rgb.TrueColor
+   goes_latest.rgb.TrueColor
 
 
 
