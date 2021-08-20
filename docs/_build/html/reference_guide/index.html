@@ -1236,6 +1236,330 @@ ABI full-disk field of view if 17.4 degrees (see page 48)</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">goes2go.accessors.</span></span><span class="sig-name descname"><span class="pre">rgbAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Methods:</strong></p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.AirMass" title="goes2go.accessors.rgbAccessor.AirMass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AirMass</span></code></a>()</p></td>
+<td><p>Air Mass RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.Ash" title="goes2go.accessors.rgbAccessor.Ash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ash</span></code></a>()</p></td>
+<td><p>Ash RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.DayCloudConvection" title="goes2go.accessors.rgbAccessor.DayCloudConvection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayCloudConvection</span></code></a>()</p></td>
+<td><p>Day Cloud Convection RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.DayCloudPhase" title="goes2go.accessors.rgbAccessor.DayCloudPhase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayCloudPhase</span></code></a>()</p></td>
+<td><p>Day Cloud Phase Distinction RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.DayConvection" title="goes2go.accessors.rgbAccessor.DayConvection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayConvection</span></code></a>()</p></td>
+<td><p>Day Convection RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.DayLandCloud" title="goes2go.accessors.rgbAccessor.DayLandCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayLandCloud</span></code></a>()</p></td>
+<td><p>Day Land Cloud Fire RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.DayLandCloudFire" title="goes2go.accessors.rgbAccessor.DayLandCloudFire"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayLandCloudFire</span></code></a>()</p></td>
+<td><p>Day Land Cloud Fire RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.DaySnowFog" title="goes2go.accessors.rgbAccessor.DaySnowFog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DaySnowFog</span></code></a>()</p></td>
+<td><p>Day Snow-Fog RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.DifferentialWaterVapor" title="goes2go.accessors.rgbAccessor.DifferentialWaterVapor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DifferentialWaterVapor</span></code></a>()</p></td>
+<td><p>Differential Water Vapor RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.Dust" title="goes2go.accessors.rgbAccessor.Dust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dust</span></code></a>()</p></td>
+<td><p>SulfurDioxide RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.FireTemperature" title="goes2go.accessors.rgbAccessor.FireTemperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FireTemperature</span></code></a>()</p></td>
+<td><p>Fire Temperature RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.NaturalColor" title="goes2go.accessors.rgbAccessor.NaturalColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaturalColor</span></code></a>([gamma, pseudoGreen, night_IR])</p></td>
+<td><p>Natural Color RGB based on CIMSS method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.NightFogDifference" title="goes2go.accessors.rgbAccessor.NightFogDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NightFogDifference</span></code></a>()</p></td>
+<td><p>Night Fog Difference RGB (greyscale): (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.NighttimeMicrophysics" title="goes2go.accessors.rgbAccessor.NighttimeMicrophysics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NighttimeMicrophysics</span></code></a>()</p></td>
+<td><p>Nighttime Microphysics RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.NormalizedBurnRatio" title="goes2go.accessors.rgbAccessor.NormalizedBurnRatio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NormalizedBurnRatio</span></code></a>()</p></td>
+<td><p>Normalized Burn Ratio</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.RocketPlume" title="goes2go.accessors.rgbAccessor.RocketPlume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RocketPlume</span></code></a>([night])</p></td>
+<td><p>Rocket Plume RGB</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.SplitWindowDifference" title="goes2go.accessors.rgbAccessor.SplitWindowDifference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SplitWindowDifference</span></code></a>()</p></td>
+<td><p>Split Window Difference RGB (greyscale): (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.SulfurDioxide" title="goes2go.accessors.rgbAccessor.SulfurDioxide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SulfurDioxide</span></code></a>()</p></td>
+<td><p>SulfurDioxide RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.TrueColor" title="goes2go.accessors.rgbAccessor.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrueColor</span></code></a>([gamma, pseudoGreen, night_IR])</p></td>
+<td><p>True Color RGB: (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.WaterVapor" title="goes2go.accessors.rgbAccessor.WaterVapor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WaterVapor</span></code></a>()</p></td>
+<td><p>Simple Water Vapor RGB: (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf">Quick Guide</a> for reference)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.get_latlon" title="goes2go.accessors.rgbAccessor.get_latlon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_latlon</span></code></a>()</p></td>
+<td><p>Get lat/lon of all points</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attributes:</strong></p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.x" title="goes2go.accessors.rgbAccessor.x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code></a></p></td>
+<td><p>x sweep in crs units (m); x * sat_height</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.y" title="goes2go.accessors.rgbAccessor.y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code></a></p></td>
+<td><p>x sweep in crs units (m); x * sat_height</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.AirMass">
+<span class="sig-name descname"><span class="pre">AirMass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.AirMass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Air Mass RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/AirMass.png" src="../_images/AirMass.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.Ash">
+<span class="sig-name descname"><span class="pre">Ash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.Ash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ash RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/Ash.png" src="../_images/Ash.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayCloudConvection">
+<span class="sig-name descname"><span class="pre">DayCloudConvection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayCloudConvection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Day Cloud Convection RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/DayCloudConvection.png" src="../_images/DayCloudConvection.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayCloudPhase">
+<span class="sig-name descname"><span class="pre">DayCloudPhase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayCloudPhase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Day Cloud Phase Distinction RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/DayCloudPhase.png" src="../_images/DayCloudPhase.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayConvection">
+<span class="sig-name descname"><span class="pre">DayConvection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayConvection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Day Convection RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/DayConvection.png" src="../_images/DayConvection.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayLandCloud">
+<span class="sig-name descname"><span class="pre">DayLandCloud</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayLandCloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Day Land Cloud Fire RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/DayLandCloud.png" src="../_images/DayLandCloud.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayLandCloudFire">
+<span class="sig-name descname"><span class="pre">DayLandCloudFire</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayLandCloudFire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Day Land Cloud Fire RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/DayLandCloudFire.png" src="../_images/DayLandCloudFire.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DaySnowFog">
+<span class="sig-name descname"><span class="pre">DaySnowFog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DaySnowFog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Day Snow-Fog RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/DaySnowFog.png" src="../_images/DaySnowFog.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DifferentialWaterVapor">
+<span class="sig-name descname"><span class="pre">DifferentialWaterVapor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DifferentialWaterVapor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Differential Water Vapor RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/DifferentialWaterVapor.png" src="../_images/DifferentialWaterVapor.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.Dust">
+<span class="sig-name descname"><span class="pre">Dust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.Dust" title="Permalink to this definition">¶</a></dt>
+<dd><p>SulfurDioxide RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/Dust.png" src="../_images/Dust.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.FireTemperature">
+<span class="sig-name descname"><span class="pre">FireTemperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.FireTemperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fire Temperature RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/FireTemperature.png" src="../_images/FireTemperature.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.NaturalColor">
+<span class="sig-name descname"><span class="pre">NaturalColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudoGreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">night_IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NaturalColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Natural Color RGB based on CIMSS method. Thanks Rick Kohrs!
+(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
+<p>Check out Rick Kohrs <a class="reference external" href="https://www.ssec.wisc.edu/~rickk/local-noon.html">merged GOES images</a>.</p>
+<p>This NaturalColor RGB is <em>very</em> similar to the TrueColor RGB but
+uses slightly different contrast stretches and ranges.</p>
+<p>For more details on combing RGB and making the psedo green channel, refer to
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379">Bah et al. 2018</a>.</p>
+<img alt="../_images/NaturalColor.png" src="../_images/NaturalColor.png" />
+<img alt="../_images/gamma_demo_NaturalColor-PsuedoGreen.png" src="../_images/gamma_demo_NaturalColor-PsuedoGreen.png" />
+<img alt="../_images/gamma_demo_NaturalColor-VeggieGreen.png" src="../_images/gamma_demo_NaturalColor-VeggieGreen.png" />
+<img alt="../_images/Color-IR_demo.png" src="../_images/Color-IR_demo.png" />
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma</strong> (<em>float</em>) – <p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/_gamma_correction">gamma correction</a>.
+Values &gt; 1 will lighten an image.
+Values &lt; 1 will darken an image.</p>
+</p></li>
+<li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value overlay
+so that cold clouds show up at night. (Be aware that some
+daytime clouds might appear brighter).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.NightFogDifference">
+<span class="sig-name descname"><span class="pre">NightFogDifference</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NightFogDifference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Night Fog Difference RGB (greyscale):
+(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/NightFogDifference.png" src="../_images/NightFogDifference.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.NighttimeMicrophysics">
+<span class="sig-name descname"><span class="pre">NighttimeMicrophysics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NighttimeMicrophysics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nighttime Microphysics RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/NighttimeMicrophysics.png" src="../_images/NighttimeMicrophysics.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.NormalizedBurnRatio">
+<span class="sig-name descname"><span class="pre">NormalizedBurnRatio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NormalizedBurnRatio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalized Burn Ratio</p>
+<p><strong>THIS FUNCTION IS NOT FULLY DEVELOPED. Need more info.</strong></p>
+<p>NBR= (0.86 µm – 2.2 µm)/(0.86 um + 2.2 um)</p>
+<p><a class="reference external" href="https://ntrs.nasa.gov/citations/20190030825">https://ntrs.nasa.gov/citations/20190030825</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.RocketPlume">
+<span class="sig-name descname"><span class="pre">RocketPlume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">night</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.RocketPlume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rocket Plume RGB</p>
+<p>For identifying rocket launches.</p>
+<p>See <a class="reference external" href="https://cimss.ssec.wisc.edu/satellite-blog/archives/41335">this blog</a> and
+the <a class="reference external" href="https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf">Quick Guide</a>
+for reference</p>
+<img alt="../_images/RocketPlume.png" src="../_images/RocketPlume.png" />
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>night</strong> (<em>bool</em>) – If the area is in night, turn this on to use a different channel
+than the daytime application.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.SplitWindowDifference">
+<span class="sig-name descname"><span class="pre">SplitWindowDifference</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.SplitWindowDifference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split Window Difference RGB (greyscale):
+(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/SplitWindowDifference.png" src="../_images/SplitWindowDifference.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.SulfurDioxide">
+<span class="sig-name descname"><span class="pre">SulfurDioxide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.SulfurDioxide" title="Permalink to this definition">¶</a></dt>
+<dd><p>SulfurDioxide RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/SulfurDioxide.png" src="../_images/SulfurDioxide.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.TrueColor">
+<span class="sig-name descname"><span class="pre">TrueColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudoGreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">night_IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.TrueColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>True Color RGB:
+(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
+<p>This is similar to the NaturalColor RGB, but uses a different gamma
+correction and does not apply contrast stretching. I think these
+images look a little “washed out” when compared to the NaturalColor
+RGB. So, I would recommend using the NaturalColor RGB.</p>
+<p>For more details on combing RGB and making the psedo green channel, refer to
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379">Bah et al. 2018</a>.</p>
+<img alt="../_images/TrueColor.png" src="../_images/TrueColor.png" />
+<img alt="../_images/gamma_demo_TrueColor.png" src="../_images/gamma_demo_TrueColor.png" />
+<img alt="../_images/Color-IR_demo.png" src="../_images/Color-IR_demo.png" />
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma</strong> (<em>float</em>) – <p>Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/_gamma_correction">gamma correction</a>.
+Values &gt; 1 will lighten an image.
+Values &lt; 1 will darken an image.</p>
+</p></li>
+<li><p><strong>pseudoGreen</strong> (<em>bool</em>) – True: returns the calculated “True” green color
+False: returns the “veggie” channel</p></li>
+<li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value overlay
+so that cold clouds show up at night. (Be aware that some
+daytime clouds might appear brighter).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.WaterVapor">
+<span class="sig-name descname"><span class="pre">WaterVapor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.WaterVapor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple Water Vapor RGB:
+(See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf">Quick Guide</a> for reference)</p>
+<img alt="../_images/WaterVapor.png" src="../_images/WaterVapor.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.get_latlon">
+<span class="sig-name descname"><span class="pre">get_latlon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.get_latlon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get lat/lon of all points</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.x">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x sweep in crs units (m); x * sat_height</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.y">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>x sweep in crs units (m); x * sat_height</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

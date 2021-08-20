@@ -15,3 +15,7 @@ Reference Guide
 .. autoclass:: goes2go.accessors.fieldOfViewAccessor
    :members:
    :inherited-members:
+
+.. autoclass:: goes2go.accessors.rgbAccessor
+   :members:
+   :inherited-members:
