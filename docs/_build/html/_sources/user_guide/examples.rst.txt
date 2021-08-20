@@ -31,4 +31,4 @@ GOES Field of View
 
    notebooks/field-of-view_ABI.ipynb
    notebooks/field-of-view_GLM.ipynb
-   notebooks/field-of-view_GLM_edges.ipynb
+   notebooks/field-of-view_GLM_Edges.ipynb
