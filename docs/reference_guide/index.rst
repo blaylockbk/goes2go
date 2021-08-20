@@ -74,18 +74,3 @@ To make a simple RGB plot on a Cartopy axes, do the following:
    I would like to get the sphinx-autosummary-accessors to work, but I don't
    have it working at all.
    https://sphinx-autosummary-accessors.readthedocs.io/en/stable/index.html
-
-   .. currentmodule:: xarray
-
-   .. autosummary::
-      :toctree: generated/
-      :template: autosummary/accessor_attribute.rst
-
-      Dataset.rgb.crs
-
-   .. autosummary::
-      :toctree: generated/
-      :template: autosummary/accessor_method.rst
-
-      Dataset.rgb.TrueColor
-
