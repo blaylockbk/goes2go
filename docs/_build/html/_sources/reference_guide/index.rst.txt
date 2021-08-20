@@ -11,13 +11,13 @@ Reference Guide
    :toctree: generated/
    :template: autosummary/accessor_attribute.rst
 
-   Example.rgb.crs
+   goes2go.accessors.rgb.crs
 
 .. autosummary::
    :toctree: generated/
    :template: autosummary/accessor_method.rst
 
-   Example.rgb.TrueColor
+   goes2go.accessors.rgb.TrueColor
 
 
 
