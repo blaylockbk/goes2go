@@ -239,6 +239,7 @@ class rgbAccessor:
 
     @property
     def crs(self):
+        """Cartopy coordinate reference system"""
         if self._crs is None:
             # Why am I doing this? To Cache the values.
             self._crs = self._obj.FOV.crs
@@ -253,13 +254,17 @@ class rgbAccessor:
 
     @property
     def y(self):
-        """x sweep in crs units (m); x * sat_height"""
+        """y sweep in crs units (m); x * sat_height"""
         if self._y is None:
             self._y = self._obj.y * self._sat_h
         return self._y
 
     @property
     def imshow_kwargs(self):
+        """Key word arguments for plt.imshow for generating images.
+
+        Projection axis must be the coordinate reference system.
+        """
         if self._imshow_kwargs is None:
             self._imshow_kwargs = dict(
                 extent=[

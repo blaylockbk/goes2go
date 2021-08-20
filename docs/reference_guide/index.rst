@@ -21,6 +21,8 @@ Access with the ``FOV`` accessor.
    G.FOV.domain  # only ABI datasets
    G.FOV.full_disk  # ABI or GLM datasets
 
+   G.FOV.crs  # Cartopy coordinate reference system for the satellite.
+
 .. autoclass:: goes2go.accessors.fieldOfViewAccessor
    :members:
    :inherited-members:
@@ -41,14 +43,24 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.
    # Also can get the Cartopy coordinate reference system
    G.rgb.crs
 
-To make a simple RGB plot:
+
+To make a simple RGB plot on a Cartopy axes, do the following:
 
 .. code-block:: python
 
    from goes2go.data import goes_latest
    import matplotlib.pyplot as plt
-   G = goes_latest()
-   plt.imshow(G.rgb.TrueColor())
+   import cartopy.crs as ccrs
+
+   # Download a GOES ABI dataset
+   G = goes_latest(product='ABI')
+
+   # Make figure on Cartopy axes
+   ax = plt.subplot(projection=G.rgb.crs )
+   ax.imshow(G.rgb.TrueColor(), **G.rgb.imshow_kwargs)
+   ax.coastlines()
+
+.. image:: /_static/demo_rgb_accessor.png
 
 .. autoclass:: goes2go.accessors.rgbAccessor
    :members:

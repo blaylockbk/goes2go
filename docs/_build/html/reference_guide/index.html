@@ -400,6 +400,8 @@ Access with the <code class="docutils literal notranslate"><span class="pre">FOV
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># G is an xarray.Dataset of GOES data.</span>
 <span class="n">G</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">domain</span>  <span class="c1"># only ABI datasets</span>
 <span class="n">G</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">full_disk</span>  <span class="c1"># ABI or GLM datasets</span>
+
+<span class="n">G</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span>  <span class="c1"># Cartopy coordinate reference system for the satellite.</span>
 </pre></div>
 </div>
 <dl class="py class">
@@ -483,13 +485,21 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 <span class="n">G</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 </div>
-<p>To make a simple RGB plot:</p>
+<p>To make a simple RGB plot on a Cartopy axes, do the following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">TrueColor</span><span class="p">())</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+
+<span class="c1"># Download a GOES ABI dataset</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI&#39;</span><span class="p">)</span>
+
+<span class="c1"># Make figure on Cartopy axes</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">crs</span> <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">TrueColor</span><span class="p">(),</span> <span class="o">**</span><span class="n">G</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">imshow_kwargs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 </pre></div>
 </div>
+<img alt="../_images/demo_rgb_accessor.png" src="../_images/demo_rgb_accessor.png" />
 <dl class="py class">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">goes2go.accessors.</span></span><span class="sig-name descname"><span class="pre">rgbAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor" title="Permalink to this definition">¶</a></dt>
@@ -572,11 +582,17 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.crs" title="goes2go.accessors.rgbAccessor.crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crs</span></code></a></p></td>
+<td><p>Cartopy coordinate reference system</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.imshow_kwargs" title="goes2go.accessors.rgbAccessor.imshow_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imshow_kwargs</span></code></a></p></td>
+<td><p>Key word arguments for plt.imshow for generating images.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.x" title="goes2go.accessors.rgbAccessor.x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code></a></p></td>
 <td><p>x sweep in crs units (m); x * sat_height</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.rgbAccessor.y" title="goes2go.accessors.rgbAccessor.y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code></a></p></td>
-<td><p>x sweep in crs units (m); x * sat_height</p></td>
+<td><p>y sweep in crs units (m); x * sat_height</p></td>
 </tr>
 </tbody>
 </table>
@@ -793,10 +809,23 @@ daytime clouds might appear brighter).</p></li>
 <img alt="../_images/WaterVapor.png" src="../_images/WaterVapor.png" />
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.crs">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">crs</span></span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.crs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cartopy coordinate reference system</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.get_latlon">
 <span class="sig-name descname"><span class="pre">get_latlon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.get_latlon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get lat/lon of all points</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.imshow_kwargs">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">imshow_kwargs</span></span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.imshow_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Key word arguments for plt.imshow for generating images.</p>
+<p>Projection axis must be the coordinate reference system.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -808,7 +837,7 @@ daytime clouds might appear brighter).</p></li>
 <dl class="py property">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.y">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.y" title="Permalink to this definition">¶</a></dt>
-<dd><p>x sweep in crs units (m); x * sat_height</p>
+<dd><p>y sweep in crs units (m); x * sat_height</p>
 </dd></dl>
 
 </dd></dl>
