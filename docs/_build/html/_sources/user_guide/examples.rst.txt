@@ -11,9 +11,9 @@ Download GOES Data
 .. toctree::
    :maxdepth: 4
 
-   notebooks/DEMO_download_goes_latest.ipynb
-   notebooks/DEMO_download_goes_nearesttime.ipynb
-   notebooks/DEMO_download_goes_timerange.ipynb
+   ../../../notebooks/DEMO_download_goes_latest.ipynb
+   ../../../notebooks/DEMO_download_goes_nearesttime.ipynb
+   ../../../notebooks/DEMO_download_goes_timerange.ipynb
 
 RGB Recipes for GOES ABI
 ------------------------
