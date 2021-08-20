@@ -6,21 +6,7 @@ Reference Guide
    :maxdepth: 4
 
 .. automodule:: goes2go.data
-
-.. currentmodule:: data
-
-.. autosummary::
-   :toctree: generated/
-   :template: autosummary/accessor_attribute.rst
-
-   goes_latest.rgb.crs
-
-.. autosummary::
-   :toctree: generated/
-   :template: autosummary/accessor_method.rst
-
-   goes_latest.rgb.TrueColor
-
+.. automodule:: goes2go.accessors
 
 
 Old functions
