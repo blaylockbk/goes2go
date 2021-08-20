@@ -45,9 +45,14 @@ Download Data
 
 The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.
 
+- `📖 Download latest <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_nearesttime.html>`_
+- `📖 Download nearest time <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_latest.html>`_
+- `📖 Download time series <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_timerange.html>`_
+
+
 .. code-block:: python
 
-   from goes2go.data import goes_latest, goes_nearesttime
+   from goes2go.data import goes_latest, goes_nearesttime, goes_timeseries
 
    # Get latest data
    G1 = goes_latest(satellite='G16', product='ABI')
@@ -60,7 +65,6 @@ RGB Recipes for ABI
 Generate RGB arrays for different RGB products. Check out the following notebook for a demonstration:
 
 - `📖 RGB Recipes Docs <https://blaylockbk.github.io/goes2go/_build/html/reference_guide/index.html#rgb-recipes>`_
-- `📓 Example Notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb>`_
 
 .. figure:: _static/TrueColor.png
    :class: img-fluid
@@ -74,7 +78,7 @@ Advanced Baseline Imager (ABI)
 """"""""""""""""""""""""""""""
 GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a "central" position, outlined in the dashed black line. Below is the ABI field of view for the full disk:
 
-- `📓 ABI field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_ABI.ipynb>`_
+- `📓 ABI field of view notebook <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_ABI.html>`_
 
 .. figure:: _static/ABI_field-of-view.png
    :class: img-fluid
@@ -91,8 +95,8 @@ Geostationary Lightning Mapper (GLM)
 """"""""""""""""""""""""""""""""""""
 The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.
 
-- `📓 GLM field of view notebook <https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_GLM.ipynb>`_
-- `📓 More details on actual edges <https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_GLM_Edges.ipynb>`_
+- `📓 GLM field of view notebook <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_GLM.html>`_
+- `📓 More details on actual edges <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_GLM_Edges.html>`_
 
 .. figure:: _static/GLM_field-of-view.png
    :class: img-fluid

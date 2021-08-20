@@ -272,7 +272,12 @@ conda activate goes2go
 <div class="section" id="download-data">
 <h3>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h3>
 <p>The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span><span class="p">,</span> <span class="n">goes_nearesttime</span>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_nearesttime.html">📖 Download latest</a></p></li>
+<li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_latest.html">📖 Download nearest time</a></p></li>
+<li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_timerange.html">📖 Download time series</a></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span><span class="p">,</span> <span class="n">goes_nearesttime</span><span class="p">,</span> <span class="n">goes_timeseries</span>
 
 <span class="c1"># Get latest data</span>
 <span class="n">G1</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G16&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI&#39;</span><span class="p">)</span>
@@ -287,7 +292,6 @@ conda activate goes2go
 <p>Generate RGB arrays for different RGB products. Check out the following notebook for a demonstration:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/reference_guide/index.html#rgb-recipes">📖 RGB Recipes Docs</a></p></li>
-<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/DEMO_rgb_recipies.ipynb">📓 Example Notebook</a></p></li>
 </ul>
 <div class="figure align-default">
 <img alt="_images/TrueColor.png" class="img-fluid" src="_images/TrueColor.png" />
@@ -300,7 +304,7 @@ conda activate goes2go
 <h4>Advanced Baseline Imager (ABI)<a class="headerlink" href="#advanced-baseline-imager-abi" title="Permalink to this headline">¶</a></h4>
 <p>GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a “central” position, outlined in the dashed black line. Below is the ABI field of view for the full disk:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_ABI.ipynb">📓 ABI field of view notebook</a></p></li>
+<li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_ABI.html">📓 ABI field of view notebook</a></p></li>
 </ul>
 <div class="figure align-default">
 <img alt="_images/ABI_field-of-view.png" class="img-fluid" src="_images/ABI_field-of-view.png" />
@@ -317,8 +321,8 @@ conda activate goes2go
 <h4>Geostationary Lightning Mapper (GLM)<a class="headerlink" href="#geostationary-lightning-mapper-glm" title="Permalink to this headline">¶</a></h4>
 <p>The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_GLM.ipynb">📓 GLM field of view notebook</a></p></li>
-<li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/notebooks/field-of-view_GLM_Edges.ipynb">📓 More details on actual edges</a></p></li>
+<li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_GLM.html">📓 GLM field of view notebook</a></p></li>
+<li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_GLM_Edges.html">📓 More details on actual edges</a></p></li>
 </ul>
 <div class="figure align-default" id="id3">
 <img alt="_images/GLM_field-of-view.png" class="img-fluid" src="_images/GLM_field-of-view.png" />
