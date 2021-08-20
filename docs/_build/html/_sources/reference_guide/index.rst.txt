@@ -17,3 +17,9 @@ Reference Guide
 
    Dataset.rgb.crs
 
+.. autosummary::
+   :toctree: generated/
+   :template: autosummary/accessor_method.rst
+
+   Dataset.rgb.TrueColor
+
