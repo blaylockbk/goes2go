@@ -6,7 +6,9 @@ Reference Guide
    :maxdepth: 4
 
 .. automodule:: goes2go.data
-.. automodule:: goes2go.accessors
+.. autoclass:: goes2go.accessors.fieldOfViewAccessor
+   :members:
+   :inherited-members:
 
 
 .. automodule:: goes2go.rgb
