@@ -68,10 +68,7 @@ For a GOES ABI multichannel xarray.Dataset, return an RGB array for an RGB produ
 ```python
 from goes2go.data import goes_latest
 import matplotlib.pyplot as plt
-
 G = goes_latest()
-
-plt.imshow(G.rgb.TrueColor())
 ax = plt.subplot(projection=G.rgb.crs)
 ax.imshow(G.rgb.TrueColor(), **G.rgb.imshow_kwargs)
 ax.coastlines()
@@ -86,12 +83,14 @@ Create shapely.Polygons for ABI and GLM field of view. See notebooks for [GLM](h
 
 ```python
 from goes2go.data import goes_latest
-import matplotlib.pyplot as plt
-
 G = goes_latest()
 
+# Get polygons of the full disk or ABI domain field of view.
 G.FOV.full_disk
 G.FOV.domain
+
+# Get Cartopy coordinate reference system
+G.FOV.crs
 ```
 
 GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a "central" position, outlined in the dashed black line. Below is the ABI field of view for the full disk:
