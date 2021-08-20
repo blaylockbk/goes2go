@@ -184,8 +184,33 @@
 <h1>xarray.Dataset.rgb.TrueColor<a class="headerlink" href="#xarray-dataset-rgb-truecolor" title="Permalink to this headline">¶</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="xarray.Dataset.rgb.TrueColor">
-<span class="sig-prename descclassname"><span class="pre">Dataset.rgb.</span></span><span class="sig-name descname"><span class="pre">TrueColor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#xarray.Dataset.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">Dataset.rgb.</span></span><span class="sig-name descname"><span class="pre">TrueColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudoGreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">night_IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#xarray.Dataset.rgb.TrueColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>True Color RGB:
+(See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
+<p>This is similar to the NaturalColor RGB, but uses a different gamma
+correction and does not apply contrast stretching. I think these
+images look a little “washed out” when compared to the NaturalColor
+RGB. So, I would recommend using the NaturalColor RGB.</p>
+<p>For more details on combing RGB and making the psedo green channel, refer to
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379">Bah et al. 2018</a>.</p>
+<img alt="../../_images/TrueColor.png" src="../../_images/TrueColor.png" />
+<img alt="../../_images/gamma_demo_TrueColor.png" src="../../_images/gamma_demo_TrueColor.png" />
+<img alt="../../_images/Color-IR_demo.png" src="../../_images/Color-IR_demo.png" />
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma</strong> (<em>float</em>) – Darken or lighten an image with <a class="reference external" href="https://en.wikipedia.org/wiki/_gamma_correction">gamma correction</a>.
+Values &gt; 1 will lighten an image.
+Values &lt; 1 will darken an image.</p></li>
+<li><p><strong>pseudoGreen</strong> (<em>bool</em>) – True: returns the calculated “True” green color
+False: returns the “veggie” channel</p></li>
+<li><p><strong>night_IR</strong> (<em>bool</em>) – If True, use Clean IR (channel 13) as maximum RGB value overlay
+so that cold clouds show up at night. (Be aware that some
+daytime clouds might appear brighter).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 

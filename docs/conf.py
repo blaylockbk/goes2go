@@ -12,6 +12,7 @@
 #
 import os
 import sys
+import goes2go.data
 
 sys.path.insert(0, os.path.abspath("../.."))
 
@@ -43,7 +44,7 @@ extensions = [
     "recommonmark",
     "autodocsumm",
     "sphinx_markdown_tables",
-    "sphinx_autosummary_accessors"
+    "sphinx_autosummary_accessors",
 ]
 
 # Set up mapping for other projects' docs
