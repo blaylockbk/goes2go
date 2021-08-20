@@ -37,7 +37,6 @@
     <link rel="shortcut icon" href="../_static/wxicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="xarray.Dataset.rgb.crs" href="generated/xarray.Dataset.rgb.crs.html" />
     <link rel="prev" title="⚙ Configure Defaults" href="../user_guide/defaults.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -140,21 +139,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="generated/xarray.Dataset.rgb.crs.html">
-   xarray.Dataset.rgb.crs
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="generated/xarray.Dataset.rgb.TrueColor.html">
-   xarray.Dataset.rgb.TrueColor
-  </a>
- </li>
-</ul>
-
+    
   </div>
 </nav>
             </div>
@@ -1215,28 +1200,42 @@ off the projection globe.</p></li>
 </dd></dl>
 
 </div>
+<dl class="py class">
+<dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">goes2go.accessors.</span></span><span class="sig-name descname"><span class="pre">fieldOfViewAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a field-of-view polygon for the GOES data.</p>
+<p>Based on information from the <a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf">GOES-R Series Data Book</a>.</p>
+<p>GLM lense field of view is 16 degree, or +/- 8 degrees (see page 225)
+ABI full-disk field of view if 17.4 degrees (see page 48)</p>
+<p><strong>Attributes:</strong></p>
 <table class="longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="reference_guide/xarray.Dataset.rgb.crs.html#xarray.Dataset.rgb.crs" title="xarray.Dataset.rgb.crs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset.rgb.crs</span></code></a></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.fieldOfViewAccessor.domain" title="goes2go.accessors.fieldOfViewAccessor.domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain</span></code></a></p></td>
+<td><p>Field of view for ABI domain</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.fieldOfViewAccessor.full_disk" title="goes2go.accessors.fieldOfViewAccessor.full_disk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">full_disk</span></code></a></p></td>
+<td><p>Full Disk Field of View</p></td>
 </tr>
 </tbody>
 </table>
-<table class="longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="reference_guide/xarray.Dataset.rgb.TrueColor.html#xarray.Dataset.rgb.TrueColor" title="xarray.Dataset.rgb.TrueColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dataset.rgb.TrueColor</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor.domain">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">domain</span></span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field of view for ABI domain</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor.full_disk">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">full_disk</span></span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.full_disk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full Disk Field of View</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -1246,7 +1245,6 @@ off the projection globe.</p></li>
               <div class='prev-next-bottom'>
                 
     <a class='left-prev' id="prev-link" href="../user_guide/defaults.html" title="previous page">⚙ Configure Defaults</a>
-    <a class='right-next' id="next-link" href="generated/xarray.Dataset.rgb.crs.html" title="next page">xarray.Dataset.rgb.crs</a>
 
               </div>
               
