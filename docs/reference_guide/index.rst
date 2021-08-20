@@ -9,7 +9,7 @@ Reference Guide
 .. automodule:: goes2go.rgb
 .. automodule:: goes2go.tools
 
-.. currentmodele:: xarray
+.. currentmodule:: xarray
 
 .. autosummary::
    :toctree: generated/
