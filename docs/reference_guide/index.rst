@@ -6,11 +6,18 @@ Reference Guide
    :maxdepth: 4
 
 .. automodule:: goes2go.data
-.. automodule::
-   :toctree: generated/
-   :template: autosummary/accessor_callable.rst
 
-   goes2go.accessors
+.. autosummary::
+   :toctree: generated/
+   :template: autosummary/accessor_attribute.rst
+
+   Example.rgb.crs
+
+.. autosummary::
+   :toctree: generated/
+   :template: autosummary/accessor_method.rst
+
+   Example.rgb.TrueColor
 
 
 
