@@ -30,6 +30,7 @@ GOES-East and GOES-West satellite data are made available on Amazon Web Services
 # Capabilities
 
 ## Download Data
+
 Download GOES ABI or GLM NetCDF files to your local computer. Files can also be read with xarray.
 
 ```python
@@ -43,6 +44,7 @@ G_GLM = goes_nearesttime('2021-01-01 12:00', satellite='G16', product='GLM')
 ```
 
 ## RGB Recipes
+
 The `rgb` xarray accessor creates an RGB product for a GOES ABI multichannel xarray.Dataset. See the [demo](https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
 
 ```python
@@ -82,18 +84,20 @@ The GLM field of view is slightly smaller and limited by a bounding box. Below i
 
 
 >### Useful Links
->- [🙋🏻‍♂️ Brian's AWS GOES Web Downloader](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi)
->- [📔 GOES-R Series Data Book](https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf)
->- [🎠 Beginner's Guide](https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf)
->- [🖥 Rammb Slider GOES Viewer](https://rammb-slider.cira.colostate.edu)
->- [💾 GOES on AWS](https://registry.opendata.aws/noaa-goes/)
->- [🐍 Unidata Plot GOES Data](https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/)
->- [🗺 Plotting tips form geonetcast blog](https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/)
->- [🐍 `glmtools`](https://github.com/deeplycloudy/glmtools/)
->- [🐍 `satpy`](https://github.com/pytroll/satpy)
+>
+> - [🙋🏻‍♂️ Brian's AWS GOES Web Downloader](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi)
+> - [📔 GOES-R Series Data Book](https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf)
+> - [🎠 Beginner's Guide](https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf)
+> - [🖥 Rammb Slider GOES Viewer](https://rammb-slider.cira.colostate.edu)
+> - [💾 GOES on AWS](https://registry.opendata.aws/noaa-goes/)
+> - [🐍 Unidata Plot GOES Data](https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/)
+> - [🗺 Plotting tips form geonetcast blog](https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/)
+> - [🐍 `glmtools`](https://github.com/deeplycloudy/glmtools/)
+> - [🐍 `satpy`](https://github.com/pytroll/satpy)
 
 
-> ### What if I don't like the GOES-2-go package?
+> ### What if I don't like the GOES-2-go or Python?
+>
 > As an alternative you can use [rclone](https://rclone.org/) to download GOES files from AWS. I quite like rclone. Here is a [short rclone tutorial](https://github.com/blaylockbk/pyBKB_v3/blob/master/rclone_howto.md).
 
 ---
@@ -101,8 +105,12 @@ The GLM field of view is slightly smaller and limited by a bounding box. Below i
 
 I hope you find this makes GOES data easier to retrieve and display. Enjoy!
 
-**Brian Blaylock**  
-[🌐 Personal Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)  
+\- Brian Blaylock
+
+👨🏻‍💻 [Contributing Guidelines](https://blaylockbk.github.io/goes2go/_build/html/user_guide/contribute.html)  
+💬 [GitHub Discussions](https://github.com/blaylockbk/goes2go/discussions)  
+🚑 [GitHub Issues](https://github.com/blaylockbk/goes2go/issues)  
+🌐 [Personal Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)  
 
 
 P.S. If you like GOES-2-go, check out my [Herbie](https://github.com/blaylockbk/Herbie) package to download weather model data and [SynopticPy](https://github.com/blaylockbk/Herbie) to download mesonet data from the Synoptic API.
