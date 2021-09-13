@@ -6,6 +6,7 @@
         "activityBar.foreground": "#F8AF22",
         "activityBar.background": "#323334",
         "activityBar.inactiveForeground": "#259DD7",
+        "activityBar.activeBackground": "#ffffff18",
         "activityBarBadge.background": "#F8AF22",
         "statusBar.background": "#259DD7",
         "statusBarItem.remoteBackground": "#F8AF22",
