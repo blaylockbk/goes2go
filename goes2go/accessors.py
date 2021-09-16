@@ -13,11 +13,12 @@ http://xarray.pydata.org/en/stable/internals/extending-xarray.html?highlight=ext
 """
 
 import warnings
-import xarray as xr
-import numpy as np
-import cartopy.crs as ccrs
 
+import cartopy.crs as ccrs
+import numpy as np
+import xarray as xr
 from shapely.geometry import Point, Polygon
+
 
 ########################
 # Image Processing Tools
@@ -98,12 +99,17 @@ class fieldOfViewAccessor:
 
     def __init__(self, xarray_obj):
         self._obj = xarray_obj
+        self._crs = None
+        self._x = None
+        self._y = None
+        self._sat_h = self._obj.goes_imager_projection.perspective_point_height
+        self._imshow_kwargs = None
 
     @property
     def crs(self):
         """Cartopy coordinate reference system for the Satellite."""
         ds = self._obj
-        if ds.title.startswith("ABI"):
+        if ds.cdm_data_type == "Image":
             globe_kwargs = dict(
                 semimajor_axis=ds.goes_imager_projection.semi_major_axis,
                 semiminor_axis=ds.goes_imager_projection.semi_minor_axis,
@@ -112,7 +118,7 @@ class fieldOfViewAccessor:
             sat_height = ds.goes_imager_projection.perspective_point_height
             nadir_lon = ds.geospatial_lat_lon_extent.geospatial_lon_nadir
             nadir_lat = ds.geospatial_lat_lon_extent.geospatial_lat_nadir
-        elif ds.title.startswith("GLM"):
+        elif ds.cdm_data_type == "Point":
             globe_kwargs = dict(
                 semimajor_axis=ds.goes_lat_lon_projection.semi_major_axis,
                 semiminor_axis=ds.goes_lat_lon_projection.semi_minor_axis,
@@ -132,6 +138,50 @@ class fieldOfViewAccessor:
         )
 
         return crs
+
+    @property
+    def x(self):
+        """x sweep in crs units (m); x * sat_height"""
+        if self._x is None:
+            self._x = self._obj.x * self._sat_h
+        return self._x
+
+    @property
+    def y(self):
+        """y sweep in crs units (m); x * sat_height"""
+        if self._y is None:
+            self._y = self._obj.y * self._sat_h
+        return self._y
+
+    @property
+    def imshow_kwargs(self):
+        """Key word arguments for plt.imshow for generating images.
+
+        Projection axis must be the coordinate reference system.
+        """
+        if self._imshow_kwargs is None:
+            self._imshow_kwargs = dict(
+                extent=[
+                    self.x.data.min(),
+                    self.x.data.max(),
+                    self.y.data.min(),
+                    self.y.data.max(),
+                ],
+                transform=self._crs,
+                origin="upper",
+                interpolation="none",
+            )
+        return self._imshow_kwargs
+
+    def get_latlon(self):
+        """Get lat/lon of all points"""
+        X, Y = np.meshgrid(self.x, self.y)
+        a = ccrs.PlateCarree().transform_points(self._crs, X, Y)
+        lons, lats, _ = a[:, :, 0], a[:, :, 1], a[:, :, 2]
+
+        self._obj.coords["longitude"] = (("y", "x"), lons)
+        self._obj.coords["latitude"] = (("y", "x"), lats)
+        return self._obj["latitude"], self._obj["longitude"]
 
     @property
     def full_disk(self):
@@ -241,7 +291,7 @@ class rgbAccessor:
     def crs(self):
         """Cartopy coordinate reference system"""
         if self._crs is None:
-            # Why am I doing this? To Cache the values.
+            # Why am I doing this? To cache the values.
             self._crs = self._obj.FOV.crs
         return self._crs
 

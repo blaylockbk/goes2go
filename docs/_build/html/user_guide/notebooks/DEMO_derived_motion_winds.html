@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOES Derived Motion Winds &#8212; GOES-2-go Docs 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/brian_style.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
+    <link rel="shortcut icon" href="../../_static/wxicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="🌎 ABI Geostationary field-of-view in Cartopy" href="field-of-view_ABI.html" />
+    <link rel="prev" title="GOES ABI RGB Recipes" href="DEMO_rgb_recipes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/goes2go_logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference_guide/index.html">
+  Reference Guide
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/SynopticPy/_build/html/">SynopticPy<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/Herbie/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/blaylockbk/goes2go" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/blaylockbk" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contribute.html">
+   👨🏻‍🏭 Contributing Guidelines
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../examples.html">
+   🤹🏻‍♂️ Examples
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_download_goes_latest.html">
+     Download GOES Data: Nearest Time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_download_goes_nearesttime.html">
+     Download GOES Data: Latest available file
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_download_goes_timerange.html">
+     Download GOES Data: Timerange
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_rgb_recipes.html">
+     GOES ABI RGB Recipes
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     GOES Derived Motion Winds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="field-of-view_ABI.html">
+     🌎 ABI Geostationary
+     <strong>
+      field-of-view
+     </strong>
+     in Cartopy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="field-of-view_GLM.html">
+     ⚡ GLM Geostationary field-of-view in Cartopy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="field-of-view_GLM_Edges.html">
+     GLM Field of View Edges
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../defaults.html">
+   ⚙ Configure Defaults
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/blaylockbk/goes2go/edit/master/docs/user_guide/notebooks/DEMO_derived_motion_winds.ipynb">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="GOES-Derived-Motion-Winds">
+<h1>GOES Derived Motion Winds<a class="headerlink" href="#GOES-Derived-Motion-Winds" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_nearesttime</span>
+
+<span class="c1"># Tools from https://github.com/blaylockbk/Carpenter_Workshop</span>
+<span class="kn">from</span> <span class="nn">toolbox.wind</span> <span class="kn">import</span> <span class="n">spddir_to_uv</span>
+<span class="kn">from</span> <span class="nn">toolbox.cartopy_tools</span> <span class="kn">import</span> <span class="n">common_features</span><span class="p">,</span> <span class="n">pc</span>
+<span class="kn">from</span> <span class="nn">paint.standard2</span> <span class="kn">import</span> <span class="n">cm_wind</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Download Level-2 derived motion wind ABI product</span>
+<span class="n">gwnd</span> <span class="o">=</span> <span class="n">goes_nearesttime</span><span class="p">(</span><span class="s1">&#39;2021-09-16 12:00&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI-L2-DMWVC&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-DMWVC     |
+ |    Domain: C                |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-DMWVC].
+📚 Finished reading [1] files into xarray.Dataset.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Download ABI Multi-channel product (for RGB background)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">goes_nearesttime</span><span class="p">(</span><span class="s2">&quot;2021-09-16 12:00&quot;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s2">&quot;ABI-L2-DMWVC&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">rgb</span><span class="o">.</span><span class="n">TrueColor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ _______________________________
+ | Satellite: noaa-goes16      |
+ |   Product: ABI-L2-DMWVC     |
+ |    Domain: C                |
+📦 Finished downloading [1] files to [/p/cwfs/blaylock/data/noaa-goes16/ABI-L2-DMWVC].
+📚 Finished reading [1] files into xarray.Dataset.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-3-a8da3d3d02da&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Download ABI Multi-channel product (for RGB background)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> gwnd <span class="ansi-blue-fg">=</span> goes_nearesttime<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;2021-09-16 12:00&#34;</span><span class="ansi-blue-fg">,</span> product<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;ABI-L2-DMWVC&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>_ <span class="ansi-blue-fg">=</span> g<span class="ansi-blue-fg">.</span>rgb<span class="ansi-blue-fg">.</span>TrueColor<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;g&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Convert GOES wind speed and direction to u- and v-wind components</span>
+<span class="n">gwnd</span> <span class="o">=</span> <span class="n">goes_nearesttime</span><span class="p">(</span><span class="s2">&quot;2021-09-16 12:00&quot;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s2">&quot;ABI-L2-DMWVC&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Plot winds on a PlateCarree map</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="s2">&quot;10m&quot;</span><span class="p">,</span> <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">STATES</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barbs</span><span class="p">(</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span>
+    <span class="n">gu</span><span class="p">,</span>
+    <span class="n">gv</span><span class="p">,</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">wind_speed</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">cm_wind</span><span class="p">()</span><span class="o">.</span><span class="n">cmap_kwargs</span><span class="p">,</span>
+    <span class="n">length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.quiver.Barbs at 0x2b6e33f66f40&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_DEMO_derived_motion_winds_5_1.png" src="../../_images/user_guide_notebooks_DEMO_derived_motion_winds_5_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Plot winds on a Geostationary map</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="s2">&quot;10m&quot;</span><span class="p">,</span> <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">STATES</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barbs</span><span class="p">(</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">gu</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">gv</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">wind_speed</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">cm_wind</span><span class="p">()</span><span class="o">.</span><span class="n">cmap_kwargs</span><span class="p">,</span>
+    <span class="n">length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">pc</span><span class="p">,</span>
+<span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.quiver.Barbs at 0x2b7067279820&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_DEMO_derived_motion_winds_6_1.png" src="../../_images/user_guide_notebooks_DEMO_derived_motion_winds_6_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Plot on Geostationary map with NaturalColor RGB product</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">common_features</span><span class="p">(</span><span class="s2">&quot;10m&quot;</span><span class="p">,</span> <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">STATES</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barbs</span><span class="p">(</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">gu</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">gv</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">gwnd</span><span class="o">.</span><span class="n">wind_speed</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">cm_wind</span><span class="p">()</span><span class="o">.</span><span class="n">cmap_kwargs</span><span class="p">,</span>
+    <span class="n">length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">pc</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">TrueColor</span><span class="p">,</span> <span class="o">**</span><span class="n">g</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">imshow_kwargs</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">orbital_slot</span><span class="si">}</span><span class="s2"> Natural Color and Derived Motion Winds&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M UTC </span><span class="si">%d</span><span class="s1">-%b-%Y&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(1.0, 1.0, &#39;12:02 UTC 16-Sep-2021&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/user_guide_notebooks_DEMO_derived_motion_winds_7_1.png" src="../../_images/user_guide_notebooks_DEMO_derived_motion_winds_7_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="DEMO_rgb_recipes.html" title="previous page">GOES ABI RGB Recipes</a>
+    <a class='right-next' id="next-link" href="field-of-view_ABI.html" title="next page">🌎 ABI Geostationary <strong>field-of-view</strong> in Cartopy</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Brian K. Blaylock.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

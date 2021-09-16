@@ -427,6 +427,27 @@ ABI full-disk field of view if 17.4 degrees (see page 48)</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.fieldOfViewAccessor.full_disk" title="goes2go.accessors.fieldOfViewAccessor.full_disk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">full_disk</span></code></a></p></td>
 <td><p>Full-disk field of view for the ABI or GLM instruments.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.fieldOfViewAccessor.imshow_kwargs" title="goes2go.accessors.fieldOfViewAccessor.imshow_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imshow_kwargs</span></code></a></p></td>
+<td><p>Key word arguments for plt.imshow for generating images.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.fieldOfViewAccessor.x" title="goes2go.accessors.fieldOfViewAccessor.x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code></a></p></td>
+<td><p>x sweep in crs units (m); x * sat_height</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#goes2go.accessors.fieldOfViewAccessor.y" title="goes2go.accessors.fieldOfViewAccessor.y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code></a></p></td>
+<td><p>y sweep in crs units (m); x * sat_height</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#goes2go.accessors.fieldOfViewAccessor.get_latlon" title="goes2go.accessors.fieldOfViewAccessor.get_latlon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_latlon</span></code></a>()</p></td>
+<td><p>Get lat/lon of all points</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py property">
@@ -466,6 +487,31 @@ ABI full-disk field of view if 17.4 degrees (see page 48)</p>
 <dd class="field-even"><p>shapely.Polygon</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor.get_latlon">
+<span class="sig-name descname"><span class="pre">get_latlon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.get_latlon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get lat/lon of all points</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor.imshow_kwargs">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">imshow_kwargs</span></span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.imshow_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Key word arguments for plt.imshow for generating images.</p>
+<p>Projection axis must be the coordinate reference system.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor.x">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x sweep in crs units (m); x * sat_height</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor.y">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y sweep in crs units (m); x * sat_height</p>
 </dd></dl>
 
 </dd></dl>

@@ -15,13 +15,15 @@ Download GOES Data
    notebooks/DEMO_download_goes_nearesttime.ipynb
    notebooks/DEMO_download_goes_timerange.ipynb
 
-RGB Recipes for GOES ABI
-------------------------
+Recipes for GOES ABI Products
+-----------------------------
 
 .. toctree::
    :maxdepth: 4
 
    notebooks/DEMO_rgb_recipes.ipynb
+   notebooks/DEMO_derived_motion_winds.ipynb
+
 
 GOES Field of View
 ------------------
