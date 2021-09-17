@@ -10,7 +10,7 @@
 <!-- Badges -->
 [![](https://img.shields.io/pypi/v/goes2go)](https://pypi.python.org/pypi/goes2go/)
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
-[![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878)
+[![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878) [![Join the chat at https://gitter.im/blaylockbk/goes2go](https://badges.gitter.im/blaylockbk/goes2go.svg)](https://gitter.im/blaylockbk/goes2go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!--(Badges)-->
 
 </div>
