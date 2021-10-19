@@ -15,7 +15,6 @@ available in a local directory, it is loaded directly into memory.
 https://registry.opendata.aws/noaa-goes/
 """
 
-from os import pardir
 from pathlib import Path
 from datetime import datetime, timedelta
 import multiprocessing

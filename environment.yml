@@ -19,9 +19,11 @@ dependencies:
   - s3fs
   - metpy
 
-  # Formatter (I prefer Black at the moment)
+  # Formatter
   - black
-  - autopep8
+
+  # Testing
+  - pytest
 
   - pip:
       # Install from PyPi
