@@ -1,0 +1,28 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "echo",
+            "type": "shell",
+            "command": "echo Hello ${env:USER} ${env:USERNAME}"
+        },
+        {
+            "label": "build docs",
+            "type": "shell",
+            "command": "cd docs && ./remake_docs.sh"
+        },
+        {
+            "label": "update environment",
+            "type": "shell",
+            "command": "conda env update -f environment.yml --prune"
+        }
+        {
+            "label": "publish",
+            "type": "shell",
+            // TODO: use bumpversion
+            "command": "conda activate pypi && python setup.py sdist bdist_wheel && twine check dist/* && twine upload --skip-existing dist/*"
+        }
+    ]
+}
