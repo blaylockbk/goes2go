@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>GOES ABI RGB Recipes &#8212; GOES-2-go Docs 0.1 documentation</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,17 +24,19 @@
 
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/brian_style.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
     <link rel="shortcut icon" href="../../_static/wxicon.png"/>
@@ -42,8 +45,19 @@
     <link rel="next" title="GOES Derived Motion Winds" href="DEMO_derived_motion_winds.html" />
     <link rel="prev" title="Download GOES Data: Timerange" href="DEMO_download_goes_timerange.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
     
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -181,6 +195,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="DEMO_derived_motion_winds.html">
      GOES Derived Motion Winds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_total-precipitable-water.html">
+     GOES Total Precipitable Water
     </a>
    </li>
    <li class="toctree-l2">
@@ -546,7 +565,7 @@ div.rendered_html tbody tr:hover {
 <div class="line"><strong>Brian Blaylock</strong></div>
 <div class="line"><strong>September 26, 2019</strong></div>
 </div>
-<div class="section" id="GOES-ABI-RGB-Recipes">
+<section id="GOES-ABI-RGB-Recipes">
 <h1>GOES ABI RGB Recipes<a class="headerlink" href="#GOES-ABI-RGB-Recipes" title="Permalink to this headline">¶</a></h1>
 <p>I have gathered several RGB recipies from the <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/">RAMMB CIRA</a> website, including:</p>
 <ul class="simple">
@@ -562,7 +581,7 @@ div.rendered_html tbody tr:hover {
 </ul>
 <p>These recipies are provided by the <code class="docutils literal notranslate"><span class="pre">rgb</span></code> custom accessor. This accessor is avaialble when you import goes2go.</p>
 <p>For more details on how to generate these plots, see the example on the <a class="reference external" href="http://unidata.github.io/python-gallery/examples/mapping_GOES16_TrueColor.html#sphx-glr-examples-mapping-goes16-truecolor-py">Unidata gallery</a>.</p>
-<div class="section" id="Simple-RGB-Figure">
+<section id="Simple-RGB-Figure">
 <h2>Simple RGB Figure<a class="headerlink" href="#Simple-RGB-Figure" title="Permalink to this headline">¶</a></h2>
 <p>At the most simple level, here is how to produce an RGB from the GOES ABI data.</p>
 <div class="nbinput nblast docutils container">
@@ -617,8 +636,8 @@ div.rendered_html tbody tr:hover {
 <img alt="../../_images/user_guide_notebooks_DEMO_rgb_recipes_3_2.png" src="../../_images/user_guide_notebooks_DEMO_rgb_recipes_3_2.png" />
 </div>
 </div>
-</div>
-<div class="section" id="Cartopy-RGB-Figure">
+</section>
+<section id="Cartopy-RGB-Figure">
 <h2>Cartopy RGB Figure<a class="headerlink" href="#Cartopy-RGB-Figure" title="Permalink to this headline">¶</a></h2>
 <p>The RGB can easily be added to a Cartopy axis</p>
 <div class="nbinput docutils container">
@@ -648,8 +667,8 @@ div.rendered_html tbody tr:hover {
 <img alt="../../_images/user_guide_notebooks_DEMO_rgb_recipes_5_1.png" src="../../_images/user_guide_notebooks_DEMO_rgb_recipes_5_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="All-available-RGB-recipes">
+</section>
+<section id="All-available-RGB-recipes">
 <h2>All available RGB recipes<a class="headerlink" href="#All-available-RGB-recipes" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -866,8 +885,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Full-Disk">
+</section>
+<section id="Full-Disk">
 <h2>Full Disk<a class="headerlink" href="#Full-Disk" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -952,8 +971,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="RGB-Sample">
+</section>
+<section id="RGB-Sample">
 <h2>RGB Sample<a class="headerlink" href="#RGB-Sample" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -1006,9 +1025,9 @@ div.rendered_html tbody tr:hover {
 <img alt="../../_images/user_guide_notebooks_DEMO_rgb_recipes_18_0.png" src="../../_images/user_guide_notebooks_DEMO_rgb_recipes_18_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="🚀-Rocket-Plume">
+</section>
+</section>
+<section id="🚀-Rocket-Plume">
 <h1>🚀 Rocket Plume<a class="headerlink" href="#🚀-Rocket-Plume" title="Permalink to this headline">¶</a></h1>
 <p>A new RGB recipie from <a class="reference external" href="https://cimss.ssec.wisc.edu/satellite-blog/archives/41335">CIMSS</a></p>
 <p>Obtain the Mesoscale scan to identify rocket plume, because the time resolution is every 30 seconds when both mesoscale scans are in the same location</p>
@@ -1115,18 +1134,29 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="DEMO_download_goes_timerange.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Download GOES Data: Timerange</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="DEMO_derived_motion_winds.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GOES Derived Motion Winds</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-
-
-              </div>
-              
-              
-              <div class='prev-next-bottom'>
-                
-    <a class='left-prev' id="prev-link" href="DEMO_download_goes_timerange.html" title="previous page">Download GOES Data: Timerange</a>
-    <a class='right-next' id="next-link" href="DEMO_derived_motion_winds.html" title="next page">GOES Derived Motion Winds</a>
-
-              </div>
               
           </main>
           
@@ -1134,27 +1164,19 @@ div.rendered_html tbody tr:hover {
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('config', 'G-NWK8MJNNGX');
-                </script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021, Brian K. Blaylock.<br/>
+    &copy; Copyright 2021, Brian K. Blaylock.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.1.<br>
 </p>
     </div>
     

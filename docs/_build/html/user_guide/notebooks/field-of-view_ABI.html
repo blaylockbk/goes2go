@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>🌎 ABI Geostationary field-of-view in Cartopy &#8212; GOES-2-go Docs 0.1 documentation</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,27 +24,40 @@
 
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/brian_style.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
     <link rel="shortcut icon" href="../../_static/wxicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="⚡ GLM Geostationary field-of-view in Cartopy" href="field-of-view_GLM.html" />
-    <link rel="prev" title="GOES Derived Motion Winds" href="DEMO_derived_motion_winds.html" />
+    <link rel="prev" title="GOES Total Precipitable Water" href="DEMO_total-precipitable-water.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
     
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -181,6 +195,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="DEMO_derived_motion_winds.html">
      GOES Derived Motion Winds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DEMO_total-precipitable-water.html">
+     GOES Total Precipitable Water
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -520,7 +539,7 @@ div.rendered_html tbody tr:hover {
 <div class="line"><strong>Brian Blaylock</strong></div>
 <div class="line"><em>December 18, 2020</em></div>
 </div>
-<div class="section" id="🌎-ABI-Geostationary-field-of-view-in-Cartopy">
+<section id="🌎-ABI-Geostationary-field-of-view-in-Cartopy">
 <h1>🌎 ABI Geostationary <strong>field-of-view</strong> in Cartopy<a class="headerlink" href="#🌎-ABI-Geostationary-field-of-view-in-Cartopy" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf">GOES-R Series Data Book</a></p>
@@ -605,7 +624,7 @@ Without dask, you cannot use dask for multiprocessing.
 📚 Finished reading [1] files into xarray.Dataset.
 </pre></div></div>
 </div>
-<div class="section" id="Get-the-data’s-coordinate-reference-system-and-field-of-view-with-the-goes2go.tools.field_of_view-function">
+<section id="Get-the-data’s-coordinate-reference-system-and-field-of-view-with-the-goes2go.tools.field_of_view-function">
 <h2>Get the data’s coordinate reference system and field of view with the <code class="docutils literal notranslate"><span class="pre">goes2go.tools.field_of_view</span></code> function<a class="headerlink" href="#Get-the-data’s-coordinate-reference-system-and-field-of-view-with-the-goes2go.tools.field_of_view-function" title="Permalink to this headline">¶</a></h2>
 <p>This returns both the field of view as a shapely polygon and the cartopy coordinate reference system.</p>
 <div class="nbinput docutils container">
@@ -3343,19 +3362,30 @@ L 170.28 88.74
 </pre></div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
               
               
-              <div class='prev-next-bottom'>
-                
-    <a class='left-prev' id="prev-link" href="DEMO_derived_motion_winds.html" title="previous page">GOES Derived Motion Winds</a>
-    <a class='right-next' id="next-link" href="field-of-view_GLM.html" title="next page">⚡ GLM Geostationary field-of-view in Cartopy</a>
-
-              </div>
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="DEMO_total-precipitable-water.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">GOES Total Precipitable Water</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="field-of-view_GLM.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">⚡ GLM Geostationary field-of-view in Cartopy</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
               
           </main>
           
@@ -3363,27 +3393,19 @@ L 170.28 88.74
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('config', 'G-NWK8MJNNGX');
-                </script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021, Brian K. Blaylock.<br/>
+    &copy; Copyright 2021, Brian K. Blaylock.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.1.<br>
 </p>
     </div>
     

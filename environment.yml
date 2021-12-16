@@ -2,28 +2,49 @@ name: goes2go
 channels:
   - conda-forge
 dependencies:
-  - python=3.8
+  - python=3.9
   - pip
   - git
-  - toml
+
+  # Tools
+  # -----
+  - cartopy
+  - geopandas
+  - h5netcdf
   - jupyter
   - jupyterlab
-  - netcdf4
-  - h5netcdf
-  - xarray
-  - numpy
   - matplotlib
-  - pandas
-  - geopandas
-  - cartopy
-  - s3fs
   - metpy
+  - netcdf4
+  - numpy
+  - pandas
+  - s3fs
+  - toml
+  - xarray
 
   # Formatter
+  # ---------
   - black
+  - jupyterlab_code_formatter
+  - isort
 
   # Testing
+  # -------
   - pytest
+
+  # Documentation
+  # -------------
+  - sphinx
+  - nbsphinx
+  - pydata-sphinx-theme # PyData Sphinx Theme (i.e, Numpy, Pandas, MetPy)
+  - sphinx-panels # Add bootstrap elements to Sphinx
+  - recommonmark
+  - sphinx-markdown-tables
+  - autodocsumm
+  - sphinx-autosummary-accessors # pandas and xarray accessor docs
+  - latexmk
+  - myst-parser
+  - linkify-it-py
 
   - pip:
       # Install from PyPi

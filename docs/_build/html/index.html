@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>GOES-2-Go Documentation &#8212; GOES-2-go Docs 0.1 documentation</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,10 +24,12 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <link rel="stylesheet" type="text/css" href="_static/brian_style.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -39,8 +42,19 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Guide" href="user_guide/index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
     
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -243,7 +257,7 @@
               <div>
                 
   <img alt="_images/goes2go_logo.png" src="_images/goes2go_logo.png" />
-<div class="section" id="goes-2-go-documentation">
+<section id="goes-2-go-documentation">
 <h1>GOES-2-Go Documentation<a class="headerlink" href="#goes-2-go-documentation" title="Permalink to this headline">¶</a></h1>
 <p>These python functions can help you download GOES-R series NetCDF files from the <a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a> archive.</p>
 <div class="toctree-wrapper compound">
@@ -252,7 +266,7 @@
 <li class="toctree-l1"><a class="reference internal" href="reference_guide/index.html">Reference Guide</a></li>
 </ul>
 </div>
-<div class="section" id="install">
+<section id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>Install goes2go in a conda environment. You may use this minimum <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/master/environment.yml">environment.yml</a> file
 and create the environment with the following…</p>
@@ -266,10 +280,10 @@ conda env update -f environment.yml
 conda activate goes2go
 </pre></div>
 </div>
-</div>
-<div class="section" id="capabilities">
+</section>
+<section id="capabilities">
 <h2>Capabilities<a class="headerlink" href="#capabilities" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="download-data">
+<section id="download-data">
 <h3>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h3>
 <p>The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.</p>
 <ul class="simple">
@@ -286,52 +300,56 @@ conda activate goes2go
 <span class="n">G2</span> <span class="o">=</span> <span class="n">goes_nearesttime</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G16&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;GLM&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="rgb-recipes-for-abi">
+</section>
+<section id="rgb-recipes-for-abi">
 <h3>RGB Recipes for ABI<a class="headerlink" href="#rgb-recipes-for-abi" title="Permalink to this headline">¶</a></h3>
 <p>Generate RGB arrays for different RGB products. Check out the following notebook for a demonstration:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/reference_guide/index.html#rgb-recipes">📖 RGB Recipes Docs</a></p></li>
 </ul>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="_images/TrueColor.png" class="img-fluid" src="_images/TrueColor.png" />
-</div>
+</figure>
 <p>ABI TrueColor RGB image</p>
-</div>
-<div class="section" id="field-of-view">
+</section>
+<section id="field-of-view">
 <h3>Field of View<a class="headerlink" href="#field-of-view" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="advanced-baseline-imager-abi">
+<section id="advanced-baseline-imager-abi">
 <h4>Advanced Baseline Imager (ABI)<a class="headerlink" href="#advanced-baseline-imager-abi" title="Permalink to this headline">¶</a></h4>
 <p>GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOES was being tested, it was in a “central” position, outlined in the dashed black line. Below is the ABI field of view for the full disk:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_ABI.html">📓 ABI field of view notebook</a></p></li>
 </ul>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="_images/ABI_field-of-view.png" class="img-fluid" src="_images/ABI_field-of-view.png" />
-</div>
-<div class="figure align-default">
+</figure>
+<figure class="align-default">
 <img alt="_images/ABI_field-of-view_16dom.png" class="img-fluid" src="_images/ABI_field-of-view_16dom.png" />
-</div>
-<div class="figure align-default" id="id2">
+</figure>
+<figure class="align-default" id="id2">
 <img alt="_images/ABI_field-of-view_17dom.png" class="img-fluid" src="_images/ABI_field-of-view_17dom.png" />
-<p class="caption"><span class="caption-text">ABI full disk field of view</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="geostationary-lightning-mapper-glm">
+<figcaption>
+<p><span class="caption-text">ABI full disk field of view</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="geostationary-lightning-mapper-glm">
 <h4>Geostationary Lightning Mapper (GLM)<a class="headerlink" href="#geostationary-lightning-mapper-glm" title="Permalink to this headline">¶</a></h4>
 <p>The GLM field of view is slightly smaller and limited by a bounding box. The field of view can be estimated.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_GLM.html">📓 GLM field of view notebook</a></p></li>
 <li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_GLM_Edges.html">📓 More details on actual edges</a></p></li>
 </ul>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <img alt="_images/GLM_field-of-view.png" class="img-fluid" src="_images/GLM_field-of-view.png" />
-<p class="caption"><span class="caption-text">Approximate GLM field of view</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="useful-links">
+<figcaption>
+<p><span class="caption-text">Approximate GLM field of view</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="useful-links">
 <h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/blaylockbk/goes2go/tree/master/notebooks">👨🏻‍💻 Brian’s GitHub notebooks</a></p></li>
@@ -343,7 +361,7 @@ conda activate goes2go
 <li><p><a class="reference external" href="https://github.com/deeplycloudy/glmtools/">🐍 glmtools</a> For useful tools for GLM data.</p></li>
 <li><p><a class="reference external" href="https://www.ssec.wisc.edu/datacenter/plot-mesoscales/mesoscales/">⏲ Mesoscale Sector Historical Archive</a> shows maps of where mesoscale scans were at each time.</p></li>
 </ul>
-<div class="section" id="data-access">
+<section id="data-access">
 <h3>💾 Data Access<a class="headerlink" href="#data-access" title="Permalink to this headline">¶</a></h3>
 <p>Access GOES data through NOAA’s Big Data Project partners</p>
 <ul>
@@ -360,25 +378,30 @@ conda activate goes2go
 <li><p>Google Cloud Platform (<a class="reference external" href="https://console.cloud.google.com/marketplace/product/noaa-public/goes-16">GOES-16</a> | <a class="reference external" href="https://console.cloud.google.com/marketplace/product/noaa-public/goes-17">GOES-17</a>)</p></li>
 <li><p><a class="reference external" href="https://github.com/blaylockbk/pyBKB_v3/blob/master/rclone_howto.md">Download GOES data with rclone</a></p></li>
 </ul>
-</div>
-<div class="section" id="data-quality">
+</section>
+<section id="data-quality">
 <h3>Data Quality<a class="headerlink" href="#data-quality" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="http://cimss.ssec.wisc.edu/goes-r/abi-/band_statistics_imagery.html">⛑ GOES-17 ABI Data Quality (CIMSS)</a></p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
               </div>
               
               
-              <div class='prev-next-bottom'>
-                
-    <a class='right-next' id="next-link" href="user_guide/index.html" title="next page">User Guide</a>
-
-              </div>
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="user_guide/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">User Guide</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
               
           </main>
           
@@ -386,27 +409,19 @@ conda activate goes2go
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('config', 'G-NWK8MJNNGX');
-                </script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021, Brian K. Blaylock.<br/>
+    &copy; Copyright 2021, Brian K. Blaylock.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.3.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.1.<br>
 </p>
     </div>
     
