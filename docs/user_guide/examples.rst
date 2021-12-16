@@ -23,6 +23,7 @@ Recipes for GOES ABI Products
 
    notebooks/DEMO_rgb_recipes.ipynb
    notebooks/DEMO_derived_motion_winds.ipynb
+   notebooks/DEMO_total-precipitable-water.ipynb
 
 
 GOES Field of View
