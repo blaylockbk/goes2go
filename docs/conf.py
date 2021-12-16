@@ -4,7 +4,7 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Path setup --------------------------------------------------------------
+# --- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -16,11 +16,10 @@ import goes2go.data  ## Required for accessors to be documented
 
 sys.path.insert(0, os.path.abspath("../.."))
 
-# import sphinx_rtd_theme
 import pydata_sphinx_theme
 from datetime import datetime
 
-# -- Project information -----------------------------------------------------
+# --- Project information -----------------------------------------------------
 
 project = "GOES-2-go Docs"
 copyright = f"{datetime.utcnow():%Y}, Brian K. Blaylock"
@@ -75,12 +74,11 @@ templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", ".ipynb_checkpoints", ".vscode"]
 
 
-# -- Options for HTML output -------------------------------------------------
+# --- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-# html_theme = "sphinx_rtd_theme"
 html_theme = "pydata_sphinx_theme"
 
 html_theme_options = {
@@ -119,10 +117,7 @@ html_static_path = ["_static", "../images"]
 fontawesome_included = True
 panels_add_bootstrap_css = False  # False, because pydata theme already loads it
 
-html_css_files = [
-    # 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',  # the pydata theme already does this DO NOT LOAD IT AGAIN!
-    "brian_style.css"
-]
+html_css_files = ["brian_style.css"]
 
 html_js_files = [
     "https://kit.fontawesome.com/f6cc126dcc.js",
