@@ -28,7 +28,7 @@
    "id": "a341b10b-b735-4c3f-97d8-2c193478d986",
    "metadata": {},
    "source": [
-    "CONUS Figure"
+    "# TPW CONUS"
    ]
   },
   {
@@ -567,7 +567,7 @@
    "id": "4db3efad-e368-4dc2-99ef-02d438a65e12",
    "metadata": {},
    "source": [
-    "Full Disk figure"
+    "## TWP Full Disk"
    ]
   },
   {
