@@ -14,10 +14,15 @@
             "command": "cd docs && ./remake_docs.sh"
         },
         {
-            "label": "update environment",
+            "label": "create conda environment",
+            "type": "shell",
+            "command": "conda env create -f environment.yml"
+        },
+        {
+            "label": "update conda environment",
             "type": "shell",
             "command": "conda env update -f environment.yml --prune"
-        }
+        },
         {
             "label": "publish",
             "type": "shell",
