@@ -1,0 +1,1407 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goes2go.accessors &#8212; GOES-2-go Docs 0.1 documentation</title>
+    
+    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/brian_style.css" />
+    
+    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
+    <link rel="shortcut icon" href="../../_static/wxicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/goes2go_logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../user_guide/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference_guide/index.html">
+  Reference Guide
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/SynopticPy/_build/html/">SynopticPy<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/Herbie/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/blaylockbk/goes2go" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/blaylockbk" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for goes2go.accessors</h1><div class="highlight"><pre>
+<span></span><span class="c1">## Brian Blaylock</span>
+<span class="c1">## July 9, 2021</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">===========</span>
+<span class="sd">RGB Recipes</span>
+<span class="sd">===========</span>
+
+<span class="sd">RGB Recipes for the GOES Advanced Baseline Imager.</span>
+
+<span class="sd">More about xarray accessors:</span>
+<span class="sd">http://xarray.pydata.org/en/stable/internals/extending-xarray.html?highlight=extending#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
+
+
+<span class="c1">########################</span>
+<span class="c1"># Image Processing Tools</span>
+<span class="k">def</span> <span class="nf">_gamma_correction</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Darken or lighten an image with `gamma correction</span>
+<span class="sd">    &lt;https://en.wikipedia.org/wiki/_gamma_correction&gt;`_.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : array-like</span>
+<span class="sd">        An array of values, typically the RGB array of values in</span>
+<span class="sd">        an image.</span>
+<span class="sd">    gamma : float</span>
+<span class="sd">        Gamma value to decode the image by.</span>
+<span class="sd">        Values &gt; 1 will lighten an image.</span>
+<span class="sd">        Values &lt; 1 will darken an image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">gamma</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gamma Correction: 🌔 Lighten image&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gamma</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gamma Correction: 🌒 Darken image&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gamma Correction: 🌓 Gamma=1. No correction made.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">a</span>
+
+    <span class="c1"># Gamma decoding formula</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">gamma</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_normalize</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">lower_limit</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Normalize values between an upper and lower limit between 0 and 1.</span>
+
+<span class="sd">    Normalize between a lower and upper limit. In other words, it</span>
+<span class="sd">    converts your number to a value in the range between 0 and 1.</span>
+<span class="sd">    Follows `normalization formula</span>
+<span class="sd">    &lt;https://stats.stackexchange.com/a/70807/220885&gt;`_</span>
+
+<span class="sd">    This is the same concept as `contrast or histogram stretching</span>
+<span class="sd">    &lt;https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html&gt;`_</span>
+
+
+<span class="sd">    .. code:: python</span>
+
+<span class="sd">        _normalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    value :</span>
+<span class="sd">        The original value. A single value, vector, or array.</span>
+<span class="sd">    upper_limit :</span>
+<span class="sd">        The upper limit.</span>
+<span class="sd">    lower_limit :</span>
+<span class="sd">        The lower limit.</span>
+<span class="sd">    clip : bool</span>
+<span class="sd">        - True: Clips values between 0 and 1 for RGB.</span>
+<span class="sd">        - False: Retain the numbers that extends outside 0-1 range.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">lower_limit</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">upper_limit</span> <span class="o">-</span> <span class="n">lower_limit</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">clip</span><span class="p">:</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">norm</span>
+
+
+<div class="viewcode-block" id="fieldOfViewAccessor"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.fieldOfViewAccessor">[docs]</a><span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s2">&quot;FOV&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">fieldOfViewAccessor</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a field-of-view polygon for the GOES data.</span>
+
+<span class="sd">    Based on information from the `GOES-R Series Data Book</span>
+<span class="sd">    &lt;https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf&gt;`_.</span>
+
+<span class="sd">    GLM lense field of view is 16 degree, or +/- 8 degrees (see page 225)</span>
+<span class="sd">    ABI full-disk field of view if 17.4 degrees (see page 48)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="fieldOfViewAccessor.__init__"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.fieldOfViewAccessor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xarray_obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span> <span class="o">=</span> <span class="n">xarray_obj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sat_h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">goes_imager_projection</span><span class="o">.</span><span class="n">perspective_point_height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imshow_kwargs</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">crs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cartopy coordinate reference system for the Satellite.&quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+        <span class="k">if</span> <span class="n">ds</span><span class="o">.</span><span class="n">cdm_data_type</span> <span class="o">==</span> <span class="s2">&quot;Image&quot;</span><span class="p">:</span>
+            <span class="n">globe_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">semimajor_axis</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">goes_imager_projection</span><span class="o">.</span><span class="n">semi_major_axis</span><span class="p">,</span>
+                <span class="n">semiminor_axis</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">goes_imager_projection</span><span class="o">.</span><span class="n">semi_minor_axis</span><span class="p">,</span>
+                <span class="n">inverse_flattening</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">goes_imager_projection</span><span class="o">.</span><span class="n">inverse_flattening</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">sat_height</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">goes_imager_projection</span><span class="o">.</span><span class="n">perspective_point_height</span>
+            <span class="n">nadir_lon</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geospatial_lat_lon_extent</span><span class="o">.</span><span class="n">geospatial_lon_nadir</span>
+            <span class="n">nadir_lat</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">geospatial_lat_lon_extent</span><span class="o">.</span><span class="n">geospatial_lat_nadir</span>
+        <span class="k">elif</span> <span class="n">ds</span><span class="o">.</span><span class="n">cdm_data_type</span> <span class="o">==</span> <span class="s2">&quot;Point&quot;</span><span class="p">:</span>
+            <span class="n">globe_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">semimajor_axis</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">goes_lat_lon_projection</span><span class="o">.</span><span class="n">semi_major_axis</span><span class="p">,</span>
+                <span class="n">semiminor_axis</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">goes_lat_lon_projection</span><span class="o">.</span><span class="n">semi_minor_axis</span><span class="p">,</span>
+                <span class="n">inverse_flattening</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">goes_lat_lon_projection</span><span class="o">.</span><span class="n">inverse_flattening</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">sat_height</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">nominal_satellite_height</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span>
+            <span class="n">nadir_lon</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">lon_field_of_view</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">nadir_lat</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">lat_field_of_view</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="c1"># Create a cartopy coordinate reference system (crs)</span>
+        <span class="n">globe</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Globe</span><span class="p">(</span><span class="n">ellipse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">globe_kwargs</span><span class="p">)</span>
+
+        <span class="n">crs</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Geostationary</span><span class="p">(</span>
+            <span class="n">central_longitude</span><span class="o">=</span><span class="n">nadir_lon</span><span class="p">,</span>
+            <span class="n">satellite_height</span><span class="o">=</span><span class="n">sat_height</span><span class="p">,</span>
+            <span class="n">globe</span><span class="o">=</span><span class="n">globe</span><span class="p">,</span>
+            <span class="n">sweep_axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">crs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;x sweep in crs units (m); x * sat_height&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sat_h</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;y sweep in crs units (m); x * sat_height&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sat_h</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">imshow_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Key word arguments for plt.imshow for generating images.</span>
+
+<span class="sd">        Projection axis must be the coordinate reference system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imshow_kwargs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_imshow_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">extent</span><span class="o">=</span><span class="p">[</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="p">],</span>
+                <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_crs</span><span class="p">,</span>
+                <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span>
+                <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imshow_kwargs</span>
+
+<div class="viewcode-block" id="fieldOfViewAccessor.get_latlon"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.fieldOfViewAccessor.get_latlon">[docs]</a>    <span class="k">def</span> <span class="nf">get_latlon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get lat/lon of all points&quot;&quot;&quot;</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span><span class="o">.</span><span class="n">transform_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_crs</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+        <span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span> <span class="n">lons</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span> <span class="n">lats</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">full_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Full-disk field of view for the ABI or GLM instruments.</span>
+
+<span class="sd">        .. image:: /_static/ABI_field-of-view.png</span>
+
+<span class="sd">        .. image:: /_static/GLM_field-of-view.png</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        shapely.Polygon</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Create polygon of the field of view. This polygon is in</span>
+        <span class="c1"># the geostationary crs projection units, and is in meters.</span>
+        <span class="c1"># The central point is at 0,0 (not the nadir position), because</span>
+        <span class="c1"># we are working in the geostationary projection coordinates</span>
+        <span class="c1"># and the center point is 0,0 meters.</span>
+        <span class="k">if</span> <span class="n">ds</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;ABI&quot;</span><span class="p">):</span>
+            <span class="c1"># Field of view (FOV) in degrees. Reduce just a little to</span>
+            <span class="c1"># get all polygon points in the projection plane so cartopy</span>
+            <span class="c1"># can plot it correctly.</span>
+            <span class="c1"># TODO: Is there a more &quot;correct&quot; way to handle this?</span>
+            <span class="n">sat_height</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">goes_imager_projection</span><span class="o">.</span><span class="n">perspective_point_height</span>
+            <span class="n">FOV_degrees</span> <span class="o">=</span> <span class="mf">17.4</span>
+            <span class="n">FOV_degrees</span> <span class="o">-=</span> <span class="mf">0.06</span>
+            <span class="n">FOV_radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">FOV_degrees</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sat_height</span>
+            <span class="n">FOV_polygon</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">FOV_radius</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">160</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">FOV_polygon</span>
+        <span class="k">elif</span> <span class="n">ds</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;GLM&quot;</span><span class="p">):</span>
+            <span class="c1"># Field of view (FOV) of GLM is different than ABI.</span>
+            <span class="c1"># Do a little offset to better match boundary from</span>
+            <span class="c1"># Rudlosky et al. 2018</span>
+            <span class="n">sat_height</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">nominal_satellite_height</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span>
+            <span class="n">FOV_degrees</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">2</span>
+            <span class="n">FOV_degrees</span> <span class="o">+=</span> <span class="mf">0.15</span>
+            <span class="n">FOV_radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">FOV_degrees</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sat_height</span>
+            <span class="n">FOV_polygon</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">FOV_radius</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">160</span><span class="p">)</span>
+
+            <span class="c1"># I haven&#39;t found this explained in the documentation yet,</span>
+            <span class="c1"># but the GLM field-of-view is not exactly the full circle,</span>
+            <span class="c1"># there is a square area cut out of it.</span>
+            <span class="c1"># The square FOV width and height is about 15 degrees.</span>
+            <span class="n">cutout_FOV_degrees</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">cutout_FOV_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">cutout_FOV_degrees</span><span class="p">)</span> <span class="o">*</span> <span class="n">sat_height</span>
+            <span class="c1"># Create a square with many points clockwise, starting in bottom left corner</span>
+            <span class="n">side_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">cutout_FOV_length</span><span class="p">,</span> <span class="n">cutout_FOV_length</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+            <span class="n">cutout_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[(</span><span class="o">-</span><span class="n">cutout_FOV_length</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">side_points</span><span class="p">]</span>
+                <span class="o">+</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">cutout_FOV_length</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">side_points</span><span class="p">]</span>
+                <span class="o">+</span> <span class="p">[(</span><span class="n">cutout_FOV_length</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">side_points</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="o">+</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="n">cutout_FOV_length</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">side_points</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">cutout</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">cutout_points</span><span class="p">)</span>
+            <span class="n">FOV_polygon</span> <span class="o">=</span> <span class="n">FOV_polygon</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">cutout</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">FOV_polygon</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">domain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Field of view for the ABI domain (CONUS or MesoScale).</span>
+
+<span class="sd">        .. image:: /_static/ABI_field-of-view_16dom.png</span>
+
+<span class="sd">        .. image:: /_static/ABI_field-of-view_16M1M2.png</span>
+
+<span class="sd">        .. image:: /_static/ABI_field-of-view_17dom.png</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        shapely.Polygon</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+        <span class="k">assert</span> <span class="n">ds</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
+            <span class="s2">&quot;ABI&quot;</span>
+        <span class="p">),</span> <span class="s2">&quot;Domain polygon only available for ABI CONUS and Mesoscale files.&quot;</span>
+        <span class="n">sat_height</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">goes_imager_projection</span><span class="o">.</span><span class="n">perspective_point_height</span>
+        <span class="c1"># Trim out domain FOV from the full disk (this is necessary for GOES-16).</span>
+        <span class="n">dom_border</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+            <span class="o">+</span> <span class="p">[(</span><span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+            <span class="o">+</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="o">+</span> <span class="p">[(</span><span class="n">ds</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="p">)</span>
+        <span class="n">FOV_domain</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">dom_border</span> <span class="o">*</span> <span class="n">sat_height</span><span class="p">)</span>
+        <span class="n">FOV_domain</span> <span class="o">=</span> <span class="n">FOV_domain</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">full_disk</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">FOV_domain</span></div>
+
+
+<div class="viewcode-block" id="rgbAccessor"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor">[docs]</a><span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s2">&quot;rgb&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">rgbAccessor</span><span class="p">:</span>
+<div class="viewcode-block" id="rgbAccessor.__init__"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xarray_obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span> <span class="o">=</span> <span class="n">xarray_obj</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">title</span> <span class="o">==</span> <span class="s2">&quot;ABI L2 Cloud and Moisture Imagery&quot;</span>
+        <span class="p">),</span> <span class="s2">&quot;Dataset must be an ABI L2 Cloud and Moisture Imagery file.&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sat_h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">goes_imager_projection</span><span class="o">.</span><span class="n">perspective_point_height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_imshow_kwargs</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">crs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cartopy coordinate reference system&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Why am I doing this? To cache the values.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">FOV</span><span class="o">.</span><span class="n">crs</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;x sweep in crs units (m); x * sat_height&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sat_h</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;y sweep in crs units (m); x * sat_height&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sat_h</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">imshow_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Key word arguments for plt.imshow for generating images.</span>
+
+<span class="sd">        Projection axis must be the coordinate reference system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imshow_kwargs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_imshow_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">extent</span><span class="o">=</span><span class="p">[</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="p">],</span>
+                <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_crs</span><span class="p">,</span>
+                <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span>
+                <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imshow_kwargs</span>
+
+<div class="viewcode-block" id="rgbAccessor.get_latlon"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.get_latlon">[docs]</a>    <span class="k">def</span> <span class="nf">get_latlon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get lat/lon of all points&quot;&quot;&quot;</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span><span class="o">.</span><span class="n">transform_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_crs</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+        <span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span> <span class="n">lons</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">),</span> <span class="n">lats</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span></div>
+
+    <span class="c1">####################################################################</span>
+    <span class="c1"># Helpers</span>
+    <span class="k">def</span> <span class="nf">_load_RGB_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channels</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the R, G, and B arrays for the three channels requested. This</span>
+<span class="sd">        function will convert the data any units in Kelvin to Celsius.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        channels : tuple of size 3</span>
+<span class="sd">            A tuple of the channel number for each (R, G, B).</span>
+<span class="sd">            For example ``channel=(2, 3, 1)`` is for the true color RGB</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A list with three items that are used for R, G, and B.</span>
+<span class="sd">        &gt;&gt;&gt; R, G, B = _load_RGB_channels((2,3,1))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Units of each channel requested</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">units</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">]</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">channels</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">u</span> <span class="o">==</span> <span class="s2">&quot;K&quot;</span><span class="p">:</span>
+                <span class="c1"># Convert form Kelvin to Celsius                                ## &lt;-- Do I REALLY want to hard-code this in?</span>
+                <span class="n">RGB</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="mf">273.15</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">RGB</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C</span><span class="si">%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">RGB</span>
+
+    <span class="c1">####################################################################</span>
+    <span class="c1"># RGB Recipes</span>
+<div class="viewcode-block" id="rgbAccessor.TrueColor"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.TrueColor">[docs]</a>    <span class="k">def</span> <span class="nf">TrueColor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">2.2</span><span class="p">,</span> <span class="n">pseudoGreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">night_IR</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        True Color RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        This is similar to the NaturalColor RGB, but uses a different gamma</span>
+<span class="sd">        correction and does not apply contrast stretching. I think these</span>
+<span class="sd">        images look a little &quot;washed out&quot; when compared to the NaturalColor</span>
+<span class="sd">        RGB. So, I would recommend using the NaturalColor RGB.</span>
+
+<span class="sd">        For more details on combing RGB and making the psedo green channel, refer to</span>
+<span class="sd">        `Bah et al. 2018 &lt;https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379&gt;`_.</span>
+
+<span class="sd">        .. image:: /_static/TrueColor.png</span>
+
+<span class="sd">        .. image:: /_static/gamma_demo_TrueColor.png</span>
+
+<span class="sd">        .. image:: /_static/Color-IR_demo.png</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gamma : float</span>
+<span class="sd">            Darken or lighten an image with `gamma correction</span>
+<span class="sd">            &lt;https://en.wikipedia.org/wiki/_gamma_correction&gt;`_.</span>
+<span class="sd">            Values &gt; 1 will lighten an image.</span>
+<span class="sd">            Values &lt; 1 will darken an image.</span>
+<span class="sd">        pseudoGreen : bool</span>
+<span class="sd">            True: returns the calculated &quot;True&quot; green color</span>
+<span class="sd">            False: returns the &quot;veggie&quot; channel</span>
+<span class="sd">        night_IR : bool</span>
+<span class="sd">            If True, use Clean IR (channel 13) as maximum RGB value overlay</span>
+<span class="sd">            so that cold clouds show up at night. (Be aware that some</span>
+<span class="sd">            daytime clouds might appear brighter).</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_RGB_channels</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1"># Apply range limits for each channel. RGB values must be between 0 and 1</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Apply a gamma correction to each R, G, B channel</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">pseudoGreen</span><span class="p">:</span>
+            <span class="c1"># Calculate the &quot;True&quot; Green</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="mf">0.45</span> <span class="o">*</span> <span class="n">R</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">G</span> <span class="o">+</span> <span class="mf">0.45</span> <span class="o">*</span> <span class="n">B</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">night_IR</span><span class="p">:</span>
+            <span class="c1"># Load the Clean IR channel</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span>
+            <span class="c1"># _normalize between a range and clip</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">IR</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">313</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># Invert colors so cold clouds are white</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">IR</span>
+            <span class="c1"># Lessen the brightness of the coldest clouds so they don&#39;t</span>
+            <span class="c1"># appear so bright when we overlay it on the true color image</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="n">IR</span> <span class="o">/</span> <span class="mf">1.4</span>
+            <span class="c1"># RGB with IR as greyscale</span>
+            <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">IR</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">IR</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">IR</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;TrueColor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;TrueColor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;TrueColor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;True Color&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;TrueColor&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.NaturalColor"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.NaturalColor">[docs]</a>    <span class="k">def</span> <span class="nf">NaturalColor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">pseudoGreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">night_IR</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Natural Color RGB based on CIMSS method. Thanks Rick Kohrs!</span>
+<span class="sd">        (See `Quick Guide &lt;http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        Check out Rick Kohrs `merged GOES images &lt;https://www.ssec.wisc.edu/~rickk/local-noon.html&gt;`_.</span>
+
+<span class="sd">        This NaturalColor RGB is *very* similar to the TrueColor RGB but</span>
+<span class="sd">        uses slightly different contrast stretches and ranges.</span>
+
+<span class="sd">        For more details on combing RGB and making the psedo green channel, refer to</span>
+<span class="sd">        `Bah et al. 2018 &lt;https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018EA000379&gt;`_.</span>
+
+<span class="sd">        .. image:: /_static/NaturalColor.png</span>
+
+<span class="sd">        .. image:: /_static/gamma_demo_NaturalColor-PsuedoGreen.png</span>
+
+<span class="sd">        .. image:: /_static/gamma_demo_NaturalColor-VeggieGreen.png</span>
+
+<span class="sd">        .. image:: /_static/Color-IR_demo.png</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        gamma : float</span>
+<span class="sd">            Darken or lighten an image with `gamma correction</span>
+<span class="sd">            &lt;https://en.wikipedia.org/wiki/_gamma_correction&gt;`_.</span>
+<span class="sd">            Values &gt; 1 will lighten an image.</span>
+<span class="sd">            Values &lt; 1 will darken an image.</span>
+<span class="sd">        night_IR : bool</span>
+<span class="sd">            If True, use Clean IR (channel 13) as maximum RGB value overlay</span>
+<span class="sd">            so that cold clouds show up at night. (Be aware that some</span>
+<span class="sd">            daytime clouds might appear brighter).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="k">def</span> <span class="nf">breakpoint_stretch</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">breakpoint</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Contrast stretching by break point (number provided by Rick Kohrs)</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">lower</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Low end</span>
+            <span class="n">upper</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>  <span class="c1"># High end</span>
+
+            <span class="c1"># Combine the two datasets</span>
+            <span class="c1"># This works because if upper=1 and lower==.7, then</span>
+            <span class="c1"># that means the upper value was out of range and the</span>
+            <span class="c1"># value for the lower pass was used instead.</span>
+            <span class="n">combined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">combined</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_RGB_channels</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1"># Apply range limits for each channel. RGB values must be between 0 and 1</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">pseudoGreen</span><span class="p">:</span>
+            <span class="c1"># Derive pseudo Green channel</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="mf">0.45</span> <span class="o">*</span> <span class="n">R</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">G</span> <span class="o">+</span> <span class="mf">0.45</span> <span class="o">*</span> <span class="n">B</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Convert Albedo to Brightness, ranging from 0-255 K</span>
+        <span class="c1"># (numbers based on email from Rick Kohrs)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mf">25.5</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">G</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mf">25.5</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">B</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mf">25.5</span>
+
+        <span class="c1"># Apply contrast stretching based on breakpoints</span>
+        <span class="c1"># (numbers based on email form Rick Kohrs)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">breakpoint_stretch</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">breakpoint_stretch</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">breakpoint_stretch</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">night_IR</span><span class="p">:</span>
+            <span class="c1"># Load the Clean IR channel</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span>
+            <span class="c1"># _normalize between a range and clip</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">IR</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">313</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># Invert colors so cold clouds are white</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">IR</span>
+            <span class="c1"># Lessen the brightness of the coldest clouds so they don&#39;t</span>
+            <span class="c1"># appear so bright when we overlay it on the true color image</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="n">IR</span> <span class="o">/</span> <span class="mf">1.4</span>
+            <span class="c1"># Overlay IR channel, as greyscale image (use IR in R, G, and B)</span>
+            <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">IR</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">IR</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">IR</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="c1"># Apply a gamma correction to the image</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">RGB</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NaturalColor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NaturalColor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NaturalColor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Natural Color&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NaturalColor&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.FireTemperature"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.FireTemperature">[docs]</a>    <span class="k">def</span> <span class="nf">FireTemperature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fire Temperature RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/FireTemperature.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_RGB_channels</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values (clipping happens in function)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">273</span><span class="p">,</span> <span class="mi">333</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">)</span>
+
+        <span class="c1"># Apply the gamma correction to Red channel.</span>
+        <span class="c1">#   corrected_value = value^(1/gamma)</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.4</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;FireTemperature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;FireTemperature&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;FireTemperature&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Fire Temperature&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;FireTemperature&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.AirMass"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.AirMass">[docs]</a>    <span class="k">def</span> <span class="nf">AirMass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Air Mass RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/AirMass.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C08&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C10&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C12&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C08&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="mf">273.15</span>  <span class="c1"># remember to convert to Celsius</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mf">26.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">-</span><span class="mf">42.2</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">64.65</span><span class="p">,</span> <span class="o">-</span><span class="mf">29.25</span><span class="p">)</span>
+
+        <span class="c1"># Invert B</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">B</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;AirMass&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;AirMass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;AirMass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Air Mass&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;AirMass&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.DayCloudPhase"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.DayCloudPhase">[docs]</a>    <span class="k">def</span> <span class="nf">DayCloudPhase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Day Cloud Phase Distinction RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/DayCloudPhase.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_RGB_channels</span><span class="p">((</span><span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values. (Clipping happens inside function)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mf">53.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.78</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">)</span>
+
+        <span class="c1"># Invert R</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">R</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayCloudPhase&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayCloudPhase&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayCloudPhase&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Day Cloud Phase&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayCloudPhase&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.DayConvection"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.DayConvection">[docs]</a>    <span class="k">def</span> <span class="nf">DayConvection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Day Convection RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/DayConvection.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="c1"># NOTE: Each R, G, B is a channel difference.</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C08&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C10&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C07&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C05&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C02&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values.</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayConvection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayConvection&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayConvection&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Day Convection&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayConvection&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.DayCloudConvection"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.DayCloudConvection">[docs]</a>    <span class="k">def</span> <span class="nf">DayCloudConvection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Day Cloud Convection RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/DayCloudConvection.png</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_RGB_channels</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values.</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">70.15</span><span class="p">,</span> <span class="mf">49.85</span><span class="p">)</span>
+
+        <span class="c1"># Invert B</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">B</span>
+
+        <span class="c1"># Apply the gamma correction to Red channel.</span>
+        <span class="c1">#   corrected_value = value^(1/gamma)</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="mf">1.7</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayCloudConvection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayCloudConvection&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayCloudConvection&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Day Cloud Convection&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayCloudConvection&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.DayLandCloud"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.DayLandCloud">[docs]</a>    <span class="k">def</span> <span class="nf">DayLandCloud</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Day Land Cloud Fire RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/DayLandCloud.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_RGB_channels</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values  e.g. R = (R-minimum)/(maximum-minimum)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.086</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayLandCloud&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayLandCloud&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayLandCloud&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Day Land Cloud&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayLandCloud&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.DayLandCloudFire"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.DayLandCloudFire">[docs]</a>    <span class="k">def</span> <span class="nf">DayLandCloudFire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Day Land Cloud Fire RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/DayLandCloudFire.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_RGB_channels</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values  e.g. R = (R-minimum)/(maximum-minimum)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayLandCloudFire&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayLandCloudFire&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayLandCloudFire&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Day Land Cloud Fire&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DayLandCloud&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.WaterVapor"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.WaterVapor">[docs]</a>    <span class="k">def</span> <span class="nf">WaterVapor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Simple Water Vapor RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/WaterVapor.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables.</span>
+        <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_RGB_channels</span><span class="p">((</span><span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mf">70.86</span><span class="p">,</span> <span class="mf">5.81</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">-</span><span class="mf">58.49</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.48</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.03</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.12</span><span class="p">)</span>
+
+        <span class="c1"># Invert the colors</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">R</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">G</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">B</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;WaterVapor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;WaterVapor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;WaterVapor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Water Vapor&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;WaterVapor&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.DifferentialWaterVapor"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.DifferentialWaterVapor">[docs]</a>    <span class="k">def</span> <span class="nf">DifferentialWaterVapor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Differential Water Vapor RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/DifferentialWaterVapor.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables.</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C10&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C08&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C10&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="mf">273.15</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C08&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+        <span class="c1"># _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">64.65</span><span class="p">,</span> <span class="o">-</span><span class="mf">29.25</span><span class="p">)</span>
+
+        <span class="c1"># Gamma correction</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mf">0.2587</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+
+        <span class="c1"># Invert the colors</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">R</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">G</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">B</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DifferentialWaterVapor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DifferentialWaterVapor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DifferentialWaterVapor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Differential Water Vapor&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DifferentialWaterVapor&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.DaySnowFog"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.DaySnowFog">[docs]</a>    <span class="k">def</span> <span class="nf">DaySnowFog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Day Snow-Fog RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/DaySnowFog.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C03&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C05&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C07&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="c1"># _normalize values</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+
+        <span class="c1"># Apply a gamma correction to the image</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="mf">1.7</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DaySnowFog&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DaySnowFog&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DaySnowFog&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Day Snow Fog&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;DaySnowFog&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.NighttimeMicrophysics"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.NighttimeMicrophysics">[docs]</a>    <span class="k">def</span> <span class="nf">NighttimeMicrophysics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Nighttime Microphysics RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/NighttimeMicrophysics.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C15&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C07&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+        <span class="c1"># _normalize values</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.7</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.1</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">29.6</span><span class="p">,</span> <span class="mf">19.5</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NighttimeMicrophysics&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NighttimeMicrophysics&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NighttimeMicrophysics&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Nighttime Microphysics&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NighttimeMicrophysics&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.Dust"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.Dust">[docs]</a>    <span class="k">def</span> <span class="nf">Dust</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SulfurDioxide RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/Dust.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C15&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C14&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C11&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+        <span class="c1"># _normalize values</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.7</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.95</span><span class="p">,</span> <span class="mf">15.55</span><span class="p">)</span>
+
+        <span class="c1"># Apply a gamma correction to the image</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.5</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_gamma_correction</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Dust&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Dust&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Dust&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Dust&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Dust&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.SulfurDioxide"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.SulfurDioxide">[docs]</a>    <span class="k">def</span> <span class="nf">SulfurDioxide</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        SulfurDioxide RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/SulfurDioxide.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C09&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C10&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C11&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C07&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+        <span class="c1"># _normalize values</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.1</span><span class="p">,</span> <span class="mf">29.8</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;SulfurDioxide&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;SulfurDioxide&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;SulfurDioxide&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sulfur Dioxide&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;SulfurDioxide&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.Ash"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.Ash">[docs]</a>    <span class="k">def</span> <span class="nf">Ash</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ash RGB:</span>
+<span class="sd">        (See `Quick Guide &lt;http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/Ash.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C15&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C14&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C11&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+        <span class="c1"># _normalize values</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.7</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="o">-</span><span class="mf">29.55</span><span class="p">,</span> <span class="mf">29.25</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Ash&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Ash&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Ash&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Ash&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;Ash&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.SplitWindowDifference"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.SplitWindowDifference">[docs]</a>    <span class="k">def</span> <span class="nf">SplitWindowDifference</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Split Window Difference RGB (greyscale):</span>
+<span class="sd">        (See `Quick Guide &lt;http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/SplitWindowDifference.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C15&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="c1"># _normalize values</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;SplitWindowDifference&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;SplitWindowDifference&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;SplitWindowDifference&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Split Window Difference&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;SplitWindowDifference&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.NightFogDifference"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.NightFogDifference">[docs]</a>    <span class="k">def</span> <span class="nf">NightFogDifference</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Night Fog Difference RGB (greyscale):</span>
+<span class="sd">        (See `Quick Guide &lt;http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf&gt;`__ for reference)</span>
+
+<span class="sd">        .. image:: /_static/NightFogDifference.png</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C07&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="c1"># _normalize values</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+
+        <span class="c1"># Invert data</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">data</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NightFogDifference&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NightFogDifference&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NightFogDifference&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;NightFogDifference&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NightFogDifference&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.RocketPlume"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.RocketPlume">[docs]</a>    <span class="k">def</span> <span class="nf">RocketPlume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">night</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rocket Plume RGB</span>
+
+<span class="sd">        For identifying rocket launches.</span>
+
+<span class="sd">        See `this blog &lt;https://cimss.ssec.wisc.edu/satellite-blog/archives/41335&gt;`__ and</span>
+<span class="sd">        the `Quick Guide &lt;https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf&gt;`__</span>
+<span class="sd">        for reference</span>
+
+<span class="sd">        .. image:: /_static/RocketPlume.png</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        night : bool</span>
+<span class="sd">            If the area is in night, turn this on to use a different channel</span>
+<span class="sd">            than the daytime application.</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C07&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C08&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">night</span><span class="p">:</span>
+            <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C02&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">B</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C05&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="c1"># _normalize values</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">273</span><span class="p">,</span> <span class="mi">338</span><span class="p">)</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">253</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">)</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;RocketPlume&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;RocketPlume&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;RocketPlume&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Rocket Plume&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;RocketPlume&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="rgbAccessor.NormalizedBurnRatio"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.accessors.rgbAccessor.NormalizedBurnRatio">[docs]</a>    <span class="k">def</span> <span class="nf">NormalizedBurnRatio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normalized Burn Ratio</span>
+
+<span class="sd">        **THIS FUNCTION IS NOT FULLY DEVELOPED. Need more info.**</span>
+
+<span class="sd">        NBR= (0.86 µm – 2.2 µm)/(0.86 um + 2.2 um)</span>
+
+
+<span class="sd">        https://ntrs.nasa.gov/citations/20190030825</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;THE `NormalizedBurnRatio` FUNCTION IS NOT FULLY DEVELOPED. NEED MORE INFO.&quot;</span>
+        <span class="p">)</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
+
+        <span class="c1"># Load the three channels into appropriate R, G, and B variables</span>
+        <span class="n">C3</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C03&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">C6</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;CMI_C06&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">C3</span> <span class="o">-</span> <span class="n">C6</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">C3</span> <span class="o">+</span> <span class="n">C6</span><span class="p">)</span>
+
+        <span class="c1"># Invert data</span>
+        <span class="c1"># data = 1-data</span>
+
+        <span class="c1"># The final RGB array :)</span>
+        <span class="n">RGB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dstack</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">])</span>
+
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NormalizedBurnRatio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">),</span> <span class="n">RGB</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;rgb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NormalizedBurnRatio&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s2">&quot;Quick Guide&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;https://ntrs.nasa.gov/citations/20190030825&quot;</span>
+        <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NormalizedBurnRatio&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Normalized Burn Ratio&quot;</span>
+
+        <span class="k">return</span> <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;NormalizedBurnRatio&quot;</span><span class="p">]</span></div></div>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Brian K. Blaylock.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

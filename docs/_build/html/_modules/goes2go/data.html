@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>goes2go.data &#8212; GOES-2-go Docs 0.1 documentation</title>
+    
+    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/brian_style.css" />
+    
+    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://kit.fontawesome.com/f6cc126dcc.js"></script>
+    <link rel="shortcut icon" href="../../_static/wxicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NWK8MJNNGX"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-NWK8MJNNGX');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/goes2go_logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../user_guide/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../reference_guide/index.html">
+  Reference Guide
+ </a>
+</li>
+
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/SynopticPy/_build/html/">SynopticPy<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-external" href="https://blaylockbk.github.io/Herbie/_build/html/">Herbie<i class="fas fa-external-link-alt"></i></a>
+    </li>
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/blaylockbk/goes2go" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/blaylockbk" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for goes2go.data</h1><div class="highlight"><pre>
+<span></span><span class="c1">## Brian Blaylock</span>
+<span class="c1">## September 16, 2020</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">=============</span>
+<span class="sd">Retrieve Data</span>
+<span class="sd">=============</span>
+<span class="sd">Download and read data from the R-series Geostationary Operational</span>
+<span class="sd">Environmental Satellite data.</span>
+
+<span class="sd">Data is downloaded from Amazon Web Services and can be returned</span>
+<span class="sd">as a file list or read as an xarray.Dataset. If the data is not</span>
+<span class="sd">available in a local directory, it is loaded directly into memory.</span>
+
+<span class="sd">https://registry.opendata.aws/noaa-goes/</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+
+<span class="kn">import</span> <span class="nn">s3fs</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># NOTE: These config dict values are retrieved from __init__ and read</span>
+<span class="c1"># from the file ${HOME}/.config/goes2go/config.toml</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">config</span>
+
+<span class="c1"># Connect to AWS public buckets</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="n">s3fs</span><span class="o">.</span><span class="n">S3FileSystem</span><span class="p">(</span><span class="n">anon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Define parameter options and aliases</span>
+<span class="c1"># ------------------------------------</span>
+<span class="n">_satellite</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;noaa-goes16&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span> <span class="s2">&quot;G16&quot;</span><span class="p">,</span> <span class="s2">&quot;EAST&quot;</span><span class="p">,</span> <span class="s2">&quot;GOES16&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;noaa-goes17&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="s2">&quot;17&quot;</span><span class="p">,</span> <span class="s2">&quot;G17&quot;</span><span class="p">,</span> <span class="s2">&quot;WEST&quot;</span><span class="p">,</span> <span class="s2">&quot;GOES17&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">_domain</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;CONUS&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FULL&quot;</span><span class="p">,</span> <span class="s2">&quot;FULLDISK&quot;</span><span class="p">,</span> <span class="s2">&quot;FULL DISK&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;MESOSCALE&quot;</span><span class="p">,</span> <span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;M2&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">_product</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Assume goes17 has same products as goes16</span>
+    <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;noaa-goes16&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">_product</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;index.html&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">_product</span><span class="p">[</span><span class="s2">&quot;GLM-L2-LCFA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;GLM&quot;</span><span class="p">]</span>
+<span class="n">_product</span><span class="p">[</span><span class="s2">&quot;ABI-L2-MCMIPC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ABIC&quot;</span><span class="p">]</span>
+<span class="n">_product</span><span class="p">[</span><span class="s2">&quot;ABI-L2-MCMIPF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ABIF&quot;</span><span class="p">]</span>
+<span class="n">_product</span><span class="p">[</span><span class="s2">&quot;ABI-L2-MCMIPM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ABIM&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_check_param_inputs</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks the input parameters for correct name or alias.</span>
+
+<span class="sd">    Specifically, check the input for product, domain, and satellite are</span>
+<span class="sd">    in the list of accepted values. If not, then look if it has an alias.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Kinda messy, but gets the job done.</span>
+    <span class="n">params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">satellite</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;satellite&quot;</span><span class="p">]</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;domain&quot;</span><span class="p">]</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">]</span>
+
+    <span class="c1">## Determine the Satellite</span>
+    <span class="k">if</span> <span class="n">satellite</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_satellite</span><span class="p">:</span>
+        <span class="n">satellite</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">satellite</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">aliases</span> <span class="ow">in</span> <span class="n">_satellite</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">satellite</span> <span class="ow">in</span> <span class="n">aliases</span><span class="p">:</span>
+                <span class="n">satellite</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="k">assert</span> <span class="p">(</span>
+        <span class="n">satellite</span> <span class="ow">in</span> <span class="n">_satellite</span>
+    <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;satellite must be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_satellite</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2"> or an alias </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_satellite</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1">## Determine the Domain (only needed for ABI product)</span>
+    <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;ABI&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">product</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">_domain</span><span class="p">:</span>
+            <span class="c1"># If the product has the domain, this takes priority</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">product</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">domain</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;M2&quot;</span><span class="p">]:</span>
+                <span class="n">product</span> <span class="o">=</span> <span class="n">product</span> <span class="o">+</span> <span class="s2">&quot;M&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">aliases</span> <span class="ow">in</span> <span class="n">_domain</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">aliases</span><span class="p">:</span>
+                        <span class="n">domain</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="n">product</span> <span class="o">=</span> <span class="n">product</span> <span class="o">+</span> <span class="n">domain</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">domain</span> <span class="ow">in</span> <span class="n">_domain</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+            <span class="n">domain</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;M2&quot;</span><span class="p">]</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;domain must be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_domain</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2"> or an alias </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_domain</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1">## Determine the Product</span>
+    <span class="k">if</span> <span class="n">product</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_product</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">aliases</span> <span class="ow">in</span> <span class="n">_product</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">aliases</span><span class="p">:</span>
+                <span class="n">product</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="k">assert</span> <span class="p">(</span>
+        <span class="n">product</span> <span class="ow">in</span> <span class="n">_product</span>
+    <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;product must be one of </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_product</span> <span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2"> or an alias </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_product</span> <span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; _______________________________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; | Satellite: </span><span class="si">{</span><span class="n">satellite</span><span class="si">:</span><span class="s2">&lt;17s</span><span class="si">}</span><span class="s2">|&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; |   Product: </span><span class="si">{</span><span class="n">product</span><span class="si">:</span><span class="s2">&lt;17s</span><span class="si">}</span><span class="s2">|&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">domain</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; |    Domain: </span><span class="si">{</span><span class="n">domain</span><span class="si">:</span><span class="s2">&lt;17s</span><span class="si">}</span><span class="s2">|&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">satellite</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">domain</span>
+
+
+<span class="k">def</span> <span class="nf">_goes_file_df</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get list of requested GOES files as pandas.DataFrame.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    satellite : str</span>
+<span class="sd">    product : str</span>
+<span class="sd">    start : datetime</span>
+<span class="sd">    end : datetime</span>
+<span class="sd">    refresh : bool</span>
+<span class="sd">        Refresh the s3fs.S3FileSystem object when files are listed.</span>
+<span class="sd">        Default True will refresh and not use a cached list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+
+    <span class="n">DATES</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start</span><span class="si">:</span><span class="s2">%Y-%m-%d %H:00</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">end</span><span class="si">:</span><span class="s2">%Y-%m-%d %H:00</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;1H&quot;</span><span class="p">)</span>
+
+    <span class="c1"># List all files for each date</span>
+    <span class="c1"># ----------------------------</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">DATE</span> <span class="ow">in</span> <span class="n">DATES</span><span class="p">:</span>
+        <span class="n">files</span> <span class="o">+=</span> <span class="n">fs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">satellite</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">product</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DATE</span><span class="si">:</span><span class="s2">%Y/%j/%H/</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="n">refresh</span><span class="p">)</span>
+
+    <span class="c1"># Build a table of the files</span>
+    <span class="c1"># --------------------------</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;creation&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Filter files by requested time range</span>
+    <span class="c1"># ------------------------------------</span>
+    <span class="c1"># Convert filename datetime string to datetime object</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;s%Y%j%H%M%S</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;e%Y%j%H%M%S</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;creation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">creation</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;c%Y%j%H%M%S</span><span class="si">%f</span><span class="s2">.nc&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Filter by files within the requested time range</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">start</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">end</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">def</span> <span class="nf">_download_MP</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download a single file -- a multiprocessing helper</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    src : str</span>
+<span class="sd">        The source path of the file (path relative to S3 or ``save_dir``)</span>
+<span class="sd">    save_dir : str or pathlib.Path</span>
+<span class="sd">        Directory to save the file when it is downloaded.</span>
+<span class="sd">    overwrite : bool</span>
+<span class="sd">        True - overwrite files if the exist</span>
+<span class="sd">        False - skip download if the file exists (default)</span>
+<span class="sd">    i, n : int</span>
+<span class="sd">        The iteration number and total number of files (primarily for</span>
+<span class="sd">        the multiprocessor counter).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># File destination</span>
+    <span class="n">dst</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span> <span class="o">/</span> <span class="n">src</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">dst</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="n">dst</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;👨🏻‍🏭 Created directory: [</span><span class="si">{</span><span class="n">dst</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">🏇🏻💨 Downloading (</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">) file from AWS to Local Disk. </span><span class="si">{</span><span class="n">src</span><span class="si">}</span><span class="s2"> &gt; </span><span class="si">{</span><span class="n">dst</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">dst</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">overwrite</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- 👮🏻‍♂️ File already exists. Do not overwrite.&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Downloading file from AWS</span>
+        <span class="c1"># NOTE: The destination is `str(dst)` and not just `dst` because</span>
+        <span class="c1">#       Gaffney does not like a Path object for some reason.</span>
+        <span class="n">fs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">dst</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_download</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download each file in the pandas.DataFrame to ``save_dir``.</span>
+
+<span class="sd">    Use multiprocessing to improve download time.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pandas.DataFrame</span>
+<span class="sd">        A DataFrame created by ``_goes_file_df`` with a list of files</span>
+<span class="sd">        to download from the GOES s3 bucket.</span>
+<span class="sd">    save_dir : str or pathlib.Path</span>
+<span class="sd">        Directory the files will be downloaded to.</span>
+<span class="sd">        The default location (set as a variable in this script)</span>
+<span class="sd">        is ``~/data/``.</span>
+<span class="sd">    max_cpus : int or None</span>
+<span class="sd">        If None, use all available CPUs. Else, specify the number of</span>
+<span class="sd">        CPUs to use.</span>
+<span class="sd">    overwrite : bool</span>
+<span class="sd">        True - overwrite files if the exist</span>
+<span class="sd">        False - skip download if the file exists (default)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;max_cpus&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;save_dir&quot;</span><span class="p">]</span>
+    <span class="n">overwrite</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;overwrite&quot;</span><span class="p">]</span>
+    <span class="n">max_cpus</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;max_cpus&quot;</span><span class="p">]</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">]</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🛸 No data to download.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># If we only have one file, we don&#39;t need multiprocessing</span>
+        <span class="n">_download_MP</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">max_cpus</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="p">[</span><span class="n">_download_MP</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Use Multiprocessing to download multiple files.</span>
+        <span class="k">if</span> <span class="n">max_cpus</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">max_cpus</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+        <span class="n">cpus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span> <span class="n">max_cpus</span><span class="p">)</span>
+        <span class="n">cpus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">cpus</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">src</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">cpus</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="n">_download_MP</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="si">:</span><span class="s2">1000</span><span class="si">}</span><span class="se">\r</span><span class="s2">📦 Finished downloading [</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">] files to [</span><span class="si">{</span><span class="n">save_dir</span><span class="o">/</span><span class="n">Path</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">].&quot;</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_as_xarray_MP</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Open a file as a xarray.Dataset -- a multiprocessing helper&quot;&quot;&quot;</span>
+
+    <span class="c1"># File destination</span>
+    <span class="n">local_copy</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span> <span class="o">/</span> <span class="n">src</span>
+
+    <span class="k">if</span> <span class="n">local_copy</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">📖💽 Reading (</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">) file from LOCAL COPY [</span><span class="si">{</span><span class="n">local_copy</span><span class="si">}</span><span class="s2">].&quot;</span><span class="p">,</span>
+                <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">local_copy</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">📖☁ Reading (</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">) file from AWS to MEMORY [</span><span class="si">{</span><span class="n">src</span><span class="si">}</span><span class="s2">].&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span>
+            <span class="p">)</span>
+        <span class="k">with</span> <span class="n">fs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Turn some attributes to coordinates so they will be preserved</span>
+    <span class="c1"># when we concat multiple GOES DataSets together.</span>
+    <span class="n">attr2coord</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;dataset_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;date_created&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;time_coverage_start&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;time_coverage_end&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">attr2coord</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="n">ds</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span>
+
+    <span class="k">return</span> <span class="n">ds</span>
+
+
+<span class="k">def</span> <span class="nf">_as_xarray</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download files in the list to the desired path.</span>
+
+<span class="sd">    Use multiprocessing to speed up the download process.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pandas.DataFrame</span>
+<span class="sd">        A list of files in the GOES s3 bucket.</span>
+<span class="sd">        This DataFrame must have a column of &quot;files&quot;</span>
+<span class="sd">    params : dict</span>
+<span class="sd">        Parameters from `goes_*` function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;max_cpus&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;save_dir&quot;</span><span class="p">]</span>
+    <span class="n">max_cpus</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;max_cpus&quot;</span><span class="p">]</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">]</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🛸 No data....🌌&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># If we only have one file, we don&#39;t need multiprocessing</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">_as_xarray_MP</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Use Multiprocessing to read multiple files.</span>
+        <span class="k">if</span> <span class="n">max_cpus</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">max_cpus</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+        <span class="n">cpus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span> <span class="n">max_cpus</span><span class="p">)</span>
+        <span class="n">cpus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">cpus</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">src</span><span class="p">,</span> <span class="n">save_dir</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">src</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+        <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">cpus</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="n">_as_xarray_MP</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+        <span class="c1"># Need some work to concat the datasets</span>
+        <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;ABI&quot;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;concatenate Datasets&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">results</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="si">:</span><span class="s2">1000</span><span class="si">}</span><span class="se">\r</span><span class="s2">📚 Finished reading [</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">] files into xarray.Dataset.&quot;</span><span class="p">)</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ds</span>
+
+
+<span class="c1">###############################################################################</span>
+<span class="c1">###############################################################################</span>
+
+
+<div class="viewcode-block" id="goes_timerange"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.data.goes_timerange">[docs]</a><span class="k">def</span> <span class="nf">goes_timerange</span><span class="p">(</span>
+    <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">satellite</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;satellite&quot;</span><span class="p">),</span>
+    <span class="n">product</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">),</span>
+    <span class="n">domain</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">),</span>
+    <span class="n">return_as</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;return_as&quot;</span><span class="p">),</span>
+    <span class="n">download</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">),</span>
+    <span class="n">overwrite</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">),</span>
+    <span class="n">save_dir</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;save_dir&quot;</span><span class="p">),</span>
+    <span class="n">max_cpus</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_cpus&quot;</span><span class="p">),</span>
+    <span class="n">s3_refresh</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;s3_refresh&quot;</span><span class="p">),</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timerange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get GOES data for a time range.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    start, end : datetime</span>
+<span class="sd">        Required if recent is None.</span>
+<span class="sd">    recent : timedelta or pandas-parsable timedelta str</span>
+<span class="sd">        Required if start and end are None. If timedelta(hours=1), will</span>
+<span class="sd">        get the most recent files for the past hour.</span>
+<span class="sd">    satellite : {&#39;goes16&#39;, &#39;goes17&#39;}</span>
+<span class="sd">        Specify which GOES satellite.</span>
+<span class="sd">        The following alias may also be used:</span>
+
+<span class="sd">        - ``&#39;goes16&#39;``: 16, &#39;G16&#39;, or &#39;EAST&#39;</span>
+<span class="sd">        - ``&#39;goes17&#39;``: 17, &#39;G17&#39;, or &#39;WEST&#39;</span>
+
+<span class="sd">    product : {&#39;ABI&#39;, &#39;GLM&#39;, other GOES product}</span>
+<span class="sd">        Specify the product name.</span>
+
+<span class="sd">        - &#39;ABI&#39; is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery</span>
+<span class="sd">        - &#39;GLM&#39; is an alias for GLM-L2-LCFA Geostationary Lightning Mapper</span>
+
+<span class="sd">        Others may include ``&#39;ABI-L1b-Rad&#39;``, ``&#39;ABI-L2-DMW&#39;``, etc.</span>
+<span class="sd">        For more available products, look at this `README</span>
+<span class="sd">        &lt;https://docs.opendata.aws/noaa-goes16/cics-readme.html&gt;`_</span>
+<span class="sd">    domain : {&#39;C&#39;, &#39;F&#39;, &#39;M&#39;}</span>
+<span class="sd">        ABI scan region indicator. Only required for ABI products if the</span>
+<span class="sd">        given product does not end with C, F, or M.</span>
+
+<span class="sd">        - C: Contiguous United States (alias &#39;CONUS&#39;)</span>
+<span class="sd">        - F: Full Disk (alias &#39;FULL&#39;)</span>
+<span class="sd">        - M: Mesoscale (alias &#39;MESOSCALE&#39;)</span>
+
+<span class="sd">    return_as : {&#39;xarray&#39;, &#39;filelist&#39;}</span>
+<span class="sd">        Return the data as an xarray.Dataset or as a list of files</span>
+<span class="sd">    download : bool</span>
+<span class="sd">        - True: Download the data to disk to the location set by :guilabel:`save_dir`</span>
+<span class="sd">        - False: Just load the data into memory.</span>
+<span class="sd">    save_dir : pathlib.Path or str</span>
+<span class="sd">        Path to save the data.</span>
+<span class="sd">    overwrite : bool</span>
+<span class="sd">        - True: Download the file even if it exists.</span>
+<span class="sd">        - False Do not download the file if it already exists</span>
+<span class="sd">    max_cpus : int</span>
+<span class="sd">    s3_refresh : bool</span>
+<span class="sd">        Refresh the s3fs.S3FileSystem object when files are listed.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># If `start`, or `end` is a string, parse with Pandas</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+    <span class="c1"># If `recent` is a string (like recent=&#39;1H&#39;), parse with Pandas</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">recent</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">recent</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">recent</span><span class="p">)</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+    <span class="n">satellite</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">_check_param_inputs</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;satellite&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">satellite</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">product</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;domain&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">domain</span>
+
+    <span class="n">check1</span> <span class="o">=</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="n">check2</span> <span class="o">=</span> <span class="n">recent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="n">check1</span> <span class="ow">or</span> <span class="n">check2</span><span class="p">,</span> <span class="s2">&quot;🤔 `start` and `end` *or* `recent` is required&quot;</span>
+
+    <span class="k">if</span> <span class="n">check1</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span>
+            <span class="n">end</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span>
+        <span class="p">),</span> <span class="s2">&quot;`start` and `end` must be a datetime object&quot;</span>
+    <span class="k">elif</span> <span class="n">check2</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">recent</span><span class="p">,</span> <span class="s2">&quot;seconds&quot;</span><span class="p">),</span> <span class="s2">&quot;`recent` must be a timedelta object&quot;</span>
+
+    <span class="c1"># Parameter Setup</span>
+    <span class="c1"># ---------------</span>
+    <span class="c1"># Create a range of directories to check. The GOES S3 bucket is</span>
+    <span class="c1"># organized by hour of day.</span>
+    <span class="k">if</span> <span class="n">recent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">-</span> <span class="n">recent</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">_goes_file_df</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="n">s3_refresh</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">download</span><span class="p">:</span>
+        <span class="n">_download</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">return_as</span> <span class="o">==</span> <span class="s2">&quot;filelist&quot;</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;filePath&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">save_dir</span>
+        <span class="k">return</span> <span class="n">df</span>
+    <span class="k">elif</span> <span class="n">return_as</span> <span class="o">==</span> <span class="s2">&quot;xarray&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_as_xarray</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="goes_latest"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.data.goes_latest">[docs]</a><span class="k">def</span> <span class="nf">goes_latest</span><span class="p">(</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">satellite</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;satellite&quot;</span><span class="p">),</span>
+    <span class="n">product</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">),</span>
+    <span class="n">domain</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">),</span>
+    <span class="n">return_as</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;return_as&quot;</span><span class="p">),</span>
+    <span class="n">download</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">),</span>
+    <span class="n">overwrite</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">),</span>
+    <span class="n">save_dir</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;save_dir&quot;</span><span class="p">),</span>
+    <span class="n">s3_refresh</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;s3_refresh&quot;</span><span class="p">),</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;latest&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the latest available GOES data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    satellite : {&#39;goes16&#39;, &#39;goes17&#39;}</span>
+<span class="sd">        Specify which GOES satellite.</span>
+<span class="sd">        The following alias may also be used:</span>
+
+<span class="sd">        - ``&#39;goes16&#39;``: 16, &#39;G16&#39;, or &#39;EAST&#39;</span>
+<span class="sd">        - ``&#39;goes17&#39;``: 17, &#39;G17&#39;, or &#39;WEST&#39;</span>
+
+<span class="sd">    product : {&#39;ABI&#39;, &#39;GLM&#39;, other GOES product}</span>
+<span class="sd">        Specify the product name.</span>
+
+<span class="sd">        - &#39;ABI&#39; is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery</span>
+<span class="sd">        - &#39;GLM&#39; is an alias for GLM-L2-LCFA Geostationary Lightning Mapper</span>
+
+<span class="sd">        Others may include ``&#39;ABI-L1b-Rad&#39;``, ``&#39;ABI-L2-DMW&#39;``, etc.</span>
+<span class="sd">        For more available products, look at this `README</span>
+<span class="sd">        &lt;https://docs.opendata.aws/noaa-goes16/cics-readme.html&gt;`_</span>
+<span class="sd">    domain : {&#39;C&#39;, &#39;F&#39;, &#39;M&#39;}</span>
+<span class="sd">        ABI scan region indicator. Only required for ABI products if the</span>
+<span class="sd">        given product does not end with C, F, or M.</span>
+
+<span class="sd">        - C: Contiguous United States (alias &#39;CONUS&#39;)</span>
+<span class="sd">        - F: Full Disk (alias &#39;FULL&#39;)</span>
+<span class="sd">        - M: Mesoscale (alias &#39;MESOSCALE&#39;)</span>
+
+<span class="sd">    return_as : {&#39;xarray&#39;, &#39;filelist&#39;}</span>
+<span class="sd">        Return the data as an xarray.Dataset or as a list of files</span>
+<span class="sd">    download : bool</span>
+<span class="sd">        - True: Download the data to disk to the location set by :guilabel:`save_dir`</span>
+<span class="sd">        - False: Just load the data into memory.</span>
+<span class="sd">    save_dir : pathlib.Path or str</span>
+<span class="sd">        Path to save the data.</span>
+<span class="sd">    overwrite : bool</span>
+<span class="sd">        - True: Download the file even if it exists.</span>
+<span class="sd">        - False Do not download the file if it already exists</span>
+<span class="sd">    s3_refresh : bool</span>
+<span class="sd">        Refresh the s3fs.S3FileSystem object when files are listed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+    <span class="n">satellite</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">_check_param_inputs</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;satellite&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">satellite</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">product</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;domain&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">domain</span>
+
+    <span class="c1"># Parameter Setup</span>
+    <span class="c1"># ---------------</span>
+    <span class="c1"># Create a range of directories to check. The GOES S3 bucket is</span>
+    <span class="c1"># organized by hour of day. Look in the current hour and last hour.</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">_goes_file_df</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="n">s3_refresh</span><span class="p">)</span>
+
+    <span class="c1"># Filter for specific mesoscale domain</span>
+    <span class="k">if</span> <span class="n">domain</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">domain</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;M2&quot;</span><span class="p">]:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">-M&quot;</span><span class="p">)]</span>
+
+    <span class="c1"># Get the most recent file (latest start date)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">start</span> <span class="o">==</span> <span class="n">df</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">download</span><span class="p">:</span>
+        <span class="n">_download</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">return_as</span> <span class="o">==</span> <span class="s2">&quot;filelist&quot;</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;filePath&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">save_dir</span>
+        <span class="k">return</span> <span class="n">df</span>
+    <span class="k">elif</span> <span class="n">return_as</span> <span class="o">==</span> <span class="s2">&quot;xarray&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_as_xarray</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="goes_nearesttime"><a class="viewcode-back" href="../../reference_guide/index.html#goes2go.data.goes_nearesttime">[docs]</a><span class="k">def</span> <span class="nf">goes_nearesttime</span><span class="p">(</span>
+    <span class="n">attime</span><span class="p">,</span>
+    <span class="n">within</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;within&quot;</span><span class="p">,</span> <span class="s2">&quot;1H&quot;</span><span class="p">)),</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">satellite</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;satellite&quot;</span><span class="p">),</span>
+    <span class="n">product</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">),</span>
+    <span class="n">domain</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">),</span>
+    <span class="n">return_as</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;return_as&quot;</span><span class="p">),</span>
+    <span class="n">download</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">),</span>
+    <span class="n">overwrite</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;overwrite&quot;</span><span class="p">),</span>
+    <span class="n">save_dir</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;save_dir&quot;</span><span class="p">),</span>
+    <span class="n">s3_refresh</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;s3_refresh&quot;</span><span class="p">),</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;nearesttime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the latest available GOES data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    attime : datetime</span>
+<span class="sd">        Time to find the nearest observation for.</span>
+<span class="sd">        May also use a pandas-interpretable datetime string.</span>
+<span class="sd">    within : timedelta or pandas-parsable timedelta str</span>
+<span class="sd">        Timerange tht the nearest observation must be.</span>
+<span class="sd">    satellite : {&#39;goes16&#39;, &#39;goes17&#39;}</span>
+<span class="sd">        Specify which GOES satellite.</span>
+<span class="sd">        The following alias may also be used:</span>
+
+<span class="sd">        - ``&#39;goes16&#39;``: 16, &#39;G16&#39;, or &#39;EAST&#39;</span>
+<span class="sd">        - ``&#39;goes17&#39;``: 17, &#39;G17&#39;, or &#39;WEST&#39;</span>
+
+<span class="sd">    product : {&#39;ABI&#39;, &#39;GLM&#39;, other GOES product}</span>
+<span class="sd">        Specify the product name.</span>
+
+<span class="sd">        - &#39;ABI&#39; is an alias for ABI-L2-MCMIP Multichannel Cloud and Moisture Imagery</span>
+<span class="sd">        - &#39;GLM&#39; is an alias for GLM-L2-LCFA Geostationary Lightning Mapper</span>
+
+<span class="sd">        Others may include ``&#39;ABI-L1b-Rad&#39;``, ``&#39;ABI-L2-DMW&#39;``, etc.</span>
+<span class="sd">        For more available products, look at this `README</span>
+<span class="sd">        &lt;https://docs.opendata.aws/noaa-goes16/cics-readme.html&gt;`_</span>
+<span class="sd">    domain : {&#39;C&#39;, &#39;F&#39;, &#39;M&#39;}</span>
+<span class="sd">        ABI scan region indicator. Only required for ABI products if the</span>
+<span class="sd">        given product does not end with C, F, or M.</span>
+
+<span class="sd">        - C: Contiguous United States (alias &#39;CONUS&#39;)</span>
+<span class="sd">        - F: Full Disk (alias &#39;FULL&#39;)</span>
+<span class="sd">        - M: Mesoscale (alias &#39;MESOSCALE&#39;)</span>
+
+<span class="sd">    return_as : {&#39;xarray&#39;, &#39;filelist&#39;}</span>
+<span class="sd">        Return the data as an xarray.Dataset or as a list of files</span>
+<span class="sd">    download : bool</span>
+<span class="sd">        - True: Download the data to disk to the location set by :guilabel:`save_dir`</span>
+<span class="sd">        - False: Just load the data into memory.</span>
+<span class="sd">    save_dir : pathlib.Path or str</span>
+<span class="sd">        Path to save the data.</span>
+<span class="sd">    overwrite : bool</span>
+<span class="sd">        - True: Download the file even if it exists.</span>
+<span class="sd">        - False: Do not download the file if it already exists</span>
+<span class="sd">    s3_refresh : bool</span>
+<span class="sd">        Refresh the s3fs.S3FileSystem object when files are listed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attime</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">attime</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">attime</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">within</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">within</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">within</span><span class="p">)</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+    <span class="n">satellite</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_check_param_inputs</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;satellite&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">satellite</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">product</span>
+
+    <span class="c1"># Parameter Setup</span>
+    <span class="c1"># ---------------</span>
+    <span class="c1"># Create a range of directories to check. The GOES S3 bucket is</span>
+    <span class="c1"># organized by hour of day.</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">attime</span> <span class="o">-</span> <span class="n">within</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">attime</span> <span class="o">+</span> <span class="n">within</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">_goes_file_df</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="n">s3_refresh</span><span class="p">)</span>
+
+    <span class="c1"># return df, start, end, attime</span>
+
+    <span class="c1"># Filter for specific mesoscale domain</span>
+    <span class="k">if</span> <span class="n">domain</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="s2">&quot;M2&quot;</span><span class="p">]:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">-M&quot;</span><span class="p">)]</span>
+
+    <span class="c1"># Get row that matches the nearest time</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
+    <span class="n">nearest_time_index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">attime</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">nearest_time_index</span><span class="p">]]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🛸 No data....🌌&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">download</span><span class="p">:</span>
+        <span class="n">_download</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">return_as</span> <span class="o">==</span> <span class="s2">&quot;filelist&quot;</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;filePath&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">save_dir</span>
+        <span class="k">return</span> <span class="n">df</span>
+    <span class="k">elif</span> <span class="n">return_as</span> <span class="o">==</span> <span class="s2">&quot;xarray&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_as_xarray</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span></div>
+</pre></div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Brian K. Blaylock.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

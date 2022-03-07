@@ -8,29 +8,29 @@
 
     <title>Reference Guide &#8212; GOES-2-go Docs 0.1 documentation</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
-
+    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
     
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
+    <link rel="stylesheet"
+      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
     
       
-
+  
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     <link rel="stylesheet" type="text/css" href="../_static/brian_style.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
-
+    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -116,16 +116,12 @@
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/blaylockbk/goes2go" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
+          <a class="nav-link" href="https://github.com/blaylockbk/goes2go" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://twitter.com/blaylockbk" rel="noopener" target="_blank" title="Twitter">
-            <span><i class="fab fa-twitter-square"></i></span>
-            <label class="sr-only">Twitter</label>
-          </a>
+          <a class="nav-link" href="https://twitter.com/blaylockbk" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
         </li>
       </ul>
       </div>
@@ -148,7 +144,8 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -156,6 +153,9 @@
     
   </div>
 </nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
             </div>
             
           
@@ -254,7 +254,7 @@ available in a local directory, it is loaded directly into memory.</p>
 </table>
 <dl class="py function">
 <dt class="sig sig-object py" id="goes2go.data.goes_latest">
-<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_latest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_latest" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_latest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/data.html#goes_latest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.data.goes_latest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the latest available GOES data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -302,7 +302,7 @@ given product does not end with C, F, or M.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="goes2go.data.goes_nearesttime">
-<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_nearesttime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">within</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Timedelta('0</span> <span class="pre">days</span> <span class="pre">01:00:00')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_nearesttime" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_nearesttime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">within</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Timedelta('0</span> <span class="pre">days</span> <span class="pre">01:00:00')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xarray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/data.html#goes_nearesttime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.data.goes_nearesttime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the latest available GOES data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -353,7 +353,7 @@ given product does not end with C, F, or M.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="goes2go.data.goes_timerange">
-<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_timerange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'filelist'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.data.goes_timerange" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">goes2go.data.</span></span><span class="sig-name descname"><span class="pre">goes_timerange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noaa-goes16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABI-L2-MCMIP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'filelist'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/p/cwfs/blaylock/data')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_cpus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/data.html#goes_timerange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.data.goes_timerange" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get GOES data for a time range.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -420,7 +420,7 @@ Access with the <code class="docutils literal notranslate"><span class="pre">FOV
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">goes2go.accessors.</span></span><span class="sig-name descname"><span class="pre">fieldOfViewAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">goes2go.accessors.</span></span><span class="sig-name descname"><span class="pre">fieldOfViewAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#fieldOfViewAccessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a field-of-view polygon for the GOES data.</p>
 <p>Based on information from the <a class="reference external" href="https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf">GOES-R Series Data Book</a>.</p>
 <p>GLM lense field of view is 16 degree, or +/- 8 degrees (see page 225)
@@ -469,7 +469,7 @@ ABI full-disk field of view if 17.4 degrees (see page 48)</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#fieldOfViewAccessor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -486,11 +486,8 @@ ABI full-disk field of view if 17.4 degrees (see page 48)</p>
 <img alt="../_images/ABI_field-of-view_16M1M2.png" src="../_images/ABI_field-of-view_16M1M2.png" />
 <img alt="../_images/ABI_field-of-view_17dom.png" src="../_images/ABI_field-of-view_17dom.png" />
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p></p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>shapely.Polygon</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>shapely.Polygon</p>
 </dd>
 </dl>
 </dd></dl>
@@ -502,18 +499,15 @@ ABI full-disk field of view if 17.4 degrees (see page 48)</p>
 <img alt="../_images/ABI_field-of-view.png" src="../_images/ABI_field-of-view.png" />
 <img alt="../_images/GLM_field-of-view.png" src="../_images/GLM_field-of-view.png" />
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p></p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>shapely.Polygon</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>shapely.Polygon</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.fieldOfViewAccessor.get_latlon">
-<span class="sig-name descname"><span class="pre">get_latlon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.get_latlon" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_latlon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#fieldOfViewAccessor.get_latlon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.fieldOfViewAccessor.get_latlon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get lat/lon of all points</p>
 </dd></dl>
 
@@ -570,7 +564,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 <img alt="../_images/demo_rgb_accessor.png" src="../_images/demo_rgb_accessor.png" />
 <dl class="py class">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">goes2go.accessors.</span></span><span class="sig-name descname"><span class="pre">rgbAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">goes2go.accessors.</span></span><span class="sig-name descname"><span class="pre">rgbAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Methods:</strong></p>
 <table class="longtable table autosummary">
 <colgroup>
@@ -669,7 +663,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.AirMass">
-<span class="sig-name descname"><span class="pre">AirMass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.AirMass" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">AirMass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.AirMass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.AirMass" title="Permalink to this definition">¶</a></dt>
 <dd><p>Air Mass RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/AirMass.png" src="../_images/AirMass.png" />
@@ -677,7 +671,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.Ash">
-<span class="sig-name descname"><span class="pre">Ash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.Ash" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">Ash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.Ash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.Ash" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ash RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/Ash.png" src="../_images/Ash.png" />
@@ -685,7 +679,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayCloudConvection">
-<span class="sig-name descname"><span class="pre">DayCloudConvection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayCloudConvection" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DayCloudConvection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.DayCloudConvection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayCloudConvection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Day Cloud Convection RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/DayCloudConvection.png" src="../_images/DayCloudConvection.png" />
@@ -693,7 +687,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayCloudPhase">
-<span class="sig-name descname"><span class="pre">DayCloudPhase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayCloudPhase" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DayCloudPhase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.DayCloudPhase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayCloudPhase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Day Cloud Phase Distinction RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/DayCloudPhase.png" src="../_images/DayCloudPhase.png" />
@@ -701,7 +695,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayConvection">
-<span class="sig-name descname"><span class="pre">DayConvection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayConvection" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DayConvection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.DayConvection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayConvection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Day Convection RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/DayConvection.png" src="../_images/DayConvection.png" />
@@ -709,7 +703,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayLandCloud">
-<span class="sig-name descname"><span class="pre">DayLandCloud</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayLandCloud" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DayLandCloud</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.DayLandCloud"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayLandCloud" title="Permalink to this definition">¶</a></dt>
 <dd><p>Day Land Cloud Fire RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/DayLandCloud.png" src="../_images/DayLandCloud.png" />
@@ -717,7 +711,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DayLandCloudFire">
-<span class="sig-name descname"><span class="pre">DayLandCloudFire</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayLandCloudFire" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DayLandCloudFire</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.DayLandCloudFire"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DayLandCloudFire" title="Permalink to this definition">¶</a></dt>
 <dd><p>Day Land Cloud Fire RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/DayLandCloudFire.png" src="../_images/DayLandCloudFire.png" />
@@ -725,7 +719,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DaySnowFog">
-<span class="sig-name descname"><span class="pre">DaySnowFog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DaySnowFog" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DaySnowFog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.DaySnowFog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DaySnowFog" title="Permalink to this definition">¶</a></dt>
 <dd><p>Day Snow-Fog RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/DaySnowFog.png" src="../_images/DaySnowFog.png" />
@@ -733,7 +727,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.DifferentialWaterVapor">
-<span class="sig-name descname"><span class="pre">DifferentialWaterVapor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DifferentialWaterVapor" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">DifferentialWaterVapor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.DifferentialWaterVapor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.DifferentialWaterVapor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Differential Water Vapor RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/DifferentialWaterVapor.png" src="../_images/DifferentialWaterVapor.png" />
@@ -741,7 +735,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.Dust">
-<span class="sig-name descname"><span class="pre">Dust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.Dust" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">Dust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.Dust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.Dust" title="Permalink to this definition">¶</a></dt>
 <dd><p>SulfurDioxide RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/Dust.png" src="../_images/Dust.png" />
@@ -749,7 +743,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.FireTemperature">
-<span class="sig-name descname"><span class="pre">FireTemperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.FireTemperature" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">FireTemperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.FireTemperature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.FireTemperature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fire Temperature RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/FireTemperature.png" src="../_images/FireTemperature.png" />
@@ -757,7 +751,7 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.NaturalColor">
-<span class="sig-name descname"><span class="pre">NaturalColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudoGreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">night_IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NaturalColor" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NaturalColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudoGreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">night_IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.NaturalColor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NaturalColor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Natural Color RGB based on CIMSS method. Thanks Rick Kohrs!
 (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
 <p>Check out Rick Kohrs <a class="reference external" href="https://www.ssec.wisc.edu/~rickk/local-noon.html">merged GOES images</a>.</p>
@@ -785,7 +779,7 @@ daytime clouds might appear brighter).</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.NightFogDifference">
-<span class="sig-name descname"><span class="pre">NightFogDifference</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NightFogDifference" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NightFogDifference</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.NightFogDifference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NightFogDifference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Night Fog Difference RGB (greyscale):
 (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/NightFogDifference.png" src="../_images/NightFogDifference.png" />
@@ -793,7 +787,7 @@ daytime clouds might appear brighter).</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.NighttimeMicrophysics">
-<span class="sig-name descname"><span class="pre">NighttimeMicrophysics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NighttimeMicrophysics" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NighttimeMicrophysics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.NighttimeMicrophysics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NighttimeMicrophysics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nighttime Microphysics RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/NighttimeMicrophysics.png" src="../_images/NighttimeMicrophysics.png" />
@@ -801,7 +795,7 @@ daytime clouds might appear brighter).</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.NormalizedBurnRatio">
-<span class="sig-name descname"><span class="pre">NormalizedBurnRatio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NormalizedBurnRatio" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">NormalizedBurnRatio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.NormalizedBurnRatio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.NormalizedBurnRatio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normalized Burn Ratio</p>
 <p><strong>THIS FUNCTION IS NOT FULLY DEVELOPED. Need more info.</strong></p>
 <p>NBR= (0.86 µm – 2.2 µm)/(0.86 um + 2.2 um)</p>
@@ -810,7 +804,7 @@ daytime clouds might appear brighter).</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.RocketPlume">
-<span class="sig-name descname"><span class="pre">RocketPlume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">night</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.RocketPlume" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">RocketPlume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">night</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.RocketPlume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.RocketPlume" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rocket Plume RGB</p>
 <p>For identifying rocket launches.</p>
 <p>See <a class="reference external" href="https://cimss.ssec.wisc.edu/satellite-blog/archives/41335">this blog</a> and
@@ -827,7 +821,7 @@ than the daytime application.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.SplitWindowDifference">
-<span class="sig-name descname"><span class="pre">SplitWindowDifference</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.SplitWindowDifference" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SplitWindowDifference</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.SplitWindowDifference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.SplitWindowDifference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split Window Difference RGB (greyscale):
 (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/SplitWindowDifference.png" src="../_images/SplitWindowDifference.png" />
@@ -835,7 +829,7 @@ than the daytime application.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.SulfurDioxide">
-<span class="sig-name descname"><span class="pre">SulfurDioxide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.SulfurDioxide" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">SulfurDioxide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.SulfurDioxide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.SulfurDioxide" title="Permalink to this definition">¶</a></dt>
 <dd><p>SulfurDioxide RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/SulfurDioxide.png" src="../_images/SulfurDioxide.png" />
@@ -843,7 +837,7 @@ than the daytime application.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.TrueColor">
-<span class="sig-name descname"><span class="pre">TrueColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudoGreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">night_IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.TrueColor" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">TrueColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudoGreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">night_IR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.TrueColor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.TrueColor" title="Permalink to this definition">¶</a></dt>
 <dd><p>True Color RGB:
 (See <a class="reference external" href="http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf">Quick Guide</a> for reference)</p>
 <p>This is similar to the NaturalColor RGB, but uses a different gamma
@@ -874,7 +868,7 @@ daytime clouds might appear brighter).</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.WaterVapor">
-<span class="sig-name descname"><span class="pre">WaterVapor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.WaterVapor" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">WaterVapor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.WaterVapor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.WaterVapor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple Water Vapor RGB:
 (See <a class="reference external" href="http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf">Quick Guide</a> for reference)</p>
 <img alt="../_images/WaterVapor.png" src="../_images/WaterVapor.png" />
@@ -882,7 +876,7 @@ daytime clouds might appear brighter).</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -893,7 +887,7 @@ daytime clouds might appear brighter).</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="goes2go.accessors.rgbAccessor.get_latlon">
-<span class="sig-name descname"><span class="pre">get_latlon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#goes2go.accessors.rgbAccessor.get_latlon" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_latlon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/goes2go/accessors.html#rgbAccessor.get_latlon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#goes2go.accessors.rgbAccessor.get_latlon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get lat/lon of all points</p>
 </dd></dl>
 
@@ -927,7 +921,7 @@ daytime clouds might appear brighter).</p></li>
               
               
               <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../user_guide/defaults.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -943,8 +937,8 @@ daytime clouds might appear brighter).</p></li>
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
-<footer class="footer mt-5 mt-md-0">
+    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
@@ -955,7 +949,7 @@ daytime clouds might appear brighter).</p></li>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.1.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
 </p>
     </div>
     
