@@ -10,9 +10,9 @@ import os
 # Load custom xarray accessors
 # TODO: Move some of the tools.py to these accessors.
 try:
-   import goes2go.accessors
+    import goes2go.accessors
 except:
-   warnings.warn("goes2go xarray accessors could not be imported.")
+    warnings.warn("goes2go xarray accessors could not be imported.")
 
 ########################################################################
 # Append Path object with my custom expand method so user can use
@@ -35,12 +35,12 @@ Path.expand = _expand
 # goes2go configuration file
 # Configuration file is save in `~/config/goes2go/config.toml`
 _config_path = Path("~/.config/goes2go/config.toml").expand()
-_save_dir = str(Path('~/data').expand())
+_save_dir = str(Path("~/data").expand())
 
 # NOTE: The `\\` is an escape character in TOML.
 # For Windows paths "C:\\user\\"" needs to be "C:\\\\user\\\\""
-_save_dir = str(Path('~/data').expand())
-_save_dir = _save_dir.replace('\\', '\\\\')
+_save_dir = str(Path("~/data").expand())
+_save_dir = _save_dir.replace("\\", "\\\\")
 
 ########################################################################
 # Default TOML Configuration

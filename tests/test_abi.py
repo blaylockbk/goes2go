@@ -9,8 +9,8 @@ from goes2go.data import goes_nearesttime, goes_latest, goes_timerange
 
 
 def test_nearesttime():
-    ds = goes_nearesttime('2020-01-01', save_dir='$TMPDIR')
+    ds = goes_nearesttime("2020-01-01", save_dir="$TMPDIR")
+
 
 def test_latest():
-    ds = goes_latest(save_dir='$TMPDIR')
-
+    ds = goes_latest(save_dir="$TMPDIR")
