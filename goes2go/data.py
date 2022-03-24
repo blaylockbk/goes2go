@@ -36,6 +36,7 @@ fs = s3fs.S3FileSystem(anon=True)
 _satellite = {
     "noaa-goes16": [16, "16", "G16", "EAST", "GOES16"],
     "noaa-goes17": [17, "17", "G17", "WEST", "GOES17"],
+    "noaa-goes18": [18, "18", "G18", "WEST", "GOES18"],
 }
 
 _domain = {
@@ -45,7 +46,7 @@ _domain = {
 }
 
 _product = {
-    # Assume goes17 has same products as goes16
+    # Assume goes17 and goes18 have same products as goes16
     i.split("/")[-1]: []
     for i in fs.ls(f"noaa-goes16")
 }
@@ -387,12 +388,13 @@ def goes_timerange(
     recent : timedelta or pandas-parsable timedelta str
         Required if start and end are None. If timedelta(hours=1), will
         get the most recent files for the past hour.
-    satellite : {'goes16', 'goes17'}
+    satellite : {'goes16', 'goes17', 'goes18'}
         Specify which GOES satellite.
         The following alias may also be used:
 
         - ``'goes16'``: 16, 'G16', or 'EAST'
         - ``'goes17'``: 17, 'G17', or 'WEST'
+        - ``'goes18'``: 18, 'G18', or 'WEST'
 
     product : {'ABI', 'GLM', other GOES product}
         Specify the product name.
@@ -489,12 +491,13 @@ def goes_latest(
 
     Parameters
     ----------
-    satellite : {'goes16', 'goes17'}
+    satellite : {'goes16', 'goes17', 'goes18'}
         Specify which GOES satellite.
         The following alias may also be used:
 
         - ``'goes16'``: 16, 'G16', or 'EAST'
         - ``'goes17'``: 17, 'G17', or 'WEST'
+        - ``'goes18'``: 18, 'G18', or 'WEST'
 
     product : {'ABI', 'GLM', other GOES product}
         Specify the product name.
@@ -582,12 +585,13 @@ def goes_nearesttime(
         May also use a pandas-interpretable datetime string.
     within : timedelta or pandas-parsable timedelta str
         Timerange tht the nearest observation must be.
-    satellite : {'goes16', 'goes17'}
+    satellite : {'goes16', 'goes17', 'goes18'}
         Specify which GOES satellite.
         The following alias may also be used:
 
         - ``'goes16'``: 16, 'G16', or 'EAST'
         - ``'goes17'``: 17, 'G17', or 'WEST'
+        - ``'goes18'``: 18, 'G18', or 'WEST'
 
     product : {'ABI', 'GLM', other GOES product}
         Specify the product name.
