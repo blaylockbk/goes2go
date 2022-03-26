@@ -651,8 +651,8 @@ def goes_nearesttime(
     # Get row that matches the nearest time
     df = df.sort_values("start")
     df = df.set_index(df.start)
-    nearest_time_index = df.index.get_loc(attime, method="nearest")
-    df = df.iloc[[nearest_time_index]]
+    nearest_time_index = df.index.get_indexer([attime], method='nearest')
+    df = df.iloc[nearest_time_index]
     df = df.reset_index(drop=True)
 
     n = len(df.file)
