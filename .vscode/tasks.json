@@ -9,19 +9,35 @@
             "command": "echo Hello ${env:USER} ${env:USERNAME}"
         },
         {
-            "label": "build docs",
+            "label": "🌐 build docs",
             "type": "shell",
             "command": "cd docs && ./remake_docs.sh"
         },
         {
-            "label": "create conda environment",
+            "label": "🐍 create conda environment",
             "type": "shell",
             "command": "conda env create -f environment.yml"
         },
         {
-            "label": "update conda environment",
+            "label": "🥇 update conda environment",
             "type": "shell",
             "command": "conda env update -f environment.yml --prune"
+        },
+        {
+            "label": "💣 destroy conda environment",
+            "type": "shell",
+            "command": "conda activate base && conda env remove --name goes2go"
+        },
+        {
+            "label": "🚀 launch JupyterLab",
+            "type": "shell",
+            "command": "eval \"$(conda shell.bash hook)\" && conda activate goes2go && jupyter lab --no-browser --port=7793"
+        },
+        {
+            // For when conda is out of date
+            "label": "🧱 update conda base",
+            "type": "shell",
+            "command": "conda update -n base -c defaults conda"
         },
         {
             "label": "publish",
