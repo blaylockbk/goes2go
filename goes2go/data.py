@@ -120,9 +120,6 @@ def _check_param_inputs(**params):
     return satellite, product, domain
 
 
-import s3fs
-fs = s3fs.S3FileSystem(anon=True)
-
 def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     """
     Get list of requested GOES files as pandas.DataFrame.
@@ -157,15 +154,14 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     )
 
     # Parse out the band numbers (for L1b-Rad product)
-    if 'L1b-Rad' in product:
-        df['band'] = df.product_mode.str.rsplit('C', 1, expand=True)[1].astype(int)
+    if "L1b-Rad" in product:
+        df["band"] = df.product_mode.str.rsplit("C", 1, expand=True)[1].astype(int)
 
         # Filter files by band number
         if bands is not None:
             if not hasattr(bands, "__len__"):
                 bands = [bands]
             df = df.loc[df.band.isin(bands)]
-
 
     # Filter files by requested time range
     # ------------------------------------
