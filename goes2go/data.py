@@ -120,7 +120,10 @@ def _check_param_inputs(**params):
     return satellite, product, domain
 
 
-def _goes_file_df(satellite, product, start, end, refresh=True):
+import s3fs
+fs = s3fs.S3FileSystem(anon=True)
+
+def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     """
     Get list of requested GOES files as pandas.DataFrame.
 
@@ -130,6 +133,8 @@ def _goes_file_df(satellite, product, start, end, refresh=True):
     product : str
     start : datetime
     end : datetime
+    band : None, int, or list
+        Specify the ABI channels to retrieve.
     refresh : bool
         Refresh the s3fs.S3FileSystem object when files are listed.
         Default True will refresh and not use a cached list.
@@ -147,9 +152,20 @@ def _goes_file_df(satellite, product, start, end, refresh=True):
     # Build a table of the files
     # --------------------------
     df = pd.DataFrame(files, columns=["file"])
-    df[["start", "end", "creation"]] = (
-        df["file"].str.rsplit("_", expand=True, n=3).loc[:, 1:]
+    df[["product_mode", "satellite", "start", "end", "creation"]] = (
+        df["file"].str.rsplit("_", expand=True, n=5).loc[:, 1:]
     )
+
+    # Parse out the band numbers (for L1b-Rad product)
+    if 'L1b-Rad' in product:
+        df['band'] = df.product_mode.str.rsplit('C', 1, expand=True)[1].astype(int)
+
+        # Filter files by band number
+        if bands is not None:
+            if not hasattr(bands, "__len__"):
+                bands = [bands]
+            df = df.loc[df.band.isin(bands)]
+
 
     # Filter files by requested time range
     # ------------------------------------
@@ -375,6 +391,7 @@ def goes_timerange(
     overwrite=config["timerange"].get("overwrite"),
     save_dir=config["timerange"].get("save_dir"),
     max_cpus=config["timerange"].get("max_cpus"),
+    bands=None,
     s3_refresh=config["timerange"].get("s3_refresh"),
     verbose=config["timerange"].get("verbose", True),
 ):
@@ -424,6 +441,8 @@ def goes_timerange(
         - True: Download the file even if it exists.
         - False Do not download the file if it already exists
     max_cpus : int
+    bands : None, int, or list
+        ONLY FOR L1b-Rad products; specify the bands you want
     s3_refresh : bool
         Refresh the s3fs.S3FileSystem object when files are listed.
 
@@ -462,7 +481,7 @@ def goes_timerange(
         start = datetime.utcnow() - recent
         end = datetime.utcnow()
 
-    df = _goes_file_df(satellite, product, start, end, refresh=s3_refresh)
+    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh)
 
     if download:
         _download(df, **params)
@@ -483,6 +502,7 @@ def goes_latest(
     download=config["latest"].get("download"),
     overwrite=config["latest"].get("overwrite"),
     save_dir=config["latest"].get("save_dir"),
+    bands=None,
     s3_refresh=config["latest"].get("s3_refresh"),
     verbose=config["latest"].get("verbose", True),
 ):
@@ -526,6 +546,8 @@ def goes_latest(
     overwrite : bool
         - True: Download the file even if it exists.
         - False Do not download the file if it already exists
+    bands : None, int, or list
+        ONLY FOR L1b-Rad products; specify the bands you want
     s3_refresh : bool
         Refresh the s3fs.S3FileSystem object when files are listed.
     """
@@ -542,7 +564,7 @@ def goes_latest(
     start = datetime.utcnow() - timedelta(hours=1)
     end = datetime.utcnow()
 
-    df = _goes_file_df(satellite, product, start, end, refresh=s3_refresh)
+    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh)
 
     # Filter for specific mesoscale domain
     if domain is not None and domain.upper() in ["M1", "M2"]:
@@ -572,6 +594,7 @@ def goes_nearesttime(
     download=config["nearesttime"].get("download"),
     overwrite=config["nearesttime"].get("overwrite"),
     save_dir=config["nearesttime"].get("save_dir"),
+    bands=None,
     s3_refresh=config["nearesttime"].get("s3_refresh"),
     verbose=config["nearesttime"].get("verbose", True),
 ):
@@ -620,6 +643,8 @@ def goes_nearesttime(
     overwrite : bool
         - True: Download the file even if it exists.
         - False: Do not download the file if it already exists
+    bands : None, int, or list
+        ONLY FOR L1b-Rad products; specify the bands you want
     s3_refresh : bool
         Refresh the s3fs.S3FileSystem object when files are listed.
     """
@@ -640,7 +665,7 @@ def goes_nearesttime(
     start = attime - within
     end = attime + within
 
-    df = _goes_file_df(satellite, product, start, end, refresh=s3_refresh)
+    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh)
 
     # return df, start, end, attime
 
