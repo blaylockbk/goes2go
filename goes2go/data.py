@@ -24,6 +24,11 @@ import xarray as xr
 import pandas as pd
 import numpy as np
 
+# Multithreading :)
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import as_completed, wait
+
+
 # NOTE: These config dict values are retrieved from __init__ and read
 # from the file ${HOME}/.config/goes2go/config.toml
 from . import config
@@ -138,6 +143,9 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     """
     params = locals()
 
+    start = pd.to_datetime(start)
+    end = pd.to_datetime(end)
+
     DATES = pd.date_range(f"{start:%Y-%m-%d %H:00}", f"{end:%Y-%m-%d %H:00}", freq="1H")
 
     # List all files for each date
@@ -179,104 +187,34 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     return df
 
 
-def _download_MP(src, save_dir, overwrite, i=1, n=1, verbose=True):
-    """
-    Download a single file -- a multiprocessing helper
+def _download(df, save_dir, overwrite, max_threads=10, verbose=False):
+    """Download the files from a DataFrame listing with multithreading"""
 
-    Parameters
-    ----------
-    src : str
-        The source path of the file (path relative to S3 or ``save_dir``)
-    save_dir : str or pathlib.Path
-        Directory to save the file when it is downloaded.
-    overwrite : bool
-        True - overwrite files if the exist
-        False - skip download if the file exists (default)
-    i, n : int
-        The iteration number and total number of files (primarily for
-        the multiprocessor counter).
-    """
+    def do_download(src):
+        dst = Path(save_dir) / src
+        if not dst.parent.is_dir():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+        if dst.is_file() and not overwrite:
+            if verbose:
+                print(f" 👮🏻‍♂️ File already exists. Do not overwrite: {dst}")
+        else:
+            # Downloading file from AWS
+            fs.get(src, str(dst))
 
-    # File destination
-    dst = Path(save_dir) / src
+    ################
+    # Multithreading
+    tasks = len(df)
+    threads = min(tasks, max_threads)
 
-    if not dst.parent.is_dir():
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        print(f"👨🏻‍🏭 Created directory: [{dst.parent}]", end="")
+    with ThreadPoolExecutor(threads) as exe:
+        futures = [exe.submit(do_download, src) for src in df.file]
 
-    if verbose:
-        print(
-            f"\r🏇🏻💨 Downloading ({i:,}/{n:,}) file from AWS to Local Disk. {src} > {dst}",
-            end=" ",
-        )
+        # nothing is returned in the list
+        this_list = [future.result() for future in as_completed(futures)]
 
-    if dst.is_file() and not overwrite:
-        if verbose:
-            print("---- 👮🏻‍♂️ File already exists. Do not overwrite.", end="")
-    else:
-        # Downloading file from AWS
-        # NOTE: The destination is `str(dst)` and not just `dst` because
-        #       Gaffney does not like a Path object for some reason.
-        fs.get(src, str(dst))
-
-
-def _download(df, **params):
-    """
-    Download each file in the pandas.DataFrame to ``save_dir``.
-
-    Use multiprocessing to improve download time.
-
-    Parameters
-    ----------
-    df : pandas.DataFrame
-        A DataFrame created by ``_goes_file_df`` with a list of files
-        to download from the GOES s3 bucket.
-    save_dir : str or pathlib.Path
-        Directory the files will be downloaded to.
-        The default location (set as a variable in this script)
-        is ``~/data/``.
-    max_cpus : int or None
-        If None, use all available CPUs. Else, specify the number of
-        CPUs to use.
-    overwrite : bool
-        True - overwrite files if the exist
-        False - skip download if the file exists (default)
-    """
-    params.setdefault("max_cpus", None)
-    params.setdefault("verbose", True)
-    save_dir = params["save_dir"]
-    overwrite = params["overwrite"]
-    max_cpus = params["max_cpus"]
-    verbose = params["verbose"]
-
-    n = len(df.file)
-    if n == 0:
-        print("🛸 No data to download.")
-    elif n == 1:
-        # If we only have one file, we don't need multiprocessing
-        _download_MP(df.file[0], save_dir, overwrite, 1, 1, verbose)
-    elif max_cpus == 1:
-        [_download_MP(df.file[i], save_dir, overwrite, i, n, verbose) for i in range(n)]
-    else:
-        # Use Multiprocessing to download multiple files.
-        if max_cpus is None:
-            max_cpus = multiprocessing.cpu_count()
-        cpus = np.minimum(multiprocessing.cpu_count(), max_cpus)
-        cpus = np.minimum(cpus, n)
-
-        inputs = [
-            (src, save_dir, overwrite, i, n, verbose)
-            for i, src in enumerate(df.file, start=1)
-        ]
-
-        with multiprocessing.Pool(cpus) as p:
-            results = p.starmap(_download_MP, inputs)
-            p.close()
-            p.join()
-    if verbose:
-        print(
-            f"\r{'':1000}\r📦 Finished downloading [{n}] files to [{save_dir/Path(df.file[0]).parents[3]}]."
-        )
+    print(
+        f"📦 Finished downloading [{len(df)}] files to [{save_dir/Path(df.file[0]).parents[3]}]."
+    )
 
 
 def _as_xarray_MP(src, save_dir, i=None, n=None, verbose=True):
@@ -480,7 +418,7 @@ def goes_timerange(
     df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh)
 
     if download:
-        _download(df, **params)
+        _download(df, save_dir=save_dir, overwrite=overwrite, verbose=verbose)
 
     if return_as == "filelist":
         df.attrs["filePath"] = save_dir
@@ -570,7 +508,7 @@ def goes_latest(
     df = df.loc[df.start == df.start.max()].reset_index(drop=True)
 
     if download:
-        _download(df, **params)
+        _download(df, save_dir=save_dir, overwrite=overwrite, verbose=verbose)
 
     if return_as == "filelist":
         df.attrs["filePath"] = save_dir
@@ -682,7 +620,7 @@ def goes_nearesttime(
         return None
 
     if download:
-        _download(df, **params)
+        _download(df, save_dir=save_dir, overwrite=overwrite, verbose=verbose)
 
     if return_as == "filelist":
         df.attrs["filePath"] = save_dir
