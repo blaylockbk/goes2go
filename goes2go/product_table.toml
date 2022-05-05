@@ -1,0 +1,161 @@
+# List of ABI products and their full description
+# From https://github.com/awslabs/open-data-docs/tree/main/docs/noaa/noaa-goes16
+
+[ABI-L1b-Rad]
+description = "Advanced Baseline Imager Level 1b Full Disk"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-ACHA]
+description = "Advanced Baseline Imager Level 2 Cloud Top Height CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-ACHT]
+description = "Advanced Baseline Imager Level 2 Cloud Top Temperature Full Disk"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-ACM]
+description = "Advanced Baseline Imager Level 2 Clear Sky Mask CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-ACTP]
+description = "Advanced Baseline Imager Level 2 Cloud Top Phase CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-ADP]
+description = "Advanced Baseline Imager Level 2 Aerosol Detection CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-AICE]
+description = "Ice Concentration and Extent"
+domains = ['F']
+
+[ABI-L2-AITA]
+description = "Ice Age and Thickness"
+domains = ['F']
+
+[ABI-L2-AOD]
+description = "Advanced Baseline Imager Level 2 Aerosol Optical Depth CONUS"
+domains = ['F', 'C']
+
+[ABI-L2-BRF]
+description = "Land Surface Bidirectional Reflectance Factor (CONUS) 2 km resolution & DQFs"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-CMIP]
+description = "Advanced Baseline Imager Level 2 Cloud and Moisture Imagery CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-COD]
+description = "Advanced Baseline Imager Level 2 Cloud Optical Depth CONUS"
+domains = ['F', 'C']
+
+[ABI-L2-CPS]
+description = "Advanced Baseline Imager Level 2 Cloud Particle Size CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-CTP]
+description = "Advanced Baseline Imager Level 2 Cloud Top Pressure CONUS"
+domains = ['F', 'C']
+
+[ABI-L2-DMW]
+description = "Advanced Baseline Imager Level 2 Derived Motion Winds CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-DMWV]
+description = "L2+ Derived Motion Winds - Vapor CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-DSI]
+description = "Advanced Baseline Imager Level 2 Derived Stability Indices CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-DSR]
+description = "Advanced Baseline Imager Level 2 Downward Shortwave Radiation CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-FDC]
+description = "Advanced Baseline Imager Level 2 Fire (Hot Spot Characterization) CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-LSA]
+description = "Land Surface Albedo (CONUS) 2km resolution & DQFs"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-LST]
+description = "Advanced Baseline Imager Level 2 Land Surface Temperature CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-LVMP]
+description = "Advanced Baseline Imager Level 2 Legacy Vertical Moisture Profile CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-LVTP]
+description = "Advanced Baseline Imager Level 2 Legacy Vertical Temperature Profile CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-MCMIP]
+description = "Advanced Baseline Imager Level 2 Cloud and Moisture Imagery CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-RRQPE]
+description = "Advanced Baseline Imager Level 2 Rainfall Rate (Quantitative Precipitation Estimate) Full Disk"
+domains = ['F']
+
+[ABI-L2-RSR]
+description = "Advanced Baseline Imager Level 2 Reflected Shortwave Radiation Top-Of-Atmosphere CONUS"
+domains = ['F', 'C']
+
+[ABI-L2-SST]
+description = "Advanced Baseline Imager Level 2 Sea Surface (Skin) Temperature Full Disk"
+domains = ['F']
+
+[ABI-L2-TPW]
+description = "Advanced Baseline Imager Level 2 Total Precipitable Water CONUS"
+domains = ['F', 'C', 'M']
+
+[ABI-L2-VAA]
+description = "Advanced Baseline Imager Level 2 Volcanic Ash: Detection and Height Full Disk"
+domains = ['F']
+
+[EXIS-L1b-SFEU]
+description = "EXIS-Solar Flux: EUV"
+
+[EXIS-L1b-SFXR]
+description = "EXIS-Solar Flux: X-Ray"
+
+[GLM-L2-LCFA]
+description = "Geostationary Lightning Mapper Level 2 Lightning Detection"
+
+[MAG-L1b-GEOF]
+description = "MAG-Geomagnetic Field"
+
+[SEIS-L1b-EHIS]
+description = "SEISS-Energetic Heavy Ions"
+
+[SEIS-L1b-MPSH]
+description = "SEISS-Mag. Electrons & Protons: Med & High Energy"
+
+[SEIS-L1b-MPSL]
+description = "SEISS-Mag. Electrons & Protons: Low Energy"
+
+[SEIS-L1b-SGPS]
+description = "SEISS-Solar & Galactic Protons"
+
+[SUVI-L1b-Fe093]
+description = "Solar Ultraviolet Imager Level 1b Extreme Ultraviolet"
+
+[SUVI-L1b-Fe131]
+description = "Solar Ultraviolet Imager Level 1b Extreme Ultraviolet"
+
+[SUVI-L1b-Fe171]
+description = "Solar Ultraviolet Imager Level 1b Extreme Ultraviolet"
+
+[SUVI-L1b-Fe195]
+description = "Solar Ultraviolet Imager Level 1b Extreme Ultraviolet"
+
+[SUVI-L1b-Fe284]
+description = "Solar Ultraviolet Imager Level 1b Extreme Ultraviolet"
+
+[SUVI-L1b-He303]
+description = "Solar Ultraviolet Imager Level 1b Extreme Ultraviolet"
+
