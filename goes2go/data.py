@@ -15,19 +15,15 @@ available in a local directory, it is loaded directly into memory.
 https://registry.opendata.aws/noaa-goes/
 """
 
-from pathlib import Path
-from datetime import datetime, timedelta
 import multiprocessing
+from concurrent.futures import ThreadPoolExecutor, as_completed, wait
+from datetime import datetime, timedelta
+from pathlib import Path
 
+import numpy as np
+import pandas as pd
 import s3fs
 import xarray as xr
-import pandas as pd
-import numpy as np
-
-# Multithreading :)
-from concurrent.futures import ThreadPoolExecutor
-from concurrent.futures import as_completed, wait
-
 
 # NOTE: These config dict values are retrieved from __init__ and read
 # from the file ${HOME}/.config/goes2go/config.toml
