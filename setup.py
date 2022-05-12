@@ -52,3 +52,15 @@ twine upload --skip-existing --repository-url https://test.pypi.org/legacy/ dist
 # PyPI
 twine upload --skip-existing dist/*
 """
+
+
+#######################################################
+## On May 12, 2022 I changed the default branch to main
+## You can change your local clone default name with
+## The following
+"""
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+"""
