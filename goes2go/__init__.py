@@ -91,3 +91,6 @@ config["default"]["save_dir"] = Path(config["default"]["save_dir"]).expand()
 # Merge default settings with overwrite settings for each download method
 for i in ["timerange", "latest", "nearesttime"]:
     config[i] = {**config["default"], **config[i]}
+
+
+from goes2go.NEW import GOES

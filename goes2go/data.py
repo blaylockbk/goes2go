@@ -111,13 +111,6 @@ def _check_param_inputs(**params):
         product in _product
     ), f"product must be one of {list(_product .keys())} or an alias {list(_product .values())}"
 
-    if verbose:
-        print(f" _______________________________")
-        print(f" | Satellite: {satellite:<17s}|")
-        print(f" |   Product: {product:<17s}|")
-        if domain != None:
-            print(f" |    Domain: {domain:<17s}|")
-
     return satellite, product, domain
 
 
@@ -529,7 +522,7 @@ def goes_nearesttime(
     verbose=config["nearesttime"].get("verbose", True),
 ):
     """
-    Get the latest available GOES data.
+    Get the GOES data nearest a specified time.
 
     Parameters
     ----------
