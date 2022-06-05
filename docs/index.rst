@@ -22,7 +22,7 @@ Install
 -------
 
 Install goes2go in a conda environment. You may use this minimum `environment.yml
-<https://github.com/blaylockbk/goes2go/blob/master/environment.yml>`_ file
+<https://github.com/blaylockbk/goes2go/blob/main/environment.yml>`_ file
 and create the environment with the following...
 
 .. code:: bash

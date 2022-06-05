@@ -94,3 +94,4 @@ for i in ["timerange", "latest", "nearesttime"]:
 
 
 from goes2go.NEW import GOES
+from goes2go.data import goes_nearesttime, goes_latest, goes_timerange

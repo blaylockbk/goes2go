@@ -2,7 +2,7 @@
   align="center"
 >
 
-![](https://github.com/blaylockbk/goes2go/blob/master/docs/_static/goes2go_logo_100dpi.png?raw=true)
+![](https://github.com/blaylockbk/goes2go/blob/main/docs/_static/goes2go_logo_100dpi.png?raw=true)
 
 # Download and display GOES-East and GOES-West data
 

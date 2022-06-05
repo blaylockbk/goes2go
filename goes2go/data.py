@@ -150,9 +150,19 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
         df["file"].str.rsplit("_", expand=True, n=5).loc[:, 1:]
     )
 
-    # Parse out the band numbers (for L1b-Rad product)
-    if "L1b-Rad" in product:
-        df["band"] = df.product_mode.str.rsplit("C", 1, expand=True)[1].astype(int)
+    # Todo: this could use some clean up !
+    if product.startswith("ABI"):
+        product_mode = df.product_mode.str.rsplit("-", 1, expand=True)
+        df["product"] = product_mode[0]
+        df["mode_bands"] = product_mode[1]
+
+        mode_bands = df.mode_bands.str.split("C", expand=True)
+        df["mode"] = mode_bands[0].str[1:].astype(int)
+        try:
+            df["band"] = mode_bands[1].astype(int)
+        except:
+            # No channel data
+            df["band"] = None
 
         # Filter files by band number
         if bands is not None:
