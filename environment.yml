@@ -32,8 +32,9 @@ dependencies:
 
   # Documentation
   # -------------
-  - sphinx
+  - sphinx>=4.5
   - nbsphinx
+  - nbconvert>=6.5
   - pydata-sphinx-theme # PyData Sphinx Theme (i.e, Numpy, Pandas, MetPy)
   - sphinx-design
   - recommonmark

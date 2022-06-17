@@ -1,9 +1,11 @@
-.. GOES-2-go documentation master file, created by
-   sphinx-quickstart on Wed Jan  6 23:27:49 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. .. image:: _static/goes2go_logo.png
 
-.. image:: _static/goes2go_logo.png
+.. This drop-shadow glow on the logo helps when in Darkmode
+
+.. raw:: html
+
+   <img src="_static/goes2go_logo.png" style="filter: drop-shadow(0px 0px 100px #ffffff28)">
+
 
 =======================
 GOES-2-Go Documentation

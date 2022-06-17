@@ -101,8 +101,8 @@ html_theme_options = {
         {"name": "Herbie", "url": "https://blaylockbk.github.io/Herbie/_build/html/"},
     ],
     "logo": {
-        "image_light": "_static/goes2go_logo.png",
-        "image_dark": "_static/goes2go_logo.png",
+        "image_light": "goes2go_logo.png",
+        "image_dark": "goes2go_logo.png",
     },
 }
 
