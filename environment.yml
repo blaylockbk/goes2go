@@ -35,7 +35,7 @@ dependencies:
   - sphinx
   - nbsphinx
   - pydata-sphinx-theme # PyData Sphinx Theme (i.e, Numpy, Pandas, MetPy)
-  - sphinx-panels # Add bootstrap elements to Sphinx
+  - sphinx-design
   - recommonmark
   - sphinx-markdown-tables
   - autodocsumm
