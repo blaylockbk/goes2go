@@ -21,11 +21,19 @@ from goes2go.data import _goes_file_df, goes_latest, goes_nearesttime, goes_time
 
 log = logging.getLogger(__name__)
 
+# Location of tables directory
+from pathlib import Path
+
+tables_dir = Path(__file__).parent
+
 # Connect to AWS public buckets
 fs = s3fs.S3FileSystem(anon=True)
 
 product_table = pd.read_csv(
-    "./product_table.txt", skiprows=2, names=["product", "description"], index_col=0
+    tables_dir / "product_table.txt",
+    skiprows=2,
+    names=["product", "description"],
+    index_col=0,
 )
 product_table.index = product_table.index.str.strip()
 product_table["description"] = product_table.description.str.strip()
@@ -151,7 +159,12 @@ class GOES:
             satellite=self.satellite, product=self.product, domain=self.domain, **kwargs
         )
 
-    def nearesttime(self, attime, within=pd.to_timedelta(config["nearesttime"].get("within", "1H")), **kwargs):
+    def nearesttime(
+        self,
+        attime,
+        within=pd.to_timedelta(config["nearesttime"].get("within", "1H")),
+        **kwargs,
+    ):
         """Get the GOES data nearest a specified time.
 
         Parameters
