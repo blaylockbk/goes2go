@@ -9,31 +9,30 @@ dependencies:
 
   # Tools
   # -----
-  - cartopy >= 0.20.2
-  - geopandas >= 0.10.2
-  - h5netcdf >= 0.15.0
-  - jupyter >= 1.0.0
-  - jupyterlab >= 3.3.2
-  - matplotlib >= 3.5.1
-  - metpy >= 1.2.0
-  - netcdf4 >= 1.5.8
-  - numpy >= 1.22.3
-  - pandas >= 1.4.1
-  - s3fs >= 2022.2.0
-  - toml >= 0.10.2
-  - xarray >= 2022.3.0
+  - cartopy
+  - geopandas
+  - h5netcdf
+  - jupyter
+  - jupyterlab
+  - matplotlib
+  - metpy
+  - netcdf4
+  - numpy
+  - pandas
+  - s3fs
+  - toml
+  - xarray
 
   # Formatter & Testing
   # -------------------
-  - black >= 22.1.0
-  - jupyterlab_code_formatter
-  - isort >= 5.10.1
-  - pytest >= 7.1.1
+  - black
+  - isort
+  - pytest
 
 
   # Documentation
   # -------------
-  - sphinx >= 4.4.0
+  - sphinx
   - nbsphinx
   - pydata-sphinx-theme # PyData Sphinx Theme (i.e, Numpy, Pandas, MetPy)
   - sphinx-panels # Add bootstrap elements to Sphinx
