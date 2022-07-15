@@ -39,5 +39,11 @@
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
-  "esbonio.server.enabled": true
+  "esbonio.server.enabled": true,
+  "files.exclude": {
+    "*.pytest_cache": true,
+    "*egg-info": true,
+    "build/": true,
+    "dist/": true
+  }
 }
