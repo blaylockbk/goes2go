@@ -6,7 +6,7 @@ README = (HERE / "README.md").read_text(encoding="utf8")
 
 setup(
     name="goes2go",
-    version="0.0.3",
+    version="2022.7.15",
     author="Brian K. Blaylock",
     author_email="blaylockbk@gmail.com",
     description="Retreive GOES-16/17 data from AWS. Also proves some RGB recipes.",
