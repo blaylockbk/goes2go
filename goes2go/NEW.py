@@ -65,7 +65,8 @@ class GOES:
             The satellite number. May also use the following aliases
             {'G16', "G17", "EAST", "WEST"}
         product : str
-            The product to aquire.
+            The product to acquire. A full list of products is here
+            https://github.com/blaylockbk/goes2go/blob/main/goes2go/product_table.txt
             - GLM = alias for geostationary lighting mapper
             - ABI = alias for ABI multi-channel cloud moisture imagery
         domain : {None, 'F', 'C', "M", "M1", "M2"}
@@ -77,12 +78,18 @@ class GOES:
             - M2 = Mesoscale sector 2
         band : None, int, or list
             Specify the ABI channels to retrieve. *Only used if the
-            product requested requires it.*
+            product requested has unique bands.*
         """
         self.satellite = satellite
         self.product = product
         self.domain = domain
         self.bands = bands
+
+        if self.product.startswith("ABI") and self.product in _product:
+            # Sometimes the user might inavertantly give the domain
+            # in the product name.
+            self.domain = self.product[-1]
+            self.product = self.product[:-1]
 
         self._check_satellite()
         self._check_product()
@@ -123,9 +130,7 @@ class GOES:
                 if self.domain in _domains:
                     self.product = self.product + re.sub("[0-9]", "", self.domain)
                     if self.product not in _product:
-                        raise ValueError(
-                            f"{self.product} not a valid product product. Must one of {_domains}"
-                        )
+                        raise ValueError(f"{self.product} is not a valid product.")
                 else:
                     raise ValueError(
                         f"domain for ABI products must be None or one of {_domains}"
@@ -141,7 +146,7 @@ class GOES:
 
     def __repr__(self):
         msg = [
-            f"╭──────────────────────────",
+            f"╭───────────────────────────────╌┄┈",
             f"│ 🌎 GOES Object   ",
             f"│ ───────────────",
             f"│  {self.satellite=}",
@@ -149,7 +154,7 @@ class GOES:
             f"│  {self.domain=}",
             f"│  {self.bands=}",
             f"│  {self.description=}",
-            f"╰──────────────────────────",
+            f"╰───────────────────────────────╌┄┈",
         ]
         return "\n".join(msg)
 
