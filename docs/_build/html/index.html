@@ -198,8 +198,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#download-data">
-     Download Data
+    <a class="reference internal nav-link" href="#download-and-read-data">
+     Download and Read Data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -271,7 +271,7 @@
                 
   <img src="_static/goes2go_logo.png" style="filter: drop-shadow(0px 0px 100px #ffffff28)"><section id="goes-2-go-documentation">
 <h1>GOES-2-Go Documentation<a class="headerlink" href="#goes-2-go-documentation" title="Permalink to this headline">#</a></h1>
-<p>This python package can help you download GOES-R series (GOES-East/16 and GOES-West/17/18) NetCDF files from the <a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a> archive.</p>
+<p>GOES-2-Go is a python package that helps you download GOES-R series (GOES-East/16 and GOES-West/17/18) NetCDF files from the <a class="reference external" href="https://registry.opendata.aws/noaa-goes/">Amazon Web Services</a> archive.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/index.html">User Guide</a></li>
@@ -280,8 +280,7 @@
 </div>
 <section id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">#</a></h2>
-<p>Install goes2go in a conda environment. You may use this minimum <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/main/environment.yml">environment.yml</a> file
-and create the environment with the following…</p>
+<p>Install goes2go in a conda environment. You may use this minimum <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/main/environment.yml">environment.yml</a> file and create the environment with the following…</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the environment</span>
 conda env create -f environment.yml
 
@@ -295,23 +294,55 @@ conda activate goes2go
 </section>
 <section id="capabilities">
 <h2>Capabilities<a class="headerlink" href="#capabilities" title="Permalink to this headline">#</a></h2>
-<section id="download-data">
-<h3>Download Data<a class="headerlink" href="#download-data" title="Permalink to this headline">#</a></h3>
-<p>The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.</p>
+<section id="download-and-read-data">
+<h3>Download and Read Data<a class="headerlink" href="#download-and-read-data" title="Permalink to this headline">#</a></h3>
+<p>First, create a GOES object to specify the satellite, data product, and domain you are interested in. The example below downloads the Multi-Channel Cloud Moisture Imagery for CONUS.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go</span> <span class="kn">import</span> <span class="n">GOES</span>
+
+<span class="c1"># ABI Multi-Channel Cloud Moisture Imagry Product</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">GOES</span><span class="p">(</span><span class="n">satellite</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s2">&quot;ABI-L2-MCMIP&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+
+<span class="c1"># Geostationary Lightning Mapper</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">GOES</span><span class="p">(</span><span class="n">satellite</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s2">&quot;GLM-L2-LCFA&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+
+<span class="c1"># ABI Level 1b Data</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">GOES</span><span class="p">(</span><span class="n">satellite</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s2">&quot;ABI-L1b-Rad&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A complete listing of the products available are available at <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/main/goes2go/product_table.txt">here</a>.</p>
+</div>
+<p>There are methods to do the following:</p>
+<ul class="simple">
+<li><p>List the available files for a time range</p></li>
+<li><p>Download data to your local drive for a specified time range</p></li>
+<li><p>Read the data into an xarray Dataset for a specific time</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Produce a pandas DataFrame of the available files in a time range</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">df</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2022-07-04 01:00&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2022-07-04 01:30&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download and read the data as an xarray Dataset nearest a specific time</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">nearesttime</span><span class="p">(</span><span class="s1">&#39;2022-01-01&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download and read the latest data as an xarray Dataset</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">latest</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download data for a specified time range</span>
+<span class="n">G</span><span class="o">.</span><span class="n">timerange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2022-06-01 00:00&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2022-06-01 01:00&#39;</span><span class="p">)</span>
+
+<span class="c1"># Download recent data for a specific interval</span>
+<span class="n">G</span><span class="o">.</span><span class="n">timerange</span><span class="p">(</span><span class="n">recent</span><span class="o">=</span><span class="s1">&#39;30min&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_nearesttime.html">📖 Download latest</a></p></li>
 <li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_latest.html">📖 Download nearest time</a></p></li>
 <li><p><a class="reference external" href="https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_timerange.html">📖 Download time series</a></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">goes2go.data</span> <span class="kn">import</span> <span class="n">goes_latest</span><span class="p">,</span> <span class="n">goes_nearesttime</span><span class="p">,</span> <span class="n">goes_timeseries</span>
-
-<span class="c1"># Get latest data</span>
-<span class="n">G1</span> <span class="o">=</span> <span class="n">goes_latest</span><span class="p">(</span><span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G16&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;ABI&#39;</span><span class="p">)</span>
-
-<span class="c1"># Get data for a specific time</span>
-<span class="n">G2</span> <span class="o">=</span> <span class="n">goes_nearesttime</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">satellite</span><span class="o">=</span><span class="s1">&#39;G16&#39;</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s1">&#39;GLM&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
 </section>
 <section id="rgb-recipes-for-abi">
 <h3>RGB Recipes for ABI<a class="headerlink" href="#rgb-recipes-for-abi" title="Permalink to this headline">#</a></h3>

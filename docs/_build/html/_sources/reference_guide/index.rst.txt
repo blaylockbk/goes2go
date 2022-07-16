@@ -6,6 +6,7 @@ Reference Guide
    :maxdepth: 4
 
 .. automodule:: goes2go.data
+.. automodule:: goes2go.NEW
 
 Custom Accessors
 ----------------

@@ -11,7 +11,7 @@
 GOES-2-Go Documentation
 =======================
 
-This python package can help you download GOES-R series (GOES-East/16 and GOES-West/17/18) NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive.
+GOES-2-Go is a python package that helps you download GOES-R series (GOES-East/16 and GOES-West/17/18) NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive.
 
 .. toctree::
    :maxdepth: 1
@@ -24,8 +24,7 @@ Install
 -------
 
 Install goes2go in a conda environment. You may use this minimum `environment.yml
-<https://github.com/blaylockbk/goes2go/blob/main/environment.yml>`_ file
-and create the environment with the following...
+<https://github.com/blaylockbk/goes2go/blob/main/environment.yml>`_ file and create the environment with the following...
 
 .. code:: bash
 
@@ -42,25 +41,62 @@ and create the environment with the following...
 Capabilities
 ------------
 
-Download Data
-^^^^^^^^^^^^^
+Download and Read Data
+^^^^^^^^^^^^^^^^^^^^^^
 
-The following example downloads GOES 16 ABI multichannel file on the fixed grid for the CONUS domain and reads it with xarray for the latest image and an image nearest a specific time.
+First, create a GOES object to specify the satellite, data product, and domain you are interested in. The example below downloads the Multi-Channel Cloud Moisture Imagery for CONUS.
+
+.. code-block:: python
+
+   from goes2go import GOES
+
+   # ABI Multi-Channel Cloud Moisture Imagry Product
+   G = GOES(satellite=16, product="ABI-L2-MCMIP", domain='C')
+
+   # Geostationary Lightning Mapper
+   G = GOES(satellite=17, product="GLM-L2-LCFA", domain='C')
+
+   # ABI Level 1b Data
+   G = GOES(satellite=17, product="ABI-L1b-Rad", domain='F')
+
+
+.. note:: A complete listing of the products available are available at `here <https://github.com/blaylockbk/goes2go/blob/main/goes2go/product_table.txt>`_.
+
+There are methods to do the following:
+
+* List the available files for a time range
+* Download data to your local drive for a specified time range
+* Read the data into an xarray Dataset for a specific time
+
+.. code-block:: python
+
+   # Produce a pandas DataFrame of the available files in a time range
+   df = G.df(start='2022-07-04 01:00', end='2022-07-04 01:30')
+
+
+.. code-block:: python
+
+   # Download and read the data as an xarray Dataset nearest a specific time
+   ds = G.nearesttime('2022-01-01')
+
+.. code-block:: python
+
+   # Download and read the latest data as an xarray Dataset
+   ds = G.latest()
+
+.. code-block:: python
+
+   # Download data for a specified time range
+   G.timerange(start='2022-06-01 00:00', end='2022-06-01 01:00')
+
+   # Download recent data for a specific interval
+   G.timerange(recent='30min')
+
 
 - `📖 Download latest <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_nearesttime.html>`_
 - `📖 Download nearest time <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_latest.html>`_
 - `📖 Download time series <https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_download_goes_timerange.html>`_
 
-
-.. code-block:: python
-
-   from goes2go.data import goes_latest, goes_nearesttime, goes_timeseries
-
-   # Get latest data
-   G1 = goes_latest(satellite='G16', product='ABI')
-
-   # Get data for a specific time
-   G2 = goes_nearesttime(datetime(2020,10,1), satellite='G16', product='GLM')
 
 RGB Recipes for ABI
 ^^^^^^^^^^^^^^^^^^^
