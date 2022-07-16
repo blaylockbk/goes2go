@@ -12,6 +12,7 @@
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
 [![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 <!--[![Join the chat at https://gitter.im/blaylockbk/goes2go](https://badges.gitter.im/blaylockbk/goes2go.svg)](https://gitter.im/blaylockbk/goes2go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)-->
 <!--(Badges)-->
 
@@ -35,12 +36,50 @@ GOES-East and GOES-West satellite data are made available on Amazon Web Services
 
 Download GOES ABI or GLM NetCDF files to your local computer. Files can also be read with xarray.
 
+First, create a GOES object to specify the satellite, data product, and domain you are interested in. The example below downloads the Multi-Channel Cloud Moisture Imagery for CONUS.
+
 ```python
-from goes2go.data import goes_latest, goes_nearesttime
-# Get latest data
-G_ABI = goes_latest(satellite='G16', product='ABI')
-# Get data for a specific time
-G_GLM = goes_nearesttime('2021-01-01 12:00', satellite='G16', product='GLM')
+from goes2go import GOES
+
+# ABI Multi-Channel Cloud Moisture Imagry Product
+G = GOES(satellite=16, product="ABI-L2-MCMIP", domain='C')
+
+# Geostationary Lightning Mapper
+G = GOES(satellite=17, product="GLM-L2-LCFA", domain='C')
+
+# ABI Level 1b Data
+G = GOES(satellite=17, product="ABI-L1b-Rad", domain='F')
+```
+
+> A complete listing of the products available are available [here](https://github.com/blaylockbk/goes2go/blob/main/goes2go/product_table.txt).
+
+There are methods to do the following:
+
+- List the available files for a time range
+- Download data to your local drive for a specified time range
+- Read the data into an xarray Dataset for a specific time
+
+```python
+   # Produce a pandas DataFrame of the available files in a time range
+   df = G.df(start='2022-07-04 01:00', end='2022-07-04 01:30')
+```
+
+```python
+   # Download and read the data as an xarray Dataset nearest a specific time
+   ds = G.nearesttime('2022-01-01')
+```
+
+```python
+   # Download and read the latest data as an xarray Dataset
+   ds = G.latest()
+```
+
+```python
+   # Download data for a specified time range
+   G.timerange(start='2022-06-01 00:00', end='2022-06-01 01:00')
+
+   # Download recent data for a specific interval
+   G.timerange(recent='30min')
 ```
 
 ## RGB Recipes
@@ -48,11 +87,10 @@ G_GLM = goes_nearesttime('2021-01-01 12:00', satellite='G16', product='GLM')
 The `rgb` xarray accessor creates an RGB product for a GOES ABI multichannel xarray.Dataset. See the [demo](https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
 
 ```python
-from goes2go.data import goes_latest
 import matplotlib.pyplot as plt
-G = goes_latest()
-ax = plt.subplot(projection=G.rgb.crs)
-ax.imshow(G.rgb.TrueColor(), **G.rgb.imshow_kwargs)
+ds = GOES().latest()
+ax = plt.subplot(projection=ds.rgb.crs)
+ax.imshow(ds.rgb.TrueColor(), **ds.rgb.imshow_kwargs)
 ax.coastlines()
 ```
 
