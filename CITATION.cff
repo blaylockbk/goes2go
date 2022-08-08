@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+abstract: GOES-East and GOES-West satellite data are made available on Amazon Web Services through the NOAA Open Data Dissemination (NODD) Program (formerly the Big Data Program). GOES-2-go is a python package that makes it easy to find and download the files you want to your local computer with some additional helpers to look at and understand the data.
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Blaylock
+    given-names: Brian K.
+    email: blaylockbk@gmail.com
+    orcid: "https://orcid.org/0000-0003-2133-9313"
+title: "GOES-2-go: Download and display GOES-East and GOES-West data"
+version: 2022.07.15
+date-released: "2022-07-15"
+url: "https://blaylockbk.github.io/goes2go/_build/html/"
+repository-code: "https://github.com/blaylockbk/goes2go"
+type: software
+keywords:
+  - meteorology
+  - weather
+  - atmosphere
+  - satellite
+license: "MIT"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.4567558
