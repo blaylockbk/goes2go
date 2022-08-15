@@ -19,7 +19,7 @@ setup(
     license="MIT",
     packages=find_packages(),
     package_data={
-        "": ["*.cfg"],
+        "": ["*.cfg", "*.txt"],
     },
     # python_requires='>3.7',   # Will this requirement cause problems for people??
     install_requires=["numpy", "pandas", "xarray", "s3fs", "netcdf4"],
