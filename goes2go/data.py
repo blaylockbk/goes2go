@@ -609,8 +609,10 @@ def goes_nearesttime(
     # Get row that matches the nearest time
     df = df.sort_values("start")
     df = df.set_index(df.start)
-    nearest_time_index = df.index.get_indexer([attime], method="nearest")
-    df = df.iloc[nearest_time_index]
+    unique_times_index = df.index.unique()
+    nearest_time_index = unique_times_index.get_indexer([attime], method='nearest')
+    nearest_time = unique_times_index[nearest_time_index]
+    df = df.loc[nearest_time]
     df = df.reset_index(drop=True)
 
     n = len(df.file)
