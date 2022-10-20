@@ -1,0 +1,29 @@
+## Used to test goes2go install from PyPI
+
+name: goes2go-test
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - pip
+
+  #==============
+  # Dependencies
+  #==============
+  - cartopy>=0.20.3
+  - matplotlib>=3.5.3
+  - metpy
+  - numpy
+  - pandas
+  - requests
+  - toml
+  - xarray>=2022.6.0
+
+  #====================
+  # Other Dependencies
+  #====================
+  - geos # required by cartopy
+  - proj # required by cartopy
+
+  - pip:
+      - goes2go
