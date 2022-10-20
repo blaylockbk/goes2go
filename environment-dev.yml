@@ -53,7 +53,7 @@ dependencies:
       #- git+https://github.com/blaylockbk/goes2go.git
 
       # Install a specific branch
-      - git+https://github.com/blaylockbk/Herbie.git@blaylockbk/issue33-update-to-setup.cfg
+      - git+https://github.com/blaylockbk/goes2go.git@blaylockbk/issue33-update-to-setup.cfg
 
       # Borrow some tools from my garage
       - git+https://github.com/blaylockbk/Carpenter_Workshop.git
