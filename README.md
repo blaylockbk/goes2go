@@ -116,6 +116,43 @@ GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOE
 The GLM field of view is slightly smaller and limited by a bounding box. Below is the approximated GLM field of view:
 ![field of view image](./images/GLM_field-of-view.png)
 
+# Installation
+
+The easiest way to install is within a Conda environment. I provided **[`environment.yml`](https://github.com/blaylockbk/Herbie/blob/main/environment.yml)** for you to start from.
+
+```bash
+# Download environment file
+wget https://github.com/blaylockbk/goes2go/raw/main/environment.yml
+
+# Modify that file if you wish.
+
+# Create the environment
+conda env create -f environment.yml
+
+# Activate the environment
+conda activate goes2go
+```
+
+GOES-2-go is published on PyPI and you can install it with pip, _but_ it requires some additional dependencies that you will have to install yourself:
+
+- Python 3.8, 3.9, or **3.10** (recommended)
+- [Cartopy](https://scitools.org.uk/cartopy/docs/latest/installing.html), which requires GEOS and Proj.
+- MetPy
+- _Optional:_ [Carpenter Workshop](https://github.com/blaylockbk/Carpenter_Workshop)
+
+When those are installed within your environment, _then_ you can install GOES-2-go with pip.
+
+```bash
+# Latest published version
+pip install goes2go
+
+# ~~ or ~~
+
+# Most recent changes
+pip install git+https://github.com/blaylockbk/goes2go.git
+```
+
+
 > ### Useful Links
 >
 > - [🙋🏻‍♂️ Brian's AWS GOES Web Downloader](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi)
