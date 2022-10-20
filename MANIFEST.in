@@ -1,0 +1,7 @@
+prune .vscode
+prune docs
+prune images
+prune latlon_grids
+prune notebooks
+exclude *.ipynb
+exclude *.nc

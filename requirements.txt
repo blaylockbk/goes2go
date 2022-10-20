@@ -1,0 +1,8 @@
+numpy
+pandas
+xarray
+metpy
+toml
+cartopy
+matplotlib
+git+https://github.com/blaylockbk/Carpenter_Workshop.git
