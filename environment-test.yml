@@ -16,6 +16,7 @@ dependencies:
   - numpy
   - pandas
   - requests
+  - s3fs
   - toml
   - xarray>=2022.6.0
 
@@ -27,3 +28,23 @@ dependencies:
 
   - pip:
       - goes2go
+
+
+###############################################################################
+## Note to self:
+## Make sure goes2go is not in my PYTHONPATH or PATH before install.
+
+# To create this environment
+#
+#     wget https://github.com/blaylockbk/goes2go/raw/main/environment-test.yml
+#     conda env create -f environment-test.yml
+#
+# To update this environment
+#
+#     conda env update -f environment-test.yml --prune
+#
+# To remove this environment
+#
+#     conda env remove --name goes2go-test
+#
+###############################################################################
