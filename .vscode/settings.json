@@ -43,7 +43,5 @@
   "files.exclude": {
     "*.pytest_cache": true,
     "*egg-info": true,
-    "build/": true,
-    "dist/": true
   }
 }
