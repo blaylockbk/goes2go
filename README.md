@@ -118,7 +118,7 @@ The GLM field of view is slightly smaller and limited by a bounding box. Below i
 
 # Installation
 
-The easiest way to install is within a Conda environment. I provided **[`environment.yml`](https://github.com/blaylockbk/Herbie/blob/main/environment.yml)** for you to start from.
+The easiest way to install is within a Conda environment. I provided **[`environment.yml`](https://github.com/blaylockbk/goes2go/blob/main/environment.yml)** for you to start from.
 
 ```bash
 # Download environment file
@@ -151,7 +151,6 @@ pip install goes2go
 # Most recent changes
 pip install git+https://github.com/blaylockbk/goes2go.git
 ```
-
 
 > ### Useful Links
 >
