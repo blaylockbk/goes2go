@@ -71,8 +71,8 @@
   
   
   
-    <img src="../../_static/_static/goes2go_logo.png" class="logo__image only-light" alt="Logo image">
-    <img src="../../_static/_static/goes2go_logo.png" class="logo__image only-dark" alt="Logo image">
+    <img src="../../_static/goes2go_logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/goes2go_logo.png" class="logo__image only-dark" alt="Logo image">
   
   
 </a>
@@ -797,8 +797,10 @@
     <span class="c1"># Get row that matches the nearest time</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">start</span><span class="p">)</span>
-    <span class="n">nearest_time_index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_indexer</span><span class="p">([</span><span class="n">attime</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">nearest_time_index</span><span class="p">]</span>
+    <span class="n">unique_times_index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="n">nearest_time_index</span> <span class="o">=</span> <span class="n">unique_times_index</span><span class="o">.</span><span class="n">get_indexer</span><span class="p">([</span><span class="n">attime</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="n">nearest_time</span> <span class="o">=</span> <span class="n">unique_times_index</span><span class="p">[</span><span class="n">nearest_time_index</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">nearest_time</span><span class="p">]</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
