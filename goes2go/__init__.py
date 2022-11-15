@@ -6,7 +6,7 @@ import toml
 from pathlib import Path
 import os
 
-#=======================================================================
+# =======================================================================
 # Load custom xarray accessors
 # TODO: Move some of the tools.py to these accessors.
 try:
@@ -14,7 +14,7 @@ try:
 except:
     warnings.warn("goes2go xarray accessors could not be imported.")
 
-#=======================================================================
+# =======================================================================
 # Append Path object with my custom expand method so user can use
 # environment variables in the config file (e.g., ${HOME}).
 def _expand(self):
@@ -31,7 +31,7 @@ def _expand(self):
 
 Path.expand = _expand
 
-#=======================================================================
+# =======================================================================
 # goes2go configuration file
 # Configuration file is save in `~/config/goes2go/config.toml`
 _config_path = Path("~/.config/goes2go/config.toml").expand()
@@ -42,7 +42,7 @@ _save_dir = str(Path("~/data").expand())
 _save_dir = str(Path("~/data").expand())
 _save_dir = _save_dir.replace("\\", "\\\\")
 
-#=======================================================================
+# =======================================================================
 # Default TOML Configuration
 default_toml = f"""
 ["default"]
@@ -68,7 +68,7 @@ within = "1H"
 return_as = "xarray"
 """
 
-#=======================================================================
+# =======================================================================
 # If a config file isn't found, make one
 if not _config_path.exists():
     print(
@@ -82,7 +82,7 @@ if not _config_path.exists():
         toml_string = toml.dump(toml.loads(default_toml), f)
     print(f"⚙ Created config file [{_config_path}] with default values.")
 
-#=======================================================================
+# =======================================================================
 # Read the config file
 config = toml.load(_config_path)
 
