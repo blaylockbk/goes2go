@@ -280,7 +280,11 @@
 </div>
 <section id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">#</a></h2>
-<p>Install goes2go in a conda environment. You may use this minimum <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/main/environment.yml">environment.yml</a> file and create the environment with the following…</p>
+<p>The easiest way to install <code class="docutils literal notranslate"><span class="pre">goes2go</span></code> and its dependencies is with Conda from conda-forge.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge goes2go
+</pre></div>
+</div>
+<p>You may also create the provided Conda environment file <a class="reference external" href="https://github.com/blaylockbk/goes2go/blob/main/environment.yml">environment.yml</a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the environment</span>
 conda env create -f environment.yml
 
@@ -289,6 +293,23 @@ conda env update -f environment.yml
 
 <span class="c1"># Activate the environment</span>
 conda activate goes2go
+</pre></div>
+</div>
+<p>Alternatively, <code class="docutils literal notranslate"><span class="pre">goes2go</span></code> is published on PyPI and you can install it with pip, but it requires some additional dependencies that you will have to install yourself:</p>
+<ul class="simple">
+<li><p>Python 3.8+</p></li>
+<li><p>Cartopy, which requires GEOS and Proj.</p></li>
+<li><p>MetPy</p></li>
+<li><p>Optional: Carpenter Workshop</p></li>
+</ul>
+<p>When those are installed within your environment, then you can install GOES-2-go with pip.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Latest published version</span>
+pip install goes2go
+
+<span class="c1"># ~~ or ~~</span>
+
+<span class="c1"># Most recent changes</span>
+pip install git+https://github.com/blaylockbk/goes2go.git
 </pre></div>
 </div>
 </section>

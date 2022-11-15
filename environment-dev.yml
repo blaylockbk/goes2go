@@ -2,11 +2,12 @@ name: goes2go-dev
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
+  - python>=3.10
   - pip
   - git
-  - rclone >= 1.58.0  # Not required by goes2go, but is an awesome alternative https://rclone.org/
+  - rclone >= 1.58.0 # Not required by goes2go, but is an awesome alternative https://rclone.org/
 
+  # -----
   # Tools
   # -----
   - cartopy
@@ -23,13 +24,14 @@ dependencies:
   - toml
   - xarray
 
+  # -------------------
   # Formatter & Testing
   # -------------------
   - black
   - isort
   - pytest
 
-
+  # -------------
   # Documentation
   # -------------
   - sphinx>=4.5
@@ -45,19 +47,32 @@ dependencies:
   - myst-parser
   - linkify-it-py
 
-  - pip:
-      # Install from PyPi
-      #- goes2go
+  #- pip:
+  # clone goes2go and install with edit options
+  # >>> git clone https://github.com/blaylockbk/goes2go.git
+  # >>> cd goes2go
+  # >>> pip install -e .
 
-      # Install most recent version on GitHub
-      #- git+https://github.com/blaylockbk/goes2go.git
+  # clone Carpenter_Workshop and install with edit options
+  # >>> git clone https://github.com/blaylockbk/Carpenter_Workshop.git
+  # >>> cd Carpenter_Workshop
+  # >>> pip install -e .
 
-      # Install a specific branch
-      - git+https://github.com/blaylockbk/goes2go.git@blaylockbk/issue33-update-to-setup.cfg
+  # ===============================================
 
-      # Borrow some tools from my garage
-      - git+https://github.com/blaylockbk/Carpenter_Workshop.git
+  # Then you can set the branches etc. for code development.
 
+  # Install from PyPi
+  #- goes2go
+
+  # Install most recent version on GitHub
+  #- git+https://github.com/blaylockbk/goes2go.git
+
+  # Install a specific branch
+  #- git+https://github.com/blaylockbk/goes2go.git@blaylockbk/issue33-update-to-setup.cfg
+
+  # Borrow some tools from my garage
+  #- git+https://github.com/blaylockbk/Carpenter_Workshop.git
 ###############################################################################
 #
 # Note: Being more specific with versions *may* help speed up conda

@@ -9,11 +9,16 @@
 <!-- Badges -->
 
 [![](https://img.shields.io/pypi/v/goes2go)](https://pypi.python.org/pypi/goes2go/)
-![](https://img.shields.io/github/license/blaylockbk/goes2go)
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/goes2go.svg)](https://anaconda.org/conda-forge/goes2go)
 [![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-<!--[![Join the chat at https://gitter.im/blaylockbk/goes2go](https://badges.gitter.im/blaylockbk/goes2go.svg)](https://gitter.im/blaylockbk/goes2go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)-->
+
+![](https://img.shields.io/github/license/blaylockbk/goes2go)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Conda Recipe](https://img.shields.io/badge/recipe-goes2go-green.svg)](https://anaconda.org/conda-forge/goes2go)
+[![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/goes2go.svg)](https://anaconda.org/conda-forge/goes2go)
+[![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/goes2go.svg)](https://anaconda.org/conda-forge/goes2go)
+
 <!--(Badges)-->
 
 </div>
@@ -30,7 +35,53 @@ GOES-East and GOES-West satellite data are made available on Amazon Web Services
 
 ---
 
+# Installation
+
+The easiest way to install `goes2go` and its dependencies is with [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) from conda-forge.
+
+```
+conda install -c conda-forge goes2go
+```
+
+You may also create the provided Conda environment, **[`environment.yml`](https://github.com/blaylockbk/goes2go/blob/main/environment.yml)**.
+
+```bash
+# Download environment file
+wget https://github.com/blaylockbk/goes2go/raw/main/environment.yml
+
+# Modify that file if you wish.
+
+# Create the environment
+conda env create -f environment.yml
+
+# Activate the environment
+conda activate goes2go
+```
+
+Alternatively, `goes2go` is published on PyPI and you can install it with pip, _but_ it requires some additional dependencies that you will have to install yourself:
+
+- Python 3.8+
+- [Cartopy](https://scitools.org.uk/cartopy/docs/latest/installing.html), which requires GEOS and Proj.
+- MetPy
+- _Optional:_ [Carpenter Workshop](https://github.com/blaylockbk/Carpenter_Workshop)
+
+When those are installed within your environment, _then_ you can install GOES-2-go with pip.
+
+```bash
+# Latest published version
+pip install goes2go
+
+# ~~ or ~~
+
+# Most recent changes
+pip install git+https://github.com/blaylockbk/goes2go.git
+```
+
 # Capabilities
+
+- [Download GOES Data](#download-data)
+- [Create RGB composites](#rgb-recipes)
+- [Get the field of view](#field-of-view)
 
 ## Download Data
 
@@ -116,41 +167,6 @@ GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOE
 The GLM field of view is slightly smaller and limited by a bounding box. Below is the approximated GLM field of view:
 ![field of view image](./images/GLM_field-of-view.png)
 
-# Installation
-
-The easiest way to install is within a Conda environment. I provided **[`environment.yml`](https://github.com/blaylockbk/goes2go/blob/main/environment.yml)** for you to start from.
-
-```bash
-# Download environment file
-wget https://github.com/blaylockbk/goes2go/raw/main/environment.yml
-
-# Modify that file if you wish.
-
-# Create the environment
-conda env create -f environment.yml
-
-# Activate the environment
-conda activate goes2go
-```
-
-GOES-2-go is published on PyPI and you can install it with pip, _but_ it requires some additional dependencies that you will have to install yourself:
-
-- Python 3.8, 3.9, or **3.10** (recommended)
-- [Cartopy](https://scitools.org.uk/cartopy/docs/latest/installing.html), which requires GEOS and Proj.
-- MetPy
-- _Optional:_ [Carpenter Workshop](https://github.com/blaylockbk/Carpenter_Workshop)
-
-When those are installed within your environment, _then_ you can install GOES-2-go with pip.
-
-```bash
-# Latest published version
-pip install goes2go
-
-# ~~ or ~~
-
-# Most recent changes
-pip install git+https://github.com/blaylockbk/goes2go.git
-```
 
 > ### Useful Links
 >
