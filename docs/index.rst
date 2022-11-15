@@ -23,8 +23,15 @@ GOES-2-Go is a python package that helps you download GOES-R series (GOES-East/1
 Install
 -------
 
-Install goes2go in a conda environment. You may use this minimum `environment.yml
-<https://github.com/blaylockbk/goes2go/blob/main/environment.yml>`_ file and create the environment with the following...
+The easiest way to install ``goes2go`` and its dependencies is with Conda from conda-forge.
+
+.. code:: bash
+
+   conda install -c conda-forge goes2go
+
+
+You may also create the provided Conda environment file `environment.yml
+<https://github.com/blaylockbk/goes2go/blob/main/environment.yml>`_.
 
 .. code:: bash
 
@@ -36,6 +43,25 @@ Install goes2go in a conda environment. You may use this minimum `environment.ym
 
    # Activate the environment
    conda activate goes2go
+
+Alternatively, ``goes2go`` is published on PyPI and you can install it with pip, but it requires some additional dependencies that you will have to install yourself:
+
+- Python 3.8+
+- Cartopy, which requires GEOS and Proj.
+- MetPy
+- Optional: Carpenter Workshop
+
+When those are installed within your environment, then you can install GOES-2-go with pip.
+
+.. code:: bash
+
+   # Latest published version
+   pip install goes2go
+
+   # ~~ or ~~
+
+   # Most recent changes
+   pip install git+https://github.com/blaylockbk/goes2go.git
 
 
 Capabilities
