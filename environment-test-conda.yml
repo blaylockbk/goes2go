@@ -1,0 +1,28 @@
+## Used to test goes2go install from conda-forge
+
+name: goes2go-test-conda
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - pip
+
+  - goes2go
+###############################################################################
+## Note to self:
+## Make sure goes2go is not in my PYTHONPATH or PATH before install.
+
+# To create this environment
+#
+#     wget https://github.com/blaylockbk/goes2go/raw/main/environment-test-conda.yml
+#     conda env create -f environment-test-conda.yml
+#
+# To update this environment
+#
+#     conda env update -f environment-test-conda.yml --prune
+#
+# To remove this environment
+#
+#     conda env remove --name goes2go-test-conda
+#
+###############################################################################
