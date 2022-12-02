@@ -180,25 +180,9 @@ If you use GOES-2-go, please cite this software and/or include me in your acknow
 > A portion of this work used code generously provided by Brian Blaylock's GOES-2-go python package (https://github.com/blaylockbk/goes2go)
 
 
-> ### Useful Links
->
-> - [🙋🏻‍♂️ Brian's AWS GOES Web Downloader](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi)
-> - [📔 GOES-R Series Data Book](https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf)
-> - [🎠 Beginner's Guide](https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf)
-> - [🖥 Rammb Slider GOES Viewer](https://rammb-slider.cira.colostate.edu)
-> - [💾 GOES on AWS](https://registry.opendata.aws/noaa-goes/)
-> - [🐍 Unidata Plot GOES Data](https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/)
-> - [🗺 Plotting tips form geonetcast blog](https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/)
-> - [🐍 `glmtools`](https://github.com/deeplycloudy/glmtools/)
-> - [🐍 `satpy`](https://github.com/pytroll/satpy)
+### What if I don't like the GOES-2-go or Python?
 
-> ### What if I don't like the GOES-2-go or Python?
->
-> As an alternative you can use [rclone](https://rclone.org/) to download GOES files from AWS. I quite like rclone. Here is a [short rclone tutorial](https://github.com/blaylockbk/pyBKB_v3/blob/master/rclone_howto.md).
-
-
-
-
+As an alternative you can use [rclone](https://rclone.org/) to download GOES files from AWS. I quite like rclone. Here is a [short rclone tutorial](https://github.com/blaylockbk/pyBKB_v3/blob/master/rclone_howto.md).
 
 ---
 
@@ -212,3 +196,16 @@ I hope you find this makes GOES data easier to retrieve and display. Enjoy!
 🌐 [Personal Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)
 
 P.S. If you like GOES-2-go, check out my [Herbie](https://github.com/blaylockbk/Herbie) package to download weather model data and [SynopticPy](https://github.com/blaylockbk/Herbie) to download mesonet data from the Synoptic API.
+
+
+# Useful Links
+- [🙋🏻‍♂️ Brian's AWS GOES Web Downloader](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi)
+- [📔 GOES-R Series Data Book](https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf)
+- [🎠 Beginner's Guide](https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf)
+- [🖥 Rammb Slider GOES Viewer](https://rammb-slider.cira.colostate.edu)
+- [💾 GOES on AWS](https://registry.opendata.aws/noaa-goes/)
+- [🐍 Unidata Plot GOES Data](https://unidata.github.io/python-training/gallery/mapping_goes16_truecolor/)
+- [🗺 Plotting tips form geonetcast blog](https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/)
+- [🐍 `glmtools`](https://github.com/deeplycloudy/glmtools/)
+- [🐍 `satpy`](https://github.com/pytroll/satpy)
+
