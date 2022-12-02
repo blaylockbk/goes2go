@@ -168,6 +168,18 @@ The GLM field of view is slightly smaller and limited by a bounding box. Below i
 ![field of view image](./images/GLM_field-of-view.png)
 
 
+# How to Cite and Acknowledge
+If you use GOES-2-go, please cite this software and/or include me in your acknowledgments.
+
+***Suggested Citation***
+
+> Blaylock, B. K. (2022). GOES-2-go: Download and display GOES-East and GOES-West data (Version 2022.07.15) [Computer software]. https://github.com/blaylockbk/goes2go
+
+***Suggested Acknowledgment***
+
+> A portion of this work used code generously provided by Brian Blaylock's GOES-2-go python package (https://github.com/blaylockbk/goes2go)
+
+
 > ### Useful Links
 >
 > - [🙋🏻‍♂️ Brian's AWS GOES Web Downloader](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi)
@@ -184,7 +196,9 @@ The GLM field of view is slightly smaller and limited by a bounding box. Below i
 >
 > As an alternative you can use [rclone](https://rclone.org/) to download GOES files from AWS. I quite like rclone. Here is a [short rclone tutorial](https://github.com/blaylockbk/pyBKB_v3/blob/master/rclone_howto.md).
 
----
+
+
+
 
 ---
 
