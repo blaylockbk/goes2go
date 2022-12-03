@@ -169,7 +169,7 @@ The GLM field of view is slightly smaller and limited by a bounding box. Below i
 
 
 # How to Cite and Acknowledge
-If you use GOES-2-go, please cite this software and/or include me in your acknowledgments.
+If GOES-2-go played an important role in your work, please [tell me about it](https://github.com/blaylockbk/goes2go/discussions/categories/show-and-tell)! Also, consider including a citation or acknowledgement in your article or product.
 
 ***Suggested Citation***
 
