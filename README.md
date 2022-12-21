@@ -208,4 +208,4 @@ P.S. If you like GOES-2-go, check out my [Herbie](https://github.com/blaylockbk/
 - [🗺 Plotting tips form geonetcast blog](https://geonetcast.wordpress.com/2019/08/02/plot-0-5-km-goes-r-full-disk-regions/)
 - [🐍 `glmtools`](https://github.com/deeplycloudy/glmtools/)
 - [🐍 `satpy`](https://github.com/pytroll/satpy)
-- [🖥 CSPPGEO](http://cimss.ssec.wisc.edu/csppgeo/)
+- [🖥 CSPPGEO](http://cimss.ssec.wisc.edu/csppgeo/) | [Gridded GLM software package](https://download.ssec.wisc.edu/files/csppgeo/)
