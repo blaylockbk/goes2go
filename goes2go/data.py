@@ -152,7 +152,7 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
 
     # Todo: this could use some clean up !
     if product.startswith("ABI"):
-        product_mode = df.product_mode.str.rsplit("-", 1, expand=True)
+        product_mode = df.product_mode.str.rsplit("-", n=1, expand=True)
         df["product"] = product_mode[0]
         df["mode_bands"] = product_mode[1]
 
