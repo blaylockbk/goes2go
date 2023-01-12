@@ -15,6 +15,8 @@
 
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Documentation Status](https://readthedocs.org/projects/herbie/badge/?version=latest)](https://herbie.readthedocs.io/?badge=latest)
+[![Python](https://img.shields.io/pypi/pyversions/herbie-data.svg)](https://pypi.org/project/herbie-data/)
 [![Conda Recipe](https://img.shields.io/badge/recipe-goes2go-green.svg)](https://anaconda.org/conda-forge/goes2go)
 [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/goes2go.svg)](https://anaconda.org/conda-forge/goes2go)
 [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/goes2go.svg)](https://anaconda.org/conda-forge/goes2go)
