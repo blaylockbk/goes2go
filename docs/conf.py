@@ -98,7 +98,7 @@ html_theme_options = {
             "name": "SynopticPy",
             "url": "https://blaylockbk.github.io/SynopticPy/_build/html/",
         },
-        {"name": "Herbie", "url": "https://blaylockbk.github.io/Herbie/_build/html/"},
+        {"name": "Herbie", "url": "https://herbie.readthedocs.io/"},
     ],
     "logo": {
         "image_light": "goes2go_logo.png",
