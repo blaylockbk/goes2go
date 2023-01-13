@@ -31,7 +31,7 @@ GOES-East and GOES-West satellite data are made available on Amazon Web Services
 
 <br>
 
-# 📔 [GOES-2-go Documentation](https://blaylockbk.github.io/goes2go/_build/html/)
+# 📔 [GOES-2-go Documentation](https://goes2go.readthedocs.io/)
 
 <br>
 
