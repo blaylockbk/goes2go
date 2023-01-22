@@ -12,7 +12,6 @@
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/goes2go.svg)](https://anaconda.org/conda-forge/goes2go)
 [![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878)
 
-
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Documentation Status](https://readthedocs.org/projects/goes2go/badge/?version=latest)](https://goes2go.readthedocs.io/?badge=latest)
@@ -137,7 +136,7 @@ There are methods to do the following:
 
 ## RGB Recipes
 
-The `rgb` xarray accessor creates an RGB product for a GOES ABI multichannel xarray.Dataset. See the [demo](https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
+The `rgb` xarray accessor creates an RGB product for a GOES ABI multichannel xarray.Dataset. See the [demo](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
 
 ```python
 import matplotlib.pyplot as plt
@@ -151,7 +150,7 @@ ax.coastlines()
 
 ## Field of View
 
-The `FOV` xarray accessor creates shapely.Polygon objects for the ABI and GLM field of view. See notebooks for [GLM](https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_GLM.html) and [ABI](https://blaylockbk.github.io/goes2go/_build/html/user_guide/notebooks/field-of-view_ABI.html) field of view.
+The `FOV` xarray accessor creates shapely.Polygon objects for the ABI and GLM field of view. See notebooks for [GLM](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/field-of-view_GLM.html) and [ABI](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/field-of-view_ABI.html) field of view.
 
 ```python
 from goes2go.data import goes_latest
@@ -169,18 +168,17 @@ GOES-West is centered over -137 W and GOES-East is centered over -75 W. When GOE
 The GLM field of view is slightly smaller and limited by a bounding box. Below is the approximated GLM field of view:
 ![field of view image](./images/GLM_field-of-view.png)
 
-
 # How to Cite and Acknowledge
+
 If GOES-2-go played an important role in your work, please [tell me about it](https://github.com/blaylockbk/goes2go/discussions/categories/show-and-tell)! Also, consider including a citation or acknowledgement in your article or product.
 
-***Suggested Citation***
+**_Suggested Citation_**
 
 > Blaylock, B. K. (2022). GOES-2-go: Download and display GOES-East and GOES-West data (Version 2022.07.15) [Computer software]. https://github.com/blaylockbk/goes2go
 
-***Suggested Acknowledgment***
+**_Suggested Acknowledgment_**
 
 > A portion of this work used code generously provided by Brian Blaylock's GOES-2-go python package (https://github.com/blaylockbk/goes2go)
-
 
 ### What if I don't like the GOES-2-go or Python?
 
@@ -192,15 +190,15 @@ I hope you find this makes GOES data easier to retrieve and display. Enjoy!
 
 \- Brian Blaylock
 
-👨🏻‍💻 [Contributing Guidelines](https://blaylockbk.github.io/goes2go/_build/html/user_guide/contribute.html)  
+👨🏻‍💻 [Contributing Guidelines](https://goes2go.readthedocs.io/en/latest/user_guide/contribute.html)  
 💬 [GitHub Discussions](https://github.com/blaylockbk/goes2go/discussions)  
 🚑 [GitHub Issues](https://github.com/blaylockbk/goes2go/issues)  
 🌐 [Personal Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)
 
 P.S. If you like GOES-2-go, check out my [Herbie](https://github.com/blaylockbk/Herbie) package to download weather model data and [SynopticPy](https://github.com/blaylockbk/Herbie) to download mesonet data from the Synoptic API.
 
-
 # Useful Links
+
 - [🙋🏻‍♂️ Brian's AWS GOES Web Downloader](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi)
 - [📔 GOES-R Series Data Book](https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf)
 - [🎠 Beginner's Guide](https://www.goes-r.gov/downloads/resources/documents/Beginners_Guide_to_GOES-R_Series_Data.pdf)

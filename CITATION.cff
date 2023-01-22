@@ -9,7 +9,7 @@ authors:
 title: "GOES-2-go: Download and display GOES-East and GOES-West data"
 version: 2022.07.15
 date-released: "2022-07-15"
-url: "https://blaylockbk.github.io/goes2go/_build/html/"
+url: "https://goes2go.readthedocs.io/"
 repository-code: "https://github.com/blaylockbk/goes2go"
 type: software
 keywords:
