@@ -19,10 +19,11 @@ sys.path.insert(0, os.path.abspath("../.."))
 import pydata_sphinx_theme
 from datetime import datetime
 
-# --- Project information -----------------------------------------------------
+# -- Project information -----------------------------------------------------
+utc_now = datetime.utcnow().strftime("%H:%M UTC %d %b %Y")
 
-project = "GOES-2-go Docs"
-copyright = f"{datetime.utcnow():%Y}, Brian K. Blaylock"
+project = "GOES-2-g- Docs"
+copyright = f"{datetime.utcnow():%Y}, Brian K. Blaylock.    ♻ Updated: {utc_now}"
 author = "Brian K. Blaylock"
 
 release = "0.1"
