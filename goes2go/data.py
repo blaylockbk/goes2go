@@ -229,14 +229,14 @@ def _as_xarray_MP(src, save_dir, i=None, n=None, verbose=True):
                 end=" ",
             )
         with open(local_copy, "rb") as f:
-            ds = xr.open_dataset(f)
+            ds = xr.load_dataset(f)
     else:
         if verbose:
             print(
                 f"\r📖☁ Reading ({i:,}/{n:,}) file from AWS to MEMORY [{src}].", end=" "
             )
         with fs.open(src, "rb") as f:
-            ds = xr.open_dataset(f).copy(deep=True)
+            ds = xr.load_dataset(f)
 
     # Turn some attributes to coordinates so they will be preserved
     # when we concat multiple GOES DataSets together.
