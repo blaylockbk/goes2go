@@ -1,7 +1,7 @@
 # Don't upload ANY NetCDF files
 *.nc
 
-_version.py
+goes2go/_version.py
 
 core.*
 
