@@ -228,7 +228,8 @@ def _as_xarray_MP(src, save_dir, i=None, n=None, verbose=True):
                 f"\r📖💽 Reading ({i:,}/{n:,}) file from LOCAL COPY [{local_copy}].",
                 end=" ",
             )
-        ds = xr.open_dataset(local_copy)
+        with open(local_copy, "rb") as f:
+            ds = xr.open_dataset(f)
     else:
         if verbose:
             print(
