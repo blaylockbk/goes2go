@@ -15,7 +15,6 @@ def _test_row(
     band=1,
     mode=6,
 ):
-
     return {
         "file": "fname",
         "product_mode": "pmode",
@@ -31,11 +30,9 @@ def _test_row(
 
 class TestData(unittest.TestCase):
     def test_goes_nearesttime_singleband(self):
-
         t = datetime(2021, 1, 1, 17, 0, 0)
 
         with patch("goes2go.data._goes_file_df") as _goes_file_df_patched:
-
             test_df = pd.DataFrame([_test_row(start=t)])
             _goes_file_df_patched.return_value = test_df
 
@@ -51,11 +48,9 @@ class TestData(unittest.TestCase):
             self.assertEqual(len(res), 1)
 
     def test_goes_nearesttime_multiband(self):
-
         t = datetime(2021, 1, 1, 17, 0, 0)
 
         with patch("goes2go.data._goes_file_df") as _goes_file_df_patched:
-
             # test case where both have the same time, 2 res expected
             test_df = pd.DataFrame(
                 [
