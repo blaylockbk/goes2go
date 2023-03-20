@@ -14,6 +14,7 @@ try:
 except:
     warnings.warn("goes2go xarray accessors could not be imported.")
 
+
 # =======================================================================
 # Append Path object with my custom expand method so user can use
 # environment variables in the config file (e.g., ${HOME}).

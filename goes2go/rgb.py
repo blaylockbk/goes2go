@@ -1103,6 +1103,5 @@ def NormalizedBurnRatio(C, **kwargs):
 
 
 if __name__ == "__main__":
-
     # Create images of each for Docs
     print("nothing here for now")
