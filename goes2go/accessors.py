@@ -795,7 +795,7 @@ class rgbAccessor:
         ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf"
         ds["DayLandCloudFire"].attrs["long_name"] = "Day Land Cloud Fire"
 
-        return ds["DayLandCloud"]
+        return ds["DayLandCloudFire"]
 
     def WaterVapor(self):
         """
