@@ -34,9 +34,9 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
 
     .. code:: python
 
-        FOV, geo = field_of_view(G)
-        ax = plt.subplot(projection=geo)
-        ax.add_geometries([FOV], crs=geo)
+        pFOV_inst, pFOV_dom, crs = field_of_view(G)
+        ax = plt.subplot(projection=crs)
+        ax.add_geometries([FOV], crs=crs)
 
     Parameters
     ----------
@@ -51,6 +51,12 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
         plane. If this number is less than the default, the polygon
         will not be calculated correctly because edge points will lie
         off the projection globe.
+
+    Returns
+    -------
+    pFOV_inst is a polygon of the instrument field of view.
+    pFOV_dom is a polygon of the domain field of view
+    crs is the cartopy coordinate reference system for the instrument
     """
     warnings.warn(
         "DEPRECIATION. Use the FOV accessor instead `G.FOV.full_disk` or `G.FOV.domain`"
@@ -97,7 +103,7 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
     # we are working in the geostationary projection coordinates
     # and the center point is 0,0 meters.
     FOV_radius = np.radians(FOV / 2) * sat_height
-    FOV_poly = Point(0, 0).buffer(FOV_radius, resolution=resolution)
+    pFOV_inst = Point(0, 0).buffer(FOV_radius, resolution=resolution)
 
     ## GLM is a bit funny. I haven't found this in the documentation
     ## anywhere, yet, but the GLM field-of-view is not exactly
@@ -127,12 +133,11 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
         x = np.hstack([side1x, side2x, side3x, side4x])
         y = np.hstack([side1y, side2y, side3y, side4y])
         square_FOV = Polygon(zip(x, y))
-        FOV_poly = FOV_poly.intersection(square_FOV)
-
-        return FOV_poly, crs
+        pFOV_inst = pFOV_inst.intersection(square_FOV)
+        pFOV_dom = None # there is no "domain" for the GLM instrument
 
     if G.title.startswith("ABI"):
-        # We have the global field of view
+        # We have the global field of view,
         # now we need the domain field of view
         dom_border = np.array(
             [(i, G.y.data[0]) for i in G.x.data]
@@ -140,9 +145,10 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
             + [(i, G.y.data[-1]) for i in G.x.data[::-1]]
             + [(G.x.data[0], i) for i in G.y.data[::-1]]
         )
-        FOV_dom = Polygon(dom_border * sat_height)
-        FOV_dom = FOV_dom.intersection(FOV_poly)
-        return FOV_poly, FOV_dom, crs
+        pFOV_dom = Polygon(dom_border * sat_height)
+        pFOV_dom = pFOV_dom.intersection(pFOV_inst)
+
+    return pFOV_inst, pFOV_dom, crs
 
 
 def abi_crs(G, reference_variable="CMI_C01"):

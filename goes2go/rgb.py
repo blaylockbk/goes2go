@@ -8,12 +8,12 @@ RGB Recipes
 
 .. image:: /_static/RGB_sample.png
 
-These functions take GOES-East or GOES-West multichannel data on a 
-fixed grid (files named ``ABI-L2-MCMIPC``) and generates a 3D 
+These functions take GOES-East or GOES-West multichannel data on a
+fixed grid (files named ``ABI-L2-MCMIPC``) and generates a 3D
 Red-Green-Blue (RGB) array for various GOES RGB products.
 
 RGB recipes are based on the `GOES Quick Guides
-<http://rammb.cira.colostate.edu/training/visit/quick_guides/>`_ 
+<http://rammb.cira.colostate.edu/training/visit/quick_guides/>`_
 and include the following:
 
     - NaturalColor
@@ -36,38 +36,38 @@ and include the following:
     - NightFogDifference
     - RocketPlume              ✨New - July 9, 2021
 
-The returned RGB can easily be viewed with ``plt.imshow(RGB)``. 
+The returned RGB can easily be viewed with ``plt.imshow(RGB)``.
 
-For imshow to show an RGB image, the values must range between 0 and 1. 
-Values are normalized between the range specified in the Quick Guides. 
-This normalization is synonymous to `contrast or histogram stretching 
+For imshow to show an RGB image, the values must range between 0 and 1.
+Values are normalized between the range specified in the Quick Guides.
+This normalization is synonymous to `contrast or histogram stretching
 <https://micro.magnet.fsu.edu/primer/java/digitalimaging/processing/histogramstretching/index.html>`_
 (`more info here
 <https://staff.fnwi.uva.nl/r.vandenboomgaard/IPCV20162017/LectureNotes/IP/PointOperators/ImageStretching.html>`_)
 and follows the formula:
 
-    .. code-block:: python 
+    .. code-block:: python
 
         NormalizedValue = (OriginalValue-LowerLimit)/(UpperLimit-LowerLimit)
 
 `Gamma correction <https://en.wikipedia.org/wiki/Gamma_correction>`_
-darkens or lightens an image (`more info 
-<https://www.cambridgeincolour.com/tutorials/gamma-correction.htm>`_) 
+darkens or lightens an image (`more info
+<https://www.cambridgeincolour.com/tutorials/gamma-correction.htm>`_)
 and follows the decoding formula:
 
-    .. code-block:: python 
-        
+    .. code-block:: python
+
         R_corrected = R**(1/gamma)
 
 The input for all these functions are denoted by ``C`` for "channels" which
 represents the GOES ABI multichannel file opened with xarray. For example:
 
-    .. code-block:: python 
-        
+    .. code-block:: python
+
         FILE = 'OR_ABI-L2-MCMIPC-M6_G17_s20192201631196_e20192201633575_c20192201634109.nc'
         C = xarray.open_dataset(FILE)
 
-All RGB products are demonstarted in the `make_RGB_Demo 
+All RGB products are demonstarted in the `make_RGB_Demo
 <https://github.com/blaylockbk/goes2go/tree/master/notebooks>`_ notebook.
 
 Note: I don't have a `GeoColor <https://journals.ametsoc.org/view/journals/atot/37/3/JTECH-D-19-0134.1.xml>`_
@@ -164,7 +164,7 @@ def rgb_as_dataset(G, RGB, description, latlon=False):
     ds.attrs["description"] = description
 
     # Convert x, y points to latitude/longitude
-    _, crs = field_of_view(G)
+    _, _, crs = field_of_view(G)
     sat_h = G.goes_imager_projection.perspective_point_height
     x2 = G.x * sat_h
     y2 = G.y * sat_h

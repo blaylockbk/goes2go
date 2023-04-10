@@ -213,7 +213,6 @@ class fieldOfViewAccessor:
             FOV_degrees -= 0.06
             FOV_radius = np.radians(FOV_degrees / 2) * sat_height
             FOV_polygon = Point(0, 0).buffer(FOV_radius, resolution=160)
-            return FOV_polygon
         elif ds.title.startswith("GLM"):
             # Field of view (FOV) of GLM is different than ABI.
             # Do a little offset to better match boundary from
@@ -240,7 +239,7 @@ class fieldOfViewAccessor:
             )
             cutout = Polygon(cutout_points)
             FOV_polygon = FOV_polygon.intersection(cutout)
-            return FOV_polygon
+        return FOV_polygon
 
     @property
     def domain(self):
