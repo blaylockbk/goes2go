@@ -20,6 +20,7 @@ except:
 from shapely.geometry import Point, Polygon
 
 
+# TODO: Remove this someday
 def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
     """
     Create a field-of-view polygon for the GOES data.
@@ -59,8 +60,11 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
     crs is the cartopy coordinate reference system for the instrument
     """
     warnings.warn(
-        "DEPRECIATION. Use the FOV accessor instead `G.FOV.full_disk` or `G.FOV.domain`"
-    )
+            "Use the FOV accessor instead `G.FOV.full_disk` or `G.FOV.domain`",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
     if G.title.startswith("ABI"):
         globe_kwargs = dict(
             semimajor_axis=G.goes_imager_projection.semi_major_axis,
