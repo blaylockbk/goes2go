@@ -56,6 +56,7 @@ class GOES:
         product=config["timerange"].get("product"),
         domain=config["timerange"].get("domain"),
         bands=None,
+        channel=None,
     ):
         """Initialize a GOES object for a desired satellite and product.
 
@@ -76,14 +77,27 @@ class GOES:
             - M = Mesoscale sector (both)
             - M1 = Mesoscale sector 1
             - M2 = Mesoscale sector 2
-        band : None, int, or list
+        bands : None, int, or list
             Specify the ABI channels to retrieve. *Only used if the
             product requested has unique bands.*
+            For example, ``bands=2`` for channel 2 or ``bands=[1,2,3]``
+            for channels 1, 2 and 3.
+        channel : None, int, or list
+            Alias for "bands" argument. If channel is not None, then
+            "bands" is not use.
+
+            Note: I don't like the name of "bands", but the NetCDF file
+            uses the term "band" instead of "channel" in reference to
+            the ABI products, so I'll stick with "band" for now.
         """
         self.satellite = satellite
         self.product = product
         self.domain = domain
-        self.bands = bands
+
+        if channel is not None:
+            self.bands = channel
+        else:
+            self.bands = bands
 
         if self.product.startswith("ABI") and self.product in _product:
             # Sometimes the user might inavertantly give the domain
@@ -161,7 +175,11 @@ class GOES:
     def latest(self, **kwargs):
         """Get the latest available GOES data."""
         return goes_latest(
-            satellite=self.satellite, product=self.product, domain=self.domain, **kwargs
+            satellite=self.satellite,
+            product=self.product,
+            domain=self.domain,
+            bands=self.bands,
+            **kwargs,
         )
 
     def nearesttime(
