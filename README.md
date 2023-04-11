@@ -84,6 +84,24 @@ pip install git+https://github.com/blaylockbk/goes2go.git
 - [Create RGB composites](#rgb-recipes)
 - [Get the field of view](#field-of-view)
 
+```mermaid
+  graph TD;
+      aws16[(AWS\nnoaa-goes16)] -.-> G
+      aws17[(AWS\nnoaa-goes17)] -.-> G
+      aws18[(AWS\nnoaa-goes18)] -.-> G
+      G((. GOES 2-go .))
+      G --- .latest
+      G --- .nearesttime
+      G --- .timerange
+      .latest --> ds[(xarray.DataSet)]
+      .nearesttime --> ds[(xarray.DataSet)]
+      .timerange --> ds[(xarray.DataSet)]
+      ds --- rgb[ds.rgb\naccessor to make RGB composites]
+      ds --- fov[ds.FOV\naccessor to get field-of-view polygons]
+
+      style G fill:#F8AF22,stroke:#259DD7,stroke-width:4px,color:#000000
+```
+
 ## Download Data
 
 Download GOES ABI or GLM NetCDF files to your local computer. Files can also be read with xarray.
