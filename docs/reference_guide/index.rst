@@ -18,7 +18,10 @@ Access with the ``FOV`` accessor.
 
 .. code-block:: python
 
-   # G is an xarray.Dataset of GOES data.
+   # Get latest multi-channel cloud moisture imagery product.
+   # "G" is an xarray.Dataset of GOES data.
+   G = GOES(satellite=16, product="ABI-L2-MCMIPC").latest()
+
    G.FOV.domain  # only ABI datasets
    G.FOV.full_disk  # ABI or GLM datasets
 
@@ -36,25 +39,36 @@ RGB values and also attaches the RGB DataArray to the existing GOES Dataset.
 
 .. code-block:: python
 
-   # G is an xarray.Dataset of GOES data.
-   G.rgb.TrueColor()
-   G.rgb.NaturalColor()
-   ... etc.
+   from goes2go import GOES
+   import matplotlib.pyplot as plt
+
+   # Get latest multi-channel cloud moisture imagery product.
+   # "G" is an xarray.Dataset of multi-channel GOES data (e.g., product="ABI-L2-MCMIPC").
+   G = GOES(satellite=16, product="ABI-L2-MCMIPC").latest()
+
+   # Create RGB an plot
+   tc = G.rgb.TrueColor()
+   plt.imshow(tc)
+
+   nc = G.rgb.NaturalColor()
+   plt.imshow(nc)
+
+   # etc.
 
    # Also can get the Cartopy coordinate reference system
-   G.rgb.crs
+   crs = G.rgb.crs
 
 
 To make a simple RGB plot on a Cartopy axes, do the following:
 
 .. code-block:: python
 
-   from goes2go.data import goes_latest
+   from goes2go import GOES
    import matplotlib.pyplot as plt
    import cartopy.crs as ccrs
 
-   # Download a GOES ABI dataset
-   G = goes_latest(product='ABI')
+   # Download and read a GOES ABI MCMIPC dataset
+   G = GOES(satellite=16, product="ABI-L2-MCMIPC").latest()
 
    # Make figure on Cartopy axes
    ax = plt.subplot(projection=G.rgb.crs )
