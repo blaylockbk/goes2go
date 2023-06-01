@@ -1194,3 +1194,43 @@ class rgbAccessor:
         ds["NormalizedBurnRatio"].attrs["long_name"] = "Normalized Burn Ratio"
 
         return ds["NormalizedBurnRatio"]
+
+    def SeaSpray(self, **kwargs):
+        """
+        Sea Spray RGB:
+        (See `Quick Guide <https://rammb.cira.colostate.edu/training/visit/quick_guides/VIIRS_Sea_Spray_RGB_Quick_Guide_v2.pdf>`__ for reference)
+        
+#        .. image:: /_static/AirMass.png
+        
+        Parameters
+        ----------
+        """
+
+        ds = self._obj
+        
+        # Load the three channels into appropriate R, G, and B variables
+        R = ds["CMI_C07"].data - ds["CMI_C13"].data
+        G = ds["CMI_C03"].data
+        B = ds["CMI_C02"].data
+        
+        # Normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
+        R = _normalize(R, 0, 5)
+        G = _normalize(G, .01, .09) #values for this channel go from 0 to 1.
+        B = _normalize(B, .02, .12) #values for this channel go from o to 1.
+        
+        # Apply a gamma correction to each R, G, B channel
+        R = _gamma_correction(R, 1.0)
+        G = _gamma_correction(G, 1.67)
+        B = _gamma_correction(B, 1.67)
+
+        # The final RGB array :)
+        RGB = np.dstack([R, G, B])
+        
+        ds["SeaSpray"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["SeaSpray"].attrs[
+            "Quick Guide"
+        ] = "https://rammb.cira.colostate.edu/training/visit/quick_guides/VIIRS_Sea_Spray_RGB_Quick_Guide_v2.pdf"
+        ds["SeaSpray"].attrs["long_name"] = "Sea Spray"
+
+        return ds["SeaSpray"]
