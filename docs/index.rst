@@ -4,14 +4,14 @@
 
 .. raw:: html
 
-   <img src="_static/goes2go_logo.png" style="filter: drop-shadow(0px 0px 100px #ffffff28)">
+   <img src="_static/goes2go_logo.png" style="filter: drop-shadow(0px 0px 100px #ffffff28); background-color:transparent;">
 
 
 =======================
 GOES-2-Go Documentation
 =======================
 
-GOES-2-Go is a python package that helps you download GOES-R series (GOES-East/16 and GOES-West/17/18) NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive.
+GOES-2-Go is a python package that helps you download GOES-R series (GOES-East/16 and GOES-West/17/18) NetCDF files from the `Amazon Web Services <https://registry.opendata.aws/noaa-goes/>`_ archive and provides RGB recipes for various RGB products.
 
 .. toctree::
    :maxdepth: 1
