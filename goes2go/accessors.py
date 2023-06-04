@@ -626,6 +626,83 @@ class rgbAccessor:
         ds["AirMass"].attrs["long_name"] = "Air Mass"
 
         return ds["AirMass"]
+    
+    def AirMassTropical(self):
+        """
+        Air Mass Tropical RGB:
+        (See `Quick Guide <https://www.eumetsat.int/media/43301>`__ for reference)
+
+        .. image:: /_static/AirMassTropical.png
+
+
+        """
+        ds = self._obj
+
+        # Load the three channels into appropriate R, G, and B variables
+        R = ds["CMI_C08"].data - ds["CMI_C13"].data
+        G = ds["CMI_C12"].data - ds["CMI_C13"].data
+        B = ds["CMI_C08"].data - 273.15  # remember to convert to Celsius
+
+        # _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
+        R = _normalize(R, -25, 5)
+        G = _normalize(G, -30, 25)
+        B = _normalize(B, -83, -30)
+            
+        # Invert B 
+        B = 1 - B
+            
+        # Apply the gamma correction to Red channel.
+        #   corrected_value = value^(1/gamma)
+        gamma = .5
+        G = _gamma_correction(G, gamma)
+            
+        # The final RGB array :)
+        RGB = np.dstack([R, G, B]) 
+        
+        ds["AirMassTropical"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"] 
+        ds["AirMassTropical"].attrs[
+            "Quick Guide"
+        ] = "https://www.eumetsat.int/media/43301"
+        ds["AirMassTropical"].attrs["long_name"] = "Air Mass Tropical"
+        
+        return ds["AirMassTropical"]
+    
+    def AirMassTropicalPac(self):
+        """
+        Air Mass Tropical Pac RGB:
+        (See `Blog Write-up <https://cimss.ssec.wisc.edu/satellite-blog/archives/51777>`__ for reference)
+        
+        .. image:: /_static/AirMassTropicalPac.png
+        
+
+        """
+        ds = self._obj
+        
+        # Load the three channels into appropriate R, G, and B variables
+        R = ds["CMI_C08"].data - ds["CMI_C10"].data
+        G = ds["CMI_C12"].data - ds["CMI_C13"].data
+        B = ds["CMI_C08"].data - 273.15  # remember to convert to Celsius
+        
+        # _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
+        R = _normalize(R, -26.2, .6)
+        G = _normalize(G, -26.2, 27.4)
+        B = _normalize(B, -64.45, -29.25)
+
+        # Invert B
+        B = 1 - B
+
+        # The final RGB array :)
+        RGB = np.dstack([R, G, B])
+
+        ds["AirMassTropicalPac"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["AirMassTropicalPac"].attrs[
+            "Quick Guide"
+        ] = "https://cimss.ssec.wisc.edu/satellite-blog/archives/51777"
+        ds["AirMassTropicalPac"].attrs["long_name"] = "Air Mass Tropical Pac"
+
+        return ds["AirMassTropicalPac"]
 
     def DayCloudPhase(self):
         """
