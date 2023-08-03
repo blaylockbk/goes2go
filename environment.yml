@@ -21,7 +21,7 @@ dependencies:
   - netcdf4
   - numpy
   - pandas
-  - s3fs
+  - s3fs>=2023.6.0
   - toml
   - xarray
 
