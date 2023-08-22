@@ -54,16 +54,6 @@ jobs:
         cache: 'pip'
         cache-dependency-path: 'setup.cfg'
 
-    - name: Install prerequisites (Linux)
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt -y install libgeos-dev libeccodes-dev
-
-    - name: Install prerequisites (macOS)
-      if: runner.os == 'macOS'
-      run: |
-        brew install pkg-config geos eccodes
-
     - name: Install project
       run: |
         pip3 install --requirement=requirements-test.txt
