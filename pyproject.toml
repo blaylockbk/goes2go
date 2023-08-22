@@ -30,13 +30,15 @@ keywords = [
     "xarray",
 ]
 dependencies = [
+    "cartopy>=0.22.0",
+    "h5netcdf",
+    "matplotlib",
+    "metpy",
     "numpy",
     "pandas",
-    "xarray",
-    "metpy",
-    "cartopy>=0.22.0",
-    "toml",
     "s3fs>=2023.6.0",
+    "toml",
+    "xarray",
 ]
 dynamic = ["version"]
 

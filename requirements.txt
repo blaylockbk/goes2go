@@ -1,9 +1,10 @@
+cartopy>=0.22.0
+h5netcdf
+matplotlib
+metpy
 numpy
 pandas
-xarray
-metpy
-toml
-cartopy>=0.22.0
-matplotlib
 s3fs>=2023.6.0
+toml
+xarray
 git+https://github.com/blaylockbk/Carpenter_Workshop.git
