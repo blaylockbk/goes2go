@@ -2,7 +2,7 @@ name: goes2go
 channels:
   - conda-forge
 dependencies:
-  - python>=3.10
+  - python>=3.11
   - pip
   - git
   - rclone >= 1.58.0 # Not required by goes2go, but is an awesome alternative https://rclone.org/

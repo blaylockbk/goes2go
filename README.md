@@ -14,6 +14,7 @@
 
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Tests (Python)](https://github.com/blaylockbk/goes2g0/actions/workflows/tests-python.yml/badge.svg)](https://github.com/blaylockbk/goes2g0/actions/workflows/tests-python.yml)
 [![Documentation Status](https://readthedocs.org/projects/goes2go/badge/?version=latest)](https://goes2go.readthedocs.io/?badge=latest)
 [![Python](https://img.shields.io/pypi/pyversions/goes2go.svg)](https://pypi.org/project/goes2go/)
 [![Conda Recipe](https://img.shields.io/badge/recipe-goes2go-green.svg)](https://anaconda.org/conda-forge/goes2go)
@@ -24,9 +25,9 @@
 
 </div>
 
-GOES-East and GOES-West satellite data are made available on Amazon Web Services through [NOAA's Big Data Program](https://www.noaa.gov/information-technology/big-data). **GOES-2-go** is a python package that makes it easy to find and download the files you want to your local computer with some additional helpers to look at and understand the data.
+GOES-East and GOES-West satellite data are made available on Amazon Web Services through [NOAA's Open Data Dissemination Program](https://www.noaa.gov/information-technology/open-data-dissemination). **GOES-2-go** is a python package that makes it easy to find and download the files you want from [AWS](https://registry.opendata.aws/noaa-goes/) to your local computer with some additional helpers to visualize and understand the data.
 
----
+<hr>
 
 <br>
 
@@ -34,7 +35,7 @@ GOES-East and GOES-West satellite data are made available on Amazon Web Services
 
 <br>
 
----
+<hr>
 
 # Installation
 
@@ -62,7 +63,7 @@ conda activate goes2go
 Alternatively, `goes2go` is published on PyPI and you can install it with pip, _but_ it requires some additional dependencies that you will have to install yourself:
 
 - Python 3.8+
-- [Cartopy](https://scitools.org.uk/cartopy/docs/latest/installing.html), which requires GEOS and Proj.
+- [Cartopy](https://scitools.org.uk/cartopy/docs/latest/installing.html), which requires GEOS and Proj (if using `cartopy<0.22.0`).
 - MetPy
 - _Optional:_ [Carpenter Workshop](https://github.com/blaylockbk/Carpenter_Workshop)
 
@@ -154,7 +155,7 @@ There are methods to do the following:
 
 ## RGB Recipes
 
-The `rgb` xarray accessor creates an RGB product for a GOES ABI multichannel xarray.Dataset. See the [demo](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
+The `rgb` xarray accessor computes various RGB products from a GOES ABI ***ABI-L2-MCMIP*** (multi-channel cloud and moisture imagry products) `xarray.Dataset`. See the [demo](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
 
 ```python
 import matplotlib.pyplot as plt
@@ -168,7 +169,7 @@ ax.coastlines()
 
 ## Field of View
 
-The `FOV` xarray accessor creates shapely.Polygon objects for the ABI and GLM field of view. See notebooks for [GLM](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/field-of-view_GLM.html) and [ABI](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/field-of-view_ABI.html) field of view.
+The `FOV` xarray accessor creates `shapely.Polygon` objects for the ABI and GLM field of view. See notebooks for [GLM](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/field-of-view_GLM.html) and [ABI](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/field-of-view_ABI.html) field of view.
 
 ```python
 from goes2go.data import goes_latest
@@ -192,7 +193,7 @@ If GOES-2-go played an important role in your work, please [tell me about it](ht
 
 **_Suggested Citation_**
 
-> Blaylock, B. K. (2022). GOES-2-go: Download and display GOES-East and GOES-West data (Version 2022.07.15) [Computer software]. https://github.com/blaylockbk/goes2go
+> Blaylock, B. K. (2023). GOES-2-go: Download and display GOES-East and GOES-West data (Version 2022.07.15) [Computer software]. https://github.com/blaylockbk/goes2go
 
 **_Suggested Acknowledgment_**
 
@@ -202,7 +203,7 @@ If GOES-2-go played an important role in your work, please [tell me about it](ht
 
 As an alternative you can use [rclone](https://rclone.org/) to download GOES files from AWS. I quite like rclone. Here is a [short rclone tutorial](https://github.com/blaylockbk/pyBKB_v3/blob/master/rclone_howto.md).
 
----
+<hr>
 
 I hope you find this makes GOES data easier to retrieve and display. Enjoy!
 
@@ -213,9 +214,12 @@ I hope you find this makes GOES data easier to retrieve and display. Enjoy!
 🚑 [GitHub Issues](https://github.com/blaylockbk/goes2go/issues)  
 🌐 [Personal Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)
 
-P.S. If you like GOES-2-go, check out my [Herbie](https://github.com/blaylockbk/Herbie) package to download weather model data and [SynopticPy](https://github.com/blaylockbk/Herbie) to download mesonet data from the Synoptic API.
+P.S. If you like GOES-2-go, check out my other python packages
+- [🏁 Herbie](https://github.com/blaylockbk/Herbie): download numerical weather model data
+- [🌡️ SynopticPy](https://github.com/blaylockbk/SynopticPy): retrieve mesonet data from the Synoptic API.
+- [🌹 Pandas-rose](https://github.com/blaylockbk/pandas-rose): easly wind rose from Pandas dataframe.
 
-# Useful Links
+# Related Content
 
 - [🙋🏻‍♂️ Brian's AWS GOES Web Downloader](https://home.chpc.utah.edu/~u0553130/Brian_Blaylock/cgi-bin/goes16_download.cgi)
 - [📔 GOES-R Series Data Book](https://www.goes-r.gov/downloads/resources/documents/GOES-RSeriesDataBook.pdf)
