@@ -43,11 +43,11 @@ dependencies = [
 dynamic = ["version"]
 
 [project.urls]
-"Homepage" = "https://github.com/blaylockbk/Herbie"
-"Documentation" = "https://herbie.readthedocs.io/"
-"Repository" = "https://github.com/blaylockbk/Herbie"
-"Changelog" = "https://github.com/blaylockbk/Herbie/releases"
-"Bug Tracker" = "https://github.com/blaylockbk/Herbie/issues"
+"Homepage" = "https://github.com/blaylockbk/goes2go"
+"Documentation" = "https://goes2go.readthedocs.io/"
+"Repository" = "https://github.com/blaylockbk/goes2go"
+"Changelog" = "https://github.com/blaylockbk/goes2go/releases"
+"Bug Tracker" = "https://github.com/blaylockbk/goes2go/issues"
 
 [project.optional-dependencies]
 docs = [
