@@ -14,6 +14,7 @@
 
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Tests (Python)](https://github.com/blaylockbk/goes2g0/actions/workflows/tests-python.yml/badge.svg)](https://github.com/blaylockbk/goes2g0/actions/workflows/tests-python.yml)
 [![Documentation Status](https://readthedocs.org/projects/goes2go/badge/?version=latest)](https://goes2go.readthedocs.io/?badge=latest)
 [![Python](https://img.shields.io/pypi/pyversions/goes2go.svg)](https://pypi.org/project/goes2go/)
 [![Conda Recipe](https://img.shields.io/badge/recipe-goes2go-green.svg)](https://anaconda.org/conda-forge/goes2go)
