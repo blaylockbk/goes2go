@@ -1,10 +1,11 @@
 ## Brian Blaylock
 ## July 8, 2021
 
-import warnings
-import toml
-from pathlib import Path
 import os
+import warnings
+from pathlib import Path
+
+import toml
 
 # =======================================================================
 # Load custom xarray accessors
@@ -16,8 +17,8 @@ except:
 
 
 # =======================================================================
-# Append Path object with my custom expand method so user can use
-# environment variables in the config file (e.g., ${HOME}).
+# Overload Path object with my custom `expand` method so the user can
+# set environment variables in the config file (e.g., ${HOME}).
 def _expand(self):
     """
     Fully expand and resolve the Path with the given environment variables.
@@ -25,7 +26,7 @@ def _expand(self):
     Example
     -------
     >>> Path('$HOME').expand()
-    >>> PosixPath('/p/home/blaylock')
+    PosixPath('/p/home/blaylock')
     """
     return Path(os.path.expandvars(self)).expanduser().resolve()
 
@@ -33,19 +34,21 @@ def _expand(self):
 Path.expand = _expand
 
 # =======================================================================
-# goes2go configuration file
-# Configuration file is save in `~/config/goes2go/config.toml`
-_config_path = Path("~/.config/goes2go/config.toml").expand()
-_save_dir = str(Path("~/data").expand())
+# Location of goes2go configuration file
+_config_path = os.getenv("GOES2GO_CONFIG_PATH", "~/.config/goes2go")
+_config_path = Path(_config_path).expand()
+_config_file = _config_path / "config.toml"
 
+# Default directory goes2go saves model output
 # NOTE: The `\\` is an escape character in TOML.
-# For Windows paths "C:\\user\\"" needs to be "C:\\\\user\\\\""
-_save_dir = str(Path("~/data").expand())
-_save_dir = _save_dir.replace("\\", "\\\\")
+#       For Windows paths, "C:\\user\\"" needs to be "C:\\\\user\\\\""
+_save_dir = os.getenv("GOES2GO_SAVE_DIR", "~/data")
+_save_dir = Path(_save_dir).expand()
+_save_dir = str(_save_dir).replace("\\", "\\\\")
 
 # =======================================================================
 # Default TOML Configuration
-default_toml = f"""
+default_toml = f""" # GOES-2-go Defaults
 ["default"]
 save_dir = "{_save_dir}"
 satellite = "noaa-goes16"
@@ -69,30 +72,57 @@ within = "1H"
 return_as = "xarray"
 """
 
-# =======================================================================
-# If a config file isn't found, make one
-if not _config_path.exists():
-    print(
-        f" ╭─────────────────────────────────────────────────╮\n"
-        f" │ I'm building goes2go's default config file.     │\n"
-        f" ╰╥────────────────────────────────────────────────╯\n"
-        f" 👷🏻‍♂️"
-    )
-    _config_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(_config_path, "w") as f:
-        toml_string = toml.dump(toml.loads(default_toml), f)
-    print(f"⚙ Created config file [{_config_path}] with default values.")
+########################################################################
+# Load config file (create one if needed)
+try:
+    # Load the goes2go config file
+    config = toml.load(_config_file)
+except:
+    try:
+        # Create the goes2go config file
+        _config_path.mkdir(parents=True, exist_ok=True)
+        with open(_config_file, "w", encoding="utf-8") as f:
+            f.write(default_toml)
 
-# =======================================================================
-# Read the config file
-config = toml.load(_config_path)
+        print(
+            f" ╭─goes2go──────────────────────────────────────────────╮\n"
+            f" │ INFO: Created a default config file.                 │\n"
+            f" │ You may view/edit goes2go's configuration here:      │\n"
+            f" │ {str(_config_file):^53s}│\n"
+            f" ╰──────────────────────────────────────────────────────╯\n"
+        )
 
+        # Load the new goes2go config file
+        config = toml.load(_config_file)
+    except (FileNotFoundError, PermissionError, IOError):
+        print(
+            f" ╭─goes2go─────────────────────────────────────────────╮\n"
+            f" │ WARNING: Unable to create config file               │\n"
+            f" │ {str(_config_file):^53s}│\n"
+            f" │ goes2go will use standard default settings.         │\n"
+            f" │ Consider setting env variable GOES2GO_CONFIG_PATH.  │\n"
+            f" ╰─────────────────────────────────────────────────────╯\n"
+        )
+        config = toml.loads(default_toml)
+
+
+# Expand the full path for `save_dir`
 config["default"]["save_dir"] = Path(config["default"]["save_dir"]).expand()
+
+if os.getenv("GOES2GO_SAVE_DIR"):
+    config["default"]["save_dir"] = Path(os.getenv("GOES2GO_SAVE_DIR")).expand()
+    print(
+        f" ╭─goes2go──────────────────────────────────────────────╮\n"
+        f" │ INFO: Overriding the configured save_dir because the │\n"
+        f" │ environment variable GOES2GO_SAVE_DIR is set to      │\n"
+        f" │ {os.getenv('GOES2GO_SAVE_DIR'):^53s}│\n"
+        f" ╰──────────────────────────────────────────────────────╯\n"
+    )
 
 # Merge default settings with overwrite settings for each download method
 for i in ["timerange", "latest", "nearesttime"]:
     config[i] = {**config["default"], **config[i]}
 
 
+from goes2go.data import goes_latest, goes_nearesttime, goes_timerange
 from goes2go.NEW import GOES
-from goes2go.data import goes_nearesttime, goes_latest, goes_timerange
