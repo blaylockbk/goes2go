@@ -12,21 +12,28 @@
 #
 import os
 import sys
-import goes2go.data  ## Required for accessors to be documented
+from datetime import datetime
+
+import pydata_sphinx_theme
+
+import goes2go
+import goes2go.data  # # Required for accessors to be documented
 
 sys.path.insert(0, os.path.abspath("../.."))
 
-import pydata_sphinx_theme
-from datetime import datetime
+# The full version, including alpha/beta/rc/post tags
+release = goes2go.__version__
+
+# The version, excluding alpha/beat/rc/tags
+version = ".".join([str(i) for i in goes2go.__version_tuple__])
+
 
 # -- Project information -----------------------------------------------------
 utc_now = datetime.utcnow().strftime("%H:%M UTC %d %b %Y")
 
-project = "GOES-2-g- Docs"
+project = "goes2go"
 copyright = f"{datetime.utcnow():%Y}, Brian K. Blaylock.    ♻ Updated: {utc_now}"
-author = "Brian K. Blaylock"
-
-release = "0.1"
+author = f"Brian K. Blaylock"
 
 # -- General configuration ---------------------------------------------------
 
@@ -37,20 +44,22 @@ extensions = [
     "nbsphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
-    "sphinx.ext.viewcode",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+    "sphinx_copybutton",
+    "sphinx.ext.todo",
     "sphinx_design",
     "autodocsumm",
     "sphinx_markdown_tables",
     "myst_parser",
+    "sphinxcontrib.mermaid",
 ]
 
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 # MyST Docs: https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 myst_enable_extensions = [
-    "colon_fence",
     "linkify",  # Autodetects URL links in Markdown files
 ]
 
@@ -67,7 +76,6 @@ intersphinx_mapping = {
 
 source_suffix = {
     ".rst": "restructuredtext",
-    ".txt": "markdown",
     ".md": "markdown",
 }
 
@@ -77,47 +85,75 @@ templates_path = ["_templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", ".ipynb_checkpoints", ".vscode"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    ".ipynb_checkpoints",
+    ".vscode",
+]
 
-
-# --- Options for HTML output -------------------------------------------------
+# ---- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
 html_theme = "pydata_sphinx_theme"
+html_favicon = "_static/wxicon.png"
 
 html_theme_options = {
-    "github_url": "https://github.com/blaylockbk/goes2go",
-    "twitter_url": "https://twitter.com/blaylockbk",
-    "navbar_end": ["theme-switcher", "navbar-icon-links.html", "search-field.html"],
-    "google_analytics_id": "G-NWK8MJNNGX",
-    "use_edit_page_button": True,
-    "show_toc_level": 1,
     "external_links": [
+        {
+            "name": "SynopticPy",
+            "url": "https://synopticpy.readthedocs.io/",
+        },
         {
             "name": "Herbie",
             "url": "https://herbie.readthedocs.io/",
         },
+    ],
+    "header_links_before_dropdown": 4,
+    "icon_links": [
         {
-            "name": "SynopticPy",
-            "url": "https://synopticpy.readthedocs.io/",
+            "name": "Twitter",
+            "url": "https://twitter.com/blaylockbk",
+            "icon": "fa-brands fa-twitter",
+        },
+        {
+            "name": "GitHub",
+            "url": "https://github.com/blaylockbk/goes2go",
+            "icon": "fa-brands fa-github",
+        },
+        {
+            "name": "PyPI",
+            "url": "https://pypi.org/project/goes2go",
+            "icon": "fa-custom fa-pypi",
         },
     ],
     "logo": {
         "image_light": "goes2go_logo.png",
         "image_dark": "goes2go_logo.png",
     },
+    "use_edit_page_button": True,
+    "show_toc_level": 1,
+    "navbar_align": "left",
+    "show_version_warning_banner": True,
+    "navbar_center": ["version-switcher", "navbar-nav"],
+    "footer_start": ["copyright"],
+    "footer_center": ["sphinx-version"],
+    "switcher": {
+        "json_url": "https://goes2go.readthedocs.io/en/latest/_static/switcher.json",
+        "version_match": os.environ.get("READTHEDOCS_VERSION"),
+    },
 }
 
 html_sidebars = {}
 
-html_favicon = "_static/wxicon.png"
 
 html_context = {
     "github_user": "blaylockbk",
     "github_repo": "goes2go",
-    "github_version": "main",  # Make changes to the master branch
+    "github_version": "main",  # Make changes to the main branch
     "doc_path": "docs",
 }
 
@@ -125,8 +161,9 @@ html_context = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static", "../images"]
-
 html_css_files = ["brian_style.css"]
+html_js_files = []
+todo_include_todos = True
 
 # Set autodoc defaults
 autodoc_default_options = {
@@ -146,16 +183,3 @@ autodoc_mock_imports = [
     "imageio",
     "siphon",
 ]
-
-
-"""
-IMPORTANT NOTES ABOUT PUBLISHING TO GITHUB PAGES
------------------------------------------------
-1. Must have an empty file called .nojekell in this directory.
-
-2. Include an index.html file to redirect to the actual html build
-   Something like this in that file (yes, only one line)...
-        <meta http-equiv="Refresh" content="0;url=_build/html/"/>
-
-3.
-"""

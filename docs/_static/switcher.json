@@ -1,0 +1,22 @@
+[
+    {
+        "version": "latest",
+        "url": "https://goes2go.readthedocs.io/en/latest/",
+        "is_latest": true
+    },
+    {
+        "name": "stable",
+        "version": "stable",
+        "url": "https://goes2go.readthedocs.io/en/stable/"
+    },
+    {
+        "name": "2023.12.0",
+        "version": "2023.12.0",
+        "url": "https://goes2go.readthedocs.io/en/2023.12.0/"
+    },
+    {
+        "name": "2023.8.0",
+        "version": "2023.8.0",
+        "url": "https://goes2go.readthedocs.io/en/2023.8.0/"
+    }
+]
