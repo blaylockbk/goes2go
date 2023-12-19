@@ -5,6 +5,18 @@ import os
 import warnings
 from pathlib import Path
 
+__author__ = "Brian K. Blaylock"
+
+
+try:
+    ## TODO: Will the `_version.py` file *always* be present?
+    ## TODO: What if the person doesn't do "pip install"
+    from ._version import __version__, __version_tuple__
+except:
+    __version__ = "unknown"
+    __version_tuple__ = (999, 999, 999)
+
+
 import toml
 
 # =======================================================================
