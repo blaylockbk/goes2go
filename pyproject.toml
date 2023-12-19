@@ -19,7 +19,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Atmospheric Science",
-
 ]
 keywords = [
     "weather",
@@ -58,6 +57,7 @@ docs = [
     "myst-parser",
     "nbconvert",
     "nbsphinx",
+    "sphinx-copybutton",
     "pydata-sphinx-theme",
     "recommonmark",
     "sphinx",
@@ -66,7 +66,6 @@ docs = [
     "sphinx-markdown-tables",
     "sphinxcontrib-mermaid",
 ]
-
 test = ["pytest", "black", "isort"]
 
 [build-system]
