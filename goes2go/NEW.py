@@ -10,6 +10,7 @@ GOES Class
 import itertools
 import logging
 import re
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -20,9 +21,6 @@ from goes2go import config
 from goes2go.data import _goes_file_df, goes_latest, goes_nearesttime, goes_timerange
 
 log = logging.getLogger(__name__)
-
-# Location of tables directory
-from pathlib import Path
 
 tables_dir = Path(__file__).parent
 
@@ -40,7 +38,7 @@ product_table["description"] = product_table.description.str.strip()
 
 
 # Assume goes17 and goes18 have same products as goes16
-_product = {i.split("/")[-1] for i in fs.ls(f"noaa-goes16")}
+_product = {i.split("/")[-1] for i in fs.ls("noaa-goes16")}
 _product = set(filter(lambda x: x.split(".")[-1] not in ["pdf", "html"], _product))
 _product
 
@@ -50,6 +48,8 @@ _domains = {"F", "C", "M", "M1", "M2"}
 
 
 class GOES:
+    """The GOES satellite class."""
+
     def __init__(
         self,
         satellite=config["timerange"].get("satellite"),
@@ -160,15 +160,15 @@ class GOES:
 
     def __repr__(self):
         msg = [
-            f"╭───────────────────────────────╌┄┈",
-            f"│ 🌎 GOES Object   ",
-            f"│ ───────────────",
+            "╭───────────────────────────────╌┄┈",
+            "│ 🌎 GOES Object   ",
+            "│ ───────────────",
             f"│  {self.satellite=}",
             f"│  {self.product=}",
             f"│  {self.domain=}",
             f"│  {self.bands=}",
             f"│  {self.description=}",
-            f"╰───────────────────────────────╌┄┈",
+            "╰───────────────────────────────╌┄┈",
         ]
         return "\n".join(msg)
 

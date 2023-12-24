@@ -5,6 +5,8 @@ goes2go/_version.py
 
 core.*
 
+.ruff_cache
+
 # Don't upload my sandbox notebooks
 sandbox*.ipynb
 

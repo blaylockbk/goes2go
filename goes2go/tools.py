@@ -60,10 +60,10 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
     crs is the cartopy coordinate reference system for the instrument
     """
     warnings.warn(
-            "Use the FOV accessor instead `G.FOV.full_disk` or `G.FOV.domain`",
-            DeprecationWarning,
-            stacklevel=2,
-        )
+        "Use the FOV accessor instead `G.FOV.full_disk` or `G.FOV.domain`",
+        DeprecationWarning,
+        stacklevel=2,
+    )
 
     if G.title.startswith("ABI"):
         globe_kwargs = dict(
@@ -138,7 +138,7 @@ def field_of_view(G, resolution=60, reduce_abi_fov=0.06):
         y = np.hstack([side1y, side2y, side3y, side4y])
         square_FOV = Polygon(zip(x, y))
         pFOV_inst = pFOV_inst.intersection(square_FOV)
-        pFOV_dom = None # there is no "domain" for the GLM instrument
+        pFOV_dom = None  # there is no "domain" for the GLM instrument
 
     if G.title.startswith("ABI"):
         # We have the global field of view,

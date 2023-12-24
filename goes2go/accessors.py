@@ -24,7 +24,8 @@ from shapely.geometry import Point, Polygon
 # Image Processing Tools
 def _gamma_correction(a, gamma, verbose=False):
     """
-    Darken or lighten an image with `gamma correction
+    Darken or lighten an image with `gamma correction.
+
     <https://en.wikipedia.org/wiki/_gamma_correction>`_.
 
     Parameters
@@ -141,14 +142,14 @@ class fieldOfViewAccessor:
 
     @property
     def x(self):
-        """x sweep in crs units (m); x * sat_height"""
+        """The x sweep in crs units (m); x * sat_height."""
         if self._x is None:
             self._x = self._obj.x * self._sat_h
         return self._x
 
     @property
     def y(self):
-        """y sweep in crs units (m); x * sat_height"""
+        """The y sweep in crs units (m); x * sat_height."""
         if self._y is None:
             self._y = self._obj.y * self._sat_h
         return self._y
@@ -174,7 +175,7 @@ class fieldOfViewAccessor:
         return self._imshow_kwargs
 
     def get_latlon(self):
-        """Get lat/lon of all points"""
+        """Get lat/lon of all points."""
         X, Y = np.meshgrid(self.x, self.y)
         a = ccrs.PlateCarree().transform_points(self._crs, X, Y)
         lons, lats, _ = a[:, :, 0], a[:, :, 1], a[:, :, 2]
@@ -275,6 +276,8 @@ class fieldOfViewAccessor:
 
 @xr.register_dataset_accessor("rgb")
 class rgbAccessor:
+    """An accessor to create RGB composites."""
+
     def __init__(self, xarray_obj):
         self._obj = xarray_obj
         assert (
@@ -288,7 +291,7 @@ class rgbAccessor:
 
     @property
     def crs(self):
-        """Cartopy coordinate reference system"""
+        """Cartopy coordinate reference system."""
         if self._crs is None:
             # Why am I doing this? To cache the values.
             self._crs = self._obj.FOV.crs
@@ -296,14 +299,14 @@ class rgbAccessor:
 
     @property
     def x(self):
-        """x sweep in crs units (m); x * sat_height"""
+        """The x sweep in crs units (m); x * sat_height."""
         if self._x is None:
             self._x = self._obj.x * self._sat_h
         return self._x
 
     @property
     def y(self):
-        """y sweep in crs units (m); x * sat_height"""
+        """The y sweep in crs units (m); x * sat_height."""
         if self._y is None:
             self._y = self._obj.y * self._sat_h
         return self._y
@@ -329,7 +332,7 @@ class rgbAccessor:
         return self._imshow_kwargs
 
     def get_latlon(self):
-        """Get lat/lon of all points"""
+        """Get lat/lon of all points."""
         X, Y = np.meshgrid(self.x, self.y)
         a = ccrs.PlateCarree().transform_points(self._crs, X, Y)
         lons, lats, _ = a[:, :, 0], a[:, :, 1], a[:, :, 2]
@@ -341,7 +344,8 @@ class rgbAccessor:
     ####################################################################
     # Helpers
     def _load_RGB_channels(self, channels):
-        """
+        """Load the specified RGB channels.
+
         Return the R, G, and B arrays for the three channels requested. This
         function will convert the data any units in Kelvin to Celsius.
 
@@ -373,8 +377,8 @@ class rgbAccessor:
     ####################################################################
     # RGB Recipes
     def TrueColor(self, gamma=2.2, pseudoGreen=True, night_IR=True):
-        """
-        True Color RGB:
+        """Create a True Color RGB.
+
         (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
 
         This is similar to the NaturalColor RGB, but uses a different gamma
@@ -453,8 +457,9 @@ class rgbAccessor:
         return ds["TrueColor"]
 
     def NaturalColor(self, gamma=0.8, pseudoGreen=True, night_IR=False):
-        """
-        Natural Color RGB based on CIMSS method. Thanks Rick Kohrs!
+        """Create a Natural Color RGB based on CIMSS method.
+
+        Thanks Rick Kohrs!
         (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf>`__ for reference)
 
         Check out Rick Kohrs `merged GOES images <https://www.ssec.wisc.edu/~rickk/local-noon.html>`_.
@@ -489,8 +494,9 @@ class rgbAccessor:
         ds = self._obj
 
         def breakpoint_stretch(C, breakpoint):
-            """
-            Contrast stretching by break point (number provided by Rick Kohrs)
+            """Contrast stretching by break point.
+
+            (number provided by Rick Kohrs).
             """
             lower = _normalize(C, 0, 10)  # Low end
             upper = _normalize(C, 10, 255)  # High end
@@ -556,8 +562,8 @@ class rgbAccessor:
         return ds["NaturalColor"]
 
     def FireTemperature(self):
-        """
-        Fire Temperature RGB:
+        """Create the Fire Temperature RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf>`__ for reference)
 
         .. image:: /_static/FireTemperature.png
@@ -592,8 +598,8 @@ class rgbAccessor:
         return ds["FireTemperature"]
 
     def AirMass(self):
-        """
-        Air Mass RGB:
+        """Create the Air Mass RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/AirMass.png
@@ -626,10 +632,10 @@ class rgbAccessor:
         ds["AirMass"].attrs["long_name"] = "Air Mass"
 
         return ds["AirMass"]
-    
+
     def AirMassTropical(self):
-        """
-        Air Mass Tropical RGB:
+        """Create the Air Mass Tropical RGB.
+
         (See `Quick Guide <https://www.eumetsat.int/media/43301>`__ for reference)
 
         .. image:: /_static/AirMassTropical.png
@@ -647,45 +653,44 @@ class rgbAccessor:
         R = _normalize(R, -25, 5)
         G = _normalize(G, -30, 25)
         B = _normalize(B, -83, -30)
-            
-        # Invert B 
+
+        # Invert B
         B = 1 - B
-            
+
         # Apply the gamma correction to Red channel.
         #   corrected_value = value^(1/gamma)
-        gamma = .5
+        gamma = 0.5
         G = _gamma_correction(G, gamma)
-            
+
         # The final RGB array :)
-        RGB = np.dstack([R, G, B]) 
-        
+        RGB = np.dstack([R, G, B])
+
         ds["AirMassTropical"] = (("y", "x", "rgb"), RGB)
-        ds["rgb"] = ["R", "G", "B"] 
+        ds["rgb"] = ["R", "G", "B"]
         ds["AirMassTropical"].attrs[
             "Quick Guide"
         ] = "https://www.eumetsat.int/media/43301"
         ds["AirMassTropical"].attrs["long_name"] = "Air Mass Tropical"
-        
+
         return ds["AirMassTropical"]
-    
+
     def AirMassTropicalPac(self):
-        """
-        Air Mass Tropical Pac RGB:
+        """Create the Air Mass Tropical Pac RGB.
+
         (See `Blog Write-up <https://cimss.ssec.wisc.edu/satellite-blog/archives/51777>`__ for reference)
-        
+
         .. image:: /_static/AirMassTropicalPac.png
-        
 
         """
         ds = self._obj
-        
+
         # Load the three channels into appropriate R, G, and B variables
         R = ds["CMI_C08"].data - ds["CMI_C10"].data
         G = ds["CMI_C12"].data - ds["CMI_C13"].data
         B = ds["CMI_C08"].data - 273.15  # remember to convert to Celsius
-        
+
         # _normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
-        R = _normalize(R, -26.2, .6)
+        R = _normalize(R, -26.2, 0.6)
         G = _normalize(G, -26.2, 27.4)
         B = _normalize(B, -64.45, -29.25)
 
@@ -705,8 +710,8 @@ class rgbAccessor:
         return ds["AirMassTropicalPac"]
 
     def DayCloudPhase(self):
-        """
-        Day Cloud Phase Distinction RGB:
+        """Create the Day Cloud Phase Distinction RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf>`__ for reference)
 
         .. image:: /_static/DayCloudPhase.png
@@ -739,8 +744,8 @@ class rgbAccessor:
         return ds["DayCloudPhase"]
 
     def DayConvection(self):
-        """
-        Day Convection RGB:
+        """Create the Day Convection RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DayConvection.png
@@ -773,8 +778,8 @@ class rgbAccessor:
         return ds["DayConvection"]
 
     def DayCloudConvection(self):
-        """
-        Day Cloud Convection RGB:
+        """Create the Day Cloud Convection RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DayCloudConvection.png
@@ -812,8 +817,8 @@ class rgbAccessor:
         return ds["DayCloudConvection"]
 
     def DayLandCloud(self):
-        """
-        Day Land Cloud Fire RGB:
+        """Create the Day Land Cloud Fire RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DayLandCloud.png
@@ -843,8 +848,8 @@ class rgbAccessor:
         return ds["DayLandCloud"]
 
     def DayLandCloudFire(self):
-        """
-        Day Land Cloud Fire RGB:
+        """Create the Day Land Cloud Fire RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DayLandCloudFire.png
@@ -874,8 +879,8 @@ class rgbAccessor:
         return ds["DayLandCloudFire"]
 
     def WaterVapor(self):
-        """
-        Simple Water Vapor RGB:
+        """Create the Simple Water Vapor RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf>`__ for reference)
 
         .. image:: /_static/WaterVapor.png
@@ -910,8 +915,8 @@ class rgbAccessor:
         return ds["WaterVapor"]
 
     def DifferentialWaterVapor(self):
-        """
-        Differential Water Vapor RGB:
+        """Differential Water Vapor RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/DifferentialWaterVapor.png
@@ -953,8 +958,8 @@ class rgbAccessor:
         return ds["DifferentialWaterVapor"]
 
     def DaySnowFog(self):
-        """
-        Day Snow-Fog RGB:
+        """Day Snow-Fog RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf>`__ for reference)
 
         .. image:: /_static/DaySnowFog.png
@@ -992,8 +997,8 @@ class rgbAccessor:
         return ds["DaySnowFog"]
 
     def NighttimeMicrophysics(self):
-        """
-        Nighttime Microphysics RGB:
+        """Create the Nighttime Microphysics RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf>`__ for reference)
 
         .. image:: /_static/NighttimeMicrophysics.png
@@ -1025,8 +1030,8 @@ class rgbAccessor:
         return ds["NighttimeMicrophysics"]
 
     def Dust(self):
-        """
-        SulfurDioxide RGB:
+        """Create the SulfurDioxide RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf>`__ for reference)
 
         .. image:: /_static/Dust.png
@@ -1062,8 +1067,8 @@ class rgbAccessor:
         return ds["Dust"]
 
     def SulfurDioxide(self):
-        """
-        SulfurDioxide RGB:
+        """Create the SulfurDioxide RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf>`__ for reference)
 
         .. image:: /_static/SulfurDioxide.png
@@ -1095,8 +1100,8 @@ class rgbAccessor:
         return ds["SulfurDioxide"]
 
     def Ash(self):
-        """
-        Ash RGB:
+        """Create the Ash RGB.
+
         (See `Quick Guide <http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf>`__ for reference)
 
         .. image:: /_static/Ash.png
@@ -1128,8 +1133,8 @@ class rgbAccessor:
         return ds["Ash"]
 
     def SplitWindowDifference(self):
-        """
-        Split Window Difference RGB (greyscale):
+        """Split Window Difference RGB (greyscale).
+
         (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf>`__ for reference)
 
         .. image:: /_static/SplitWindowDifference.png
@@ -1157,8 +1162,8 @@ class rgbAccessor:
         return ds["SplitWindowDifference"]
 
     def NightFogDifference(self):
-        """
-        Night Fog Difference RGB (greyscale):
+        """Night Fog Difference RGB (greyscale).
+
         (See `Quick Guide <http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf>`__ for reference)
 
         .. image:: /_static/NightFogDifference.png
@@ -1189,8 +1194,7 @@ class rgbAccessor:
         return ds["NightFogDifference"]
 
     def RocketPlume(self, night=False):
-        """
-        Rocket Plume RGB
+        """Create the  Rocket Plume RGB.
 
         For identifying rocket launches.
 
@@ -1236,12 +1240,11 @@ class rgbAccessor:
         return ds["RocketPlume"]
 
     def NormalizedBurnRatio(self):
-        """
-        Normalized Burn Ratio
+        """Create the Normalized Burn Ratio.
 
         **THIS FUNCTION IS NOT FULLY DEVELOPED. Need more info.**
 
-        NBR= (0.86 µm – 2.2 µm)/(0.86 um + 2.2 um)
+        NBR= (0.86 µm - 2.2 µm)/(0.86 um + 2.2 um)
 
 
         https://ntrs.nasa.gov/citations/20190030825
@@ -1273,16 +1276,13 @@ class rgbAccessor:
         return ds["NormalizedBurnRatio"]
 
     def SeaSpray(self, **kwargs):
-        """
-        Sea Spray RGB:
+        """Create the Sea Spray RGB.
+
         (See `Quick Guide <https://rammb.cira.colostate.edu/training/visit/quick_guides/VIIRS_Sea_Spray_RGB_Quick_Guide_v2.pdf>`__ for reference)
 
         .. image:: /_static/SeaSpray.png
 
-        Parameters
-        ----------
         """
-
         ds = self._obj
 
         # Load the three channels into appropriate R, G, and B variables
@@ -1292,8 +1292,8 @@ class rgbAccessor:
 
         # Normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
         R = _normalize(R, 0, 5)
-        G = _normalize(G, .01, .09) #values for this channel go from 0 to 1.
-        B = _normalize(B, .02, .12) #values for this channel go from o to 1.
+        G = _normalize(G, 0.01, 0.09)  # values for this channel go from 0 to 1.
+        B = _normalize(B, 0.02, 0.12)  # values for this channel go from o to 1.
 
         # Apply a gamma correction to each R, G, B channel
         R = _gamma_correction(R, 1.0)

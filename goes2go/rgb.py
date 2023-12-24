@@ -105,17 +105,25 @@ ABI Band Number Central Wavelength  Name                                        
 
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
+import warnings
+
 import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
+import numpy as np
 import xarray as xr
 
 from goes2go.tools import field_of_view
 
+warnings.warn(
+    "The rgb module is deprecated. Use the rgb accessor instead. "
+    "See https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/DEMO_rgb_recipes.html for examples.",
+    DeprecationWarning,
+    stacklevel=2,
+)
+
 
 def get_imshow_kwargs(ds):
-    """
-    Help determine the ``plt.imshow`` arguments.
+    r"""Help determine the ``plt.imshow`` arguments.
 
     Parameters
     ----------
@@ -127,7 +135,6 @@ def get_imshow_kwargs(ds):
 
     Examples
     --------
-
     .. code:: python
 
         r = TrueColor(G)
@@ -211,9 +218,9 @@ def rgb_as_dataset(G, RGB, description, latlon=False):
 
 
 def load_RGB_channels(C, channels):
-    """
-    Return the R, G, and B arrays for the three channels requested. This
-    function will convert the data any units in Kelvin to Celsius.
+    """Return the R, G, and B arrays for the three channels requested.
+
+    This function will convert the data any units in Kelvin to Celsius.
 
     Parameters
     ----------
@@ -242,8 +249,8 @@ def load_RGB_channels(C, channels):
 
 
 def gamma_correction(a, gamma, verbose=False):
-    """
-    Darken or lighten an image with `gamma correction
+    """Darken or lighten an image with `gamma correction.
+
     <https://en.wikipedia.org/wiki/Gamma_correction>`_.
 
     Parameters

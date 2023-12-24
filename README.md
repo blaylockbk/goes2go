@@ -9,12 +9,12 @@
 <!-- Badges -->
 
 [![](https://img.shields.io/pypi/v/goes2go)](https://pypi.python.org/pypi/goes2go/)
-[![Conda Version](https://img.shields.io/conda/vn/conda-forge/goes2go.svg)](https://anaconda.org/conda-forge/goes2go)
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/goes2go.svg)](https://anaconday.org/conda-forge/goes2go)
 [![DOI](https://zenodo.org/badge/296737878.svg)](https://zenodo.org/badge/latestdoi/296737878)
 
 ![](https://img.shields.io/github/license/blaylockbk/goes2go)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Tests (Python)](https://github.com/blaylockbk/goes2g0/actions/workflows/tests-python.yml/badge.svg)](https://github.com/blaylockbk/goes2g0/actions/workflows/tests-python.yml)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Tests (Python)](https://github.com/blaylockbk/goes2go/actions/workflows/tests-python.yml/badge.svg)](https://github.com/blaylockbk/goes2g0/actions/workflows/tests-python.yml)
 [![Documentation Status](https://readthedocs.org/projects/goes2go/badge/?version=latest)](https://goes2go.readthedocs.io/?badge=latest)
 [![Python](https://img.shields.io/pypi/pyversions/goes2go.svg)](https://pypi.org/project/goes2go/)
 [![Conda Recipe](https://img.shields.io/badge/recipe-goes2go-green.svg)](https://anaconda.org/conda-forge/goes2go)
@@ -155,7 +155,7 @@ There are methods to do the following:
 
 ## RGB Recipes
 
-The `rgb` xarray accessor computes various RGB products from a GOES ABI ***ABI-L2-MCMIP*** (multi-channel cloud and moisture imagry products) `xarray.Dataset`. See the [demo](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
+The `rgb` xarray accessor computes various RGB products from a GOES ABI **_ABI-L2-MCMIP_** (multi-channel cloud and moisture imagry products) `xarray.Dataset`. See the [demo](https://goes2go.readthedocs.io/en/latest/user_guide/notebooks/DEMO_rgb_recipes.html#) for more examples of RGB products.
 
 ```python
 import matplotlib.pyplot as plt
@@ -215,6 +215,7 @@ I hope you find this makes GOES data easier to retrieve and display. Enjoy!
 🌐 [Personal Webpage](http://home.chpc.utah.edu/~u0553130/Brian_Blaylock/home.html)
 
 P.S. If you like GOES-2-go, check out my other python packages
+
 - [🏁 Herbie](https://github.com/blaylockbk/Herbie): download numerical weather model data
 - [🌡️ SynopticPy](https://github.com/blaylockbk/SynopticPy): retrieve mesonet data from the Synoptic API.
 - [🌹 Pandas-rose](https://github.com/blaylockbk/pandas-rose): easly wind rose from Pandas dataframe.

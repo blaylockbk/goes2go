@@ -49,7 +49,7 @@ _domain = {
 _product = {
     # Assume goes17 and goes18 have same products as goes16
     i.split("/")[-1]: []
-    for i in fs.ls(f"noaa-goes16")
+    for i in fs.ls("noaa-goes16")
 }
 _product.pop("index.html", None)
 _product["GLM-L2-LCFA"] = ["GLM"]
@@ -59,8 +59,7 @@ _product["ABI-L2-MCMIPM"] = ["ABIM"]
 
 
 def _check_param_inputs(**params):
-    """
-    Checks the input parameters for correct name or alias.
+    """Check the input parameters for correct name or alias.
 
     Specifically, check the input for product, domain, and satellite are
     in the list of accepted values. If not, then look if it has an alias.
@@ -96,8 +95,8 @@ def _check_param_inputs(**params):
                     if domain in aliases:
                         domain = key
                 product = product + domain
-        assert (domain in _domain) or (
-            domain in ["M1", "M2"]
+        assert (
+            (domain in _domain) or (domain in ["M1", "M2"])
         ), f"domain must be one of {list(_domain.keys())} or an alias {list(_domain.values())}"
     else:
         domain = None
@@ -115,8 +114,7 @@ def _check_param_inputs(**params):
 
 
 def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
-    """
-    Get list of requested GOES files as pandas.DataFrame.
+    """Get list of requested GOES files as pandas.DataFrame.
 
     Parameters
     ----------
@@ -187,7 +185,7 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
 
 
 def _download(df, save_dir, overwrite, max_threads=10, verbose=False):
-    """Download the files from a DataFrame listing with multithreading"""
+    """Download the files from a DataFrame listing with multithreading."""
 
     def do_download(src):
         dst = Path(save_dir) / src
@@ -217,7 +215,7 @@ def _download(df, save_dir, overwrite, max_threads=10, verbose=False):
 
 
 def _as_xarray_MP(src, save_dir, i=None, n=None, verbose=True):
-    """Open a file as a xarray.Dataset -- a multiprocessing helper"""
+    """Open a file as a xarray.Dataset -- a multiprocessing helper."""
 
     # File destination
     local_copy = Path(save_dir) / src
@@ -256,8 +254,7 @@ def _as_xarray_MP(src, save_dir, i=None, n=None, verbose=True):
 
 
 def _as_xarray(df, **params):
-    """
-    Download files in the list to the desired path.
+    """Download files in the list to the desired path.
 
     Use multiprocessing to speed up the download process.
 
