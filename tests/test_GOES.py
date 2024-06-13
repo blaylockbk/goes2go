@@ -19,9 +19,11 @@ def test_GOES16_nearesttime():
     ds = GOES(satellite=16).nearesttime("2022-01-01")
 
 
+def test_GOES16_single_point_timerange():
+    ds = GOES(satellite=16).single_point_timerange(38.897957, -77.036560, "2022-01-01 00:00", "2022-01-01 01:00")
+
 def test_GOES16_timerange():
     ds = GOES(satellite=16).timerange("2022-01-01 00:00", "2022-01-01 01:00")
-
 
 def test_GOES16_df():
     df = GOES(satellite=16).df("2022-01-01 00:00", "2022-01-01 01:00")

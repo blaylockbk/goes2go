@@ -18,7 +18,7 @@ import s3fs
 import toml
 
 from goes2go import config
-from goes2go.data import _goes_file_df, goes_latest, goes_nearesttime, goes_timerange
+from goes2go.data import _goes_file_df, goes_latest, goes_nearesttime, goes_timerange, goes_single_point_timerange
 
 log = logging.getLogger(__name__)
 
@@ -230,7 +230,7 @@ class GOES:
             **kwargs,
         )
 
-    def single_point_timerange(self, laitude, longitude, start=None, end=None, recent=None, decimal_coordinates=True, **kwargs):
+    def single_point_timerange(self, latitude, longitude, start=None, end=None, recent=None, decimal_coordinates=True, **kwargs):
         """Get GOES data for a time range at the scan point nearest to a defined single latitude/longitude point.
 
         Parameters
