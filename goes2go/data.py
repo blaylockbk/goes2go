@@ -137,7 +137,7 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     start = pd.to_datetime(start)
     end = pd.to_datetime(end)
 
-    DATES = pd.date_range(f"{start:%Y-%m-%d %H:00}", f"{end:%Y-%m-%d %H:00}", freq="1H")
+    DATES = pd.date_range(f"{start:%Y-%m-%d %H:00}", f"{end:%Y-%m-%d %H:00}", freq="1h")
 
     # List all files for each date
     # ----------------------------
