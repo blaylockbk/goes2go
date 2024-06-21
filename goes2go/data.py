@@ -21,12 +21,13 @@ from datetime import datetime, timedelta
 from functools import partial
 from pathlib import Path
 
+import sys
 import numpy as np
 import pandas as pd
 import s3fs
 import xarray as xr
 
-from tools import lat_lon_to_scan_angles
+from goes2go.tools import lat_lon_to_scan_angles
 
 # NOTE: These config dict values are retrieved from __init__ and read
 # from the file ${HOME}/.config/goes2go/config.toml
@@ -426,7 +427,7 @@ def goes_timerange(
     elif return_as == "xarray":
         return _as_xarray(df, **params)
 
-def _preprocess_single_point(ds, target_lat, target_lon, decimal_degrees=True):
+def _preprocess_single_point(ds, target_lat, target_lon, decimal_coordinates=True):
     """
     Preprocessing function to select only the single relevant data subset
     
@@ -439,7 +440,7 @@ def _preprocess_single_point(ds, target_lat, target_lon, decimal_degrees=True):
     decimal_coordinates: bool
         If latitude/longitude are specified in decimal or radian coordinates.
     """
-    x_target, y_target = lat_lon_to_scan_angles(target_lat, target_lon, ds["goes_imager_projection"], decimal_degrees)
+    x_target, y_target = lat_lon_to_scan_angles(target_lat, target_lon, ds["goes_imager_projection"], decimal_coordinates)
     return ds.sel(x=x_target, y=y_target, method="nearest")
 
 def goes_single_point_timerange(
@@ -561,7 +562,7 @@ def goes_single_point_timerange(
         df.attrs["filePath"] = save_dir
         return df
     elif return_as == "xarray":
-        partial_func = partial(_preprocess_single_point, target_lat=latitude, target_lon=longitude, decimal_degrees=True)
+        partial_func = partial(_preprocess_single_point, target_lat=latitude, target_lon=longitude, decimal_coordinates=decimal_coordinates)
         preprocessed_ds = xr.open_mfdataset([str(config['timerange']['save_dir']) + "/" + f for f in df['file'].to_list()],
                   concat_dim='t',
                   combine='nested',
@@ -661,7 +662,7 @@ def goes_latest(
 
 def goes_nearesttime(
     attime,
-    within=pd.to_timedelta(config["nearesttime"].get("within", "1H")),
+    within=pd.to_timedelta(config["nearesttime"].get("within", "1h")),
     *,
     satellite=config["nearesttime"].get("satellite"),
     product=config["nearesttime"].get("product"),

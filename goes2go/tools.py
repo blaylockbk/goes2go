@@ -192,7 +192,7 @@ def glm_crs(G, reference_variable="flash_lat"):
     return crs
 
 
-def scan_angles_to_lat_lon(x, y, goes_imager_projection, decimal_degrees=True):
+def scan_angles_to_lat_lon(x, y, goes_imager_projection, decimal_coordinates=True):
     """
     Convert ABI scan angle coordinates to geodetic latitude and longitude.
 
@@ -207,7 +207,7 @@ def scan_angles_to_lat_lon(x, y, goes_imager_projection, decimal_degrees=True):
         A scan angle coordinate in the y direction.
     goes_imager_projection : xarray.Dataset
         An xarray.Dataset with the projection information in it's attributes.
-    decimal_degrees : bool
+    decimal_coordinates : bool
         A boolean designating if latitude and longitude should be returned in decimal degrees (returns decimal radians if false).
 
     Returns
@@ -242,14 +242,14 @@ def scan_angles_to_lat_lon(x, y, goes_imager_projection, decimal_degrees=True):
     )
     longitude = lambda_0 - np.arctan(s_y / (H - s_x))
 
-    if decimal_degrees:
+    if decimal_coordinates:
         latitude = np.degrees(latitude)
         longitude = np.degrees(longitude)
 
     return latitude, longitude
 
 
-def lat_lon_to_scan_angles(latitude, longitude, goes_imager_projection, decimal_degrees=True):
+def lat_lon_to_scan_angles(latitude, longitude, goes_imager_projection, decimal_coordinates=True):
     """
     Convert geodetic latitude and longitude to ABI scan angle coordinates.
 
@@ -264,7 +264,7 @@ def lat_lon_to_scan_angles(latitude, longitude, goes_imager_projection, decimal_
         Longitude on the GSR80 ellipsoid.
     goes_imager_projection : xarray.Dataset
         An xarray.Dataset with the projection information in it's attributes.
-    decimal_degrees : bool
+    decimal_coordinates : bool
         A boolean designating if latitude and longitude inputs are in decimal degrees (returns decimal radians if false).
 
     Returns
@@ -273,7 +273,7 @@ def lat_lon_to_scan_angles(latitude, longitude, goes_imager_projection, decimal_
         1. A scan angle coordinate in the x direction measured in radians
         2. A scan angle coordinate in the y direction measured in radians
     """
-    if decimal_degrees:
+    if decimal_coordinates:
         latitude = np.radians(latitude)
         longitude = np.radians(longitude)
     

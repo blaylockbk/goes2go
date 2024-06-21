@@ -185,7 +185,7 @@ class GOES:
     def nearesttime(
         self,
         attime,
-        within=pd.to_timedelta(config["nearesttime"].get("within", "1H")),
+        within=pd.to_timedelta(config["nearesttime"].get("within", "1h")),
         **kwargs,
     ):
         """Get the GOES data nearest a specified time.
