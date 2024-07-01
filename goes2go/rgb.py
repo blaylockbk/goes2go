@@ -513,7 +513,7 @@ def FireTemperature(C, **kwargs):
     R, G, B = load_RGB_channels(C, (7, 6, 5))
 
     # Normalize each channel by the appropriate range of values (clipping happens in function)
-    R = normalize(R, 273, 333)
+    R = normalize(R, 0, 60)
     G = normalize(G, 0, 1)
     B = normalize(B, 0, 0.75)
 
