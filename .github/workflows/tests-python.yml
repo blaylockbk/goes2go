@@ -54,7 +54,7 @@ jobs:
           cache-dependency-path: "setup.cfg"
 
       - name: Install project (Linux)
-        if: ${{ runner.os }} == 'Linux'
+        if: runner.os == 'Linux'
         run: |
           pip3 install --requirement=requirements-test.txt
           pip3 install --editable=.
@@ -66,7 +66,7 @@ jobs:
       #    pip3 install --break-system-packages --editable=.
       #
       - name: Install project (Windows)
-        if: ${{ runner.os }} == "Windows"
+        if: runner.os == 'Windows'
         run: |
           pip3 install --requirement=requirements-test.txt
           pip3 install --editable=.
