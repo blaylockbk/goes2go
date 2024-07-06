@@ -346,8 +346,8 @@ class rgbAccessor:
     def _load_RGB_channels(self, channels):
         """Load the specified RGB channels.
 
-        Return the R, G, and B arrays for the three channels requested. This
-        function will convert the data any units in Kelvin to Celsius.
+        Return the R, G, and B arrays for the three channels requested.
+        This function convert any data given in Kelvin to Celsius.
 
         Parameters
         ----------
@@ -368,7 +368,7 @@ class rgbAccessor:
         RGB = []
         for u, c in zip(units, channels):
             if u == "K":
-                # Convert form Kelvin to Celsius                                ## <-- Do I REALLY want to hard-code this in?
+                # Convert form Kelvin to Celsius
                 RGB.append(ds["CMI_C%02d" % c].data - 273.15)
             else:
                 RGB.append(ds["CMI_C%02d" % c].data)
@@ -449,9 +449,9 @@ class rgbAccessor:
 
         ds["TrueColor"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["TrueColor"].attrs[
-            "Quick Guide"
-        ] = "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf"
+        ds["TrueColor"].attrs["Quick Guide"] = (
+            "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf"
+        )
         ds["TrueColor"].attrs["long_name"] = "True Color"
 
         return ds["TrueColor"]
@@ -554,9 +554,9 @@ class rgbAccessor:
 
         ds["NaturalColor"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["NaturalColor"].attrs[
-            "Quick Guide"
-        ] = "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf"
+        ds["NaturalColor"].attrs["Quick Guide"] = (
+            "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_CIMSSRGB_v2.pdf"
+        )
         ds["NaturalColor"].attrs["long_name"] = "Natural Color"
 
         return ds["NaturalColor"]
@@ -576,7 +576,7 @@ class rgbAccessor:
         R, G, B = self._load_RGB_channels((7, 6, 5))
 
         # _normalize each channel by the appropriate range of values (clipping happens in function)
-        R = _normalize(R, 273, 333)
+        R = _normalize(R, 0, 60)
         G = _normalize(G, 0, 1)
         B = _normalize(B, 0, 0.75)
 
@@ -590,9 +590,9 @@ class rgbAccessor:
 
         ds["FireTemperature"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["FireTemperature"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf"
+        ds["FireTemperature"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/Fire_Temperature_RGB.pdf"
+        )
         ds["FireTemperature"].attrs["long_name"] = "Fire Temperature"
 
         return ds["FireTemperature"]
@@ -626,9 +626,9 @@ class rgbAccessor:
 
         ds["AirMass"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["AirMass"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf"
+        ds["AirMass"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_AirMassRGB_final.pdf"
+        )
         ds["AirMass"].attrs["long_name"] = "Air Mass"
 
         return ds["AirMass"]
@@ -667,9 +667,9 @@ class rgbAccessor:
 
         ds["AirMassTropical"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["AirMassTropical"].attrs[
-            "Quick Guide"
-        ] = "https://www.eumetsat.int/media/43301"
+        ds["AirMassTropical"].attrs["Quick Guide"] = (
+            "https://www.eumetsat.int/media/43301"
+        )
         ds["AirMassTropical"].attrs["long_name"] = "Air Mass Tropical"
 
         return ds["AirMassTropical"]
@@ -702,9 +702,9 @@ class rgbAccessor:
 
         ds["AirMassTropicalPac"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["AirMassTropicalPac"].attrs[
-            "Quick Guide"
-        ] = "https://cimss.ssec.wisc.edu/satellite-blog/archives/51777"
+        ds["AirMassTropicalPac"].attrs["Quick Guide"] = (
+            "https://cimss.ssec.wisc.edu/satellite-blog/archives/51777"
+        )
         ds["AirMassTropicalPac"].attrs["long_name"] = "Air Mass Tropical Pac"
 
         return ds["AirMassTropicalPac"]
@@ -736,9 +736,9 @@ class rgbAccessor:
 
         ds["DayCloudPhase"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["DayCloudPhase"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf"
+        ds["DayCloudPhase"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/Day_Cloud_Phase_Distinction.pdf"
+        )
         ds["DayCloudPhase"].attrs["long_name"] = "Day Cloud Phase"
 
         return ds["DayCloudPhase"]
@@ -770,9 +770,9 @@ class rgbAccessor:
 
         ds["DayConvection"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["DayConvection"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf"
+        ds["DayConvection"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayConvectionRGB_final.pdf"
+        )
         ds["DayConvection"].attrs["long_name"] = "Day Convection"
 
         return ds["DayConvection"]
@@ -809,9 +809,9 @@ class rgbAccessor:
 
         ds["DayCloudConvection"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["DayCloudConvection"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf"
+        ds["DayCloudConvection"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DayCloudConvectionRGB_final.pdf"
+        )
         ds["DayCloudConvection"].attrs["long_name"] = "Day Cloud Convection"
 
         return ds["DayCloudConvection"]
@@ -840,9 +840,9 @@ class rgbAccessor:
 
         ds["DayLandCloud"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["DayLandCloud"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf"
+        ds["DayLandCloud"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_daylandcloudRGB_final.pdf"
+        )
         ds["DayLandCloud"].attrs["long_name"] = "Day Land Cloud"
 
         return ds["DayLandCloud"]
@@ -871,9 +871,9 @@ class rgbAccessor:
 
         ds["DayLandCloudFire"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["DayLandCloudFire"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf"
+        ds["DayLandCloudFire"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DayLandCloudFireRGB_final.pdf"
+        )
         ds["DayLandCloudFire"].attrs["long_name"] = "Day Land Cloud Fire"
 
         return ds["DayLandCloudFire"]
@@ -907,9 +907,9 @@ class rgbAccessor:
 
         ds["WaterVapor"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["WaterVapor"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf"
+        ds["WaterVapor"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/Simple_Water_Vapor_RGB.pdf"
+        )
         ds["WaterVapor"].attrs["long_name"] = "Water Vapor"
 
         return ds["WaterVapor"]
@@ -950,9 +950,9 @@ class rgbAccessor:
 
         ds["DifferentialWaterVapor"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["DifferentialWaterVapor"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf"
+        ds["DifferentialWaterVapor"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_DifferentialWaterVaporRGB_final.pdf"
+        )
         ds["DifferentialWaterVapor"].attrs["long_name"] = "Differential Water Vapor"
 
         return ds["DifferentialWaterVapor"]
@@ -989,9 +989,9 @@ class rgbAccessor:
 
         ds["DaySnowFog"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["DaySnowFog"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf"
+        ds["DaySnowFog"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_DaySnowFog.pdf"
+        )
         ds["DaySnowFog"].attrs["long_name"] = "Day Snow Fog"
 
         return ds["DaySnowFog"]
@@ -1022,9 +1022,9 @@ class rgbAccessor:
 
         ds["NighttimeMicrophysics"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["NighttimeMicrophysics"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf"
+        ds["NighttimeMicrophysics"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/QuickGuide_GOESR_NtMicroRGB_final.pdf"
+        )
         ds["NighttimeMicrophysics"].attrs["long_name"] = "Nighttime Microphysics"
 
         return ds["NighttimeMicrophysics"]
@@ -1059,9 +1059,9 @@ class rgbAccessor:
 
         ds["Dust"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["Dust"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf"
+        ds["Dust"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/Dust_RGB_Quick_Guide.pdf"
+        )
         ds["Dust"].attrs["long_name"] = "Dust"
 
         return ds["Dust"]
@@ -1092,9 +1092,9 @@ class rgbAccessor:
 
         ds["SulfurDioxide"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["SulfurDioxide"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf"
+        ds["SulfurDioxide"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/Quick_Guide_SO2_RGB.pdf"
+        )
         ds["SulfurDioxide"].attrs["long_name"] = "Sulfur Dioxide"
 
         return ds["SulfurDioxide"]
@@ -1125,9 +1125,9 @@ class rgbAccessor:
 
         ds["Ash"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["Ash"].attrs[
-            "Quick Guide"
-        ] = "http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf"
+        ds["Ash"].attrs["Quick Guide"] = (
+            "http://rammb.cira.colostate.edu/training/visit/quick_guides/GOES_Ash_RGB.pdf"
+        )
         ds["Ash"].attrs["long_name"] = "Ash"
 
         return ds["Ash"]
@@ -1154,9 +1154,9 @@ class rgbAccessor:
 
         ds["SplitWindowDifference"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["SplitWindowDifference"].attrs[
-            "Quick Guide"
-        ] = "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf"
+        ds["SplitWindowDifference"].attrs["Quick Guide"] = (
+            "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_SplitWindowDifference.pdf"
+        )
         ds["SplitWindowDifference"].attrs["long_name"] = "Split Window Difference"
 
         return ds["SplitWindowDifference"]
@@ -1186,9 +1186,9 @@ class rgbAccessor:
 
         ds["NightFogDifference"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["NightFogDifference"].attrs[
-            "Quick Guide"
-        ] = "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf"
+        ds["NightFogDifference"].attrs["Quick Guide"] = (
+            "http://cimss.ssec.wisc.edu/goes/OCLOFactSheetPDFs/ABIQuickGuide_NightFogBTD.pdf"
+        )
         ds["NightFogDifference"].attrs["long_name"] = "NightFogDifference"
 
         return ds["NightFogDifference"]
@@ -1232,9 +1232,9 @@ class rgbAccessor:
 
         ds["RocketPlume"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["RocketPlume"].attrs[
-            "Quick Guide"
-        ] = "https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf"
+        ds["RocketPlume"].attrs["Quick Guide"] = (
+            "https://cimss.ssec.wisc.edu/satellite-blog/images/2021/06/QuickGuide_Template_GOESRBanner_Rocket_Plume.pdf"
+        )
         ds["RocketPlume"].attrs["long_name"] = "Rocket Plume"
 
         return ds["RocketPlume"]
@@ -1268,9 +1268,9 @@ class rgbAccessor:
 
         ds["NormalizedBurnRatio"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["NormalizedBurnRatio"].attrs[
-            "Quick Guide"
-        ] = "https://ntrs.nasa.gov/citations/20190030825"
+        ds["NormalizedBurnRatio"].attrs["Quick Guide"] = (
+            "https://ntrs.nasa.gov/citations/20190030825"
+        )
         ds["NormalizedBurnRatio"].attrs["long_name"] = "Normalized Burn Ratio"
 
         return ds["NormalizedBurnRatio"]
@@ -1305,9 +1305,9 @@ class rgbAccessor:
 
         ds["SeaSpray"] = (("y", "x", "rgb"), RGB)
         ds["rgb"] = ["R", "G", "B"]
-        ds["SeaSpray"].attrs[
-            "Quick Guide"
-        ] = "https://rammb.cira.colostate.edu/training/visit/quick_guides/VIIRS_Sea_Spray_RGB_Quick_Guide_v2.pdf"
+        ds["SeaSpray"].attrs["Quick Guide"] = (
+            "https://rammb.cira.colostate.edu/training/visit/quick_guides/VIIRS_Sea_Spray_RGB_Quick_Guide_v2.pdf"
+        )
         ds["SeaSpray"].attrs["long_name"] = "Sea Spray"
 
         return ds["SeaSpray"]
