@@ -25,8 +25,8 @@ jobs:
         # In order to save resources, only run particular
         # matrix slots on other OS than Linux.
         include:
-        #  - os: "macos-latest"
-        #    python-version: "3.12"
+          - os: "macos-latest"
+            python-version: "3.12"
           - os: "windows-latest"
             python-version: "3.12"
 
@@ -59,12 +59,12 @@ jobs:
           pip3 install --requirement=requirements-test.txt
           pip3 install --editable=.
 
-      #- name: Install project (macOS)
-      #  if: runner.os == "macOS"
-      #  run: |
-      #    pip3 install --break-system-packages --requirement=requirements-test.txt
-      #    pip3 install --break-system-packages --editable=.
-      #
+      - name: Install project (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          pip3 install --break-system-packages --requirement=requirements-test.txt
+          pip3 install --break-system-packages --editable=.
+
       - name: Install project (Windows)
         if: runner.os == 'Windows'
         run: |
