@@ -18,7 +18,7 @@ import s3fs
 import toml
 
 from goes2go import config
-from goes2go.data import _goes_file_df, goes_latest, goes_nearesttime, goes_timerange
+from goes2go.data import _goes_file_df, goes_latest, goes_nearesttime, goes_timerange, goes_single_point_timerange
 
 log = logging.getLogger(__name__)
 
@@ -185,7 +185,7 @@ class GOES:
     def nearesttime(
         self,
         attime,
-        within=pd.to_timedelta(config["nearesttime"].get("within", "1H")),
+        within=pd.to_timedelta(config["nearesttime"].get("within", "1h")),
         **kwargs,
     ):
         """Get the GOES data nearest a specified time.
@@ -223,6 +223,36 @@ class GOES:
             start,
             end,
             recent,
+            satellite=self.satellite,
+            product=self.product,
+            domain=self.domain,
+            bands=self.bands,
+            **kwargs,
+        )
+
+    def single_point_timerange(self, latitude, longitude, start=None, end=None, recent=None, decimal_coordinates=True, **kwargs):
+        """Get GOES data for a time range at the scan point nearest to a defined single latitude/longitude point.
+
+        Parameters
+        ----------
+        latitude, longitude : float
+            Location where you wish to extract the point values from
+        start, end : datetime
+            Required if recent is None.
+        recent : timedelta or pandas-parsable timedelta str
+            Required if start and end are None. If timedelta(hours=1), will
+            get the most recent files for the past hour.
+        decimal_coordinates: bool
+            If latitude/longitude are specified in decimal or radian coordinates.
+        """
+
+        return goes_single_point_timerange(
+            latitude,
+            longitude,
+            start,
+            end,
+            recent,
+            decimal_coordinates,
             satellite=self.satellite,
             product=self.product,
             domain=self.domain,
