@@ -16,12 +16,11 @@ https://registry.opendata.aws/noaa-goes/
 """
 
 import multiprocessing
-from concurrent.futures import ThreadPoolExecutor, as_completed, wait
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
 from functools import partial
 from pathlib import Path
 
-import sys
 import numpy as np
 import pandas as pd
 import s3fs
@@ -73,7 +72,7 @@ def _check_param_inputs(**params):
     satellite = params["satellite"]
     domain = params["domain"]
     product = params["product"]
-    verbose = params["verbose"]
+    # verbose = params["verbose"]
 
     ## Determine the Satellite
     if satellite not in _satellite:
@@ -81,9 +80,8 @@ def _check_param_inputs(**params):
         for key, aliases in _satellite.items():
             if satellite in aliases:
                 satellite = key
-    assert (
-        satellite in _satellite
-    ), f"satellite must be one of {list(_satellite.keys())} or an alias {list(_satellite.values())}"
+    if satellite not in _satellite:
+        raise ValueError(f"satellite must be one of {list(_satellite.keys())} or an alias {list(_satellite.values())}")
 
     ## Determine the Domain (only needed for ABI product)
     if product.upper().startswith("ABI"):
@@ -99,9 +97,8 @@ def _check_param_inputs(**params):
                     if domain in aliases:
                         domain = key
                 product = product + domain
-        assert (
-            (domain in _domain) or (domain in ["M1", "M2"])
-        ), f"domain must be one of {list(_domain.keys())} or an alias {list(_domain.values())}"
+        if (domain not in _domain) and (domain not in ["M1", "M2"]):
+            raise ValueError(f"domain must be one of {list(_domain.keys())} or an alias {list(_domain.values())}")
     else:
         domain = None
 
@@ -110,9 +107,8 @@ def _check_param_inputs(**params):
         for key, aliases in _product.items():
             if product.upper() in aliases:
                 product = key
-    assert (
-        product in _product
-    ), f"product must be one of {list(_product .keys())} or an alias {list(_product .values())}"
+    if product not in _product:
+        raise ValueError(f"product must be one of {list(_product .keys())} or an alias {list(_product .values())}")
 
     return satellite, product, domain
 
@@ -162,7 +158,7 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
         df["mode"] = mode_bands[0].str[1:].astype(int)
         try:
             df["band"] = mode_bands[1].astype(int)
-        except:
+        except Exception:  # TODO: Specific specific exception(s)
             # No channel data
             df["band"] = None
 
@@ -399,14 +395,14 @@ def goes_timerange(
 
     check1 = start is not None and end is not None
     check2 = recent is not None
-    assert check1 or check2, "🤔 `start` and `end` *or* `recent` is required"
-
+    if not (check1 or check2):
+        raise ValueError("🤔 `start` and `end` *or* `recent` is required")
     if check1:
-        assert hasattr(start, "second") and hasattr(
-            end, "second"
-        ), "`start` and `end` must be a datetime object"
+        if not (hasattr(start, "second") and hasattr(end, "second")):
+            raise ValueError( "`start` and `end` must be a datetime object")
     elif check2:
-        assert hasattr(recent, "seconds"), "`recent` must be a timedelta object"
+        if not hasattr(recent, "seconds"):
+            raise ValueError("`recent` must be a timedelta object")
 
     # Parameter Setup
     # ---------------
@@ -536,14 +532,14 @@ def goes_single_point_timerange(
 
     check1 = start is not None and end is not None
     check2 = recent is not None
-    assert check1 or check2, "🤔 `start` and `end` *or* `recent` is required"
-
+    if not (check1 or check2):
+        raise ValueError("🤔 `start` and `end` *or* `recent` is required")
     if check1:
-        assert hasattr(start, "second") and hasattr(
-            end, "second"
-        ), "`start` and `end` must be a datetime object"
+        if not (hasattr(start, "second") and hasattr(end, "second")):
+            raise ValueError( "`start` and `end` must be a datetime object")
     elif check2:
-        assert hasattr(recent, "seconds"), "`recent` must be a timedelta object"
+        if not hasattr(recent, "seconds"):
+            raise ValueError("`recent` must be a timedelta object")
 
     # Parameter Setup
     # ---------------
