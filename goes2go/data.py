@@ -159,7 +159,7 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
         df["mode"] = mode_bands[0].str[1:].astype(int)
         try:
             df["band"] = mode_bands[1].astype(int)
-        except Exception:  # TODO: Specific specific exception(s)
+        except Exception:  # TODO: Specify specific expected exception(s)
             # No channel data
             df["band"] = None
 
