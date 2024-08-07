@@ -1,11 +1,9 @@
 ## Brian Blaylock
 ## October 18, 2021
 
-"""
-Some simple tests for the ABI data
-"""
+"""Some simple tests for the ABI data."""
 
-from goes2go.data import goes_nearesttime, goes_latest, goes_timerange
+from goes2go.data import goes_nearesttime, goes_latest
 
 
 def test_nearesttime():

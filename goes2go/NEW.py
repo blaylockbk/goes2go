@@ -7,15 +7,12 @@ GOES Class
 ==========
 """
 
-import itertools
 import logging
 import re
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 import s3fs
-import toml
 
 from goes2go import config
 from goes2go.data import _goes_file_df, goes_latest, goes_nearesttime, goes_timerange, goes_single_point_timerange
