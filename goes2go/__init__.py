@@ -24,7 +24,7 @@ import toml
 # TODO: Move some of the tools.py to these accessors.
 try:
     import goes2go.accessors
-except:
+except Exception:
     warnings.warn("goes2go xarray accessors could not be imported.")
 
 
@@ -80,7 +80,7 @@ s3_refresh = false
 return_as = "xarray"
 
 ["nearesttime"]
-within = "1H"
+within = "1h"
 return_as = "xarray"
 """
 
@@ -89,7 +89,7 @@ return_as = "xarray"
 try:
     # Load the goes2go config file
     config = toml.load(_config_file)
-except:
+except Exception:
     try:
         # Create the goes2go config file
         _config_path.mkdir(parents=True, exist_ok=True)
@@ -106,7 +106,7 @@ except:
 
         # Load the new goes2go config file
         config = toml.load(_config_file)
-    except (FileNotFoundError, PermissionError, IOError):
+    except (OSError, FileNotFoundError, PermissionError):
         print(
             f" ╭─goes2go─────────────────────────────────────────────╮\n"
             f" │ WARNING: Unable to create config file               │\n"

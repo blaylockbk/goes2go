@@ -383,7 +383,7 @@ def goes_timerange(
         start = pd.to_datetime(start)
     if isinstance(end, str):
         end = pd.to_datetime(end)
-    # If `recent` is a string (like recent='1H'), parse with Pandas
+    # If `recent` is a string (like recent='1h'), parse with Pandas
     if isinstance(recent, str):
         recent = pd.to_timedelta(recent)
 
@@ -520,7 +520,7 @@ def goes_single_point_timerange(
         start = pd.to_datetime(start)
     if isinstance(end, str):
         end = pd.to_datetime(end)
-    # If `recent` is a string (like recent='1H'), parse with Pandas
+    # If `recent` is a string (like recent='1h'), parse with Pandas
     if isinstance(recent, str):
         recent = pd.to_timedelta(recent)
 
