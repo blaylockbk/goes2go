@@ -3,7 +3,7 @@
 
 """
 ===========
-RGB Recipes
+RGB Recipes.
 ===========
 
 RGB Recipes for the GOES Advanced Baseline Imager.

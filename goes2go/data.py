@@ -3,8 +3,9 @@
 
 """
 =============
-Retrieve Data
+Retrieve Data.
 =============
+
 Download and read data from the R-series Geostationary Operational
 Environmental Satellite data.
 
@@ -216,7 +217,6 @@ def _download(df, save_dir, overwrite, max_threads=10, verbose=False):
 
 def _as_xarray_MP(src, save_dir, i=None, n=None, verbose=True):
     """Open a file as a xarray.Dataset -- a multiprocessing helper."""
-
     # File destination
     local_copy = Path(save_dir) / src
 
@@ -425,7 +425,7 @@ def goes_timerange(
 
 def _preprocess_single_point(ds, target_lat, target_lon, decimal_coordinates=True):
     """
-    Preprocessing function to select only the single relevant data subset
+    Preprocessing function to select only the single relevant data subset.
     
     Parameters
     ----------
