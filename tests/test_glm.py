@@ -1,11 +1,9 @@
 ## Brian Blaylock
 ## October 18, 2021
 
-"""
-Some simple tests for the GLM data
-"""
+"""Some simple tests for the GLM data."""
 
-from goes2go.data import goes_latest, goes_nearesttime, goes_timerange
+from goes2go.data import goes_latest, goes_nearesttime
 
 
 def test_nearesttime():

@@ -3,7 +3,7 @@
 
 """
 ===========
-RGB Recipes
+RGB Recipes.
 ===========
 
 RGB Recipes for the GOES Advanced Baseline Imager.
@@ -118,7 +118,7 @@ class fieldOfViewAccessor:
             )
             sat_height = ds.goes_imager_projection.perspective_point_height
             nadir_lon = ds.geospatial_lat_lon_extent.geospatial_lon_nadir
-            nadir_lat = ds.geospatial_lat_lon_extent.geospatial_lat_nadir
+            # nadir_lat = ds.geospatial_lat_lon_extent.geospatial_lat_nadir
         elif ds.cdm_data_type == "Point":
             globe_kwargs = dict(
                 semimajor_axis=ds.goes_lat_lon_projection.semi_major_axis,
@@ -127,7 +127,7 @@ class fieldOfViewAccessor:
             )
             sat_height = ds.nominal_satellite_height.item() * 1000
             nadir_lon = ds.lon_field_of_view.item()
-            nadir_lat = ds.lat_field_of_view.item()
+            # nadir_lat = ds.lat_field_of_view.item()
         # Create a cartopy coordinate reference system (crs)
         globe = ccrs.Globe(ellipse=None, **globe_kwargs)
 
@@ -258,9 +258,8 @@ class fieldOfViewAccessor:
         shapely.Polygon
         """
         ds = self._obj
-        assert ds.title.startswith(
-            "ABI"
-        ), "Domain polygon only available for ABI CONUS and Mesoscale files."
+        if not ds.title.startswith("ABI"):
+            raise ValueError("Domain polygon only available for ABI CONUS and Mesoscale files.")
         sat_height = ds.goes_imager_projection.perspective_point_height
         # Trim out domain FOV from the full disk (this is necessary for GOES-16).
         dom_border = np.array(
@@ -280,9 +279,8 @@ class rgbAccessor:
 
     def __init__(self, xarray_obj):
         self._obj = xarray_obj
-        assert (
-            self._obj.title == "ABI L2 Cloud and Moisture Imagery"
-        ), "Dataset must be an ABI L2 Cloud and Moisture Imagery file."
+        if not self._obj.title == "ABI L2 Cloud and Moisture Imagery":
+            raise ValueError("Dataset must be an ABI L2 Cloud and Moisture Imagery file.")
         self._crs = None
         self._x = None
         self._y = None
