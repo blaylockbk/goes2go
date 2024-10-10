@@ -71,6 +71,7 @@ return_as = "filelist"
 overwrite = false
 max_cpus = 1
 s3_refresh = true
+ignore_missing = false
 verbose = true
 
 ["timerange"]
