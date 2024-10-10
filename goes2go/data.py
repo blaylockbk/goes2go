@@ -114,7 +114,7 @@ def _check_param_inputs(**params):
     return satellite, product, domain
 
 
-def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
+def _goes_file_df(satellite, product, start, end, bands=None, refresh=True, ignore_missing=False):
     """Get list of requested GOES files as pandas.DataFrame.
 
     Parameters
@@ -140,7 +140,15 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     # ----------------------------
     files = []
     for DATE in DATES:
-        files += fs.ls(f"{satellite}/{product}/{DATE:%Y/%j/%H/}", refresh=refresh)
+        path = f"{satellite}/{product}/{DATE:%Y/%j/%H/}"
+        if ignore_missing :
+            try:
+                files += fs.ls(path, refresh=refresh)
+            except FileNotFoundError:
+                print(f"Ignored missing dir: {path}")
+        else:
+            files += fs.ls(path, refresh=refresh)
+                      
 
     # Build a table of the files
     # --------------------------
