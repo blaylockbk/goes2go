@@ -332,6 +332,7 @@ def goes_timerange(
     max_cpus=config["timerange"].get("max_cpus"),
     bands=None,
     s3_refresh=config["timerange"].get("s3_refresh"),
+    ignore_missing=config["timerange"].get("ignore_missing"),
     verbose=config["timerange"].get("verbose", True),
 ):
     """
@@ -420,7 +421,7 @@ def goes_timerange(
         start = datetime.utcnow() - recent
         end = datetime.utcnow()
 
-    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh)
+    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh, ignore_missing=ignore_missing)
 
     if download:
         _download(df, save_dir=save_dir, overwrite=overwrite, verbose=verbose)
@@ -465,6 +466,7 @@ def goes_single_point_timerange(
     max_cpus=config["timerange"].get("max_cpus"),
     bands=None,
     s3_refresh=config["timerange"].get("s3_refresh"),
+    ignore_missing=config["timerange"].get("ignore_missing"),
     verbose=config["timerange"].get("verbose", True),
 ):
     """
@@ -557,7 +559,7 @@ def goes_single_point_timerange(
         start = datetime.utcnow() - recent
         end = datetime.utcnow()
 
-    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh)
+    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh, ignore_missing=ignore_missing)
 
     if download:
         _download(df, save_dir=save_dir, overwrite=overwrite, verbose=verbose)
@@ -585,6 +587,7 @@ def goes_latest(
     save_dir=config["latest"].get("save_dir"),
     bands=None,
     s3_refresh=config["latest"].get("s3_refresh"),
+    ignore_missing=config["latest"].get("ignore_missing"),
     verbose=config["latest"].get("verbose", True),
 ):
     """
@@ -645,7 +648,7 @@ def goes_latest(
     start = datetime.utcnow() - timedelta(hours=1)
     end = datetime.utcnow()
 
-    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh)
+    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh, ignore_missing=ignore_missing)
 
     # Filter for specific mesoscale domain
     if domain is not None and domain.upper() in ["M1", "M2"]:
@@ -677,6 +680,7 @@ def goes_nearesttime(
     save_dir=config["nearesttime"].get("save_dir"),
     bands=None,
     s3_refresh=config["nearesttime"].get("s3_refresh"),
+    ignore_missing=config["nearesttime"].get("ignore_missing"),
     verbose=config["nearesttime"].get("verbose", True),
 ):
     """
@@ -746,7 +750,7 @@ def goes_nearesttime(
     start = attime - within
     end = attime + within
 
-    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh)
+    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh, ignore_missing=ignore_missing)
 
     # return df, start, end, attime
 
