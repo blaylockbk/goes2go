@@ -141,7 +141,7 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True, igno
     files = []
     for DATE in DATES:
         path = f"{satellite}/{product}/{DATE:%Y/%j/%H/}"
-        if ignore_missing :
+        if ignore_missing is True:
             try:
                 files += fs.ls(path, refresh=refresh)
             except FileNotFoundError:
