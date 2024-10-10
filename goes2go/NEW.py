@@ -257,7 +257,7 @@ class GOES:
             **kwargs,
         )
 
-    def df(self, start, end, refresh=True):
+    def df(self, start, end, refresh=True, ignore_missing=False):
         """Get list of requested GOES files as pandas.DataFrame.
 
         Parameters
@@ -267,6 +267,9 @@ class GOES:
         refresh : bool
             Refresh the s3fs.S3FileSystem object when files are listed.
             Default True will refresh and not use a cached list.
+        ignore_missing : bool
+            Ignore FileNotFoundError if there is missing data from
+            a satellite outage.
         """
         return _goes_file_df(
             self.satellite,
@@ -275,4 +278,5 @@ class GOES:
             end=end,
             bands=self.bands,
             refresh=refresh,
+            ignore_missing=ignore_missing,
         )
