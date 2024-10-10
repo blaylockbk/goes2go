@@ -76,6 +76,7 @@ verbose = true
 
 ["timerange"]
 s3_refresh = false
+ignore_missing = true
 
 ["latest"]
 return_as = "xarray"
