@@ -42,6 +42,7 @@ _satellite = {
     "noaa-goes16": [16, "16", "G16", "EAST", "GOES16"],
     "noaa-goes17": [17, "17", "G17", "WEST", "GOES17"],
     "noaa-goes18": [18, "18", "G18", "WEST", "GOES18"],
+    "noaa-goes19": [19, "19", "G19", "EAST", "GOES19"],
 }
 
 _domain = {
@@ -148,7 +149,7 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True, igno
                 print(f"Ignored missing dir: {path}")
         else:
             files += fs.ls(path, refresh=refresh)
-                      
+
 
     # Build a table of the files
     # --------------------------
@@ -435,7 +436,7 @@ def goes_timerange(
 def _preprocess_single_point(ds, target_lat, target_lon, decimal_coordinates=True):
     """
     Preprocessing function to select only the single relevant data subset.
-    
+
     Parameters
     ----------
     ds: xarray Dataset
