@@ -42,7 +42,7 @@ _satellite = {
     "noaa-goes16": [16, "16", "G16", "EAST", "GOES16"],
     "noaa-goes17": [17, "17", "G17", "WEST", "GOES17"],
     "noaa-goes18": [18, "18", "G18", "WEST", "GOES18"],
-    "noaa-goes19": [19, "19", "G19", "WEST", "GOES19"],
+    "noaa-goes19": [19, "19", "G19", "EAST", "GOES19"],
 }
 
 _domain = {
