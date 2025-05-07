@@ -3,9 +3,15 @@
 ABI-L1b-RadF,   Advanced Baseline Imager Level 1b Full Disk
 ABI-L1b-RadC,   Advanced Baseline Imager Level 1b CONUS
 ABI-L1b-RadM,   Advanced Baseline Imager Level 1b Mesoscale
+ABI-L2-ACHA2KMC,Advanced Baseline Imager Level 2 Cloud Top Height 2km CONUS
+ABI-L2-ACHA2KMF,Advanced Baseline Imager Level 2 Cloud Top Height 2km Full Disk
+ABI-L2-ACHA2KMM,Advanced Baseline Imager Level 2 Cloud Top Height 2km Mesoscale
 ABI-L2-ACHAC,   Advanced Baseline Imager Level 2 Cloud Top Height CONUS
 ABI-L2-ACHAF,   Advanced Baseline Imager Level 2 Cloud Top Height Full Disk
 ABI-L2-ACHAM,   Advanced Baseline Imager Level 2 Cloud Top Height Mesoscale
+ABI-L2-ACHP2KMC,Advanced Baseline Imager Level 2 Cloud Top Pressure 2km CONUS
+ABI-L2-ACHP2KMF,Advanced Baseline Imager Level 2 Cloud Top Pressure 2km Full Disk
+ABI-L2-ACHP2KMM,Advanced Baseline Imager Level 2 Cloud Top Pressure 2km Mesoscale
 ABI-L2-ACHTF,   Advanced Baseline Imager Level 2 Cloud Top Temperature Full Disk
 ABI-L2-ACHTM,   Advanced Baseline Imager Level 2 Cloud Top Temperature Mesoscale
 ABI-L2-ACMC,    Advanced Baseline Imager Level 2 Clear Sky Mask CONUS
@@ -49,6 +55,9 @@ ABI-L2-DSRM,    Advanced Baseline Imager Level 2 Downward Shortwave Radiation Me
 ABI-L2-FDCC,    Advanced Baseline Imager Level 2 Fire (Hot Spot Characterization) CONUS
 ABI-L2-FDCF,    Advanced Baseline Imager Level 2 Fire (Hot Spot Characterization) Full Disk
 ABI-L2-FDCM,    Advanced Baseline Imager Level 2 Fire (Hot Spot Characterization) Mesoscale
+ABI-L2-FSCC,    Advanced Baseline Imager Level 2 Fractional Snow Cover CONUS
+ABI-L2-FSCF,    Advanced Baseline Imager Level 2 Fractional Snow Cover Full Disk
+ABI-L2-FSCM,    Advanced Baseline Imager Level 2 Fractional Snow Cover Mesoscale
 ABI-L2-LSAC,    Land Surface Albedo (CONUS) 2km resolution & DQFs
 ABI-L2-LSAF,    Land Surface Albedo (Full Disk) 2km resolution & DQFs
 ABI-L2-LSAM,    Land Surface Albedo (Mesoscale) 2km resolution & DQFs
