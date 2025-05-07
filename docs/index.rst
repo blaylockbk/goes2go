@@ -76,7 +76,7 @@ First, create a GOES object to specify the satellite, data product, and domain y
    G = GOES(satellite=17, product="ABI-L1b-Rad", domain='F')
 
 
-.. note:: A complete listing of the products available are available at `here <https://github.com/blaylockbk/goes2go/blob/main/goes2go/product_table.txt>`_.
+.. note:: A complete listing of the products available are available at `here <https://github.com/blaylockbk/goes2go/blob/main/src/goes2go/product_table.txt>`_.
 
 There are methods to do the following:
 

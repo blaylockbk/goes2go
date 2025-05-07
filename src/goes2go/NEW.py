@@ -15,7 +15,13 @@ import pandas as pd
 import s3fs
 
 from goes2go import config
-from goes2go.data import _goes_file_df, goes_latest, goes_nearesttime, goes_timerange, goes_single_point_timerange
+from goes2go.data import (
+    _goes_file_df,
+    goes_latest,
+    goes_nearesttime,
+    goes_timerange,
+    goes_single_point_timerange,
+)
 
 log = logging.getLogger(__name__)
 
@@ -64,7 +70,7 @@ class GOES:
             {'G16', "G17", "EAST", "WEST"}
         product : str
             The product to acquire. A full list of products is here
-            https://github.com/blaylockbk/goes2go/blob/main/goes2go/product_table.txt
+            https://github.com/blaylockbk/goes2go/blob/main/src/goes2go/product_table.txt
             - GLM = alias for geostationary lighting mapper
             - ABI = alias for ABI multi-channel cloud moisture imagery
         domain : {None, 'F', 'C', "M", "M1", "M2"}
@@ -227,7 +233,16 @@ class GOES:
             **kwargs,
         )
 
-    def single_point_timerange(self, latitude, longitude, start=None, end=None, recent=None, decimal_coordinates=True, **kwargs):
+    def single_point_timerange(
+        self,
+        latitude,
+        longitude,
+        start=None,
+        end=None,
+        recent=None,
+        decimal_coordinates=True,
+        **kwargs,
+    ):
         """Get GOES data for a time range at the scan point nearest to a defined single latitude/longitude point.
 
         Parameters
