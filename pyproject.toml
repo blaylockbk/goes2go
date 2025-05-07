@@ -2,17 +2,17 @@
 name = "goes2go"
 description = "Retrieve GOES Satellite data from AWS. Also proves some RGB recipes."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [{ name = "Brian K. Blaylock", email = "blaylockbk@gmail.com" }]
 maintainers = [{ name = "Brian K. Blaylock", email = "blaylockbk@gmail.com" }]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Operating System :: MacOS",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
@@ -31,15 +31,15 @@ keywords = [
     "NOAA",
 ]
 dependencies = [
-    "cartopy>=0.22.0",
-    "h5netcdf",
-    "matplotlib",
-    "metpy",
-    "numpy",
-    "pandas",
-    "s3fs>=2023.6.0",
-    "toml",
-    "xarray",
+    "cartopy>=0.24.1",
+    "h5netcdf>=1.6.1",
+    "matplotlib>=3.10.1",
+    "metpy>=1.7.0",
+    "numpy>=2.2.5",
+    "pandas>=2.2.3",
+    "s3fs>=2025.3.2",
+    "toml>=0.10.2",
+    "xarray>=2025.4.0",
 ]
 dynamic = ["version"]
 
@@ -50,38 +50,57 @@ dynamic = ["version"]
 "Changelog" = "https://github.com/blaylockbk/goes2go/releases"
 "Bug Tracker" = "https://github.com/blaylockbk/goes2go/issues"
 
-[project.optional-dependencies]
-docs = [
-    "autodocsumm",
-    "linkify-it-py",
-    "myst-parser",
-    "nbconvert",
-    "nbsphinx",
-    "sphinx-copybutton",
-    "pydata-sphinx-theme",
-    "recommonmark",
-    "sphinx",
-    "sphinx-autosummary-accessors",
-    "sphinx-design",
-    "sphinx-markdown-tables",
-    "sphinxcontrib-mermaid",
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "ruff>=0.11.8",
 ]
-test = ["pytest", "ruff"]
+docs = [
+    "autodocsumm>=0.2.14",
+    "linkify-it-py>=2.0.3",
+    "myst-parser>=4.0.1",
+    "nbconvert>=7.16.6",
+    "nbsphinx>=0.9.7",
+    "pydata-sphinx-theme>=0.16.1",
+    "recommonmark>=0.7.1",
+    "sphinx>=8.1.3",
+    "sphinx-autosummary-accessors>=2025.3.1",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-design>=0.6.1",
+    "sphinx-markdown-tables>=0.0.17",
+    "sphinxcontrib-mermaid>=1.0.0",
+]
 
 [build-system]
-requires = ["setuptools>=42", "wheel", "setuptools_scm[toml]>=3.4"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
-[tool.setuptools]
-packages = ["goes2go"]
+[tool.hatch]
 
-[tool.setuptools_scm]
-version_scheme = "post-release"
-local_scheme = "no-local-version"
-write_to = "goes2go/_version.py"
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/goes2go/_version.py"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github",
+    "/docs",
+    "/notebooks",
+    "/.vscode",
+    "/sample_data",
+    "/images",
+    "/latlon_grids",
+    "/tests",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/goes2go"]
 
 [tool.ruff]
-target-version = "py311"
 extend-include = ["*.ipynb"]
 
 [tool.ruff.lint]
@@ -94,13 +113,12 @@ extend-select = [
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
-[tool.isort]
-profile = "black"
 
 [tool.pytest.ini_options]
 minversion = "2.0"
-addopts = "-rsfEX -p pytester --strict-markers --verbosity=3"
+addopts = "-rsfEX -p pytester --strict-markers --verbosity=3 --cov=goes2go"
 log_level = "DEBUG"
 testpaths = ["tests"]
 xfail_strict = true
 markers = []
+
