@@ -49,7 +49,7 @@ jobs:
 
       - name: Install the project
         shell: bash -el {0}
-        run: uv sync --extra extras
+        run: uv sync
 
       - name: Run tests
         shell: bash -el {0}

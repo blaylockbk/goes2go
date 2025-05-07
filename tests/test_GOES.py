@@ -12,11 +12,14 @@ def test_GOES16():
 
 
 def test_GOES16_latest():
-    ds = GOES(satellite=16).latest()
+    ds = GOES(satellite=19).latest()
 
 
 def test_GOES16_nearesttime():
     ds = GOES(satellite=16).nearesttime("2022-01-01")
+
+def test_GOES16_nearesttime():
+    ds = GOES(satellite=19).nearesttime("2025-05-06 12:00")
 
 
 def test_GOES16_single_point_timerange():
