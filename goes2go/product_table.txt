@@ -55,6 +55,7 @@ ABI-L2-LSAM,    Land Surface Albedo (Mesoscale) 2km resolution & DQFs
 ABI-L2-LSTC,    Advanced Baseline Imager Level 2 Land Surface Temperature CONUS
 ABI-L2-LSTF,    Advanced Baseline Imager Level 2 Land Surface Temperature Full Disk
 ABI-L2-LSTM,    Advanced Baseline Imager Level 2 Land Surface Temperature Mesoscale
+ABI-L2-LST2KMF, Advanced Baseline Imager Level 2 Land Surface Temperature 2km resolution Full Disk
 ABI-L2-LVMPC,   Advanced Baseline Imager Level 2 Legacy Vertical Moisture Profile CONUS
 ABI-L2-LVMPF,   Advanced Baseline Imager Level 2 Legacy Vertical Moisture Profile Full Disk
 ABI-L2-LVMPM,   Advanced Baseline Imager Level 2 Legacy Vertical Moisture Profile Mesoscale
