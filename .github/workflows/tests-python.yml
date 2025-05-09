@@ -1,5 +1,4 @@
 name: Tests (uv)
-
 on:
   push:
     branches: [main]
