@@ -7,8 +7,8 @@ from goes2go.data import goes_latest, goes_nearesttime
 
 
 def test_nearesttime():
-    ds = goes_nearesttime("2020-01-01", product="glm", save_dir="$TMPDIR")
+    ds = goes_nearesttime("2020-01-01", satellite=16, product="glm", save_dir="$TMPDIR")
 
 
 def test_latest():
-    ds = goes_latest(product="glm", save_dir="$TMPDIR")
+    ds = goes_latest(satellite=19, product="glm", save_dir="$TMPDIR")

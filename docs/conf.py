@@ -138,13 +138,9 @@ html_theme_options = {
     "show_toc_level": 1,
     "navbar_align": "left",
     "show_version_warning_banner": True,
-    "navbar_center": ["version-switcher", "navbar-nav"],
+    "navbar_center": ["navbar-nav"],
     "footer_start": ["copyright"],
     "footer_center": ["sphinx-version"],
-    "switcher": {
-        "json_url": "https://goes2go.readthedocs.io/en/latest/_static/switcher.json",
-        "version_match": os.environ.get("READTHEDOCS_VERSION"),
-    },
 }
 
 html_sidebars = {}

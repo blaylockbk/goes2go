@@ -122,7 +122,7 @@ G = GOES(satellite=17, product="GLM-L2-LCFA", domain='C')
 G = GOES(satellite=17, product="ABI-L1b-Rad", domain='F')
 ```
 
-> A complete listing of the products available are available [here](https://github.com/blaylockbk/goes2go/blob/main/goes2go/product_table.txt).
+> A complete listing of the products available are available [here](https://github.com/blaylockbk/goes2go/blob/main/src/goes2go/product_table.txt).
 
 There are methods to do the following:
 

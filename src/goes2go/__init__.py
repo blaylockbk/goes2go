@@ -63,7 +63,7 @@ _save_dir = str(_save_dir).replace("\\", "\\\\")
 default_toml = f""" # GOES-2-go Defaults
 ["default"]
 save_dir = "{_save_dir}"
-satellite = "noaa-goes16"
+satellite = "noaa-goes19"
 product = "ABI-L2-MCMIP"
 domain = "C"
 download = true

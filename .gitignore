@@ -1,7 +1,9 @@
+uv.lock
+
 # Don't upload ANY NetCDF files
 *.nc
 
-goes2go/_version.py
+src/goes2go/_version.py
 
 core.*
 

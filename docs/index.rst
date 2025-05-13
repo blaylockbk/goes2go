@@ -19,49 +19,39 @@ GOES-2-Go is a python package that helps you download GOES-R series (GOES-East/1
    /user_guide/index
    /reference_guide/index
 
+Installation
+------------
 
-Install
--------
+.. tab-set::
 
-The easiest way to install ``goes2go`` and its dependencies is with Conda from conda-forge.
+    .. tab-item:: mamba
 
-.. code:: bash
+        .. code-block:: bash
 
-   conda install -c conda-forge goes2go
+            mamba install -c conda-forge goes2go
+
+    .. tab-item:: conda
+
+        .. code-block:: bash
+
+            conda install -c conda-forge goes2go
 
 
-You may also create the provided Conda environment file `environment.yml
-<https://github.com/blaylockbk/goes2go/blob/main/environment.yml>`_.
+    .. tab-item:: pip
 
-.. code:: bash
+        .. code-block:: bash
 
-   # Create the environment
-   conda env create -f environment.yml
+            pip install goes2go
 
-   # Update the environment
-   conda env update -f environment.yml
+    .. tab-item:: uv
 
-   # Activate the environment
-   conda activate goes2go
+        Add goes2go to your uv project with the following command:
 
-Alternatively, ``goes2go`` is published on PyPI and you can install it with pip, but it requires some additional dependencies that you will have to install yourself:
+        .. code-block:: bash
 
-- Python 3.8+
-- Cartopy, which requires GEOS and Proj.
-- MetPy
-- Optional: Carpenter Workshop
+            uv add goes2go
 
-When those are installed within your environment, then you can install GOES-2-go with pip.
-
-.. code:: bash
-
-   # Latest published version
-   pip install goes2go
-
-   # ~~ or ~~
-
-   # Most recent changes
-   pip install git+https://github.com/blaylockbk/goes2go.git
+In some of the docs, you might see me use some functions I borrow from `Carpenter Workshop <https://github.com/blaylockbk/Carpenter_Workshop>`_
 
 
 Capabilities
@@ -86,7 +76,7 @@ First, create a GOES object to specify the satellite, data product, and domain y
    G = GOES(satellite=17, product="ABI-L1b-Rad", domain='F')
 
 
-.. note:: A complete listing of the products available are available at `here <https://github.com/blaylockbk/goes2go/blob/main/goes2go/product_table.txt>`_.
+.. note:: A complete listing of the products available are available at `here <https://github.com/blaylockbk/goes2go/blob/main/src/goes2go/product_table.txt>`_.
 
 There are methods to do the following:
 
