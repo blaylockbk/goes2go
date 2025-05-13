@@ -11,4 +11,4 @@ def test_nearesttime():
 
 
 def test_latest():
-    ds = goes_latest(save_dir="$TMPDIR")
+    ds = goes_latest(satellite=19, save_dir="$TMPDIR")
