@@ -1400,9 +1400,9 @@ class rgbAccessor:
         B = _normalize(B, 0, 30)
 
         # Apply a gamma correction to each R, G, B channel
-        R = _gamma_correction(R, 0.7)
+        R = _gamma_correction(R, 1/0.7)
         G = _gamma_correction(G, 1.0)
-        B = _gamma_correction(B, 0.7)
+        B = _gamma_correction(B, 1/0.7)
 
         # The final RGB array :)
         RGB = np.dstack([R, G, B])
