@@ -1378,3 +1378,40 @@ class rgbAccessor:
         ds["SeaSpray"].attrs["long_name"] = "Sea Spray"
 
         return ds["SeaSpray"]
+
+    def BlowingSnow(self, **kwargs):
+        """Create the Blowing Snow RGB.
+
+        (See `Quick Guide <https://rammb2.cira.colostate.edu/wp-content/uploads/2024/11/GOES-BlowingSnowRGB1_QuickGuide_24April2024.pdf>`__ for reference)
+
+        .. image:: /_static/BlowingSnow.png
+
+        """
+        ds = self._obj
+
+        # Load the three channels into appropriate R, G, and B variables
+        R = ds["CMI_C02"].data
+        G = ds["CMI_C05"].data
+        B = ds["CMI_C07"].data - ds["CMI_C13"].data
+
+        # Normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
+        R = _normalize(R, 0, .5)    # values for this channel go from 0 to 1.
+        G = _normalize(G, 0, 0.2)   # values for this channel go from 0 to 1.
+        B = _normalize(B, 0, 30)
+
+        # Apply a gamma correction to each R, G, B channel
+        R = _gamma_correction(R, 0.7)
+        G = _gamma_correction(G, 1.0)
+        B = _gamma_correction(B, 0.7)
+
+        # The final RGB array :)
+        RGB = np.dstack([R, G, B])
+
+        ds["BlowingSnow"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["BlowingSnow"].attrs["Quick Guide"] = (
+            "https://rammb2.cira.colostate.edu/wp-content/uploads/2024/11/GOES-BlowingSnowRGB1_QuickGuide_24April2024.pdf"
+        )
+        ds["BlowingSnow"].attrs["long_name"] = "Blowing Snow"
+
+        return ds["BlowingSnow"]
