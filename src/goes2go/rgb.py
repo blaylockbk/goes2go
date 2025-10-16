@@ -21,6 +21,8 @@ and include the following:
     - FireTemperature
     - AirMass
     - DayCloudPhase
+    - DayCloudPhaseEUMETSAT
+    - DayCloudType
     - DayConvection
     - DayCloudConvection
     - DayLandCloud
@@ -594,6 +596,71 @@ def DayCloudPhase(C, **kwargs):
     RGB = np.dstack([R, G, B])
 
     return rgb_as_dataset(C, RGB, "Day Cloud Phase", **kwargs)
+
+def DayCloudPhaseEUMETSAT(C, **kwargs):
+    """
+    Day Cloud Phase EUMETSAT RGB:
+    (See `Quick Guide <https://eumetrain.org/sites/default/files/2023-01/CloudPhaseRGB.pdf>`__ for reference)
+
+    .. image:: /_static/DayCloudPhaseEUMETSAT.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs :
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+
+    """
+    # Load the three channels into appropriate R, G, and B variables
+    R, G, B = load_RGB_channels(C, (5, 6, 2))
+
+    # Normalize each channel by the appropriate range of values. (Clipping happens inside function)
+    R = normalize(R, 0, .5)
+    G = normalize(G, 0, .5)
+    B = normalize(B, 0, 1)
+
+    # The final RGB array :)
+    RGB = np.dstack([R, G, B])
+
+    return rgb_as_dataset(C, RGB, "Day Cloud Phase EUMETSAT", **kwargs)
+
+def DayCloudType(C, **kwargs):
+    """
+    Day Cloud Type RGB:
+    (See `Quick Guide <https://eumetrain.org/sites/default/files/2021-05/CloudTypeRGB.pdf>`__ for reference)
+
+    .. image:: /_static/DayCloudType.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs :
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+
+    """
+    # Load the three channels into appropriate R, G, and B variables
+    R, G, B = load_RGB_channels(C, (4, 2, 5))
+
+    # Normalize each channel by the appropriate range of values. (Clipping happens inside function)
+    R = normalize(R, 0, .1)
+    G = normalize(G, 0, .8)
+    B = normalize(B, 0, .8)
+
+    # Apply the gamma correction to Red channel.
+    #   corrected_value = value^(1/gamma)
+    gamma = 1.5
+    R = gamma_correction(R, gamma)
+    gamma = .75
+    G = gamma_correction(G, gamma)
+
+    # The final RGB array :)
+    RGB = np.dstack([R, G, B])
+
+    return rgb_as_dataset(C, RGB, "Day Cloud Type", **kwargs)
 
 
 def DayConvection(C, **kwargs):
