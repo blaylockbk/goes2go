@@ -594,7 +594,7 @@ def BlowingSnow(C, **kwargs):
 
     # Apply the gamma correction to Red channel.
     #   corrected_value = value^(1/gamma)
-    gamma = .7
+    gamma = 1/.7
     R = gamma_correction(R, gamma)
     B = gamma_correction(B, gamma)
 
