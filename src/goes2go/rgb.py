@@ -20,7 +20,10 @@ and include the following:
     - TrueColor
     - FireTemperature
     - AirMass
+    - BlowingSnow
     - DayCloudPhase
+    - DayCloudPhaseEUMETSAT
+    - DayCloudType
     - DayConvection
     - DayCloudConvection
     - DayLandCloud
@@ -30,6 +33,7 @@ and include the following:
     - DaySnowFog
     - NighttimeMicrophysics
     - Dust
+    - SeaSpray
     - SulfurDioxide
     - Ash
     - SplitWindowDifference
@@ -562,6 +566,42 @@ def AirMass(C, **kwargs):
 
     return rgb_as_dataset(C, RGB, "Air Mass", **kwargs)
 
+def BlowingSnow(C, **kwargs):
+    """
+    Blowing Snow RGB:
+    (See `Quick Guide <https://rammb2.cira.colostate.edu/wp-content/uploads/2024/11/GOES-BlowingSnowRGB1_QuickGuide_24April2024.pdf>`__ for reference)
+
+    .. image:: /_static/BlowingSnow.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs :
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+
+    """
+    # Load the three channels into appropriate R, G, and B variables
+    R = C["CMI_C02"].data
+    G = C["CMI_C05"].data
+    B = C["CMI_C07"].data - C["CMI_C13"].data
+
+    # Normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
+    R = normalize(R, 0, 0.5)
+    G = normalize(G, 0, 0.2)
+    B = normalize(B, 0, 30)
+
+    # Apply the gamma correction to Red channel.
+    #   corrected_value = value^(1/gamma)
+    gamma = 1/.7
+    R = gamma_correction(R, gamma)
+    B = gamma_correction(B, gamma)
+
+    # The final RGB array :)
+    RGB = np.dstack([R, G, B])
+
+    return rgb_as_dataset(C, RGB, "Blowing Snow", **kwargs)
 
 def DayCloudPhase(C, **kwargs):
     """
@@ -594,6 +634,71 @@ def DayCloudPhase(C, **kwargs):
     RGB = np.dstack([R, G, B])
 
     return rgb_as_dataset(C, RGB, "Day Cloud Phase", **kwargs)
+
+def DayCloudPhaseEUMETSAT(C, **kwargs):
+    """
+    Day Cloud Phase EUMETSAT RGB:
+    (See `Quick Guide <https://eumetrain.org/sites/default/files/2023-01/CloudPhaseRGB.pdf>`__ for reference)
+
+    .. image:: /_static/DayCloudPhaseEUMETSAT.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs :
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+
+    """
+    # Load the three channels into appropriate R, G, and B variables
+    R, G, B = load_RGB_channels(C, (5, 6, 2))
+
+    # Normalize each channel by the appropriate range of values. (Clipping happens inside function)
+    R = normalize(R, 0, .5)
+    G = normalize(G, 0, .5)
+    B = normalize(B, 0, 1)
+
+    # The final RGB array :)
+    RGB = np.dstack([R, G, B])
+
+    return rgb_as_dataset(C, RGB, "Day Cloud Phase EUMETSAT", **kwargs)
+
+def DayCloudType(C, **kwargs):
+    """
+    Day Cloud Type RGB:
+    (See `Quick Guide <https://eumetrain.org/sites/default/files/2021-05/CloudTypeRGB.pdf>`__ for reference)
+
+    .. image:: /_static/DayCloudType.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs :
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+
+    """
+    # Load the three channels into appropriate R, G, and B variables
+    R, G, B = load_RGB_channels(C, (4, 2, 5))
+
+    # Normalize each channel by the appropriate range of values. (Clipping happens inside function)
+    R = normalize(R, 0, .1)
+    G = normalize(G, 0, .8)
+    B = normalize(B, 0, .8)
+
+    # Apply the gamma correction to Red channel.
+    #   corrected_value = value^(1/gamma)
+    gamma = 1.5
+    R = gamma_correction(R, gamma)
+    gamma = .75
+    G = gamma_correction(G, gamma)
+
+    # The final RGB array :)
+    RGB = np.dstack([R, G, B])
+
+    return rgb_as_dataset(C, RGB, "Day Cloud Type", **kwargs)
 
 
 def DayConvection(C, **kwargs):
@@ -910,6 +1015,42 @@ def Dust(C, **kwargs):
 
     return rgb_as_dataset(C, RGB, "Dust", **kwargs)
 
+def SeaSpray(C, **kwargs):
+    """
+    Sea Spray RGB:
+    (See `Quick Guide <https://rammb.cira.colostate.edu/training/visit/quick_guides/VIIRS_Sea_Spray_RGB_Quick_Guide_v2.pdf
+>`__ for reference)
+
+    .. image:: /_static/SeaSpray.png
+
+    Parameters
+    ----------
+    C : xarray.Dataset
+        A GOES ABI multichannel file opened with xarray.
+    \*\*kwargs :
+        Keyword arguments for ``rgb_as_dataset`` function.
+        - latlon : derive latitude and longitude of each pixel
+
+    """
+    # Load the three channels into appropriate R, G, and B variables
+    R = C["CMI_C07"].data - C["CMI_C13"].data
+    G = C["CMI_C03"].data
+    B = C["CMI_C02"].data
+
+    # Normalize values
+    R = normalize(R, 0, 5)
+    G = normalize(G, .01, .09)
+    B = normalize(B, .02, .12)
+
+    # Apply a gamma correction to the image
+    gamma = 1/.6
+    G = gamma_correction(G, gamma)
+    B = gamma_correction(B, gamma)
+
+    # The final RGB array :)
+    RGB = np.dstack([R, G, B])
+
+    return rgb_as_dataset(C, RGB, "Sea Spray", **kwargs)
 
 def SulfurDioxide(C, **kwargs):
     """

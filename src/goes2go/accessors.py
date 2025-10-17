@@ -741,6 +741,75 @@ class rgbAccessor:
 
         return ds["DayCloudPhase"]
 
+    def DayCloudPhaseEUMETSAT(self):
+        """Create the Day Cloud Phase EUMETSAT RGB.
+
+        (See `Quick Guide <https://eumetrain.org/sites/default/files/2023-01/CloudPhaseRGB.pdf>`__ for reference)
+
+        .. image:: /_static/DayCloudPhaseEUMETSAT.png
+
+
+        """
+        ds = self._obj
+
+        # Load the three channels into appropriate R, G, and B variables
+        R, G, B = self._load_RGB_channels((5, 6, 2))
+
+        # _normalize each channel by the appropriate range of values. (Clipping happens inside function)
+        R = _normalize(R, 0, .5)
+        G = _normalize(G, 0, .5)
+        B = _normalize(B, 0, 1)
+
+        # The final RGB array :)
+        RGB = np.dstack([R, G, B])
+
+        ds["DayCloudPhaseEUMETSAT"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DayCloudPhaseEUMETSAT"].attrs["Quick Guide"] = (
+            "https://eumetrain.org/sites/default/files/2023-01/CloudPhaseRGB.pdf"
+        )
+        ds["DayCloudPhaseEUMETSAT"].attrs["long_name"] = "Day Cloud Phase EUMETSAT"
+
+        return ds["DayCloudPhaseEUMETSAT"]
+
+    def DayCloudType(self):
+        """Create the Day Cloud Phase Type RGB.
+
+        (See `Quick Guide <https://eumetrain.org/sites/default/files/2021-05/CloudTypeRGB.pdf>`__ for reference)
+
+        .. image:: /_static/DayCloudType.png
+
+
+        """
+        ds = self._obj
+
+        # Load the three channels into appropriate R, G, and B variables
+        R, G, B = self._load_RGB_channels((4, 2, 5))
+
+        # _normalize each channel by the appropriate range of values. (Clipping happens inside function)
+        R = _normalize(R, 0, .1)
+        G = _normalize(G, 0, .8)
+        B = _normalize(B, 0, .8)
+
+        # Apply the gamma correction to Red channel.
+        #   corrected_value = value^(1/gamma)
+        gamma = 1.5
+        R = _gamma_correction(R, gamma)
+        gamma = .75
+        G = _gamma_correction(G, gamma)
+        
+        # The final RGB array :)
+        RGB = np.dstack([R, G, B])
+
+        ds["DayCloudType"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["DayCloudType"].attrs["Quick Guide"] = (
+            "https://eumetrain.org/sites/default/files/2021-05/CloudTypeRGB.pdf"
+        )
+        ds["DayCloudType"].attrs["long_name"] = "Day Cloud Type"
+
+        return ds["DayCloudType"]
+
     def DayConvection(self):
         """Create the Day Convection RGB.
 
@@ -1309,3 +1378,40 @@ class rgbAccessor:
         ds["SeaSpray"].attrs["long_name"] = "Sea Spray"
 
         return ds["SeaSpray"]
+
+    def BlowingSnow(self, **kwargs):
+        """Create the Blowing Snow RGB.
+
+        (See `Quick Guide <https://rammb2.cira.colostate.edu/wp-content/uploads/2024/11/GOES-BlowingSnowRGB1_QuickGuide_24April2024.pdf>`__ for reference)
+
+        .. image:: /_static/BlowingSnow.png
+
+        """
+        ds = self._obj
+
+        # Load the three channels into appropriate R, G, and B variables
+        R = ds["CMI_C02"].data
+        G = ds["CMI_C05"].data
+        B = ds["CMI_C07"].data - ds["CMI_C13"].data
+
+        # Normalize each channel by the appropriate range of values. e.g. R = (R-minimum)/(maximum-minimum)
+        R = _normalize(R, 0, .5)    # values for this channel go from 0 to 1.
+        G = _normalize(G, 0, 0.2)   # values for this channel go from 0 to 1.
+        B = _normalize(B, 0, 30)
+
+        # Apply a gamma correction to each R, G, B channel
+        R = _gamma_correction(R, 1/0.7)
+        G = _gamma_correction(G, 1.0)
+        B = _gamma_correction(B, 1/0.7)
+
+        # The final RGB array :)
+        RGB = np.dstack([R, G, B])
+
+        ds["BlowingSnow"] = (("y", "x", "rgb"), RGB)
+        ds["rgb"] = ["R", "G", "B"]
+        ds["BlowingSnow"].attrs["Quick Guide"] = (
+            "https://rammb2.cira.colostate.edu/wp-content/uploads/2024/11/GOES-BlowingSnowRGB1_QuickGuide_24April2024.pdf"
+        )
+        ds["BlowingSnow"].attrs["long_name"] = "Blowing Snow"
+
+        return ds["BlowingSnow"]
