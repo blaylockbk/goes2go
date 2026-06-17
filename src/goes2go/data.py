@@ -18,7 +18,7 @@ https://registry.opendata.aws/noaa-goes/
 
 import multiprocessing
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from functools import partial
 from pathlib import Path
 
@@ -83,7 +83,9 @@ def _check_param_inputs(**params):
             if satellite in aliases:
                 satellite = key
     if satellite not in _satellite:
-        raise ValueError(f"satellite must be one of {list(_satellite.keys())} or an alias {list(_satellite.values())}")
+        raise ValueError(
+            f"satellite must be one of {list(_satellite.keys())} or an alias {list(_satellite.values())}"
+        )
 
     ## Determine the Domain (only needed for ABI product)
     if product.upper().startswith("ABI"):
@@ -100,7 +102,9 @@ def _check_param_inputs(**params):
                         domain = key
                 product = product + domain
         if (domain not in _domain) and (domain not in ["M1", "M2"]):
-            raise ValueError(f"domain must be one of {list(_domain.keys())} or an alias {list(_domain.values())}")
+            raise ValueError(
+                f"domain must be one of {list(_domain.keys())} or an alias {list(_domain.values())}"
+            )
     else:
         domain = None
 
@@ -110,12 +114,16 @@ def _check_param_inputs(**params):
             if product.upper() in aliases:
                 product = key
     if product not in _product:
-        raise ValueError(f"product must be one of {list(_product .keys())} or an alias {list(_product .values())}")
+        raise ValueError(
+            f"product must be one of {list(_product.keys())} or an alias {list(_product.values())}"
+        )
 
     return satellite, product, domain
 
 
-def _goes_file_df(satellite, product, start, end, bands=None, refresh=True, ignore_missing=False):
+def _goes_file_df(
+    satellite, product, start, end, bands=None, refresh=True, ignore_missing=False
+):
     """Get list of requested GOES files as pandas.DataFrame.
 
     Parameters
@@ -150,11 +158,10 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True, igno
         else:
             files += fs.ls(path, refresh=refresh)
 
-
     # Build a table of the files
     # --------------------------
     df = pd.DataFrame(files, columns=["file"])
-    df.drop(index=df.index[~df["file"].str.contains(".nc")],inplace=True)
+    df.drop(index=df.index[~df["file"].str.contains(".nc")], inplace=True)
     df[["product_mode", "satellite", "start", "end", "creation"]] = (
         df["file"].str.rsplit("_", expand=True, n=5).loc[:, 1:]
     )
@@ -197,6 +204,10 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True, igno
 
 def _download(df, save_dir, overwrite, max_threads=10, verbose=False):
     """Download the files from a DataFrame listing with multithreading."""
+    if len(df) == 0:
+        if verbose:
+            print("🛸 No files to download....🌌")
+        return
 
     def do_download(src):
         dst = Path(save_dir) / src
@@ -221,7 +232,7 @@ def _download(df, save_dir, overwrite, max_threads=10, verbose=False):
         this_list = [future.result() for future in as_completed(futures)]
 
     print(
-        f"📦 Finished downloading [{len(df)}] files to [{save_dir/Path(df.file[0]).parents[3]}]."
+        f"📦 Finished downloading [{len(df)}] files to [{save_dir / Path(df.file[0]).parents[3]}]."
     )
 
 
@@ -285,6 +296,7 @@ def _as_xarray(df, **params):
     n = len(df.file)
     if n == 0:
         print("🛸 No data....🌌")
+        return None
     elif n == 1:
         # If we only have one file, we don't need multiprocessing
         ds = _as_xarray_MP(df.iloc[0].file, save_dir, 1, 1, verbose)
@@ -410,7 +422,7 @@ def goes_timerange(
         raise ValueError("🤔 `start` and `end` *or* `recent` is required")
     if check1:
         if not (hasattr(start, "second") and hasattr(end, "second")):
-            raise ValueError( "`start` and `end` must be a datetime object")
+            raise ValueError("`start` and `end` must be a datetime object")
     elif check2:
         if not hasattr(recent, "seconds"):
             raise ValueError("`recent` must be a timedelta object")
@@ -420,10 +432,18 @@ def goes_timerange(
     # Create a range of directories to check. The GOES S3 bucket is
     # organized by hour of day.
     if recent is not None:
-        start = datetime.utcnow() - recent
-        end = datetime.utcnow()
+        start = datetime.now(timezone.utc).replace(tzinfo=None) - recent
+        end = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh, ignore_missing=ignore_missing)
+    df = _goes_file_df(
+        satellite,
+        product,
+        start,
+        end,
+        bands=bands,
+        refresh=s3_refresh,
+        ignore_missing=ignore_missing,
+    )
 
     if download:
         _download(df, save_dir=save_dir, overwrite=overwrite, verbose=verbose)
@@ -433,6 +453,7 @@ def goes_timerange(
         return df
     elif return_as == "xarray":
         return _as_xarray(df, **params)
+
 
 def _preprocess_single_point(ds, target_lat, target_lon, decimal_coordinates=True):
     """
@@ -447,8 +468,11 @@ def _preprocess_single_point(ds, target_lat, target_lon, decimal_coordinates=Tru
     decimal_coordinates: bool
         If latitude/longitude are specified in decimal or radian coordinates.
     """
-    x_target, y_target = lat_lon_to_scan_angles(target_lat, target_lon, ds["goes_imager_projection"], decimal_coordinates)
+    x_target, y_target = lat_lon_to_scan_angles(
+        target_lat, target_lon, ds["goes_imager_projection"], decimal_coordinates
+    )
     return ds.sel(x=x_target, y=y_target, method="nearest")
+
 
 def goes_single_point_timerange(
     latitude,
@@ -548,7 +572,7 @@ def goes_single_point_timerange(
         raise ValueError("🤔 `start` and `end` *or* `recent` is required")
     if check1:
         if not (hasattr(start, "second") and hasattr(end, "second")):
-            raise ValueError( "`start` and `end` must be a datetime object")
+            raise ValueError("`start` and `end` must be a datetime object")
     elif check2:
         if not hasattr(recent, "seconds"):
             raise ValueError("`recent` must be a timedelta object")
@@ -558,10 +582,18 @@ def goes_single_point_timerange(
     # Create a range of directories to check. The GOES S3 bucket is
     # organized by hour of day.
     if recent is not None:
-        start = datetime.utcnow() - recent
-        end = datetime.utcnow()
+        start = datetime.now(timezone.utc).replace(tzinfo=None) - recent
+        end = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh, ignore_missing=ignore_missing)
+    df = _goes_file_df(
+        satellite,
+        product,
+        start,
+        end,
+        bands=bands,
+        refresh=s3_refresh,
+        ignore_missing=ignore_missing,
+    )
 
     if download:
         _download(df, save_dir=save_dir, overwrite=overwrite, verbose=verbose)
@@ -570,11 +602,18 @@ def goes_single_point_timerange(
         df.attrs["filePath"] = save_dir
         return df
     elif return_as == "xarray":
-        partial_func = partial(_preprocess_single_point, target_lat=latitude, target_lon=longitude, decimal_coordinates=decimal_coordinates)
-        preprocessed_ds = xr.open_mfdataset([str(config['timerange']['save_dir']) + "/" + f for f in df['file'].to_list()],
-                  concat_dim='t',
-                  combine='nested',
-                  preprocess=partial_func)
+        partial_func = partial(
+            _preprocess_single_point,
+            target_lat=latitude,
+            target_lon=longitude,
+            decimal_coordinates=decimal_coordinates,
+        )
+        preprocessed_ds = xr.open_mfdataset(
+            [str(save_dir) + "/" + f for f in df["file"].to_list()],
+            concat_dim="t",
+            combine="nested",
+            preprocess=partial_func,
+        )
         return preprocessed_ds
 
 
@@ -647,10 +686,18 @@ def goes_latest(
     # ---------------
     # Create a range of directories to check. The GOES S3 bucket is
     # organized by hour of day. Look in the current hour and last hour.
-    start = datetime.utcnow() - timedelta(hours=1)
-    end = datetime.utcnow()
+    start = datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(hours=1)
+    end = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh, ignore_missing=ignore_missing)
+    df = _goes_file_df(
+        satellite,
+        product,
+        start,
+        end,
+        bands=bands,
+        refresh=s3_refresh,
+        ignore_missing=ignore_missing,
+    )
 
     # Filter for specific mesoscale domain
     if domain is not None and domain.upper() in ["M1", "M2"]:
@@ -744,6 +791,7 @@ def goes_nearesttime(
     satellite, product, _ = _check_param_inputs(**params)
     params["satellite"] = satellite
     params["product"] = product
+    params["domain"] = domain
 
     # Parameter Setup
     # ---------------
@@ -752,7 +800,15 @@ def goes_nearesttime(
     start = attime - within
     end = attime + within
 
-    df = _goes_file_df(satellite, product, start, end, bands=bands, refresh=s3_refresh, ignore_missing=ignore_missing)
+    df = _goes_file_df(
+        satellite,
+        product,
+        start,
+        end,
+        bands=bands,
+        refresh=s3_refresh,
+        ignore_missing=ignore_missing,
+    )
 
     # return df, start, end, attime
 

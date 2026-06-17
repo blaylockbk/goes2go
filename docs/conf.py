@@ -12,7 +12,7 @@
 #
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pydata_sphinx_theme
 
@@ -29,10 +29,10 @@ version = ".".join([str(i) for i in goes2go.__version_tuple__])
 
 
 # -- Project information -----------------------------------------------------
-utc_now = datetime.utcnow().strftime("%H:%M UTC %d %b %Y")
+utc_now = datetime.now(timezone.utc).replace(tzinfo=None).strftime("%H:%M UTC %d %b %Y")
 
 project = "goes2go"
-copyright = f"{datetime.utcnow():%Y}, Brian K. Blaylock.    ♻ Updated: {utc_now}"
+copyright = f"{datetime.now(timezone.utc).replace(tzinfo=None):%Y}, Brian K. Blaylock.    ♻ Updated: {utc_now}"
 author = f"Brian K. Blaylock"
 
 # -- General configuration ---------------------------------------------------

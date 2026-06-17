@@ -13,8 +13,6 @@
   "python.testing.unittestEnabled": false,
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#ffffff18",
-    // Colors based on GOES-R Logo:
-    // https://www.goes-r.gov/multimedia/logos.html
     "activityBar.activeBorder": "#F8AF22",
     "activityBar.background": "#323334",
     "activityBar.foreground": "#F8AF22",
