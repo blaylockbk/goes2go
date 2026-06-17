@@ -30,9 +30,13 @@ ABI-L2-AODF,    Advanced Baseline Imager Level 2 Aerosol Optical Depth Full Disk
 ABI-L2-BRFC,    Land Surface Bidirectional Reflectance Factor (CONUS) 2 km resolution & DQFs
 ABI-L2-BRFF,    Land Surface Bidirectional Reflectance Factor (Full Disk) 2 km resolution & DQFs
 ABI-L2-BRFM,    Land Surface Bidirectional Reflectance Factor (Mesoscale) 2 km resolution & DQFs
+ABI-L2-CCLC,    Advanced Baseline Imager Level 2 Cloud Cover Layer CONUS
+ABI-L2-CCLF,    Advanced Baseline Imager Level 2 Cloud Cover Layer Full Disk
+ABI-L2-CCLM,    Advanced Baseline Imager Level 2 Cloud Cover Layer Mesoscale
 ABI-L2-CMIPC,   Advanced Baseline Imager Level 2 Cloud and Moisture Imagery CONUS
 ABI-L2-CMIPF,   Advanced Baseline Imager Level 2 Cloud and Moisture Imagery Full Disk
 ABI-L2-CMIPM,   Advanced Baseline Imager Level 2 Cloud and Moisture Imagery Mesoscale
+ABI-L2-COD2KMF, Advanced Baseline Imager Level 2 Cloud Optical Depth 2km Full Disk
 ABI-L2-CODC,    Advanced Baseline Imager Level 2 Cloud Optical Depth CONUS
 ABI-L2-CODF,    Advanced Baseline Imager Level 2 Cloud Optical Depth Full Disk
 ABI-L2-CPSC,    Advanced Baseline Imager Level 2 Cloud Particle Size CONUS
@@ -74,6 +78,7 @@ ABI-L2-LVTPM,   Advanced Baseline Imager Level 2 Legacy Vertical Temperature Pro
 ABI-L2-MCMIPC,  Advanced Baseline Imager Level 2 Cloud and Moisture Imagery CONUS
 ABI-L2-MCMIPF,  Advanced Baseline Imager Level 2 Cloud and Moisture Imagery Full Disk
 ABI-L2-MCMIPM,  Advanced Baseline Imager Level 2 Cloud and Moisture Imagery Mesoscale
+ABI-L2-PARF,    Advanced Baseline Imager Level 2 Photosynthetically Active Radiation Full Disk
 ABI-L2-RRQPEF,  Advanced Baseline Imager Level 2 Rainfall Rate (Quantitative Precipitation Estimate) Full Disk
 ABI-L2-RSRC,    Advanced Baseline Imager Level 2 Reflected Shortwave Radiation Top-Of-Atmosphere CONUS
 ABI-L2-RSRF,    Advanced Baseline Imager Level 2 Reflected Shortwave Radiation Top-Of-Atmosphere Full Disk
